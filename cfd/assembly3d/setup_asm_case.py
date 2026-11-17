@@ -16,7 +16,8 @@ import json, math, os, shutil, sys
 
 NU, RHO, G = 8.9e-7, 997.0, 9.81
 TI, MIX_FRAC = 0.05, 0.07
-END_ITER = 3000
+END_ITER = int(os.environ.get("ASM_ITERS", "3000"))   # iterations (env ASM_ITERS overrides)
+WRITE_INT = 500 if END_ITER % 500 == 0 else END_ITER   # always write the last iteration
 LEVELS = {"coarse": 2.2e-3, "medium": 1.6e-3, "fine": 1.15e-3}
 
 case, fluid_dir, q_lpm = sys.argv[1], sys.argv[2], float(sys.argv[3])
@@ -253,7 +254,7 @@ endTime         {END_ITER};
 deltaT          1;
 
 writeControl    timeStep;
-writeInterval   500;
+writeInterval   {WRITE_INT};
 purgeWrite      1;
 writeFormat     binary;
 writePrecision  10;

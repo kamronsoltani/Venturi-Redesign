@@ -8,6 +8,7 @@ cfd/**/postProcessing/
 !cfd/results/
 __pycache__/
 *.pyc
-cfd/asm*/fluid/*.stl
+cfd/asm*/fluid/fluid_mm.stl
 cfd/**/constant/geometry/
 cfd/**/mesh_summary.txt.bak
+cfd/asm*_sweeptest/

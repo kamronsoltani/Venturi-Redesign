@@ -13,7 +13,8 @@ https://kamronsoltani.github.io/Venturi-Redesign/3d/
 
 ## Contents
 
-See `PROJECT_NOTES.md` for the full setup, results so far and the next stage.
+See `PROJECT_NOTES.md` for the full setup, results so far and the next stage,
+and `LAB_SETUP.md` to set up another computer and run the 3-D sweeps.
 
 
 | Folder | |

@@ -166,6 +166,12 @@ Level above the inlet centre 32.1 cm (24.3 cm above the Venturi inlet, vs
 jet 27.9 cm. Inlet level steady to 0.17 cm over the last 500 iterations;
 residuals plateaued at 2e-3 (p).
 
+Next: the baseline sweep of the same assembly at 6, 8, 10, 20, 40, 50 and
+60 L/min plus a coarse/fine mesh check at 30 L/min, run unattended with
+`cfd/assembly3d/run_sweep.sh` (mesh reused across flows, each flow started
+from the nearest finished one, 2000 iterations). How to run it on another
+computer: `LAB_SETUP.md`.
+
 ## Later stages (not started)
 
 - Stage 2: compare with bench measurements (inlet water level vs flow; port
