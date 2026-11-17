@@ -59,7 +59,7 @@ ul.log{list-style:none;padding:0;margin:0;font-size:13px} ul.log li{padding:4px 
 a{color:var(--accent)}
 td.asm{cursor:help;white-space:normal;min-width:150px}
 td.asm:hover b{color:var(--accent);text-decoration:underline dotted}
-#pv{position:fixed;z-index:50;display:none;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.25);width:min(760px,calc(100vw - 32px))}
+#pv{position:fixed;z-index:50;display:none;max-height:calc(100vh - 16px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.25);width:min(760px,calc(100vw - 32px))}
 #pv img{width:100%;height:auto;display:block;background:#fff;border-radius:6px}
 #pv .cap{font-size:13px;margin:0 0 6px}
 #pv .x{float:right;margin:0;padding:2px 10px}
@@ -250,11 +250,15 @@ let pinned=false;
 function showPv(td,ev){
   const a=td.dataset.a;
   pv.innerHTML=`<button class="sec x" onclick="hidePv(true)">close</button><div class="cap"><b>${a}</b><br><span class="muted">${td.dataset.l}</span></div><img src="previews/${a}.png" alt="Water volume of ${a}: bend-plane half view, elbow close-up and 3-D view"><div class="small muted" style="margin-top:4px">Simulated water path: E-Sig reducer or long-radius reducer (blue), elbow/bend (orange), Venturi (purple). Half model, symmetric about the bend plane. Flow comes from the pump on the right and exits at the bottom.</div>`;
-  const r=td.getBoundingClientRect(), w=pv.offsetWidth||760;
   pv.style.display="block";
-  const h=pv.offsetHeight||420;
-  let top=r.bottom+6; if(top+h>innerHeight-8) top=Math.max(8,r.top-h-6);
-  pv.style.top=top+"px"; pv.style.left=Math.max(16,Math.min(r.left,innerWidth-w-16))+"px";
+  const place=()=>{
+    const r=td.getBoundingClientRect(), w=pv.offsetWidth, h=pv.offsetHeight;
+    let top=r.bottom+6;
+    if(top+h>innerHeight-8) top=r.top-h-6;            // above the row if no room below
+    if(top<8) top=Math.max(8,(innerHeight-h)/2);      // else centred in the window
+    pv.style.top=top+"px"; pv.style.left=Math.max(16,Math.min(r.left,innerWidth-w-16))+"px";
+  };
+  place(); pv.querySelector("img").addEventListener("load",place);
 }
 function hidePv(force){ if(force||!pinned){pv.style.display="none"; pinned=false;} }
 document.addEventListener("mouseover",e=>{const td=e.target.closest("td.asm"); if(td&&!pinned) showPv(td,e);});
