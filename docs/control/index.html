@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab CFD Control</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#fff; --ink:#1b1f24; --muted:#5d6670; --line:#dde1e6;
+  --ok:#1a7f37; --okbg:#e6f4ea; --warn:#9a6700; --warnbg:#fff4d6; --bad:#c62828; --badbg:#fde8e8;
+  --run:#0b5cad; --runbg:#e3efff; --idle:#eef0f2; --accent:#0b5cad;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f1216; --card:#171b21; --ink:#e6e9ed; --muted:#9aa4ae; --line:#2a3038;
+  --ok:#4cc26b; --okbg:#13301c; --warn:#e3b341; --warnbg:#33290f; --bad:#ff6b6b; --badbg:#3a1616;
+  --run:#6cb0ff; --runbg:#12263f; --idle:#1f242b; --accent:#6cb0ff;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f1216; --card:#171b21; --ink:#e6e9ed; --muted:#9aa4ae; --line:#2a3038;
+  --ok:#4cc26b; --okbg:#13301c; --warn:#e3b341; --warnbg:#33290f; --bad:#ff6b6b; --badbg:#3a1616;
+  --run:#6cb0ff; --runbg:#12263f; --idle:#1f242b; --accent:#6cb0ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:0}
+h2{font-size:15px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
+.top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:13px;font-weight:600}
+.ok{color:var(--ok);background:var(--okbg)} .warn{color:var(--warn);background:var(--warnbg)}
+.bad{color:var(--bad);background:var(--badbg)} .run{color:var(--run);background:var(--runbg)} .idle{color:var(--muted);background:var(--idle)}
+.muted{color:var(--muted)} .small{font-size:13px}
+.bar{height:12px;background:var(--idle);border-radius:6px;overflow:hidden;margin:8px 0}
+.bar>div{height:100%;background:var(--run);transition:width .5s}
+.kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px 14px}
+.kv div b{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:6px;text-align:left;vertical-align:top;white-space:nowrap}
+th{color:var(--muted);font-weight:600}
+td.cell{cursor:pointer;text-align:center;min-width:64px}
+td.cell:hover{outline:2px solid var(--accent);outline-offset:-2px}
+.c-done{background:var(--okbg);color:var(--ok)} .c-warn{background:var(--warnbg);color:var(--warn)}
+.c-fail{background:var(--badbg);color:var(--bad)} .c-run{background:var(--runbg);color:var(--run);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.6}}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+label{display:block;font-size:13px;color:var(--muted);margin:8px 0 3px}
+input[type=text],select{width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+button{font:inherit;font-weight:600;padding:8px 14px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;margin-top:10px}
+button.sec{background:transparent;color:var(--accent)}
+button.danger{background:var(--bad);border-color:var(--bad)}
+.checks{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
+.checks label{display:flex;gap:4px;align-items:center;margin:0;color:var(--ink)}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px;font-size:12px;overflow-x:auto;white-space:pre-wrap;margin:6px 0 0}
+.alert{border-left:4px solid var(--bad);background:var(--badbg);padding:10px;border-radius:6px;margin:8px 0}
+.note{border-left:4px solid var(--warn);background:var(--warnbg);padding:10px;border-radius:6px;margin:8px 0}
+ul.log{list-style:none;padding:0;margin:0;font-size:13px} ul.log li{padding:4px 0;border-bottom:1px solid var(--line)}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <div><h1>Lab CFD control</h1><div class="small muted">TuriTap Venturi, Stage 5b, lab PC</div></div>
+    <div><span id="hb" class="pill idle">loading…</span> <button class="sec" onclick="load()">Refresh</button></div>
+  </div>
+
+  <div id="alerts"></div>
+
+  <section class="card" id="current"><h2>Now running</h2><div class="muted">loading…</div></section>
+
+  <section class="card">
+    <h2>All cases</h2>
+    <div class="small muted" style="margin-bottom:6px">Water level above the inlet centre (cm) for finished cases. ✓ converged, ⚠ check, “air” means the inlet static pressure is negative. Tap a cell to fill the run form below.</div>
+    <div class="tablewrap" id="grid"></div>
+  </section>
+
+  <section class="card">
+    <h2>Controls</h2>
+    <div class="note small">Each button opens GitHub with a command already filled in. Tap <b>Submit new issue</b> there; you must be signed in to GitHub as the repo owner. The lab PC picks it up within about 2 minutes. Runs queue up and go one at a time, each in its own window on the lab PC.</div>
+    <div class="grid2">
+      <div>
+        <h3 style="margin:8px 0 0;font-size:15px">Run one assembly</h3>
+        <label>Assembly</label><select id="r_asm"></select>
+        <label>Flows, L/min (run in this order)</label><input type="text" id="r_flows" value="30">
+        <label>Mesh level</label><select id="r_lev"><option>medium</option><option>coarse</option><option>fine</option></select>
+        <div class="checks" style="margin-top:8px"><label><input type="checkbox" id="r_pull"> git pull first</label></div>
+        <button onclick="cmdRun()">Queue run</button>
+      </div>
+      <div>
+        <h3 style="margin:8px 0 0;font-size:15px">Campaign</h3>
+        <label>Flows, in order</label><input type="text" id="c_flows" value="30 6 8">
+        <label>Assemblies</label><div class="checks" id="c_asms"></div>
+        <div class="checks" style="margin-top:8px"><label><input type="checkbox" id="c_pull" checked> git pull first (recommended)</label></div>
+        <button onclick="cmdCampaign()">Queue campaign</button>
+        <div class="small muted">Cases that already have results are skipped.</div>
+      </div>
+      <div>
+        <h3 style="margin:8px 0 0;font-size:15px">Stop / maintenance</h3>
+        <button class="danger" onclick="cmdStop('current')">Stop current case</button>
+        <div class="small muted">Kills only the running mesher or solver. That case is logged as FAILED and the sweep moves on.</div>
+        <button class="danger" onclick="cmdStop('all')">Stop everything</button>
+        <div class="small muted">Stops the campaign or sweep. The queue is kept.</div>
+        <button class="sec" onclick="cmdSimple('pull','git pull')">git pull (when idle)</button>
+        <button class="sec" onclick="cmdSimple('clear-queue','clear queue')">Clear queue</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid2">
+    <section class="card"><h2>Queue</h2><div id="queue" class="small"></div></section>
+    <section class="card"><h2>Command log</h2><ul class="log" id="cmdlog"></ul></section>
+  </div>
+  <div class="grid2">
+    <section class="card"><h2>Mesh checks (medium)</h2><div id="mesh" class="small"></div></section>
+    <section class="card"><h2>Logs</h2><div id="logs" class="small"></div></section>
+  </div>
+  <p class="small muted">Status from branch <code>lab-status</code>, refreshed every 90 s. <a href="../3d/">3-D viewer</a> · <a href="https://github.com/kamronsoltani/Venturi-Redesign/blob/main/NEXT_STEPS.md">NEXT_STEPS.md</a> · <a href="https://github.com/kamronsoltani/Venturi-Redesign/issues?q=is%3Aissue+%5Blab%5D">command issues</a></p>
+</main>
+<script>
+const O="kamronsoltani", R="Venturi-Redesign";
+const ASMS=["asm34_current","asm34_A","asm34_Bvane","asm1e_V1","asm1e_V2","asm1e_V3","asm1e_V4","asm1lr_V1","asm1lr_V2","asm1lr_V3","asm1lr_V4"];
+const BASE_FLOWS=[6,8,20,25,30,40,50];
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $=id=>document.getElementById(id);
+
+// controls
+$("r_asm").innerHTML=ASMS.map(a=>`<option>${a}</option>`).join("");
+$("c_asms").innerHTML=ASMS.map(a=>`<label><input type="checkbox" value="${a}" checked>${a}</label>`).join("");
+function issue(title, lines){
+  const body=lines.join("\n")+"\n\n(sent from the lab control page)";
+  window.open(`https://github.com/${O}/${R}/issues/new?title=${encodeURIComponent("[lab] "+title)}&body=${encodeURIComponent(body)}`,"_blank");
+}
+const flowsOk=f=>/^\s*\d{1,2}(\.\d{1,2})?(\s*[ ,]\s*\d{1,2}(\.\d{1,2})?)*\s*$/.test(f);
+function cmdRun(){
+  const a=$("r_asm").value, f=$("r_flows").value.trim(), l=$("r_lev").value;
+  if(!flowsOk(f)) return alert("Flows: numbers separated by spaces, e.g. 30 20");
+  issue(`run ${a} ${f} Lpm`,["action: run",`assembly: ${a}`,`flows: ${f}`,`level: ${l}`,`pull: ${$("r_pull").checked?"yes":"no"}`]);
+}
+function cmdCampaign(){
+  const f=$("c_flows").value.trim(); if(!flowsOk(f)) return alert("Flows: numbers separated by spaces");
+  const sel=[...document.querySelectorAll("#c_asms input:checked")].map(x=>x.value);
+  if(!sel.length) return alert("Pick at least one assembly");
+  const al=sel.length===ASMS.length?"all":sel.join(" ");
+  issue(`campaign ${f}`,["action: campaign",`flows: ${f}`,`assemblies: ${al}`,`pull: ${$("c_pull").checked?"yes":"no"}`]);
+}
+function cmdStop(t){ if(confirm(t==="all"?"Stop EVERYTHING running on the lab PC?":"Stop the case that is meshing/solving now?")) issue(`stop ${t}`,["action: stop",`target: ${t}`]); }
+function cmdSimple(a,t){ issue(t,[`action: ${a}`]); }
+function cmdCancel(id){ issue(`cancel job ${id}`,["action: cancel",`job: ${id}`]); }
+function pick(a,q){ $("r_asm").value=a; $("r_flows").value=q; $("r_asm").scrollIntoView({behavior:"smooth",block:"center"}); }
+
+// status
+async function fetchStatus(){
+  try{
+    const b=await fetch(`https://api.github.com/repos/${O}/${R}/branches/lab-status`,{cache:"no-store"});
+    if(b.ok){ const sha=(await b.json()).commit.sha;
+      const r=await fetch(`https://raw.githubusercontent.com/${O}/${R}/${sha}/status.json`); if(r.ok) return r.json(); }
+  }catch(e){}
+  const r=await fetch(`https://raw.githubusercontent.com/${O}/${R}/lab-status/status.json?t=${Date.now()}`,{cache:"no-store"});
+  if(!r.ok) throw new Error("no status yet");
+  return r.json();
+}
+const ago=iso=>{const m=(Date.now()-new Date(iso))/60000; return m<1?"just now":m<60?`${Math.round(m)} min ago`:`${(m/60).toFixed(1)} h ago`;};
+function render(st){
+  const age=(Date.now()-new Date(st.generated))/60000;
+  const hb=$("hb");
+  hb.className="pill "+(age<5?"ok":age<15?"warn":"bad");
+  hb.textContent=(age<5?"lab PC online · ":age<15?"lab PC late · ":"lab PC OFFLINE · ")+ago(st.generated);
+  const al=[];
+  if(age>=15) al.push(`<div class="alert"><b>No update from the lab PC for ${Math.round(age)} min.</b> It may be asleep, rebooted, offline, or the agent window was closed.</div>`);
+  const c=st.current;
+  if(c&&c.mesh_stall_warning) al.push(`<div class="alert"><b>Possible long-radius mesh stall:</b> ${esc(c.assembly)}/${esc(c.case)} has been in snappyHexMesh for ${c.stage_since_min} min (${c.shell_refinement_iters} shell refinement iterations). NEXT_STEPS says to check the log before stopping it.</div>`);
+  if(c&&st.running&&c.output_age_min>10&&/solving/.test(c.stage||"")) al.push(`<div class="alert"><b>Solver output unchanged for ${c.output_age_min} min:</b> it may be stuck.</div>`);
+  $("alerts").innerHTML=al.join("");
+
+  // current
+  let h="";
+  if(!st.running){ h=`<span class="pill idle">idle</span> <span class="muted">Nothing is meshing or solving.${st.queue.length?" The next queued job starts within ~2 min.":""}</span>`; }
+  else{
+    const lbl=(st.grid[c?.assembly]||{}).label||"";
+    h=`<span class="pill run">running</span> <b>${esc(c?.assembly)} / ${esc(c?.case)}</b> <span class="muted small">${esc(lbl)}</span>`;
+    if(st.campaign) h+=`<div class="small muted">campaign: ${esc(st.campaign).replace(/\n/g," · ")}</div>`;
+    else if(st.sweep) h+=`<div class="small muted">sweep: ${esc(st.sweep.assembly)} at [${esc(st.sweep.flows)}] L/min, ${esc(st.sweep.level)} mesh</div>`;
+    const frac=c?.iteration&&c?.end&&/solving|done/.test(c.stage||"")?c.iteration/c.end:0;
+    h+=`<div class="bar"><div style="width:${(frac*100).toFixed(1)}%"></div></div>`;
+    h+=`<div class="kv">
+      <div><b>stage</b>${esc(c?.stage||"starting")}${c?.stage_since_min!=null?` <span class="muted small">(${c.stage_since_min} min)</span>`:""}</div>
+      <div><b>iteration</b>${c?.iteration??"–"} / ${c?.end??"–"}</div>
+      <div><b>speed / ETA</b>${c?.it_per_min?c.it_per_min+" it/min":"–"} ${c?.eta_min!=null?"· ~"+c.eta_min+" min left":""}</div>
+      <div><b>p residual</b>${c?.res_p!=null?c.res_p.toExponential(1):"–"}</div>
+      <div><b>flow in / out</b>${c?.flow_in_Lpm??"–"} / ${c?.flow_out_Lpm??"–"} L/min</div>
+      ${c?.snappy_phase?`<div><b>mesher</b>${esc(c.snappy_phase)} (${c.shell_refinement_iters} shell it.)</div>`:""}
+    </div>`;
+  }
+  $("current").innerHTML="<h2>Now running</h2>"+h;
+
+  // grid
+  const flows=new Set(BASE_FLOWS);
+  for(const a of ASMS)(st.grid[a]?.cases||[]).forEach(e=>flows.add(e.q));
+  const fl=[...flows].sort((x,y)=>x-y);
+  let g=`<table><tr><th>assembly</th>${fl.map(q=>`<th style="text-align:center">${q}</th>`).join("")}<th>other meshes</th></tr>`;
+  for(const a of ASMS){
+    const cases=st.grid[a]?.cases||[];
+    g+=`<tr><td title="${esc(st.grid[a]?.label)}"><b>${a}</b></td>`;
+    for(const q of fl){
+      const e=cases.find(x=>x.q===q&&x.level==="medium");
+      let cls="",txt="·",tip=`${a} at ${q} L/min`;
+      if(e){
+        tip+=`\n${e.status||"no status"}${e.mesh?"\n"+e.mesh:""}`;
+        if(e.running){cls="c-run";txt="running";}
+        else if(/FAIL|STOP/.test(e.status||"")){cls="c-fail";txt="FAILED";tip+="";}
+        else if(e.result){ const r=e.result;
+          cls=e.converged===false?"c-warn":"c-done";
+          txt=`${r.level_inlet_cm} ${e.converged===false?"⚠":"✓"}${r.static_inlet_negative?' <span title="negative inlet static pressure">air</span>':""}`;
+          tip+=`\nlevel above inlet centre ${r.level_inlet_cm} cm\nabove Venturi inlet ${r.level_venturi_in_cm} cm\nport wall p ${r.port_p_mean_kPa} kPa\nVenturi loss ${r.loss_venturi_cm} cm\nmass imbalance ${r.mass_imbalance_pct}%\ndrift last 500 it ${e.drift_last500_cm??"?"} cm${(e.concerns||[]).length?"\nCONCERNS: "+e.concerns.join(", "):""}`; }
+        else if(/^done/.test(e.status||"")){cls="c-done";txt="done";}
+        else {txt=esc(e.status||"set up");}
+      }
+      if(st.running&&st.current?.assembly===a&&st.current?.case===`Q${q}`){cls="c-run";txt="running";}
+      g+=`<td class="cell ${cls}" title="${esc(tip)}" onclick="pick('${a}','${q}')">${txt}</td>`;
+    }
+    const other=cases.filter(x=>x.level!=="medium").map(x=>`${x.dir}: ${x.result?x.result.level_inlet_cm+" cm":esc(x.status||"")}`);
+    g+=`<td class="small">${other.join("<br>")}</td></tr>`;
+  }
+  $("grid").innerHTML=g+"</table>";
+
+  // queue, log, mesh, logs
+  $("queue").innerHTML=st.queue.length?st.queue.map(j=>`<div style="padding:4px 0;border-bottom:1px solid var(--line)"><b>job ${j.id}</b> ${esc(j.type==="sweep"?`${j.assembly} at ${j.flows} L/min (${j.level})`:j.type==="campaign"?`campaign [${j.flows}] ${j.assemblies}`:"git pull")} <span class="muted">from #${j.issue}</span> <button class="sec" style="margin:0 0 0 6px;padding:2px 8px" onclick="cmdCancel(${j.id})">cancel</button></div>`).join(""):'<span class="muted">empty</span>';
+  $("cmdlog").innerHTML=(st.cmdlog||[]).map(l=>`<li><span class="pill ${l.ok?"ok":"bad"}">${l.ok?"ok":"rejected"}</span> ${esc(l.msg)} <span class="muted">#${l.issue} · ${ago(l.t)}</span></li>`).join("")||'<li class="muted">no commands yet</li>';
+  $("mesh").innerHTML=ASMS.map(a=>{const m=(st.meshcheck||[]).find(x=>x.assembly===a);
+    const nm=m&&/non-orthogonality ([\d.]+)/.exec(m.summary); const v=nm?+nm[1]:null;
+    return `<div style="padding:3px 0"><b>${a}</b> ${m?`<span class="pill ${/Mesh OK/.test(m.summary)?(v>64.9?"warn":"ok"):"bad"}">${/Mesh OK/.test(m.summary)?"OK":"FAIL"}</span> <span class="muted">${esc(m.summary.replace(/\s+Mesh OK\.?/,""))}</span>`:'<span class="muted">not checked yet (first mesh is in the campaign)</span>'}</div>`;}).join("");
+  const sw=st.running&&st.current?st.grid[st.current.assembly]?.sweep_log:[];
+  $("logs").innerHTML=`<b>campaign log</b><pre>${esc((st.campaign_log||[]).join("\n")||"(none yet)")}</pre>${sw&&sw.length?`<b>sweep log</b><pre>${esc(sw.join("\n"))}</pre>`:""}<div class="muted" style="margin-top:6px">repo at ${esc(st.repo_head||"?")} · agent v${esc(st.agent_version)}</div>`;
+}
+async function load(){
+  try{ render(await fetchStatus()); }
+  catch(e){ $("hb").className="pill bad"; $("hb").textContent="no status yet"; $("current").innerHTML='<h2>Now running</h2><div class="muted">No status published yet. Start the lab agent on the lab PC.</div>'; }
+}
+load(); setInterval(load,90000);
+</script>
+</body>
+</html>
