@@ -235,7 +235,8 @@ def current_case():
         c["shell_refinement_iters"] = len(re.findall(r"Shell refinement iteration", txt))
         last = [l for l in txt.splitlines() if re.match(r"^(Surface refinement|Shell refinement|Feature refinement|Snapping|Adding layers|Layer addition|Finished|Morphing|Smoothing)", l)]
         c["snappy_phase"] = last[-1] if last else None
-        warn = c["assembly"].startswith("asm1lr") and (c.get("stage_since_min", 0) > 35 or c["shell_refinement_iters"] > 20)
+        # time-based only: a healthy mesh (asm34_A) also logs ~100 shell refinement iterations
+        warn = c["assembly"].startswith("asm1lr") and c.get("stage_since_min", 0) > 35
         c["mesh_stall_warning"] = bool(warn)
     return c
 
