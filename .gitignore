@@ -1,0 +1,10 @@
+# OpenFOAM outputs (keep dictionaries, scripts, results CSVs)
+cfd/**/processor*/
+cfd/**/[0-9]*.[0-9]*/
+cfd/**/[1-9][0-9]*/
+cfd/**/constant/polyMesh/
+cfd/**/log.*
+cfd/**/postProcessing/
+!cfd/results/
+__pycache__/
+*.pyc

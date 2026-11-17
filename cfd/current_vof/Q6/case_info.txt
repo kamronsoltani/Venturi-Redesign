@@ -1,0 +1,8 @@
+stage 4 VoF
+geometry current
+Q_lpm 6
+level vof
+U_inlet_m_s 0.274422
+end_time_s 2
+initial bore full of water, air box empty
+wall probe z_mm 47.5 60.35 65 70 75 80 85 90 95 100 105 110 114

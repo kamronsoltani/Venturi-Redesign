@@ -1,0 +1,202 @@
+{
+"V1_20": {
+"level_above_inlet_cm": -5.62060753381194,
+"port_wall_p_kPa_orifice_avg": -2.780080901952865,
+"outlet_KE_alpha": 2.0663278014425814,
+"internal_loss_cm": 2.728088331236462,
+"outlet_KE_head_cm": 4.151304134951598,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V1_25": {
+"level_above_inlet_cm": -2.2039696088948286,
+"port_wall_p_kPa_orifice_avg": -3.8224873025493733,
+"outlet_KE_alpha": 2.0037921351845487,
+"internal_loss_cm": 4.005923484295843,
+"outlet_KE_head_cm": 6.290106906809329,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V1_30": {
+"level_above_inlet_cm": 1.832943485733212,
+"port_wall_p_kPa_orifice_avg": -5.1157470575025,
+"outlet_KE_alpha": 1.9556467721512139,
+"internal_loss_cm": 5.492821321353686,
+"outlet_KE_head_cm": 8.840122164379526,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V1_40": {
+"level_above_inlet_cm": 11.695833697893889,
+"port_wall_p_kPa_orifice_avg": -8.444302160879431,
+"outlet_KE_alpha": 1.8837986488279932,
+"internal_loss_cm": 9.057439654439042,
+"outlet_KE_head_cm": 15.138394043454847,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V1_50": {
+"level_above_inlet_cm": 23.871918028539934,
+"port_wall_p_kPa_orifice_avg": -12.758665595513103,
+"outlet_KE_alpha": 1.831511050606158,
+"internal_loss_cm": 13.37472164867815,
+"outlet_KE_head_cm": 22.997196379861787,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V2_20": {
+"level_above_inlet_cm": -8.142995085663296,
+"port_wall_p_kPa_orifice_avg": -2.0248701228889003,
+"outlet_KE_alpha": 1.3797924414838032,
+"internal_loss_cm": 1.5849674555618734,
+"outlet_KE_head_cm": 2.7720374587748307,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V2_25": {
+"level_above_inlet_cm": -5.960265836296533,
+"port_wall_p_kPa_orifice_avg": -2.624982692479381,
+"outlet_KE_alpha": 1.3437172413725205,
+"internal_loss_cm": 2.3216693493220975,
+"outlet_KE_head_cm": 4.2180648143813695,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V2_30": {
+"level_above_inlet_cm": -3.368897690989589,
+"port_wall_p_kPa_orifice_avg": -3.3641278545654307,
+"outlet_KE_alpha": 1.3168610711715947,
+"internal_loss_cm": 3.1784870880790645,
+"outlet_KE_head_cm": 5.952615220931346,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V2_40": {
+"level_above_inlet_cm": 3.007818501555257,
+"port_wall_p_kPa_orifice_avg": -5.2730053632908955,
+"outlet_KE_alpha": 1.2785267605560178,
+"internal_loss_cm": 5.233449789994452,
+"outlet_KE_head_cm": 10.274368711560804,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V2_50": {
+"level_above_inlet_cm": 10.943548846892929,
+"port_wall_p_kPa_orifice_avg": -7.745241844641351,
+"outlet_KE_alpha": 1.2519676202259833,
+"internal_loss_cm": 7.723335084581095,
+"outlet_KE_head_cm": 15.720213762311836,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V3_20": {
+"level_above_inlet_cm": -9.182047944000235,
+"port_wall_p_kPa_orifice_avg": -1.6027750533624274,
+"outlet_KE_alpha": 1.1454564715190974,
+"internal_loss_cm": 1.016701410625608,
+"outlet_KE_head_cm": 2.301250645374157,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V3_25": {
+"level_above_inlet_cm": -7.467412564263615,
+"port_wall_p_kPa_orifice_avg": -1.949496259475095,
+"outlet_KE_alpha": 1.1282563830309003,
+"internal_loss_cm": 1.4908761259947867,
+"outlet_KE_head_cm": 3.5417113097415984,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V3_30": {
+"level_above_inlet_cm": -5.4123950322825864,
+"port_wall_p_kPa_orifice_avg": -2.3723088607127547,
+"outlet_KE_alpha": 1.1159581149934548,
+"internal_loss_cm": 2.0431326185410326,
+"outlet_KE_head_cm": 5.044472349176381,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V3_40": {
+"level_above_inlet_cm": -0.2943949865017146,
+"port_wall_p_kPa_orifice_avg": -3.465675348305093,
+"outlet_KE_alpha": 1.0992620866127216,
+"internal_loss_cm": 3.371825121721079,
+"outlet_KE_head_cm": 8.833779891777207,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V3_50": {
+"level_above_inlet_cm": 6.152744668010283,
+"port_wall_p_kPa_orifice_avg": -4.8818114075238315,
+"outlet_KE_alpha": 1.088278196034052,
+"internal_loss_cm": 4.987881776883437,
+"outlet_KE_head_cm": 13.664862891126845,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V4_20": {
+"level_above_inlet_cm": -9.219143131583337,
+"port_wall_p_kPa_orifice_avg": -3.1320382082298663,
+"outlet_KE_alpha": 2.637779576766316,
+"internal_loss_cm": 3.0911252290359745,
+"outlet_KE_head_cm": 2.989731639380689,
+"diffuser_reversed_wall_length_frac": 0.028218184650493507
+},
+"V4_25": {
+"level_above_inlet_cm": -6.23082090452647,
+"port_wall_p_kPa_orifice_avg": -4.216336363756185,
+"outlet_KE_alpha": 2.559038474901614,
+"internal_loss_cm": 4.5371723497509615,
+"outlet_KE_head_cm": 4.532006745722568,
+"diffuser_reversed_wall_length_frac": 0.0004748940182101595
+},
+"V4_30": {
+"level_above_inlet_cm": -2.7115907464095326,
+"port_wall_p_kPa_orifice_avg": -5.56022875785189,
+"outlet_KE_alpha": 2.4977226423525076,
+"internal_loss_cm": 6.218687889823205,
+"outlet_KE_head_cm": 6.369721363767263,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V4_40": {
+"level_above_inlet_cm": 5.849729751716827,
+"port_wall_p_kPa_orifice_avg": -9.016084174290064,
+"outlet_KE_alpha": 2.404992576172568,
+"internal_loss_cm": 10.246191850686523,
+"outlet_KE_head_cm": 10.903537901030303,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"V4_50": {
+"level_above_inlet_cm": 16.370567121850573,
+"port_wall_p_kPa_orifice_avg": -13.492339315832025,
+"outlet_KE_alpha": 2.336488539069922,
+"internal_loss_cm": 15.11906635432036,
+"outlet_KE_head_cm": 16.551500767530214,
+"diffuser_reversed_wall_length_frac": 0.0
+},
+"B_1in_20": {
+"level_above_inlet_cm": -3.62294982682829,
+"port_wall_p_kPa_orifice_avg": -2.4892935744118794,
+"outlet_KE_alpha": 2.650325959235368,
+"internal_loss_cm": 2.7024791592106583,
+"outlet_KE_head_cm": 5.3245710139610525,
+"diffuser_reversed_wall_length_frac": 0.5866428758287919
+},
+"B_1in_25": {
+"level_above_inlet_cm": 0.3834755530407752,
+"port_wall_p_kPa_orifice_avg": -3.475925677920577,
+"outlet_KE_alpha": 2.5751016713712818,
+"internal_loss_cm": 3.9499701268396006,
+"outlet_KE_head_cm": 8.083505426201175,
+"diffuser_reversed_wall_length_frac": 0.5224264611346927
+},
+"B_1in_30": {
+"level_above_inlet_cm": 5.12450773444002,
+"port_wall_p_kPa_orifice_avg": -4.698925296597129,
+"outlet_KE_alpha": 2.5171440278185018,
+"internal_loss_cm": 5.3962460591111405,
+"outlet_KE_head_cm": 11.378261675328881,
+"diffuser_reversed_wall_length_frac": 0.46696683026251606
+},
+"B_1in_40": {
+"level_above_inlet_cm": 16.72882658283398,
+"port_wall_p_kPa_orifice_avg": -7.846988729204032,
+"outlet_KE_alpha": 2.430507307880439,
+"internal_loss_cm": 8.847028461693998,
+"outlet_KE_head_cm": 19.531798121139982,
+"diffuser_reversed_wall_length_frac": 0.3764800641026489
+},
+"B_1in_50": {
+"level_above_inlet_cm": 31.076959193794494,
+"port_wall_p_kPa_orifice_avg": -11.932692136746606,
+"outlet_KE_alpha": 2.367181953587126,
+"internal_loss_cm": 13.003663436541053,
+"outlet_KE_head_cm": 29.72329575725344,
+"diffuser_reversed_wall_length_frac": 0.30058793764598607
+}
+}

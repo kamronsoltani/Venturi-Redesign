@@ -1,0 +1,8 @@
+geometry V2
+Q_lpm 40
+level medium
+U_inlet_m_s 0.871986
+k_inlet 0.00285135
+omega_inlet 44.6388
+mixing_length_m 0.002184
+initial_U plug

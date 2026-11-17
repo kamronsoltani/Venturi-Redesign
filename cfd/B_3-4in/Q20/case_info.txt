@@ -1,0 +1,7 @@
+geometry B_3-4in
+Q_lpm 20
+level medium
+U_inlet_m_s 0.962388
+k_inlet 0.00347322
+omega_inlet 73.1961
+mixing_length_m 0.00147

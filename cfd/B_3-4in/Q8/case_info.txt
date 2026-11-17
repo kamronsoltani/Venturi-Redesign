@@ -1,0 +1,8 @@
+geometry B_3-4in
+Q_lpm 8
+level medium
+U_inlet_m_s 0.384955
+k_inlet 0.000555715
+omega_inlet 29.2784
+mixing_length_m 0.00147
+initialised_from B_3-4in/Q6 time 4000 (U scaled x1.333)

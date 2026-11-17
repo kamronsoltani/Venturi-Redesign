@@ -1,0 +1,7 @@
+geometry current
+Q_lpm 20
+level medium
+U_inlet_m_s 0.91474
+k_inlet 0.00313781
+omega_inlet 67.828
+mixing_length_m 0.0015078

@@ -1,0 +1,7 @@
+Q_lpm,current_level_cm,current_port_kPa,current_diffuser_separated,current_inlet_static_neg,A_3-4in_level_cm,A_3-4in_port_kPa,A_3-4in_diffuser_separated,A_3-4in_inlet_static_neg,A_1in_level_cm,A_1in_port_kPa,A_1in_diffuser_separated,A_1in_inlet_static_neg,B_3-4in_level_cm,B_3-4in_port_kPa,B_3-4in_diffuser_separated,B_3-4in_inlet_static_neg,B_1in_level_cm,B_1in_port_kPa,B_1in_diffuser_separated,B_1in_inlet_static_neg
+6,-9.70,-0.898,True,True,-10.44,-0.954,True,True,-10.41,-0.875,True,True,-10.66,-0.975,True,True,-10.58,-0.892,True,True
+8,-8.39,-1.080,True,True,-9.66,-1.058,True,True,-9.64,-0.980,True,True,-10.09,-1.100,True,True,-9.99,-1.014,True,True
+12,-4.78,-1.599,True,True,-7.51,-1.356,True,True,-7.55,-1.284,True,True,-8.53,-1.456,True,True,-8.43,-1.371,True,True
+20,6.21,-3.295,True,False,-0.90,-2.299,True,True,-1.01,-2.234,True,True,-3.87,-2.590,True,True,-3.62,-2.489,True,True
+25,15.53,-4.806,False,False,4.72,-3.138,True,True,4.57,-3.067,True,False,-0.01,-3.601,True,True,0.38,-3.476,True,True
+30,26.68,-6.666,False,False,11.47,-4.172,False,False,11.27,-4.098,False,False,4.54,-4.849,True,True,5.12,-4.699,True,False

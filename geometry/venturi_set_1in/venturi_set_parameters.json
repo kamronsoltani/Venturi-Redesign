@@ -1,0 +1,158 @@
+[
+ {
+  "name": "TuriTap_HP_V1_throat14_exit26",
+  "Dt": 14,
+  "Dex": 26,
+  "L": 125.0,
+  "blades": 4,
+  "valid": true,
+  "solids": 1,
+  "port_ok": true,
+  "removed": {
+   "port": 278.3
+  },
+  "min_port_edge_mm": 0.288,
+  "port_z": 30.63,
+  "stations": [
+   [
+    0.0,
+    31.2
+   ],
+   [
+    23.63,
+    14.0
+   ],
+   [
+    37.63,
+    14.0
+   ],
+   [
+    123.43,
+    26.0
+   ],
+   [
+    125.0,
+    26.0
+   ]
+  ],
+  "column_below_port_mm": 94.4,
+  "xmin": -18.2
+ },
+ {
+  "name": "TuriTap_HP_V2_throat16_exit26",
+  "Dt": 16,
+  "Dex": 26,
+  "L": 125.0,
+  "blades": 4,
+  "valid": true,
+  "solids": 1,
+  "port_ok": true,
+  "removed": {
+   "port": 278.3
+  },
+  "min_port_edge_mm": 0.288,
+  "port_z": 27.88,
+  "stations": [
+   [
+    0.0,
+    31.2
+   ],
+   [
+    20.88,
+    16.0
+   ],
+   [
+    34.88,
+    16.0
+   ],
+   [
+    106.38,
+    26.0
+   ],
+   [
+    125.0,
+    26.0
+   ]
+  ],
+  "column_below_port_mm": 97.1,
+  "xmin": -19.2
+ },
+ {
+  "name": "TuriTap_HP_V3_throat18_exit26",
+  "Dt": 18,
+  "Dex": 26,
+  "L": 125.0,
+  "blades": 4,
+  "valid": true,
+  "solids": 1,
+  "port_ok": true,
+  "removed": {
+   "port": 278.3
+  },
+  "min_port_edge_mm": 0.288,
+  "port_z": 25.13,
+  "stations": [
+   [
+    0.0,
+    31.2
+   ],
+   [
+    18.13,
+    18.0
+   ],
+   [
+    32.13,
+    18.0
+   ],
+   [
+    89.34,
+    26.0
+   ],
+   [
+    125.0,
+    26.0
+   ]
+  ],
+  "column_below_port_mm": 99.9,
+  "xmin": -20.2
+ },
+ {
+  "name": "TuriTap_HP_V4_throat14_exit30_long",
+  "Dt": 14,
+  "Dex": 30,
+  "L": 153.0,
+  "blades": 6,
+  "valid": true,
+  "solids": 1,
+  "port_ok": true,
+  "removed": {
+   "port": 278.3
+  },
+  "min_port_edge_mm": 0.288,
+  "port_z": 30.63,
+  "stations": [
+   [
+    0.0,
+    31.2
+   ],
+   [
+    23.63,
+    14.0
+   ],
+   [
+    37.63,
+    14.0
+   ],
+   [
+    152.03,
+    30.0
+   ],
+   [
+    153.0,
+    30.0
+   ]
+  ],
+  "column_below_port_mm": 122.4,
+  "xmin": -18.2
+ }
+]

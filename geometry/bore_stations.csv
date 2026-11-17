@@ -1,0 +1,60 @@
+geometry,station,z_mm_below_inlet_face,bore_diameter_mm
+current,inlet face,0.00,21.54
+current,end of inlet socket,15.60,21.00
+current,end of 12.1 deg cone,34.95,12.70
+current,minimum bore / port (port axis z=47.7),47.50,12.26
+current,start of diffuser,60.35,12.70
+current,end of 4.76 deg diffuser,79.40,15.88
+current,outlet face,116.50,17.17
+A_1in,inlet face,0.00,26.60
+A_1in,end of inlet bore (fillet R10),15.00,26.60
+A_1in,throat start (fillet R14),32.31,14.00
+A_1in,port axis,39.31,14.00
+A_1in,throat end (fillet R14),46.31,14.00
+A_1in,diffuser end,74.88,19.00
+A_1in,outlet face,116.50,19.00
+B_1in,inlet face,0.00,26.60
+B_1in,end of inlet bore (fillet R10),15.00,26.60
+B_1in,throat start (fillet R14),32.31,14.00
+B_1in,port axis,39.31,14.00
+B_1in,throat end (fillet R14),46.31,14.00
+B_1in,diffuser end,114.89,26.00
+B_1in,outlet face,116.50,26.00
+A_3-4in,inlet face,0.00,21.00
+A_3-4in,end of inlet bore (fillet R10),15.00,21.00
+A_3-4in,throat start (fillet R14),24.62,14.00
+A_3-4in,port axis,31.62,14.00
+A_3-4in,throat end (fillet R14),38.62,14.00
+A_3-4in,diffuser end,67.19,19.00
+A_3-4in,outlet face,116.50,19.00
+B_3-4in,inlet face,0.00,21.00
+B_3-4in,end of inlet bore (fillet R10),15.00,21.00
+B_3-4in,throat start (fillet R14),24.62,14.00
+B_3-4in,port axis,31.62,14.00
+B_3-4in,throat end (fillet R14),38.62,14.00
+B_3-4in,diffuser end,107.20,26.00
+B_3-4in,outlet face,116.50,26.00
+V1,inlet face (cone starts here),0.00,31.20
+V1,throat start (fillet R14),23.63,14.00
+V1,port axis,30.63,14.00
+V1,throat end (fillet R14),37.63,14.00
+V1,diffuser end,123.43,26.00
+V1,outlet face,125.00,26.00
+V2,inlet face (cone starts here),0.00,31.20
+V2,throat start (fillet R14),20.88,16.00
+V2,port axis,27.88,16.00
+V2,throat end (fillet R14),34.88,16.00
+V2,diffuser end,106.38,26.00
+V2,outlet face,125.00,26.00
+V3,inlet face (cone starts here),0.00,31.20
+V3,throat start (fillet R14),18.13,18.00
+V3,port axis,25.13,18.00
+V3,throat end (fillet R14),32.13,18.00
+V3,diffuser end,89.34,26.00
+V3,outlet face,125.00,26.00
+V4,inlet face (cone starts here),0.00,31.20
+V4,throat start (fillet R14),23.63,14.00
+V4,port axis,30.63,14.00
+V4,throat end (fillet R14),37.63,14.00
+V4,diffuser end,152.03,30.00
+V4,outlet face,153.00,30.00
