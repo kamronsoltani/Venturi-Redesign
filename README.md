@@ -12,12 +12,15 @@ flow sweeps, convergence).
 
 ## Contents
 
+See `PROJECT_NOTES.md` for the full setup, results so far and the next stage.
+
+
 | Folder | |
 |---|---|
 | `docs/` | Web CFD viewer (GitHub Pages) |
 | `report/` | LaTeX report (`main.tex`, figures, tables, Overleaf zip) |
 | `cfd/` | OpenFOAM cases, scripts, and `results/*.csv` |
-| `geometry/` | Bore stations and STEP/STL files for prototypes A, B, C and V1-V4 |
+| `geometry/` | Bore stations and STEP/STL files for prototypes A, B, C and V1-V4; `upstream/` holds the reducers and elbows for the 3-D stage |
 | `reference/` | Current part STEP and drawing |
 | `analysis/` | 1-D Bernoulli/loss model (MATLAB) and prototype drawings |
 
