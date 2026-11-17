@@ -12,3 +12,5 @@ cfd/asm*/fluid/fluid_mm.stl
 cfd/**/constant/geometry/
 cfd/**/mesh_summary.txt.bak
 cfd/asm*_sweeptest/
+cfd/asm*/meshcheck_medium/
+cfd/asm*/fluid/build.log

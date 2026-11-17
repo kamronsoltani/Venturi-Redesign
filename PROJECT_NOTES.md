@@ -166,11 +166,18 @@ Level above the inlet centre 32.1 cm (24.3 cm above the Venturi inlet, vs
 jet 27.9 cm. Inlet level steady to 0.17 cm over the last 500 iterations;
 residuals plateaued at 2e-3 (p).
 
-Next: the baseline sweep of the same assembly at 6, 8, 10, 20, 40, 50 and
-60 L/min plus a coarse/fine mesh check at 30 L/min, run unattended with
-`cfd/assembly3d/run_sweep.sh` (mesh reused across flows, each flow started
-from the nearest finished one, 2000 iterations). How to run it on another
-computer: `LAB_SETUP.md`.
+Next: the ranking campaign, all 11 assemblies at 30 L/min, then 6, then
+8 L/min (`cfd/assembly3d/run_campaign.sh`; how to run it: `LAB_SETUP.md`
+Part B). Water volumes for all 11 are built by `cfd/assembly3d/build_assembly.py`
+(`esig34`, `esig1` = 1" E-Sig + McMaster 4880K464 elbow, `lr1` = 1" long-radius
+reducing elbow) and pictured in `cfd/assembly_previews/`. Geometry decisions:
+the 3/4" Venturis (A, B + vane) screw into the 3/4" elbow socket like the
+current part; V1-V4 (plain 33.4 mm spigot) are press-fitted and seated on the
+socket shoulder: flush with the long-radius elbow's 31.2 mm port bore; in the
+McMaster elbow the shoulder sits inside the bend, so the 26.2 mm passage meets
+the 31.2 mm mouth off-centre (checked against the McMaster STEP, kept as the
+real fitting has it). Afterwards: the baseline flow sweep (10-60 L/min) and
+the coarse/fine mesh check of `asm34_current` (LAB_SETUP.md Part C).
 
 ## Later stages (not started)
 

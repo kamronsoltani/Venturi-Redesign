@@ -1,0 +1,158 @@
+{
+ "frame": "mm; Venturi axis = x, flow -x (down, gravity -x); leg toward the pump = +y, flow -y; z>=0 half",
+ "upstream": "lr1",
+ "venturi": "V4",
+ "vane": true,
+ "engage_mm": 18.0,
+ "esig_end_face_y": 76.09000000000003,
+ "venturi_inlet_x": 0.0,
+ "outlet_x": -153.0,
+ "inlet_y": 294.15999999999997,
+ "inlet_centre_x": 72.06999999999994,
+ "inlet_radius": 21.975,
+ "inlet_extension_mm": 130.0,
+ "spigot_entry_y": 164.15999999999997,
+ "port_x": -30.63,
+ "port_side": "not modelled; wall pressure sampled all round",
+ "diffuser_start_mm": 37.63,
+ "diffuser_end_mm": 152.03,
+ "venturi_wall": [
+  [
+   0.0,
+   15.6
+  ],
+  [
+   21.310432556024605,
+   7.844192975801455
+  ],
+  [
+   21.581536860126047,
+   7.748666321203633
+  ],
+  [
+   21.8545452316193,
+   7.658725704485828
+  ],
+  [
+   22.12934258509926,
+   7.574409039695343
+  ],
+  [
+   22.40581308102379,
+   7.495751870128792
+  ],
+  [
+   22.683840174545388,
+   7.42278735334898
+  ],
+  [
+   22.963306664640083,
+   7.355546247207496
+  ],
+  [
+   23.244094743512996,
+   7.294056896878873
+  ],
+  [
+   23.526086046259678,
+   7.2383452229118355
+  ],
+  [
+   23.80916170076225,
+   7.1884347103025785
+  ],
+  [
+   24.093202377799425,
+   7.144346398594811
+  ],
+  [
+   24.378088341349166,
+   7.106098873010607
+  ],
+  [
+   24.663699499062847,
+   7.073708256615909
+  ],
+  [
+   24.949915452889634,
+   7.047188203523925
+  ],
+  [
+   25.2366155498297,
+   7.0265498931392845
+  ],
+  [
+   25.52367893279497,
+   7.011802025445432
+  ],
+  [
+   25.810984591555815,
+   7.002950817337176
+  ],
+  [
+   26.098411413752387,
+   7.0
+  ],
+  [
+   30.63,
+   7.0
+  ],
+  [
+   37.14108650451067,
+   7.0
+  ],
+  [
+   37.385431540368295,
+   7.002132465855674
+  ],
+  [
+   37.62970213944792,
+   7.00852921379261
+  ],
+  [
+   37.87382388764782,
+   7.019188295118438
+  ],
+  [
+   38.11772241621191,
+   7.034106462672161
+  ],
+  [
+   152.03,
+   15.0
+  ],
+  [
+   153.0,
+   15.0
+  ]
+ ],
+ "fluid_volume_mm3_half": 258927,
+ "bbox_mm": [
+  -153.00002354022843,
+  116.0200235402284,
+  -26.940946715319214,
+  294.1600235402284,
+  38.06184003655447
+ ],
+ "inside_point_mm": [
+  72.06999999999994,
+  144.15999999999997,
+  5.0
+ ],
+ "fine_box_mm": [
+  -154.0,
+  -20.0,
+  -1.0,
+  97.06999999999994,
+  88.09000000000003,
+  25.0
+ ],
+ "assumptions": [
+  "Long-radius reducing bend installed with the 1in port DOWN (spigot horizontal toward the pump)",
+  "V4 plain spigot press-fitted into the reducer's 1in port and seated on the port shoulder (18.0 mm deep); bore steps 31.16 -> 31.20 mm, flush",
+  "Reducer bore rebuilt from 31 circle-fitted sections of its STEP (blank port, thread not modelled)",
+  "Inlet extension of 130 mm at the spigot bore stands in for the rubber coupler and pump spout",
+  "Half domain: symmetric about the bend plane (the chlorine port is not modelled)",
+  "Outlet cross-vane: 6 blades, 1.2 mm thick, 12 mm long, one blade in the bend plane"
+ ]
+}

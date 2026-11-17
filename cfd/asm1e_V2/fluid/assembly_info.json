@@ -1,0 +1,158 @@
+{
+ "frame": "mm; Venturi axis = x, flow -x (down, gravity -x); leg toward the pump = +y, flow -y; z>=0 half",
+ "upstream": "esig1",
+ "venturi": "V2",
+ "vane": true,
+ "engage_mm": 16.78608695652174,
+ "esig_end_face_y": 22.10391304347826,
+ "venturi_inlet_x": -15.88,
+ "outlet_x": -140.88,
+ "inlet_y": 393.3239130434783,
+ "inlet_centre_x": 8.645,
+ "inlet_radius": 21.965,
+ "inlet_extension_mm": 130.0,
+ "spigot_entry_y": 263.3239130434783,
+ "port_x": -43.76,
+ "port_side": "not modelled; wall pressure sampled all round",
+ "diffuser_start_mm": 34.88,
+ "diffuser_end_mm": 106.38,
+ "venturi_wall": [
+  [
+   0.0,
+   15.6
+  ],
+  [
+   18.560220008635312,
+   8.84436436467297
+  ],
+  [
+   18.831348793957073,
+   8.748818494900195
+  ],
+  [
+   19.104382225418455,
+   8.658859744546996
+  ],
+  [
+   19.379205183444164,
+   8.574526043082592
+  ],
+  [
+   19.655701793937602,
+   8.495852948276758
+  ],
+  [
+   19.93375547713708,
+   8.422873631207528
+  ],
+  [
+   20.213248996769558,
+   8.355618862275223
+  ],
+  [
+   20.494064509481174,
+   8.29411699822867
+  ],
+  [
+   20.77608361452375,
+   8.238393970209088
+  ],
+  [
+   21.059187403676326,
+   8.188473272816701
+  ],
+  [
+   21.343256511380623,
+   8.144375954204667
+  ],
+  [
+   21.62817116506938,
+   8.106120607204506
+  ],
+  [
+   21.913811235666262,
+   8.073723361486772
+  ],
+  [
+   22.200056288236105,
+   8.047197876760272
+  ],
+  [
+   22.486785632764107,
+   8.026555337012692
+  ],
+  [
+   22.773878375042578,
+   8.011804445795088
+  ],
+  [
+   23.061213467643793,
+   8.002951422552167
+  ],
+  [
+   23.348669760957414,
+   8.0
+  ],
+  [
+   27.88,
+   8.0
+  ],
+  [
+   34.39108650451067,
+   8.0
+  ],
+  [
+   34.635431540368295,
+   8.002132465855674
+  ],
+  [
+   34.87970213944792,
+   8.00852921379261
+  ],
+  [
+   35.12382388764782,
+   8.019188295118438
+  ],
+  [
+   35.36772241621191,
+   8.034106462672161
+  ],
+  [
+   106.38,
+   13.0
+  ],
+  [
+   125.0,
+   13.0
+  ]
+ ],
+ "fluid_volume_mm3_half": 238512,
+ "bbox_mm": [
+  -140.88028023835693,
+  38.17245847914928,
+  -15.665925271327755,
+  393.3241932818352,
+  32.63971179329524
+ ],
+ "inside_point_mm": [
+  0.0,
+  100.0,
+  5.0
+ ],
+ "fine_box_mm": [
+  -141.88,
+  -18.0,
+  -1.0,
+  16.0,
+  34.10391304347826,
+  25.0
+ ],
+ "assumptions": [
+  "1in E-Sig NPT male engaged 16.8 mm into the McMaster 4880K464 elbow (L1 10.2 mm + 3 wrench turns); thread cavity to the shoulder modelled as a 29.3 mm cylinder",
+  "V2 plain 33.4 mm spigot press-fitted and seated on the Venturi-leg socket shoulder (leg treated as a 1in slip socket); 26.4 mm elbow bore steps to the 31.2 mm Venturi mouth",
+  "1in E-Sig flat side down (spigot end high, S-curve drops to the elbow)",
+  "Inlet extension of 130 mm at the spigot bore stands in for the rubber coupler and pump spout",
+  "Half domain: symmetric about the bend plane (the chlorine port is not modelled)",
+  "Outlet cross-vane: 4 blades, 1.2 mm thick, 12 mm long, one blade in the bend plane"
+ ]
+}

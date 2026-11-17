@@ -105,6 +105,9 @@ h = LEVELS[level]
 xmin, xmax = info["outlet_x"] * 1e-3 - 3e-3, 40e-3   # E-Sig spigot reaches x = +36 mm when flat side is down
 ymin, ymax = -16e-3, info["inlet_y"] * 1e-3 + 3e-3
 zmin, zmax = -1.0e-3, 25e-3
+if "bbox_mm" in info:   # written by build_assembly.py: [xmin, xmax, ymin, ymax, zmax] of the water volume
+    bx = info["bbox_mm"]
+    xmin, xmax, ymin, ymax, zmax = bx[0] * 1e-3 - 3e-3, bx[1] * 1e-3 + 3e-3, bx[2] * 1e-3 - 3e-3, bx[3] * 1e-3 + 3e-3, bx[4] * 1e-3 + 3e-3
 n = [max(1, round((xmax - xmin) / h)), max(1, round((ymax - ymin) / h)), max(1, round((zmax - zmin) / h))]
 write("system/blockMeshDict", hdr("dictionary", "system", "blockMeshDict") + f"""\
 convertToMeters 1;
@@ -119,7 +122,10 @@ boundary ( background {{ type patch; faces ( (0 3 2 1) (4 5 6 7) (0 1 5 4) (2 3 
 write("system/surfaceFeaturesDict", hdr("dictionary", "system", "surfaceFeaturesDict") +
       "surfaces (\"fluid.stl\");\nincludedAngle   150;\nsubsetFeatures { nonManifoldEdges yes; openEdges yes; }\n")
 vx = info["venturi_inlet_x"] * 1e-3
-loc = (0.0, 0.10, 0.005)   # inside the E-Sig small bore
+# refinement box around the elbow and Venturi (mm in assembly_info, metres here)
+fz = ([v * 1e-3 for v in info["fine_box_mm"]] if "fine_box_mm" in info else
+      [info["outlet_x"] * 1e-3 - 1e-3, -0.016, -0.001, 0.014, info["esig_end_face_y"] * 1e-3 + 0.012, 0.025])
+loc = tuple(v * 1e-3 for v in info["inside_point_mm"]) if "inside_point_mm" in info else (0.0, 0.10, 0.005)   # inside the E-Sig small bore
 write("system/snappyHexMeshDict", hdr("dictionary", "system", "snappyHexMeshDict") + f"""\
 castellatedMesh true;
 snap            true;
@@ -144,8 +150,8 @@ geometry
     fineZone
     {{
         type box;
-        min ({info["outlet_x"] * 1e-3 - 1e-3} -0.016 -0.001);
-        max (0.014 {info["esig_end_face_y"] * 1e-3 + 0.012} 0.025);
+        min ({fz[0]} {fz[1]} {fz[2]});
+        max ({fz[3]} {fz[4]} {fz[5]});
     }}
 }}
 

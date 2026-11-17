@@ -11,9 +11,8 @@ WORK="$HOME/turitap_cfd/$REL"
 cd "$WORK" || exit 2
 read -r SPIG ESEND VIN PORT DIFE OUTX < <(python3 - <<'PY'
 import json; i=json.load(open("assembly_info.json")); m=1e-3
-w=i["venturi_wall"]; dif=[z for z,r in w if z<=79.41][-1]
 print(i["spigot_entry_y"]*m, (i["esig_end_face_y"]+0.5)*m, (i["venturi_inlet_x"]-0.3)*m,
-      i["port_x"]*m, (i["venturi_inlet_x"]-79.4)*m, i["outlet_x"]*m)
+      i["port_x"]*m, (i["venturi_inlet_x"]-i.get("diffuser_end_mm",79.4))*m, i["outlet_x"]*m)
 PY
 )
 plane() { # name px py pz nx ny nz

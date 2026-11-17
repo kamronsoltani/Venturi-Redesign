@@ -1,7 +1,7 @@
 # Running the 3-D CFD on another computer
 
 Step-by-step setup for a second Windows machine (e.g. the lab PC), then how to
-run the overnight sweep, watch it, check it from a phone, and bring the
+run the simulation campaign, watch it, check it from a phone, and bring the
 results back. Everything needed is in this repository; read
 `PROJECT_NOTES.md` for the physics, the results so far and the plan.
 
@@ -107,39 +107,62 @@ work.) Then delete the test: `rm -rf /mnt/c/cfd/Venturi-Redesign/cfd/asm34_smoke
 
 ---
 
-## Part B: the overnight sweep
+## Part B: the ranking campaign (all 11 assemblies)
 
 ### B1. What runs
 
-The baseline: 3/4" E-Sig (flat side down) + 3/4" threaded elbow + current
-Venturi, at 6, 8, 10, 20, 40, 50 and 60 L/min (30 L/min is already done and is
-skipped), then the mesh check at 30 L/min on a coarse and a fine mesh.
+Eleven assemblies, each one water volume already built in `cfd/<assembly>/fluid`
+(the water path from the pump spout to the open outlet, half domain):
 
-`cfd/assembly3d/run_sweep.sh` does every case one after another without
-supervision: it meshes once and reuses that mesh for every flow, starts each
-flow from the nearest finished one, runs checkMesh before every solve (stops
-the case if it fails or non-orthogonality is above 65 degrees), solves 2000
-iterations on 8 cores, post-processes, builds the 3-D viewer file and updates
-`cfd/results/assembly_3d_stage5b.csv`. A case that already has `results.json`
-is skipped, so running the same command again resumes after a crash or reboot.
+| Folder | Upstream parts | Venturi |
+|---|---|---|
+| `asm34_current` | 3/4" E-Sig (flat side down) + 3/4" threaded elbow | current part |
+| `asm34_A` | same | Prototype A (14 mm throat, 19 mm exit) |
+| `asm34_Bvane` | same | Prototype B (14 / 26 mm) + cross-vane |
+| `asm1e_V1` ... `asm1e_V4` | 1" E-Sig + McMaster-Carr 4880K464 1" elbow | V1-V4 + vane |
+| `asm1lr_V1` ... `asm1lr_V4` | 1" long-radius reducing elbow | V1-V4 + vane |
 
-Expected time: about 45-60 min per flow, so about 6 h for the flows, plus
-about 30 min (coarse) and 2-3 h (fine) for the mesh check.
+The 3/4" Venturis screw into the elbow socket exactly like the current part.
+V1-V4 are a press fit: in the long-radius elbow they sit on its port shoulder
+(flush 31.2 mm bore); in the McMaster elbow they sit on the Venturi-leg socket
+shoulder, which is inside the bend, so the 26.2 mm elbow passage meets the
+31.2 mm mouth off-centre (as in the real fitting; see
+`cfd/assembly_previews/mcmaster_step_vs_model.png`). The pictures of every
+assembly are in `cfd/assembly_previews/`, and `meshcheck_medium.txt` there
+lists the checkMesh result of every mesh.
+
+Order: **every assembly at 30 L/min first** (the ranking run), then every
+assembly at **6 L/min**, then every assembly at **8 L/min** (port suction near
+the dosing cut-off). `asm34_current` at 30 L/min is already done and is skipped.
+
+`cfd/assembly3d/run_campaign.sh` runs all of it unattended through
+`run_sweep.sh`: it meshes each assembly once and reuses that mesh, starts each
+flow from that assembly's nearest finished flow, runs checkMesh before every
+solve (stops that case if it fails or non-orthogonality is above 65 degrees,
+logs it and moves on), solves 2000 iterations on 8 cores, post-processes,
+builds the 3-D viewer file and updates `cfd/results/assembly_3d_stage5b.csv`.
+A case that already has `results.json` is skipped, so running the same command
+again resumes after a crash or reboot.
+
+Expected time on the lab PC: about 45-60 min per case, so about 9-10 h for the
+30 L/min phase (10 runs, each including its meshing), about 9 h each for 6 and
+8 L/min (11 runs each): **about 28 h in total**. It can be stopped after the
+30 L/min phase and resumed later.
 
 ### B2. Start it
 
-Open **Windows Terminal** (or PowerShell), so the run keeps going when nothing
-else is open, and run (one line):
+Open **Windows Terminal** (or PowerShell) and run (one line):
 
 ```powershell
-wsl -d Ubuntu-22.04 -- bash -lc "cd /mnt/c/cfd/Venturi-Redesign/cfd/assembly3d && export PUSH_STATUS=1 LABEL='3/4in E-Sig + 3/4in elbow + current Venturi' && bash run_sweep.sh ../asm34_current '20 10 8 6 40 50 60' && bash run_sweep.sh ../asm34_current '30' coarse && bash run_sweep.sh ../asm34_current '30' fine"
+wsl -d Ubuntu-22.04 -- bash -lc "cd /mnt/c/cfd/Venturi-Redesign/cfd/assembly3d && PUSH_STATUS=1 bash run_campaign.sh"
 ```
 
-The order 20, 10, 8, 6, 40, 50, 60 is deliberate: each flow starts from the
-nearest finished one, so stepping outward converges faster.
+Only the 30 L/min phase: put `FLOWS_ORDER=30` before `bash run_campaign.sh`.
+Only some assemblies: `ASSEMBLIES='asm1lr_V1 asm1lr_V4'`.
 
-Leave this window open. Closing it stops the sweep (re-running the same
-command resumes it).
+Leave this window open. Closing it stops the campaign (re-running the same
+command resumes it). The campaign log is `cfd/results/campaign_stage5b.log`;
+each assembly also has its own `cfd/<assembly>/sweep.log`.
 
 ### B3. Watch it on the computer
 
@@ -154,21 +177,24 @@ residuals, inlet pressure, flow in/out, and the sweep log.
 
 ### B4. Check it from a phone
 
-With `PUSH_STATUS=1` the sweep pushes a small progress page every 10 minutes
-and after every case to the branch `sweep-status` (it never touches `main`):
+With `PUSH_STATUS=1` the campaign pushes a small progress page every 10
+minutes and after every case to the branch `sweep-status` (it never touches
+`main`):
 
 https://github.com/kamronsoltani/Venturi-Redesign/blob/sweep-status/STATUS.md
 
 The first time it pushes, Windows may open a GitHub sign-in window on the lab
 computer; sign in once with an account that can push to the repository.
 
-It lists each flow with its status, iteration, residual, water level and port
-pressure, plus the last lines of the sweep log. If the page stops updating for
-more than ~15 minutes, the machine has slept, rebooted or lost the network.
+The top of the page is a grid of every assembly and flow: water level above
+the inlet centre and port wall pressure for finished cases, **running**,
+waiting, or FAILED with the reason. Below it is the current assembly in
+detail and its log. If the page stops updating for more than ~15 minutes, the
+machine has slept, rebooted or lost the network.
 
-### B5. In the morning: check and publish
+### B5. When it finishes (or each morning): check and publish
 
-1. Read `cfd/asm34_current/sweep.log` and `cfd/results/assembly_3d_stage5b.csv`.
+1. Read `cfd/results/campaign_stage5b.log` and `cfd/results/assembly_3d_stage5b.csv`.
    For each run check: `STATUS` says `done`; `inlet_level_drift_last500_cm`
    is small (under ~0.5 cm); `mass_imbalance_pct` under ~0.5 %;
    `inlet_static_negative_flag` (YES means the real part would draw air at the
@@ -180,29 +206,31 @@ more than ~15 minutes, the machine has slept, rebooted or lost the network.
    cd C:\cfd\Venturi-Redesign
    git pull --rebase
    git add -A
-   git commit -m "Baseline sweep: current Venturi behind 3/4in E-Sig + elbow, 6-60 L/min, plus mesh check"
+   git commit -m "Stage 5b campaign results"
    git push
    ```
 
-3. A minute later the 3-D viewer shows every flow:
+3. A minute later the 3-D viewer shows every finished case:
    https://kamronsoltani.github.io/Venturi-Redesign/3d/
 
 Two computers can work at the same time as long as each one runs different
-assembly folders (`cfd/asm34_current`, `cfd/asm1e_V1`, ...); always
-`git pull --rebase` before pushing.
+assemblies (use `ASSEMBLIES=...` on each); always `git pull --rebase` before
+pushing.
 
 ---
 
-## Part C: next assemblies (after the baseline)
+## Part C: later runs
 
-See "Stage 5b" in `PROJECT_NOTES.md`. Each new assembly needs its water volume
-first: `cfd/assembly3d/build_fluid.py` currently builds only the 3/4" E-Sig +
-3/4" elbow + current Venturi (Venturi bore from `geometry/bore_stations.csv`).
-For the other Venturis behind the same parts, change the Venturi tag it reads
-and the output folder; for the 1" parts, the E-Sig and elbow sections need the
-1" STEP files in `geometry/upstream/`. Check every new volume with
-`showfluid.py` (picture of the symmetry plane) before meshing, then run it with
-`run_sweep.sh` exactly as above.
+- Baseline flow sweep and mesh study of the current part (after the campaign):
+
+  ```powershell
+  wsl -d Ubuntu-22.04 -- bash -lc "cd /mnt/c/cfd/Venturi-Redesign/cfd/assembly3d && export PUSH_STATUS=1 LABEL='3/4in E-Sig + 3/4in elbow + current Venturi' && bash run_sweep.sh ../asm34_current '20 10 40 50 60' && bash run_sweep.sh ../asm34_current '30' coarse && bash run_sweep.sh ../asm34_current '30' fine"
+  ```
+
+- A new water volume: `cfd/assembly3d/build_assembly.py <esig34|esig1|lr1> <Venturi tag from geometry/bore_stations.csv> <cfd/<assembly>/fluid> [--vane]`,
+  then `review_assembly.py <fluid dir> <picture.png>` to check it, then a mesh
+  check (`MESH_ONLY=1 bash run_asm.sh <case>` after `setup_asm_case.py`), then
+  `run_sweep.sh` as above.
 
 ---
 
@@ -230,17 +258,26 @@ before doing anything, and follow the rules at the end of LAB_SETUP.md.
    anything missing, tell me what is missing and ask before installing it,
    then walk me through it step by step. Run the smoke test in A6 and show me
    the result.
-2. Start the overnight sweep from Part B2 in a separate terminal window that
-   keeps running on its own (not inside your session), and open the live
-   status view from B3 in a second terminal. Confirm the status page in B4
-   updates (give me the link).
-3. Do not change any physics, mesh or solver settings. Do not commit or push
-   until I ask. If a case fails, say which, show the last 30 lines of its log,
-   and stop; do not change settings to make it pass without asking me.
-4. When the sweep finishes, do Part B5 step 1: give me a table per flow
-   (water level above the inlet centreline, static pressure at the inlet with
-   any negative-pressure flag, port wall pressure mean / E-Sig side / opposite
-   side, losses per part, outlet KE factor, diffuser reversed fraction,
-   residuals and convergence), the mesh-check spread at 30 L/min, and say
-   plainly which runs converged. Then ask me before committing and pushing.
+2. First run (start it as soon as the smoke test passes): the current
+   Venturi at 8 and 6 L/min, in a separate terminal window that keeps
+   running on its own (not inside your session):
+   wsl -d Ubuntu-22.04 -- bash -lc "cd /mnt/c/cfd/Venturi-Redesign/cfd/assembly3d && PUSH_STATUS=1 LABEL='3/4in E-Sig + 3/4in elbow + current Venturi' bash run_sweep.sh ../asm34_current '8 6'"
+   Open the live status view from B3 in a second terminal and confirm the
+   status page in B4 updates (give me the link). Do not git pull while it
+   runs (it would replace scripts the run is reading).
+   When it has finished, git pull, then ask me before starting the campaign
+   from Part B2 (it skips the current Venturi at 6 and 8 L/min, which will
+   already have results). Check cfd/assembly_previews/meshcheck_medium.txt
+   after the pull: it should list all 10 new assemblies as "Mesh OK".
+3. Do not change any physics, mesh, geometry or solver settings. Do not commit
+   or push until I ask. If a case fails, say which, show the last 30 lines of
+   its log, and let the campaign carry on; do not change settings to make it
+   pass without asking me.
+4. When a run or a campaign phase finishes (all assemblies at one flow), do Part B5 step 1: a
+   table per assembly (water level above the inlet centreline, static
+   pressure at the inlet with any negative-pressure flag, port wall pressure
+   mean / E-Sig side / opposite side, losses per part, outlet KE factor,
+   diffuser reversed fraction, residuals and convergence), ranked by water
+   level at 30 L/min, and say plainly which runs converged. Then ask me
+   before committing and pushing.
 ```

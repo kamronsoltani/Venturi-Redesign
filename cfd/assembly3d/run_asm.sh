@@ -8,6 +8,7 @@
 #   MESH_FROM=<work dir>  reuse that case's constant/polyMesh instead of meshing
 #                         (same fluid.stl and mesh level only); checkMesh still runs
 #   INIT_FROM=<work dir>  start from that case's final fields (mapFields -consistent)
+#   MESH_ONLY=1           stop after checkMesh (mesh check of a new water volume)
 source /opt/openfoam13/etc/bashrc >/dev/null 2>&1
 set -u
 SRC="$(cd "$1" && pwd)" || { echo "no case dir $1"; exit 2; }
@@ -51,6 +52,7 @@ echo "cells ${CELLS:-?}  max non-orthogonality ${NONORTH:-?} deg  $(grep -E 'Mes
 cp mesh_summary.txt "$SRC/"
 if ! grep -q "Mesh OK" log.checkMesh; then stage "STOP: checkMesh failed"; copy_back; exit 4; fi
 if awk -v n="${NONORTH:-999}" 'BEGIN{exit !(n > 65)}'; then stage "STOP: non-orthogonality > 65"; copy_back; exit 4; fi
+if [ -n "${MESH_ONLY:-}" ]; then stage "mesh OK (mesh only, not solved)"; copy_back; cp mesh_summary.txt "$SRC/"; exit 0; fi
 if [ -n "${INIT_FROM:-}" ] && [ -d "$INIT_FROM" ]; then
 stage "initialising from ${INIT_FROM#$HOME/turitap_cfd/}"
 mapFields "$INIT_FROM" -consistent -sourceTime latestTime > log.mapFields 2>&1 || { stage "FAILED mapFields"; copy_back; exit 3; }

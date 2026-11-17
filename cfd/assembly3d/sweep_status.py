@@ -57,6 +57,40 @@ for q in flows:
     else:
         rows.append(f"| {q} | waiting | | | | | |")
 
+camp = os.path.expanduser("~/turitap_cfd/CAMPAIGN")
+if os.path.exists(camp):
+    kv = dict(l.split(" ", 1) for l in open(camp).read().splitlines() if " " in l)
+    cflows, casms = kv.get("flows", "").split(), kv.get("assemblies", "").split()
+    cfd = asm.rstrip("/").rsplit("/", 1)[0]
+    cur = open(os.path.expanduser("~/turitap_cfd/CURRENT_CASE")).read().strip() if os.path.exists(os.path.expanduser("~/turitap_cfd/CURRENT_CASE")) else ""
+    print("# Campaign status (Stage 5b)
+")
+    print(f"Updated {time.strftime('%Y-%m-%d %H:%M:%S')} (machine local time). Cells: water level above the inlet centre (cm), total; port wall pressure (kPa).
+")
+    print("| Assembly | " + " | ".join(f"{q} L/min" for q in cflows) + " |")
+    print("|---|" + "---|" * len(cflows))
+    ndone = 0
+    for a in casms:
+        cells = []
+        for q in cflows:
+            c = os.path.join(cfd, a, f"Q{q}")
+            rj = os.path.join(c, "results.json")
+            if os.path.exists(rj):
+                r = json.load(open(rj)); ndone += 1
+                neg = " NEG-STATIC" if r.get("static_inlet_cm", 1) < 0 else ""
+                cells.append(f"{r['level_inlet_cm']:.1f} cm, {r['port_wall_p_kPa']['mean']:.2f} kPa{neg}")
+            elif cur.endswith(f"/{a}/Q{q}"):
+                cells.append("**running**")
+            elif os.path.exists(os.path.join(c, "STATUS")):
+                cells.append("FAILED: " + open(os.path.join(c, "STATUS")).read().strip()[:40])
+            else:
+                cells.append("waiting")
+        print(f"| {a} | " + " | ".join(cells) + " |")
+    print(f"
+{ndone} of {len(casms) * len(cflows)} cases done.
+")
+    print("---
+")
 print(f"# Sweep status: {name}{' (' + level + ' mesh)' if suffix else ''}\n")
 print(f"Updated {time.strftime('%Y-%m-%d %H:%M:%S')} (machine local time)\n")
 print("| Flow (L/min) | Status | Iteration | p residual | Level above inlet centre, total (cm) | Static at inlet (cm) | Port wall p (kPa) |")

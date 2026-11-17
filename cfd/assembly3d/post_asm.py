@@ -130,8 +130,8 @@ res["port_wall_p_kPa"] = dict(mean=float((pp_kPa * wv["area"][band]).sum() / wv[
 # forward-flow shear is -(-tau_x) ... flow is -x; wall acts on fluid in +x for attached flow.
 tau_fwd = wv["tau"][:, 0] * RHO                      # >0 attached (wall drags fluid back, +x), <0 reversed
 wall = info["venturi_wall"]
-dif0 = [z for z, r in wall if z <= 60.36][-1]
-dif1 = 79.4
+dif0 = info.get("diffuser_start_mm", 60.35)   # mm below the Venturi inlet face
+dif1 = info.get("diffuser_end_mm", 79.4)
 bins = np.arange(0, wall[-1][0] + 2.5, 2.5)
 prof = []
 for a, b in zip(bins, bins[1:]):
