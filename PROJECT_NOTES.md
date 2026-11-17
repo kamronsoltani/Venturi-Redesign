@@ -73,10 +73,10 @@ next stage. Read this before running anything.
     elbow, 20.9 mm bore, about 15 mm bend centreline radius. STEP units are
     INCHES.
   - The 1" elbow is McMaster-Carr 4880K464 (standard-wall PVC, 1" NPT female
-    both ends, 26.4 mm bore, 19.8 mm bend centreline radius, inch units). Its
-    CAD file is not in the repository (vendor terms): download it from the
-    McMaster-Carr product page and save it as
-    `geometry/upstream/Elbow_1in_NPT_McMaster_4880K464.step`.
+    both ends, 26.4 mm bore, 19.8 mm bend centreline radius, inch units):
+    `geometry/upstream/Elbow_1in_NPT_McMaster_4880K464.step` (as downloaded
+    from McMaster-Carr). This is the 1" elbow to use; no other off-the-shelf
+    1" elbow is part of the study.
 
 ## Stage 1/3/3b setup (2-D, done)
 
