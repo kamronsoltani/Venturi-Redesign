@@ -8,7 +8,8 @@ less water level above its inlet while keeping chlorine dosing down to
 
 **Interactive viewer:** https://kamronsoltani.github.io/Venturi-Redesign/
 (all 54 runs: 3-D views, probes, particle tracing, wall and line plots,
-flow sweeps, convergence).
+flow sweeps, convergence). 3-D assemblies with animated flow:
+https://kamronsoltani.github.io/Venturi-Redesign/3d/
 
 ## Contents
 

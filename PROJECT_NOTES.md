@@ -155,6 +155,17 @@ upstream train.
 - Rough cost: about 1 day of setup, then about 30-60 min per run one at a
   time (about 40 h for 55 runs).
 
+### Stage 5b status (2026-11-17)
+
+First assembly done: 3/4" E-Sig (flat side down) + 3/4" threaded elbow +
+current Venturi at 30 L/min. Scripts in `cfd/assembly3d/`, case in
+`cfd/asm34_current/Q30`, results in `cfd/results/assembly_3d_stage5b.csv`,
+3-D flow viewer in `docs/3d/`. 630k cells, wall functions (y+ mean 3-11).
+Level above the inlet centre 32.1 cm (24.3 cm above the Venturi inlet, vs
+26.7 cm in 2-D); losses: E-Sig 2.3 cm, elbow 1.4 cm, Venturi 14.8 cm, outlet
+jet 27.9 cm. Inlet level steady to 0.17 cm over the last 500 iterations;
+residuals plateaued at 2e-3 (p).
+
 ## Later stages (not started)
 
 - Stage 2: compare with bench measurements (inlet water level vs flow; port

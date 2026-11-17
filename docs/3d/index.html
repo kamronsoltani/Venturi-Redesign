@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3-D Flow Viewer</title>
+<style>
+:root{
+  --bg:#1d2024; --panel:#25292e; --panel2:#2c3137; --line:#3a4048; --text:#d9dde2; --mute:#8d959f;
+  --acc:#4d9de0; --warn:#e0a23a; --bad:#e05a4d; --ok:#5cb87a;
+  --mono: ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --sans: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:13px/1.35 var(--sans)}
+#app{display:grid;grid-template-columns:270px 1fr 300px;grid-template-rows:38px 1fr 24px;height:100vh}
+#bar{grid-column:1/4;display:flex;align-items:center;gap:6px;padding:0 10px;background:var(--panel);border-bottom:1px solid var(--line)}
+#bar .title{font-weight:600;margin-right:10px}
+#bar select,#bar button{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:3px;padding:3px 8px;font:inherit;cursor:pointer}
+#bar button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+#bar .sp{flex:1}
+#bar a{color:var(--mute);text-decoration:none}
+#left,#right{background:var(--panel);overflow:auto;border-right:1px solid var(--line)}
+#right{border-right:0;border-left:1px solid var(--line)}
+.sec{border-bottom:1px solid var(--line);padding:8px 10px}
+.sec h3{margin:0 0 6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.row{display:flex;align-items:center;gap:6px;margin:4px 0}
+.row label{flex:0 0 78px;color:var(--mute)}
+.row input[type=range]{flex:1}
+.row select{flex:1;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:3px;padding:2px}
+.row .v{font-family:var(--mono);font-size:11px;flex:0 0 50px;text-align:right}
+.chk{display:flex;align-items:center;gap:6px;margin:3px 0;cursor:pointer}
+#view{position:relative;overflow:hidden}
+#view canvas{display:block}
+#legend{position:absolute;right:12px;top:12px;width:22px;height:220px;border:1px solid var(--line)}
+#legLab{position:absolute;right:40px;top:8px;height:230px;display:flex;flex-direction:column;justify-content:space-between;font:11px var(--mono);text-align:right;color:var(--text);text-shadow:0 0 3px #000}
+#legTitle{position:absolute;right:12px;top:238px;font:11px var(--sans);color:var(--mute)}
+#legend2{position:absolute;left:12px;bottom:12px;font:11px var(--mono);color:var(--mute)}
+#status{grid-column:1/4;background:var(--panel);border-top:1px solid var(--line);font:11px var(--mono);color:var(--mute);padding:4px 10px;white-space:nowrap;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:12px}
+td{padding:2px 0;border-bottom:1px solid #30353c}
+td.n{text-align:right;font-family:var(--mono)}
+.flag{color:var(--warn)}
+.bars .b{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:12px}
+.bars .b span.l{flex:0 0 120px;color:var(--mute)}
+.bars .b span.t{height:10px;background:var(--acc);border-radius:2px}
+.bars .b span.n{font-family:var(--mono);font-size:11px}
+.note{color:var(--mute);font-size:11.5px}
+ul.note{padding-left:16px;margin:4px 0}
+#loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--mute)}
+@media (max-width:900px){
+  #app{grid-template-columns:1fr;grid-template-rows:38px 55vh auto auto 24px;height:auto}
+  #bar{grid-column:1}#status{grid-column:1}
+  #left,#right{border:0;border-top:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="bar">
+    <span class="title">3-D Flow Viewer</span>
+    <select id="caseSel"></select>
+    <button id="play" class="on">Pause</button>
+    <button data-cam="iso">Iso</button><button data-cam="side">Side</button><button data-cam="venturi">Venturi</button><button data-cam="elbow">Elbow</button>
+    <span class="sp"></span>
+    <a href="../">2-D viewer</a>
+  </div>
+  <div id="left">
+    <div class="sec"><h3>Particles</h3>
+      <label class="chk"><input type="checkbox" id="showP" checked> Animate particles</label>
+      <div class="row"><label>Count</label><input type="range" id="np" min="500" max="20000" step="500" value="8000"><span class="v" id="npV"></span></div>
+      <div class="row"><label>Time scale</label><input type="range" id="ts" min="-3" max="0" step="0.05" value="-1.3"><span class="v" id="tsV"></span></div>
+      <div class="row"><label>Size</label><input type="range" id="ps" min="0.5" max="6" step="0.1" value="2.2"><span class="v" id="psV"></span></div>
+      <div class="row"><label>Colour</label><select id="pcol"><option value="speed">by speed</option><option value="white">white</option></select></div>
+      <label class="chk"><input type="checkbox" id="showSL"> Show streamlines</label>
+    </div>
+    <div class="sec"><h3>Wall</h3>
+      <div class="row"><label>Colour by</label><select id="wf"><option value="none" selected>plain</option><option value="p">pressure (kPa)</option><option value="tau">wall shear |&tau;| (Pa)</option></select></div>
+      <div class="row"><label>Opacity</label><input type="range" id="wo" min="0" max="1" step="0.05" value="0.3"><span class="v" id="woV"></span></div>
+      <label class="chk"><input type="checkbox" id="cut" checked> Cutaway (show half)</label>
+    </div>
+    <div class="sec"><h3>Centre plane</h3>
+      <label class="chk"><input type="checkbox" id="showC" checked> Show centre plane</label>
+      <div class="row"><label>Colour by</label><select id="cf"><option value="spd">speed (m/s)</option><option value="p">pressure (kPa)</option></select></div>
+    </div>
+    <div class="sec"><h3>Colour scale</h3>
+      <div class="row"><label>Map</label><select id="cmap"><option>turbo</option><option>viridis</option><option>coolwarm</option></select></div>
+      <div class="row"><label>Range</label><select id="rng"><option value="p2">2-98 percentile</option><option value="full">full</option></select></div>
+    </div>
+    <div class="sec note">Drag to rotate, right-drag to pan, wheel to zoom. Particles are released at the inlet and move along computed streamlines at the local water speed, slowed down by the time scale.</div>
+  </div>
+  <div id="view"><div id="loading">Loading…</div><canvas id="cv"></canvas>
+    <div id="legend"></div><div id="legLab"></div><div id="legTitle"></div><div id="legend2"></div></div>
+  <div id="right">
+    <div class="sec"><h3>Case</h3><div id="caseInfo" class="note"></div></div>
+    <div class="sec"><h3>Water level (cm)</h3><table id="lv"></table></div>
+    <div class="sec"><h3>Where the head goes (cm)</h3><div class="bars" id="loss"></div></div>
+    <div class="sec"><h3>Port (chlorine) wall pressure</h3><table id="port"></table></div>
+    <div class="sec"><h3>Outlet and diffuser</h3><table id="out"></table></div>
+    <div class="sec"><h3>Run quality</h3><table id="qual"></table></div>
+    <div class="sec"><h3>Assumptions</h3><ul class="note" id="asm"></ul></div>
+  </div>
+  <div id="status">ready</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const CMAPS={
+ turbo:[[48,18,59],[70,107,227],[40,170,240],[31,220,181],[108,250,96],[190,240,52],[250,186,57],[245,107,26],[204,46,4],[122,4,3]],
+ viridis:[[68,1,84],[72,40,120],[62,74,137],[49,104,142],[38,130,142],[31,158,137],[53,183,121],[110,206,88],[181,222,43],[253,231,37]],
+ coolwarm:[[59,76,192],[98,130,234],[141,176,254],[184,208,249],[221,221,221],[245,196,173],[244,154,123],[222,96,77],[180,4,38],[180,4,38]]
+};
+function cm(name,t){const c=CMAPS[name];t=Math.min(1,Math.max(0,t))*(c.length-1);const i=Math.min(c.length-2,Math.floor(t)),f=t-i;
+ return [(c[i][0]+(c[i+1][0]-c[i][0])*f)/255,(c[i][1]+(c[i+1][1]-c[i][1])*f)/255,(c[i][2]+(c[i+1][2]-c[i][2])*f)/255];}
+function pct(a,lo,hi){const s=Float32Array.from(a).sort();return [s[Math.floor(lo*(s.length-1))],s[Math.floor(hi*(s.length-1))]];}
+const fmt=(v,d=2)=>v==null||isNaN(v)?"–":(+v).toFixed(d);
+
+// ---------------- three setup
+const cv=$("cv"),view=$("view");
+const R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));
+R.setClearColor(0x1d2024);
+const scene=new THREE.Scene();
+const cam=new THREE.PerspectiveCamera(35,1,1,5000);
+const ctl=new THREE.OrbitControls(cam,cv);ctl.enableDamping=true;
+scene.add(new THREE.HemisphereLight(0xffffff,0x334455,0.9));
+const dl=new THREE.DirectionalLight(0xffffff,0.5);dl.position.set(200,300,400);scene.add(dl);
+function resize(){const w=view.clientWidth,h=view.clientHeight;R.setSize(w,h,false);cv.style.width=w+"px";cv.style.height=h+"px";cam.aspect=w/h;cam.updateProjectionMatrix();}
+addEventListener("resize",resize);
+
+let D=null, wallMesh=null, wallMeshM=null, cenMesh=null, slLines=null, pts=null, pState=null, bbox=null;
+const root=new THREE.Group();scene.add(root);
+
+function meshFrom(s,mirror){
+  const g=new THREE.BufferGeometry();
+  const pos=Float32Array.from(s.pos);
+  if(mirror)for(let i=2;i<pos.length;i+=3)pos[i]=-pos[i];
+  g.setAttribute("position",new THREE.BufferAttribute(pos,3));
+  const idx=Uint32Array.from(s.tri);
+  if(mirror)for(let i=0;i<idx.length;i+=3){const t=idx[i+1];idx[i+1]=idx[i+2];idx[i+2]=t;}
+  g.setIndex(new THREE.BufferAttribute(idx,1));
+  g.setAttribute("color",new THREE.BufferAttribute(new Float32Array(pos.length),3));
+  g.computeVertexNormals();return g;
+}
+function colorize(geom,vals,lo,hi,map){const c=geom.attributes.color.array;
+  for(let i=0;i<vals.length;i++){const k=cm(map,(vals[i]-lo)/(hi-lo||1));c[3*i]=k[0];c[3*i+1]=k[1];c[3*i+2]=k[2];}
+  geom.attributes.color.needsUpdate=true;}
+function range(vals){return $("rng").value==="full"?[Math.min(...vals),Math.max(...vals)]:pct(vals,0.02,0.98);}
+
+let legendSpec=null;
+function setLegend(title,lo,hi,map){
+  const c=document.createElement("canvas");c.width=1;c.height=100;const x=c.getContext("2d");
+  for(let i=0;i<100;i++){const k=cm(map,1-i/99);x.fillStyle=`rgb(${k.map(v=>v*255|0)})`;x.fillRect(0,i,1,1);}
+  $("legend").style.background=`url(${c.toDataURL()})`;$("legend").style.backgroundSize="100% 100%";
+  $("legLab").innerHTML=[0,1,2,3,4].map(i=>`<span>${fmt(hi-(hi-lo)*i/4,2)}</span>`).join("");
+  $("legTitle").textContent=title;
+}
+
+function buildScene(){
+  root.clear();
+  const mapn=$("cmap").value;
+  // wall
+  const wf=$("wf").value;
+  const wm=new THREE.MeshPhongMaterial({vertexColors:wf!=="none",color:wf==="none"?0x9aa4ae:0xffffff,transparent:true,opacity:+$("wo").value,side:THREE.DoubleSide,depthWrite:+$("wo").value>0.95,shininess:20});
+  const g1=meshFrom(D.wall,false), g2=meshFrom(D.wall,true);
+  let legendDone=false;
+  if(wf!=="none"){const v=D.wall[wf];const [lo,hi]=range(v);colorize(g1,v,lo,hi,mapn);colorize(g2,v,lo,hi,mapn);
+    setLegend(wf==="p"?"wall p, kPa":"|τ|, Pa",lo,hi,mapn);legendDone=true;}
+  wallMesh=new THREE.Mesh(g1,wm);wallMesh.renderOrder=2;root.add(wallMesh);
+  wallMeshM=new THREE.Mesh(g2,wm);wallMeshM.renderOrder=2;wallMeshM.visible=!$("cut").checked;root.add(wallMeshM);
+  // centre plane
+  const cf=$("cf").value;const gc=meshFrom(D.centre,false);const v=D.centre[cf];const [lo,hi]=range(v);
+  colorize(gc,v,lo,hi,mapn);
+  cenMesh=new THREE.Mesh(gc,new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide}));
+  cenMesh.visible=$("showC").checked;root.add(cenMesh);
+  if(!legendDone||$("showC").checked&&wf==="none")setLegend(cf==="spd"?"speed, m/s":"p, kPa",lo,hi,mapn);
+  $("legend2").textContent=$("showC").checked?`centre plane: ${cf==="spd"?"speed":"pressure"} ${fmt(lo)}–${fmt(hi)} ${cf==="spd"?"m/s":"kPa"}`:"";
+  // streamlines (static)
+  const sp=[],sc=[];const smax=pct(D.streamlines.flatMap(s=>s.s),0.0,0.98)[1];
+  D.streamlines.forEach(s=>{for(let i=0;i<s.s.length-1;i++){for(const j of [i,i+1]){sp.push(s.p[3*j],s.p[3*j+1],s.p[3*j+2]);const k=cm(mapn,s.s[j]/smax);sc.push(...k);}}});
+  const gl=new THREE.BufferGeometry();gl.setAttribute("position",new THREE.Float32BufferAttribute(sp,3));gl.setAttribute("color",new THREE.Float32BufferAttribute(sc,3));
+  slLines=new THREE.LineSegments(gl,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0.55}));
+  slLines.visible=$("showSL").checked;root.add(slLines);
+  initParticles(smax);
+}
+
+function initParticles(smax){
+  const N=+$("np").value;const L=D.streamlines;
+  const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.BufferAttribute(new Float32Array(3*N),3));
+  g.setAttribute("color",new THREE.BufferAttribute(new Float32Array(3*N),3));
+  const m=new THREE.PointsMaterial({size:+$("ps").value,vertexColors:true,sizeAttenuation:true});
+  pts=new THREE.Points(g,m);pts.visible=$("showP").checked;root.add(pts);
+  const line=new Int32Array(N),phase=new Float32Array(N);
+  for(let i=0;i<N;i++){line[i]=Math.floor(Math.random()*L.length);phase[i]=Math.random();}
+  pState={N,line,phase,smax,cursor:new Int32Array(N)};
+}
+let simT=0,last=performance.now(),playing=true;
+function stepParticles(dt){
+  if(!pts||!pts.visible)return;
+  const P=pts.geometry.attributes.position.array,C=pts.geometry.attributes.color.array,L=D.streamlines,map=$("cmap").value,white=$("pcol").value==="white";
+  const {N,line,phase,smax,cursor}=pState;
+  for(let i=0;i<N;i++){const s=L[line[i]];const T=s.t[s.t.length-1];if(T<=0)continue;
+    const tt=((simT/ Math.max(T,1e-6))+phase[i])%1*T;
+    let k=cursor[i];if(k>=s.t.length-1||s.t[k]>tt)k=0;while(k<s.t.length-2&&s.t[k+1]<tt)k++;cursor[i]=k;
+    const f=(tt-s.t[k])/((s.t[k+1]-s.t[k])||1);
+    for(let a=0;a<3;a++)P[3*i+a]=s.p[3*k+a]+(s.p[3*k+3+a]-s.p[3*k+a])*f;
+    const sp=s.s[k]+(s.s[k+1]-s.s[k])*f;const c=white?[1,1,1]:cm(map,sp/smax);C[3*i]=c[0];C[3*i+1]=c[1];C[3*i+2]=c[2];}
+  pts.geometry.attributes.position.needsUpdate=true;pts.geometry.attributes.color.needsUpdate=true;
+}
+// particles advance by real streamline time: each particle loops its own line. Using a per-line
+// period keeps the release continuous; speed differences along the line are exact.
+function loop(now){
+  const dt=Math.min(0.1,(now-last)/1000);last=now;
+  if(playing){simT+=dt*Math.pow(10,+$("ts").value);}
+  stepParticles(dt);ctl.update();R.render(scene,cam);requestAnimationFrame(loop);
+}
+
+function camPreset(n){
+  const c=bbox.getCenter(new THREE.Vector3()),s=bbox.getSize(new THREE.Vector3()).length();
+  const S=D.stations;
+  if(n==="iso"){ctl.target.copy(c);cam.position.set(c.x-0.35*s,c.y+0.55*s,c.z+1.45*s);}
+  if(n==="side"){ctl.target.copy(c);cam.position.set(c.x,c.y,c.z+1.6*s);}
+  if(n==="venturi"){const t=new THREE.Vector3(0,(S.venturi_inlet_Y+S.outlet_Y)/2,0);ctl.target.copy(t);cam.position.set(t.x+110,t.y+40,t.z+300);}
+  if(n==="elbow"){const t=new THREE.Vector3(10,-5,0);ctl.target.copy(t);cam.position.set(t.x+60,t.y+40,t.z+130);}
+  ctl.update();
+}
+
+function fillInfo(){
+  const r=D.results;
+  $("caseInfo").innerHTML=`<b>${D.label}</b><br>${fmt(r.flow_in_Lpm,1)} L/min, steady RANS (k-ω SST, wall functions), half domain mirrored.<br>Final iteration ${D.final_iteration??"–"}.`;
+  $("lv").innerHTML=[
+   ["Above inlet centre (total)",r.level_inlet_cm],["Above spigot entry (total)",r.level_spigot_cm],
+   ["Above Venturi inlet (total)",r.level_venturi_in_cm],["Static at inlet",r.static_inlet_cm,r.static_inlet_cm<0],
+   ["Static at Venturi inlet",r.static_venturi_in_cm,r.static_venturi_in_cm<0]]
+   .map(([a,b,f])=>`<tr><td${f?' class="flag"':""}>${a}${f?" (negative: would draw air)":""}</td><td class="n">${fmt(b,1)}</td></tr>`).join("");
+  const L=D.losses;const items=[["Inlet pipe + spigot",L["inlet_extension+spigot"]],["E-Sig reducer",L.esig_reducer],["Elbow + thread cavity",L.elbow_incl_thread_cavity],
+    ["Venturi (internal)",L.venturi_total],["Outlet jet energy",r.outlet_ke_head_cm]];
+  const mx=Math.max(...items.map(i=>Math.abs(i[1])));
+  $("loss").innerHTML=items.map(([a,b])=>`<div class="b"><span class="l">${a}</span><span class="t" style="width:${Math.abs(b)/mx*110}px;${b<0?"background:var(--warn)":""}"></span><span class="n">${fmt(b,1)}</span></div>`).join("")+
+   `<div class="note">Mechanical-energy losses between sections (flux-weighted), plus the kinetic energy that leaves with the jet.</div>`;
+  const p=D.port;
+  $("port").innerHTML=[["Mean around the wall",p.mean],["Min / max",null,`${fmt(p.min)} / ${fmt(p.max)}`],["E-Sig side (+y)",p.at_plus_y],["Opposite side (−y)",p.at_minus_y],["90° to bend plane",p.at_plus_z]]
+   .map(([a,b,s])=>`<tr><td>${a}</td><td class="n">${s??fmt(b)} kPa</td></tr>`).join("");
+  $("out").innerHTML=[["Outlet jet KE head",fmt(r.outlet_ke_head_cm,1)+" cm"],["Outlet KE factor α",fmt(r.outlet_alpha)],["Diffuser recovery / ideal",fmt(r.diffuser_recovery_frac)],["Diffuser wall reversed",fmt(100*r.diffuser_reversed_area_frac,0)+" %"]]
+   .map(([a,b])=>`<tr><td>${a}</td><td class="n">${b}</td></tr>`).join("");
+  const y=D.yplus,f=D.final_residuals||{};
+  $("qual").innerHTML=[["Mass imbalance",fmt(r.mass_imbalance_pct,3)+" %"],...Object.entries(y).map(([k,v])=>[`y+ ${k.replace("wall_","")} (mean, p95)`,`${fmt(v.mean,0)}, ${fmt(v.p95,0)}`]),
+   ["Final residual p / Ux",`${(f.p??NaN).toExponential(1)} / ${(f.Ux??NaN).toExponential(1)}`]].map(([a,b])=>`<tr><td>${a}</td><td class="n">${b}</td></tr>`).join("");
+  $("asm").innerHTML=D.assumptions.map(a=>`<li>${a}</li>`).join("");
+}
+
+async function load(file){
+  $("loading").style.display="flex";
+  D=await (await fetch(file)).json();
+  buildScene();bbox=new THREE.Box3().setFromObject(wallMesh).union(new THREE.Box3().setFromObject(wallMeshM));
+  camPreset("iso");fillInfo();$("loading").style.display="none";
+  $("status").textContent=`${D.label} · ${D.wall.tri.length/3|0} wall triangles (×2 mirrored) · ${D.streamlines.length} streamlines · ${D.frame}`;
+}
+function vals(){$("npV").textContent=$("np").value;$("tsV").textContent=Math.pow(10,+$("ts").value).toFixed(3)+"×";$("psV").textContent=$("ps").value;$("woV").textContent=$("wo").value;}
+["np","cmap","rng","wf","cf"].forEach(id=>$(id).addEventListener("change",()=>{buildScene();vals();}));
+$("wo").addEventListener("input",()=>{vals();[wallMesh,wallMeshM].forEach(m=>{m.material.opacity=+$("wo").value;m.material.depthWrite=+$("wo").value>0.95;});});
+$("ps").addEventListener("input",()=>{vals();pts.material.size=+$("ps").value;});
+$("ts").addEventListener("input",vals);$("np").addEventListener("input",vals);
+$("cut").addEventListener("change",()=>wallMeshM.visible=!$("cut").checked);
+$("showC").addEventListener("change",buildScene);
+$("showSL").addEventListener("change",()=>slLines.visible=$("showSL").checked);
+$("showP").addEventListener("change",()=>pts.visible=$("showP").checked);
+$("play").addEventListener("click",()=>{playing=!playing;$("play").textContent=playing?"Pause":"Play";$("play").classList.toggle("on",playing);});
+document.querySelectorAll("[data-cam]").forEach(b=>b.addEventListener("click",()=>camPreset(b.dataset.cam)));
+(async()=>{resize();vals();
+  const idx=await (await fetch("index.json")).json();
+  $("caseSel").innerHTML=idx.cases.map(c=>`<option value="${c.file}">${c.label}</option>`).join("");
+  $("caseSel").addEventListener("change",()=>load($("caseSel").value));
+  await load(idx.cases[0].file);requestAnimationFrame(loop);})();
+</script>
+</body>
+</html>
