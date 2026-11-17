@@ -262,7 +262,9 @@ elif UP == "lr1":
     ES_END_Y = PX - BEND_START              # "reducer straight part" / "bend" split
     VENT_IN_X = 0.0
     LIP_R = min(PORT_R, wall[0][1]) - 0.2
-    FINE = [None, -20.0, -1.0, X_IN + 25.0, ES_END_Y + 12.0, 25.0]
+    # level-2 box over the Venturi and the last 25 mm of the bend above it (as for the elbows);
+    # a box over the whole reducing bend gave ~3x the cells of the other assemblies
+    FINE = [None, -20.0, -1.0, 25.0, 40.0, 25.0]
     INSIDE = (X_IN, SPIG_Y - 20.0, 5.0)
     WALL_SPLIT_Y = ES_END_Y
     assumptions += [

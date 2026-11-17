@@ -4,3 +4,4 @@ asm1e_V1 |  | cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.
 asm1e_V2 |  | cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.
 asm1e_V4 |  | cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.
 asm1e_V3 |  | cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.
+asm1lr_V1..V4 | not checked here | refinement box reduced to the Venturi + 25 mm of the bend (the box over the whole bend gave ~2.9M cells before snapping and stalled); first check happens in the lab run (checkMesh before every solve)
