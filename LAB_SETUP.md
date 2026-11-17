@@ -251,6 +251,7 @@ pushing.
 You are continuing a CFD project in C:\cfd\Venturi-Redesign (GitHub:
 kamronsoltani/Venturi-Redesign). Read LAB_SETUP.md and PROJECT_NOTES.md fully
 before doing anything, and follow the rules at the end of LAB_SETUP.md.
+If NEXT_STEPS.md exists, it is the current state and takes precedence.
 
 1. Check whether Part A of LAB_SETUP.md is done on this machine (WSL
    Ubuntu-22.04, OpenFOAM 13 at /opt/openfoam13, gmsh 4.15.2 for python3 in
