@@ -1,0 +1,9 @@
+assembly asm34_Bvane
+Q_lpm 6
+level medium
+background_cell_m 0.0016
+U_inlet_m_s 0.0659763
+k_inlet 1.63233e-05
+omega_inlet 2.39874
+wall_treatment wall functions (nutkWallFunction, omegaWallFunction)
+half_domain yes (symmetry z=0)

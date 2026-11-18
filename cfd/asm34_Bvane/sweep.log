@@ -1,0 +1,12 @@
+2026-11-17 15:27:46 sweep start: asm34_Bvane flows [30] level medium, 2000 iterations, 8 cores
+2026-11-17 15:27:47 Q30: start (mesh from: new; init from: uniform)
+2026-11-17 15:50:05 Q30: done. level_inlet_cm 22.53 static_inlet_cm 21.96 
+2026-11-17 15:50:05 sweep finished
+2026-11-17 20:26:03 sweep start: asm34_Bvane flows [6] level medium, 2000 iterations, 8 cores
+2026-11-17 20:26:03 Q6: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_Bvane/Q30; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_Bvane/Q30)
+2026-11-17 20:45:09 Q6: done. level_inlet_cm -12.39 static_inlet_cm -12.41 
+2026-11-17 20:45:09 sweep finished
+2026-11-18 00:54:42 sweep start: asm34_Bvane flows [8] level medium, 2000 iterations, 8 cores
+2026-11-18 00:53:05 Q8: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_Bvane/Q30; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_Bvane/Q6)
+2026-11-18 01:12:12 Q8: done. level_inlet_cm -11 static_inlet_cm -11.04 
+2026-11-18 01:12:12 sweep finished

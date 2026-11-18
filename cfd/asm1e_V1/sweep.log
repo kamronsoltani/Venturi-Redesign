@@ -1,0 +1,12 @@
+2026-11-17 15:50:06 sweep start: asm1e_V1 flows [30] level medium, 2000 iterations, 8 cores
+2026-11-17 15:50:06 Q30: start (mesh from: new; init from: uniform)
+2026-11-17 16:17:22 Q30: done. level_inlet_cm 17.27 static_inlet_cm 16.7 
+2026-11-17 16:17:22 sweep finished
+2026-11-17 20:45:10 sweep start: asm1e_V1 flows [6] level medium, 2000 iterations, 8 cores
+2026-11-17 20:45:10 Q6: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V1/Q30; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V1/Q30)
+2026-11-17 21:08:54 Q6: done. level_inlet_cm -13.46 static_inlet_cm -13.49 
+2026-11-17 21:08:54 sweep finished
+2026-11-18 01:12:12 sweep start: asm1e_V1 flows [8] level medium, 2000 iterations, 8 cores
+2026-11-18 01:12:13 Q8: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V1/Q30; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V1/Q6)
+2026-11-18 01:36:00 Q8: done. level_inlet_cm -12.63 static_inlet_cm -12.67 
+2026-11-18 01:36:00 sweep finished

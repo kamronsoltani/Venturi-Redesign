@@ -1,0 +1,7 @@
+16:46:43 meshing: blockMesh
+16:46:45 meshing: surfaceFeatures
+16:46:45 meshing: snappyHexMesh (8 cores)
+16:50:23 checkMesh
+16:50:30 solving (8 cores)
+17:17:24 reconstructing
+17:17:26 done (iteration 2000)
