@@ -113,6 +113,12 @@ td.n{text-align:right;font-family:var(--mono)}
 .head{position:absolute;left:12px;bottom:10px;right:14px;font:12px var(--sans);color:var(--text);text-shadow:0 0 3px #000;pointer-events:none}
 .head .q{font:600 19px var(--sans)}
 .head .w{color:var(--warn)}
+.probe{position:absolute;display:none;pointer-events:none;background:rgba(20,23,27,.93);border:1px solid var(--line);padding:6px 9px;font:12px var(--sans);min-width:170px;z-index:3}
+.probe .ph{color:var(--mute);font-size:11px;margin-bottom:3px}
+.probe table td{border:0;padding:1px 0}
+.probe td.n{padding-left:12px}
+.probe tr.on td{color:#fff;font-weight:600}
+.probe .pl{color:var(--mute);font-size:11px;margin-top:3px}
 .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--mute);background:rgba(29,32,36,.55)}
 .bars .b{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:12px}
 .bars .b span.l{flex:0 0 120px;color:var(--mute)}
@@ -401,9 +407,16 @@ class Viewer{
   constructor(idx){
     this.idx=idx;this.sel=sels[idx];
     const el=document.createElement("div");el.className="vp";el.id="vp"+idx;
-    el.innerHTML=`<canvas></canvas><div class="vtag">${idx?"B":"A"}</div><div class="leg"><div class="bar"></div><div class="labs"></div><div class="lt"></div></div><div class="head"></div><div class="loading">Loading…</div>`;
+    el.innerHTML=`<canvas></canvas><div class="vtag">${idx?"B":"A"}</div><div class="leg"><div class="bar"></div><div class="labs"></div><div class="lt"></div></div><div class="head"></div><div class="probe"></div><div class="loading">Loading…</div>`;
     $("views").appendChild(el);this.el=el;this.cv=el.querySelector("canvas");
     el.addEventListener("pointerdown",()=>setActive(idx));
+    // hover probe: value under the cursor (mirrored to the other view when cameras are linked)
+    this.hover=null;this.hoverDirty=false;
+    const setH=h=>{const list=cmp&&$("syncCam").checked?viewers.filter(v=>v.visible()):[this];list.forEach(v=>{v.hover=h;v.hoverDirty=true;});};
+    this.cv.addEventListener("pointermove",e=>{const r=this.cv.getBoundingClientRect();
+      setH(e.buttons?null:{fx:(e.clientX-r.left)/r.width,fy:(e.clientY-r.top)/r.height});});
+    this.cv.addEventListener("pointerleave",()=>setH(null));
+    this.cv.addEventListener("pointerdown",()=>setH(null));
     this.R=null;this.wantKey=null;this.seq=0;this.curAsm=null;this.G=null;this.F=null;this.pc={};
   }
   visible(){return this.idx===0||cmp;}
@@ -418,6 +431,37 @@ class Viewer{
     this.scene.add(new THREE.HemisphereLight(0xffffff,0x334455,0.9));
     const dl=new THREE.DirectionalLight(0xffffff,0.5);dl.position.set(200,300,400);this.scene.add(dl);
     this.root=new THREE.Group();this.scene.add(this.root);
+    this.ray=new THREE.Raycaster();this.ndc=new THREE.Vector2();
+    this.marker=new THREE.Mesh(new THREE.SphereGeometry(1.3,16,12),new THREE.MeshBasicMaterial({color:0xffffff,depthTest:false}));
+    this.marker.renderOrder=10;this.marker.visible=false;this.scene.add(this.marker);
+  }
+  probe(){
+    this.hoverDirty=false;
+    const tip=this.el.querySelector(".probe"),hide=()=>{tip.style.display="none";if(this.marker)this.marker.visible=false;};
+    const h=this.hover;if(!h||!this.F||!this.R)return hide();
+    this.ndc.set(h.fx*2-1,-h.fy*2+1);this.ray.setFromCamera(this.ndc,this.cam);
+    const T=[];if(this.cenMesh)T.push(this.cenMesh);
+    if(+$("wo").value>=0.05){T.push(this.wallMesh);if(this.wallMeshM.visible)T.push(this.wallMeshM);}
+    // prefer the surface that is being coloured: a plain see-through wall should not block the centre plane
+    const hits=this.ray.intersectObjects(T,false);
+    const onC=hits.find(x=>x.object===this.cenMesh),onW=hits.find(x=>x.object!==this.cenMesh);
+    const hit=$("wf").value==="none"?(onC||onW):(onW||onC);if(!hit)return hide();
+    const f=hit.face,P=hit.object.geometry.attributes.position,F=this.F;
+    const a=new THREE.Vector3().fromBufferAttribute(P,f.a),b=new THREE.Vector3().fromBufferAttribute(P,f.b),c=new THREE.Vector3().fromBufferAttribute(P,f.c);
+    const bc=new THREE.Vector3();THREE.Triangle.getBarycoord(hit.point,a,b,c,bc);
+    const val=arr=>arr[f.a]*bc.x+arr[f.b]*bc.y+arr[f.c]*bc.z;
+    const isC=hit.object===this.cenMesh,cf=$("cf").value,wf=$("wf").value;
+    const kpa=v=>`${fmt(v,2)} kPa <span class="note">(${fmt(v*101.97,1)} mm water)</span>`;
+    const rows=isC?[["Speed",fmt(val(F.centre_spd),2)+" m/s",cf==="spd"],["Pressure",kpa(val(F.centre_p)),cf==="p"]]
+                  :[["Wall pressure",kpa(val(F.wall_p)),wf==="p"],["Wall shear",fmt(val(F.wall_tau),2)+" Pa",wf==="tau"]];
+    const S=this.G.meta.stations,p=hit.point;
+    tip.innerHTML=`<div class="ph">${cmp?(this.idx?"B · ":"A · "):""}${isC?"Centre plane":"Wall"}</div><table>`+
+      rows.map(([l,v,on])=>`<tr class="${on?"on":""}"><td>${l}</td><td class="n">${v}</td></tr>`).join("")+
+      `</table><div class="pl">${fmt(p.y-S.port_Y,0)} mm ${p.y>=S.port_Y?"above":"below"} the chlorine port · x ${fmt(p.x,0)}, y ${fmt(p.y,0)}, z ${fmt(Math.abs(p.z),0)} mm</div>`;
+    tip.style.display="block";
+    const W=this.el.clientWidth,H=this.el.clientHeight,x=h.fx*W,y=h.fy*H;
+    tip.style.left=Math.min(x+16,W-tip.offsetWidth-6)+"px";tip.style.top=Math.min(y+16,H-tip.offsetHeight-6)+"px";
+    this.marker.position.copy(p);this.marker.visible=true;
   }
   resize(){if(!this.R)return;const w=this.el.clientWidth,h=this.el.clientHeight;if(!w||!h)return;
     this.R.setSize(w,h,false);this.cv.style.width=w+"px";this.cv.style.height=h+"px";this.cam.aspect=w/h;this.cam.updateProjectionMatrix();}
@@ -452,8 +496,9 @@ class Viewer{
     if(wf!=="none"){const k=wf==="p"?"wp":"wtau",v=F[FIELD[k]],[lo,hi]=rangeFor(this,k);colorize(g1,v,lo,hi,mapn);colorize(g2,v,lo,hi,mapn);leg=[wf==="p"?"wall p, kPa":"wall shear, Pa",lo,hi];}
     this.wallMesh=new THREE.Mesh(g1,wm);this.wallMesh.renderOrder=2;root.add(this.wallMesh);
     this.wallMeshM=new THREE.Mesh(g2,wm);this.wallMeshM.renderOrder=2;this.wallMeshM.visible=!$("cut").checked;root.add(this.wallMeshM);
+    this.cenMesh=null;
     if(cf!=="off"){const k=cf==="spd"?"cspd":"cp",gc=meshFrom(G.centre_pos,G.centre_tri,false),v=F[FIELD[k]],[lo,hi]=rangeFor(this,k);
-      colorize(gc,v,lo,hi,mapn);root.add(new THREE.Mesh(gc,new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide})));
+      colorize(gc,v,lo,hi,mapn);this.cenMesh=new THREE.Mesh(gc,new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide}));root.add(this.cenMesh);
       leg=[cf==="spd"?"speed, m/s":"p, kPa",lo,hi];}
     this.setLegend(leg,mapn);
     const smax=rangeFor(this,"s")[1];
@@ -490,7 +535,9 @@ class Viewer{
       const k2=cm(map,(S[j]+(S[j+1]-S[j])*f)/smax);C[3*i]=k2[0];C[3*i+1]=k2[1];C[3*i+2]=k2[2];}
     this.pts.geometry.attributes.position.needsUpdate=true;this.pts.geometry.attributes.color.needsUpdate=true;
   }
-  render(){if(!this.R||!this.F)return;this.step();this.ctl.update();this.R.render(this.scene,this.cam);}
+  render(){if(!this.R||!this.F)return;this.step();const moved=this.ctl.update();
+    if(this.hover&&(this.hoverDirty||moved))this.probe();else if(this.hoverDirty)this.probe();
+    this.R.render(this.scene,this.cam);}
   camPreset(n){
     if(!this.bbox)return;
     const cam=this.cam,ctl=this.ctl,c=this.bbox.getCenter(new THREE.Vector3()),S=this.G.meta.stations;
