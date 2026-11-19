@@ -1,0 +1,16 @@
+level_inlet_cm                   65.18
+level_spigot_cm                  64.8
+level_venturi_in_cm              71.29
+static_inlet_cm                  63
+static_venturi_in_cm             61.25
+outlet_ke_head_cm                52.24
+outlet_alpha                     2.244
+diffuser_recovery_frac           0.7083
+diffuser_reversed_area_frac      0.195
+flow_in_Lpm                      59.99
+flow_out_Lpm                     59.95
+mass_imbalance_pct               0.06365
+losses cm: {'inlet_extension+spigot': 0.28, 'esig_reducer': 0.1, 'elbow_incl_thread_cavity': 0.54, 'venturi_to_port': 5.19, 'port_to_diffuser_end': 25.48, 'diffuser_end_to_outlet': 1.02, 'venturi_total': 31.69}
+port wall p kPa: {'mean': -13.711, 'min': -15.459, 'max': -12.458, 'at_plus_y': -13.667, 'at_minus_y': -13.594, 'at_plus_z': -14.23, 'n_faces': 192}
+y+: {'wall_esig': {'mean': 3.0, 'min': 0.0, 'max': 12.1, 'p95': 7.1}, 'wall_elbow': {'mean': 0.8, 'min': 0.0, 'max': 12.0, 'p95': 2.3}, 'wall_venturi': {'mean': 11.1, 'min': 0.0, 'max': 115.6, 'p95': 22.8}}
+final: 2000 {'p': 0.013920111276, 'Ux': 0.00035397071988, 'Uy': 0.0011458518874, 'Uz': 0.0027143926821, 'k': 0.0011916621071, 'omega': 0.00058237655745}

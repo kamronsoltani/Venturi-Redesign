@@ -1,0 +1,990 @@
+{
+ "groups": {
+  "e34": "3/4in E-Sig + 3/4in elbow",
+  "e1": "1in E-Sig + McMaster elbow",
+  "lr": "1in long-radius elbow"
+ },
+ "assemblies": [
+  {
+   "id": "asm34_current",
+   "group": "e34",
+   "venturi": "Current",
+   "label": "3/4in E-Sig + 3/4in elbow + current Venturi",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm34_A",
+   "group": "e34",
+   "venturi": "A",
+   "label": "3/4in E-Sig + 3/4in elbow + Venturi A (14 mm throat, 19 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm34_Bvane",
+   "group": "e34",
+   "venturi": "B + vane",
+   "label": "3/4in E-Sig + 3/4in elbow + Venturi B (14 mm throat, 26 mm exit) + cross-vane",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm1e_V1",
+   "group": "e1",
+   "venturi": "V1",
+   "label": "1in E-Sig + McMaster 1in elbow + V1 (14 mm throat, 26 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm1e_V2",
+   "group": "e1",
+   "venturi": "V2",
+   "label": "1in E-Sig + McMaster 1in elbow + V2 (16 mm throat, 26 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm1e_V3",
+   "group": "e1",
+   "venturi": "V3",
+   "label": "1in E-Sig + McMaster 1in elbow + V3 (18 mm throat, 26 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm1e_V4",
+   "group": "e1",
+   "venturi": "V4",
+   "label": "1in E-Sig + McMaster 1in elbow + V4 (14 mm throat, 30 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm1lr_V1",
+   "group": "lr",
+   "venturi": "V1",
+   "label": "1in long-radius reducing elbow + V1 (14 mm throat, 26 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm1lr_V2",
+   "group": "lr",
+   "venturi": "V2",
+   "label": "1in long-radius reducing elbow + V2 (16 mm throat, 26 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm1lr_V3",
+   "group": "lr",
+   "venturi": "V3",
+   "label": "1in long-radius reducing elbow + V3 (18 mm throat, 26 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm1lr_V4",
+   "group": "lr",
+   "venturi": "V4",
+   "label": "1in long-radius reducing elbow + V4 (14 mm throat, 30 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  }
+ ],
+ "cases": {
+  "asm34_current_Q6": {
+   "level": -12.0,
+   "drift": 0.01,
+   "port": -0.873,
+   "jet": 1.3,
+   "recovery": 0.581,
+   "imbalance": 0.191
+  },
+  "asm34_current_Q8": {
+   "level": -10.34,
+   "drift": 0.0,
+   "port": -1.026,
+   "jet": 2.28,
+   "recovery": 0.557,
+   "imbalance": 0.171
+  },
+  "asm34_current_Q10": {
+   "level": -8.26,
+   "drift": 0.0,
+   "port": -1.23,
+   "jet": 3.46,
+   "recovery": 0.589,
+   "imbalance": 0.158
+  },
+  "asm34_current_Q20": {
+   "level": 8.16,
+   "drift": 0.01,
+   "port": -2.988,
+   "jet": 12.95,
+   "recovery": 0.653,
+   "imbalance": 0.124
+  },
+  "asm34_current_Q25": {
+   "level": 18.9,
+   "drift": 0.13,
+   "port": -4.426,
+   "jet": 19.49,
+   "recovery": 0.68,
+   "imbalance": 0.117
+  },
+  "asm34_current_Q30": {
+   "level": 32.08,
+   "drift": 0.17,
+   "port": -6.168,
+   "jet": 27.89,
+   "recovery": 0.708,
+   "imbalance": 0.116
+  },
+  "asm34_current_Q40": {
+   "level": 64.99,
+   "drift": 0.26,
+   "port": -10.668,
+   "jet": 48.41,
+   "recovery": 0.737,
+   "imbalance": 0.107
+  },
+  "asm34_current_Q50": {
+   "level": 106.71,
+   "drift": 0.35,
+   "port": -16.485,
+   "jet": 74.47,
+   "recovery": 0.754,
+   "imbalance": 0.103
+  },
+  "asm34_current_Q60": {
+   "level": 157.36,
+   "drift": 0.5,
+   "port": -23.601,
+   "jet": 106.64,
+   "recovery": 0.763,
+   "imbalance": 0.105
+  },
+  "asm34_A_Q6": {
+   "level": -12.53,
+   "drift": 0.0,
+   "port": -0.96,
+   "jet": 0.83,
+   "recovery": 0.629,
+   "imbalance": -0.002
+  },
+  "asm34_A_Q8": {
+   "level": -11.37,
+   "drift": 0.0,
+   "port": -1.07,
+   "jet": 1.47,
+   "recovery": 0.668,
+   "imbalance": -0.004
+  },
+  "asm34_A_Q10": {
+   "level": -9.89,
+   "drift": 0.0,
+   "port": -1.207,
+   "jet": 2.28,
+   "recovery": 0.671,
+   "imbalance": -0.002
+  },
+  "asm34_A_Q20": {
+   "level": 2.4,
+   "drift": 0.01,
+   "port": -2.297,
+   "jet": 8.96,
+   "recovery": 0.654,
+   "imbalance": 0.011
+  },
+  "asm34_A_Q25": {
+   "level": 11.3,
+   "drift": 0.02,
+   "port": -3.112,
+   "jet": 13.93,
+   "recovery": 0.611,
+   "imbalance": 0.015
+  },
+  "asm34_A_Q30": {
+   "level": 21.59,
+   "drift": 0.02,
+   "port": -4.149,
+   "jet": 19.88,
+   "recovery": 0.614,
+   "imbalance": 0.017
+  },
+  "asm34_A_Q40": {
+   "level": 47.0,
+   "drift": 0.02,
+   "port": -6.939,
+   "jet": 34.53,
+   "recovery": 0.658,
+   "imbalance": 0.021
+  },
+  "asm34_A_Q50": {
+   "level": 79.17,
+   "drift": 0.02,
+   "port": -10.529,
+   "jet": 53.28,
+   "recovery": 0.677,
+   "imbalance": 0.024
+  },
+  "asm34_A_Q60": {
+   "level": 118.43,
+   "drift": 0.02,
+   "port": -14.883,
+   "jet": 76.43,
+   "recovery": 0.685,
+   "imbalance": 0.024
+  },
+  "asm34_Bvane_Q6": {
+   "level": -12.39,
+   "drift": 0.01,
+   "port": -0.947,
+   "jet": 0.85,
+   "recovery": 0.564,
+   "imbalance": 0.052
+  },
+  "asm34_Bvane_Q8": {
+   "level": -11.0,
+   "drift": 0.04,
+   "port": -1.034,
+   "jet": 1.56,
+   "recovery": 0.558,
+   "imbalance": 0.034
+  },
+  "asm34_Bvane_Q10": {
+   "level": -9.25,
+   "drift": 0.06,
+   "port": -1.145,
+   "jet": 2.49,
+   "recovery": 0.55,
+   "imbalance": 0.029
+  },
+  "asm34_Bvane_Q20": {
+   "level": 4.74,
+   "drift": 1.02,
+   "port": -2.068,
+   "jet": 9.29,
+   "recovery": 0.501,
+   "imbalance": 0.01
+  },
+  "asm34_Bvane_Q25": {
+   "level": 11.64,
+   "drift": 2.71,
+   "port": -3.08,
+   "jet": 10.04,
+   "recovery": 0.611,
+   "imbalance": 0.057
+  },
+  "asm34_Bvane_Q30": {
+   "level": 22.53,
+   "drift": 5.28,
+   "port": -4.057,
+   "jet": 14.3,
+   "recovery": 0.607,
+   "imbalance": 0.071
+  },
+  "asm34_Bvane_Q40": {
+   "level": 41.62,
+   "drift": 7.34,
+   "port": -7.464,
+   "jet": 17.89,
+   "recovery": 0.706,
+   "imbalance": 0.04
+  },
+  "asm34_Bvane_Q50": {
+   "level": 84.85,
+   "drift": 18.09,
+   "port": -9.972,
+   "jet": 36.22,
+   "recovery": 0.605,
+   "imbalance": -0.055
+  },
+  "asm34_Bvane_Q60": {
+   "level": 133.26,
+   "drift": 13.9,
+   "port": -13.423,
+   "jet": 63.82,
+   "recovery": 0.564,
+   "imbalance": 0.095
+  },
+  "asm1e_V1_Q6": {
+   "level": -13.46,
+   "drift": 0.0,
+   "port": -1.057,
+   "jet": 0.72,
+   "recovery": 0.66,
+   "imbalance": 0.026
+  },
+  "asm1e_V1_Q8": {
+   "level": -12.63,
+   "drift": 0.02,
+   "port": -1.182,
+   "jet": 1.05,
+   "recovery": 0.712,
+   "imbalance": 0.067
+  },
+  "asm1e_V1_Q10": {
+   "level": -11.56,
+   "drift": 0.01,
+   "port": -1.338,
+   "jet": 1.59,
+   "recovery": 0.728,
+   "imbalance": 0.055
+  },
+  "asm1e_V1_Q20": {
+   "level": -1.27,
+   "drift": 0.05,
+   "port": -2.439,
+   "jet": 7.4,
+   "recovery": 0.657,
+   "imbalance": -0.023
+  },
+  "asm1e_V1_Q25": {
+   "level": 6.74,
+   "drift": 0.17,
+   "port": -3.24,
+   "jet": 11.71,
+   "recovery": 0.643,
+   "imbalance": -0.043
+  },
+  "asm1e_V1_Q30": {
+   "level": 17.27,
+   "drift": 0.81,
+   "port": -4.123,
+   "jet": 17.75,
+   "recovery": 0.616,
+   "imbalance": -0.022
+  },
+  "asm1e_V1_Q40": {
+   "level": 41.96,
+   "drift": 2.57,
+   "port": -6.567,
+   "jet": 30.32,
+   "recovery": 0.609,
+   "imbalance": -0.045
+  },
+  "asm1e_V1_Q50": {
+   "level": 73.05,
+   "drift": 6.17,
+   "port": -9.756,
+   "jet": 49.59,
+   "recovery": 0.61,
+   "imbalance": -0.022
+  },
+  "asm1e_V1_Q60": {
+   "level": 112.3,
+   "drift": 13.37,
+   "port": -13.536,
+   "jet": 73.81,
+   "recovery": 0.605,
+   "imbalance": -0.02
+  },
+  "asm1e_V2_Q6": {
+   "level": -13.97,
+   "drift": 0.01,
+   "port": -1.024,
+   "jet": 0.46,
+   "recovery": 0.7,
+   "imbalance": 0.019
+  },
+  "asm1e_V2_Q8": {
+   "level": -13.41,
+   "drift": 0.0,
+   "port": -1.094,
+   "jet": 0.71,
+   "recovery": 0.754,
+   "imbalance": 0.039
+  },
+  "asm1e_V2_Q10": {
+   "level": -12.73,
+   "drift": 0.0,
+   "port": -1.184,
+   "jet": 1.02,
+   "recovery": 0.79,
+   "imbalance": 0.027
+  },
+  "asm1e_V2_Q20": {
+   "level": -6.23,
+   "drift": 0.01,
+   "port": -1.806,
+   "jet": 4.64,
+   "recovery": 0.723,
+   "imbalance": 0.005
+  },
+  "asm1e_V2_Q25": {
+   "level": -0.92,
+   "drift": 0.04,
+   "port": -2.24,
+   "jet": 7.6,
+   "recovery": 0.675,
+   "imbalance": -0.009
+  },
+  "asm1e_V2_Q30": {
+   "level": 6.14,
+   "drift": 0.16,
+   "port": -2.691,
+   "jet": 11.65,
+   "recovery": 0.613,
+   "imbalance": -0.015
+  },
+  "asm1e_V2_Q40": {
+   "level": 21.19,
+   "drift": 1.28,
+   "port": -4.096,
+   "jet": 19.71,
+   "recovery": 0.608,
+   "imbalance": 0.001
+  },
+  "asm1e_V2_Q50": {
+   "level": 38.93,
+   "drift": 1.72,
+   "port": -6.042,
+   "jet": 30.71,
+   "recovery": 0.63,
+   "imbalance": -0.01
+  },
+  "asm1e_V2_Q60": {
+   "level": 63.68,
+   "drift": 3.53,
+   "port": -8.129,
+   "jet": 44.82,
+   "recovery": 0.611,
+   "imbalance": -0.018
+  },
+  "asm1e_V3_Q6": {
+   "level": -14.22,
+   "drift": 0.0,
+   "port": -1.019,
+   "jet": 0.35,
+   "recovery": 0.717,
+   "imbalance": 0.052
+  },
+  "asm1e_V3_Q8": {
+   "level": -13.77,
+   "drift": 0.0,
+   "port": -1.055,
+   "jet": 0.57,
+   "recovery": 0.774,
+   "imbalance": 0.042
+  },
+  "asm1e_V3_Q10": {
+   "level": -13.28,
+   "drift": 0.02,
+   "port": -1.109,
+   "jet": 0.86,
+   "recovery": 0.832,
+   "imbalance": 0.051
+  },
+  "asm1e_V3_Q20": {
+   "level": -8.43,
+   "drift": 0.05,
+   "port": -1.459,
+   "jet": 3.62,
+   "recovery": 0.777,
+   "imbalance": 0.038
+  },
+  "asm1e_V3_Q25": {
+   "level": -4.96,
+   "drift": 0.04,
+   "port": -1.736,
+   "jet": 5.31,
+   "recovery": 0.713,
+   "imbalance": 0.031
+  },
+  "asm1e_V3_Q30": {
+   "level": -0.43,
+   "drift": 0.02,
+   "port": -2.044,
+   "jet": 7.75,
+   "recovery": 0.656,
+   "imbalance": 0.023
+  },
+  "asm1e_V3_Q40": {
+   "level": 10.31,
+   "drift": 0.18,
+   "port": -2.874,
+   "jet": 13.65,
+   "recovery": 0.62,
+   "imbalance": 0.002
+  },
+  "asm1e_V3_Q50": {
+   "level": 23.32,
+   "drift": 0.45,
+   "port": -3.986,
+   "jet": 21.2,
+   "recovery": 0.627,
+   "imbalance": 0.043
+  },
+  "asm1e_V3_Q60": {
+   "level": 39.29,
+   "drift": 1.0,
+   "port": -5.35,
+   "jet": 30.37,
+   "recovery": 0.617,
+   "imbalance": 0.011
+  },
+  "asm1e_V4_Q6": {
+   "level": -16.46,
+   "drift": 0.02,
+   "port": -1.351,
+   "jet": 0.47,
+   "recovery": 0.736,
+   "imbalance": 0.195
+  },
+  "asm1e_V4_Q8": {
+   "level": -15.53,
+   "drift": 0.0,
+   "port": -1.466,
+   "jet": 0.85,
+   "recovery": 0.717,
+   "imbalance": 0.284
+  },
+  "asm1e_V4_Q10": {
+   "level": -14.51,
+   "drift": 0.03,
+   "port": -1.627,
+   "jet": 1.33,
+   "recovery": 0.731,
+   "imbalance": 0.272
+  },
+  "asm1e_V4_Q20": {
+   "level": -4.88,
+   "drift": 0.17,
+   "port": -2.793,
+   "jet": 5.68,
+   "recovery": 0.672,
+   "imbalance": 0.162
+  },
+  "asm1e_V4_Q25": {
+   "level": 3.29,
+   "drift": 0.21,
+   "port": -3.581,
+   "jet": 9.66,
+   "recovery": 0.642,
+   "imbalance": 0.152
+  },
+  "asm1e_V4_Q30": {
+   "level": 13.92,
+   "drift": 0.52,
+   "port": -4.449,
+   "jet": 14.88,
+   "recovery": 0.607,
+   "imbalance": 0.135
+  },
+  "asm1e_V4_Q40": {
+   "level": 38.63,
+   "drift": 1.73,
+   "port": -6.887,
+   "jet": 26.0,
+   "recovery": 0.597,
+   "imbalance": 0.119
+  },
+  "asm1e_V4_Q50": {
+   "level": 69.49,
+   "drift": 1.11,
+   "port": -10.089,
+   "jet": 42.78,
+   "recovery": 0.595,
+   "imbalance": 0.119
+  },
+  "asm1e_V4_Q60": {
+   "level": 107.48,
+   "drift": 3.41,
+   "port": -13.99,
+   "jet": 60.94,
+   "recovery": 0.594,
+   "imbalance": 0.111
+  },
+  "asm1lr_V1_Q6": {
+   "level": -18.49,
+   "drift": 0.04,
+   "port": -1.037,
+   "jet": 0.66,
+   "recovery": 0.619,
+   "imbalance": 0.225
+  },
+  "asm1lr_V1_Q8": {
+   "level": -17.73,
+   "drift": 0.02,
+   "port": -1.135,
+   "jet": 1.11,
+   "recovery": 0.657,
+   "imbalance": 0.179
+  },
+  "asm1lr_V1_Q10": {
+   "level": -16.8,
+   "drift": 0.01,
+   "port": -1.264,
+   "jet": 1.66,
+   "recovery": 0.679,
+   "imbalance": 0.176
+  },
+  "asm1lr_V1_Q20": {
+   "level": -8.95,
+   "drift": 0.33,
+   "port": -2.262,
+   "jet": 6.22,
+   "recovery": 0.665,
+   "imbalance": 0.11
+  },
+  "asm1lr_V1_Q25": {
+   "level": -3.33,
+   "drift": 0.77,
+   "port": -3.031,
+   "jet": 9.81,
+   "recovery": 0.671,
+   "imbalance": 0.094
+  },
+  "asm1lr_V1_Q30": {
+   "level": 3.12,
+   "drift": 1.28,
+   "port": -3.998,
+   "jet": 13.85,
+   "recovery": 0.68,
+   "imbalance": 0.113
+  },
+  "asm1lr_V1_Q40": {
+   "level": 18.67,
+   "drift": 2.27,
+   "port": -6.549,
+   "jet": 22.82,
+   "recovery": 0.701,
+   "imbalance": 0.108
+  },
+  "asm1lr_V1_Q50": {
+   "level": 40.98,
+   "drift": 2.64,
+   "port": -9.653,
+   "jet": 36.68,
+   "recovery": 0.689,
+   "imbalance": 0.124
+  },
+  "asm1lr_V1_Q60": {
+   "level": 65.18,
+   "drift": 3.61,
+   "port": -13.711,
+   "jet": 52.24,
+   "recovery": 0.708,
+   "imbalance": 0.064
+  },
+  "asm1lr_V2_Q6": {
+   "level": -18.91,
+   "drift": 0.0,
+   "port": -1.013,
+   "jet": 0.46,
+   "recovery": 0.671,
+   "imbalance": 0.21
+  },
+  "asm1lr_V2_Q8": {
+   "level": -18.41,
+   "drift": 0.01,
+   "port": -1.068,
+   "jet": 0.77,
+   "recovery": 0.713,
+   "imbalance": 0.188
+  },
+  "asm1lr_V2_Q10": {
+   "level": -17.8,
+   "drift": 0.0,
+   "port": -1.14,
+   "jet": 1.17,
+   "recovery": 0.738,
+   "imbalance": 0.17
+  },
+  "asm1lr_V2_Q20": {
+   "level": -12.98,
+   "drift": 0.01,
+   "port": -1.721,
+   "jet": 4.29,
+   "recovery": 0.739,
+   "imbalance": 0.148
+  },
+  "asm1lr_V2_Q25": {
+   "level": -9.25,
+   "drift": 0.02,
+   "port": -2.132,
+   "jet": 6.66,
+   "recovery": 0.713,
+   "imbalance": 0.137
+  },
+  "asm1lr_V2_Q30": {
+   "level": -5.15,
+   "drift": 0.09,
+   "port": -2.683,
+   "jet": 9.33,
+   "recovery": 0.718,
+   "imbalance": 0.147
+  },
+  "asm1lr_V2_Q40": {
+   "level": 4.94,
+   "drift": 0.23,
+   "port": -4.096,
+   "jet": 16.15,
+   "recovery": 0.73,
+   "imbalance": 0.133
+  },
+  "asm1lr_V2_Q50": {
+   "level": 18.44,
+   "drift": 0.29,
+   "port": -5.865,
+   "jet": 25.24,
+   "recovery": 0.727,
+   "imbalance": 0.1
+  },
+  "asm1lr_V2_Q60": {
+   "level": 35.33,
+   "drift": 0.35,
+   "port": -8.014,
+   "jet": 36.96,
+   "recovery": 0.729,
+   "imbalance": 0.104
+  },
+  "asm1lr_V3_Q6": {
+   "level": -19.14,
+   "drift": 0.0,
+   "port": -1.01,
+   "jet": 0.35,
+   "recovery": 0.638,
+   "imbalance": 0.267
+  },
+  "asm1lr_V3_Q8": {
+   "level": -18.78,
+   "drift": 0.0,
+   "port": -1.041,
+   "jet": 0.59,
+   "recovery": 0.701,
+   "imbalance": 0.238
+  },
+  "asm1lr_V3_Q10": {
+   "level": -18.34,
+   "drift": 0.0,
+   "port": -1.082,
+   "jet": 0.9,
+   "recovery": 0.74,
+   "imbalance": 0.22
+  },
+  "asm1lr_V3_Q20": {
+   "level": -14.97,
+   "drift": 0.0,
+   "port": -1.432,
+   "jet": 3.35,
+   "recovery": 0.82,
+   "imbalance": 0.18
+  },
+  "asm1lr_V3_Q25": {
+   "level": -12.32,
+   "drift": 0.0,
+   "port": -1.655,
+   "jet": 5.16,
+   "recovery": 0.76,
+   "imbalance": 0.174
+  },
+  "asm1lr_V3_Q30": {
+   "level": -9.31,
+   "drift": 0.01,
+   "port": -1.962,
+   "jet": 7.28,
+   "recovery": 0.75,
+   "imbalance": 0.171
+  },
+  "asm1lr_V3_Q40": {
+   "level": -2.01,
+   "drift": 0.01,
+   "port": -2.781,
+   "jet": 12.56,
+   "recovery": 0.766,
+   "imbalance": 0.162
+  },
+  "asm1lr_V3_Q50": {
+   "level": 7.07,
+   "drift": 0.04,
+   "port": -3.845,
+   "jet": 19.27,
+   "recovery": 0.781,
+   "imbalance": 0.153
+  },
+  "asm1lr_V3_Q60": {
+   "level": 18.14,
+   "drift": 0.06,
+   "port": -5.157,
+   "jet": 27.46,
+   "recovery": 0.789,
+   "imbalance": 0.145
+  },
+  "asm1lr_V4_Q6": {
+   "level": -21.35,
+   "drift": 0.03,
+   "port": -1.317,
+   "jet": 0.54,
+   "recovery": 0.636,
+   "imbalance": 0.019
+  },
+  "asm1lr_V4_Q8": {
+   "level": -20.62,
+   "drift": 0.02,
+   "port": -1.419,
+   "jet": 0.9,
+   "recovery": 0.668,
+   "imbalance": 0.013
+  },
+  "asm1lr_V4_Q10": {
+   "level": -19.75,
+   "drift": 0.0,
+   "port": -1.553,
+   "jet": 1.34,
+   "recovery": 0.69,
+   "imbalance": 0.007
+  },
+  "asm1lr_V4_Q20": {
+   "level": -12.04,
+   "drift": 0.22,
+   "port": -2.566,
+   "jet": 5.29,
+   "recovery": 0.662,
+   "imbalance": 0.035
+  },
+  "asm1lr_V4_Q25": {
+   "level": -6.86,
+   "drift": 0.29,
+   "port": -3.38,
+   "jet": 8.09,
+   "recovery": 0.674,
+   "imbalance": 0.037
+  },
+  "asm1lr_V4_Q30": {
+   "level": -0.36,
+   "drift": 0.47,
+   "port": -4.344,
+   "jet": 11.38,
+   "recovery": 0.675,
+   "imbalance": 0.022
+  },
+  "asm1lr_V4_Q40": {
+   "level": 16.34,
+   "drift": 0.93,
+   "port": -6.785,
+   "jet": 20.42,
+   "recovery": 0.675,
+   "imbalance": 0.023
+  },
+  "asm1lr_V4_Q50": {
+   "level": 38.6,
+   "drift": 1.58,
+   "port": -9.895,
+   "jet": 32.51,
+   "recovery": 0.672,
+   "imbalance": 0.012
+  },
+  "asm1lr_V4_Q60": {
+   "level": 63.86,
+   "drift": 3.93,
+   "port": -13.863,
+   "jet": 48.49,
+   "recovery": 0.68,
+   "imbalance": 0.017
+  }
+ }
+}

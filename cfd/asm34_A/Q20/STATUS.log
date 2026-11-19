@@ -1,0 +1,8 @@
+09:52:50 meshing: blockMesh
+09:52:52 meshing: surfaceFeatures
+09:52:52 meshing: snappyHexMesh (8 cores)
+09:55:09 checkMesh
+09:55:15 initialising from Venturi-Redesign/cfd/asm34_A/Q30
+09:55:21 solving (8 cores)
+10:11:49 reconstructing
+10:11:49 done (iteration 2000)

@@ -1,0 +1,729 @@
+<title>TuriTap CFD Viewer</title>
+<style>
+/* Layout: desktop CFD post-processor. Toolbar / left dock (cases, display) / viewports / right dock (information) / bottom dock (plots, spreadsheet) / status bar. Single dark theme by design. */
+:root {
+  color-scheme: dark;
+  --bg: #1e2124; --panel: #2a2e32; --panel2: #24282b; --hdr: #33383d; --edge: #15171a; --line: #3b4146;
+  --fg: #d5d9dc; --dim: #8d969d; --sel: #2f6db3; --selfg: #ffffff; --accent: #4a9be0; --warn: #e0a040; --bad: #e0604a; --good: #6bbf7a;
+  --vp-top: #4a525c; --vp-bot: #1a1d21;
+  --ui: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: Consolas, "SFMono-Regular", Menlo, monospace;
+}
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--fg); font: 12px/1.4 var(--ui); margin: 0; overflow: hidden;
+  padding-left: max(0px, env(safe-area-inset-left, 0px)); padding-right: max(0px, env(safe-area-inset-right, 0px)); padding-block: 0; }
+.app { height: 100%; display: grid; grid-template-rows: 34px minmax(0, 1fr) 250px 22px; grid-template-columns: 250px minmax(0, 1fr) 270px;
+  grid-template-areas: "tb tb tb" "left vp right" "left bot right" "sb sb sb"; }
+@media (max-width: 1000px) {
+  body { overflow: auto; }
+  .app { height: auto; grid-template-rows: auto auto 70vh auto auto auto; grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "tb" "left" "vp" "bot" "right" "sb"; }
+  .app > * { min-height: 0; }
+  .bottom { height: 320px; }
+}
+/* toolbar */
+.tb { grid-area: tb; display: flex; align-items: center; gap: 2px; background: var(--hdr); border-bottom: 1px solid var(--edge); padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); overflow-x: auto; }
+.tb .name { font-weight: 600; margin-right: 12px; white-space: nowrap; }
+.tb .sep { width: 1px; height: 20px; background: var(--line); margin: 0 6px; flex: none; }
+.tbtn { font: 12px var(--ui); color: var(--fg); background: transparent; border: 1px solid transparent; border-radius: 3px; padding: 3px 8px; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+.tbtn:hover { background: #3d4349; border-color: var(--line); }
+.tbtn[aria-pressed="true"] { background: var(--sel); color: var(--selfg); border-color: #3a7cc4; }
+.tbtn:focus-visible, select:focus-visible, input:focus-visible, .tree button:focus-visible, th:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
+.tbtn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.4; }
+/* docks */
+.dock { background: var(--panel); border-color: var(--edge); border-style: solid; display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+.left { grid-area: left; border-width: 0 1px 0 0; }
+.right { grid-area: right; border-width: 0 0 0 1px; }
+.dhdr { background: var(--hdr); padding: 4px 8px; font-weight: 600; border-bottom: 1px solid var(--edge); border-top: 1px solid var(--edge); display: flex; justify-content: space-between; align-items: center; }
+.dhdr:first-child { border-top: 0; }
+.dbody { overflow: auto; min-height: 0; }
+.tree { flex: 1 1 45%; }
+.tree details { border-bottom: 1px solid var(--panel2); }
+.tree summary { padding: 3px 8px; cursor: pointer; color: var(--fg); list-style: none; display: flex; gap: 6px; align-items: center; }
+.tree summary::before { content: "▸"; color: var(--dim); width: 10px; }
+.tree details[open] > summary::before { content: "▾"; }
+.tree summary small { color: var(--dim); margin-left: auto; }
+.tree button { display: flex; width: 100%; gap: 6px; align-items: center; text-align: left; font: 12px var(--ui); color: var(--fg); background: none; border: 0; padding: 2px 8px 2px 26px; cursor: pointer; }
+.tree button:hover { background: #343a40; }
+.tree button.on { background: var(--sel); color: var(--selfg); }
+.tree .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--good); flex: none; }
+.tree .dot.flag { background: var(--warn); }
+.tree .vpn { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--dim); }
+.tree button.on .vpn { color: var(--selfg); }
+.props { flex: 1 1 55%; }
+.pgrid { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 5px 8px; padding: 8px; align-items: center; }
+.pgrid .sec { grid-column: 1 / -1; color: var(--dim); text-transform: uppercase; font-size: 10px; letter-spacing: .06em; border-bottom: 1px solid var(--line); padding-top: 6px; }
+.pgrid label { color: var(--dim); }
+.pgrid .row2 { display: flex; gap: 4px; align-items: center; min-width: 0; }
+select, input[type=number] { font: 12px var(--ui); color: var(--fg); background: var(--panel2); border: 1px solid var(--line); border-radius: 2px; padding: 2px 4px; min-width: 0; width: 100%; }
+input[type=number] { font-family: var(--mono); }
+input[type=range] { width: 100%; accent-color: var(--accent); min-width: 0; }
+input[type=checkbox] { accent-color: var(--accent); margin: 0; }
+.chk { display: flex; gap: 6px; align-items: center; color: var(--fg); }
+.num { font-family: var(--mono); color: var(--fg); min-width: 34px; text-align: right; font-size: 11px; }
+/* viewports */
+.vpwrap { grid-area: vp; display: grid; gap: 2px; background: var(--edge); min-height: 0; }
+.vpwrap.l1 { grid-template: 1fr / 1fr; } .vpwrap.l2 { grid-template: 1fr / 1fr 1fr; } .vpwrap.l3 { grid-template: 1fr / 1fr 1fr 1fr; } .vpwrap.l4 { grid-template: 1fr 1fr / 1fr 1fr; }
+.vp { position: relative; min-height: 0; min-width: 0; background: linear-gradient(var(--vp-top), var(--vp-bot)); border: 1px solid transparent; }
+.vp.active { border-color: var(--accent); }
+.vp canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+.vphdr { position: absolute; top: 0; left: 0; right: 0; display: flex; gap: 6px; align-items: center; padding: 3px 6px; background: rgba(20, 22, 25, .72); z-index: 2; }
+.vphdr select { width: auto; max-width: 60%; }
+.vphdr .tag { font-family: var(--mono); font-size: 11px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vphdr .idx { font-family: var(--mono); color: var(--accent); }
+.cbar { position: absolute; right: 8px; bottom: 8px; z-index: 2; background: rgba(20, 22, 25, .6); padding: 4px 6px; border-radius: 2px; display: grid; gap: 2px; }
+.cbar canvas { position: static; width: 16px; height: 160px; }
+.cbar .t { font-family: var(--mono); font-size: 10px; color: var(--fg); }
+.cbar .inner { display: grid; grid-template-columns: 16px auto; gap: 4px; }
+.cbar .ticks { display: flex; flex-direction: column; justify-content: space-between; height: 160px; font-family: var(--mono); font-size: 10px; }
+.cbar2 { left: 8px; right: auto; }
+.triad { position: absolute; left: 8px; top: 30px; z-index: 2; font-family: var(--mono); font-size: 10px; color: var(--dim); line-height: 1.3; }
+/* bottom dock */
+.bottom { grid-area: bot; background: var(--panel); border-top: 1px solid var(--edge); display: grid; grid-template-rows: auto minmax(0, 1fr); min-height: 0; min-width: 0; }
+.tabs { display: flex; background: var(--hdr); border-bottom: 1px solid var(--edge); overflow-x: auto; }
+.tabs button { font: 12px var(--ui); color: var(--dim); background: none; border: 0; border-right: 1px solid var(--edge); padding: 5px 12px; cursor: pointer; white-space: nowrap; }
+.tabs button[aria-selected="true"] { color: var(--fg); background: var(--panel); }
+.pane { display: grid; grid-template-columns: 210px minmax(0, 1fr); min-height: 0; }
+.pane[hidden] { display: none !important; }
+.pane .ctl { border-right: 1px solid var(--line); padding: 8px; overflow: auto; display: grid; gap: 6px; align-content: start; }
+.pane .ctl label { color: var(--dim); display: grid; gap: 2px; }
+.plot { min-width: 0; min-height: 0; position: relative; }
+.plot svg { width: 100%; height: 100%; display: block; }
+.plot text { fill: var(--dim); font: 10px var(--mono); }
+.chips { display: flex; flex-wrap: wrap; gap: 3px; }
+.chips label { display: flex !important; gap: 4px; align-items: center; color: var(--fg) !important; background: var(--panel2); border: 1px solid var(--line); padding: 1px 5px; border-radius: 2px; }
+.chips i { width: 9px; height: 3px; display: inline-block; }
+.sheet { overflow: auto; min-height: 0; grid-column: 1 / -1; }
+table { border-collapse: collapse; font-size: 11px; width: max-content; min-width: 100%; }
+th, td { padding: 2px 6px; border-right: 1px solid var(--panel2); border-bottom: 1px solid var(--panel2); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+th { position: sticky; top: 0; background: var(--hdr); color: var(--fg); font-weight: 600; cursor: pointer; user-select: none; }
+td { font-family: var(--mono); }
+td:first-child, th:first-child { text-align: left; position: sticky; left: 0; background: var(--panel); z-index: 1; }
+th:first-child { z-index: 2; background: var(--hdr); }
+tbody tr:hover td { background: #343a40; }
+tbody tr.on td { background: var(--sel); color: var(--selfg); }
+td.flag { color: var(--warn); } td.bad { color: var(--bad); }
+/* info panel */
+.info { padding: 0 0 8px; }
+.info .grp { color: var(--dim); text-transform: uppercase; font-size: 10px; letter-spacing: .06em; padding: 8px 8px 2px; border-bottom: 1px solid var(--line); }
+.info dl { display: grid; grid-template-columns: minmax(0, 1fr) auto; margin: 0; }
+.info dt, .info dd { padding: 2px 8px; border-bottom: 1px solid var(--panel2); margin: 0; }
+.info dt { color: var(--dim); }
+.info dd { font-family: var(--mono); text-align: right; }
+.info dd.flag { color: var(--warn); } .info dd.ok { color: var(--good); }
+.sb { grid-area: sb; background: var(--hdr); border-top: 1px solid var(--edge); display: flex; gap: 18px; align-items: center; padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); font-family: var(--mono); font-size: 11px; color: var(--dim); white-space: nowrap; overflow: hidden; }
+.sb b { color: var(--fg); font-weight: 400; }
+</style>
+
+<div class="app">
+  <div class="tb">
+    <span class="name">TuriTap CFD Viewer</span>
+    <span class="sep"></span>
+    <button class="tbtn" data-layout="1" title="One viewport">1</button>
+    <button class="tbtn" data-layout="2" title="Two viewports">1×2</button>
+    <button class="tbtn" data-layout="3" title="Three viewports">1×3</button>
+    <button class="tbtn" data-layout="4" title="Four viewports">2×2</button>
+    <span class="sep"></span>
+    <button class="tbtn" id="linkCam" aria-pressed="true" title="Rotate all viewports together">Link cameras</button>
+    <button class="tbtn" data-cam="front" title="Look at the cut plane">Front</button>
+    <button class="tbtn" data-cam="iso" title="Isometric view">Iso</button>
+    <button class="tbtn" data-cam="top" title="Look down the axis from the inlet">Inlet</button>
+    <button class="tbtn" data-cam="fit" title="Fit the part in view">Fit</button>
+    <span class="sep"></span>
+    <button class="tbtn" id="play" aria-pressed="false" title="Animate particles"><svg viewBox="0 0 14 14"><path d="M4 2.5v9l7-4.5z"/></svg>Play</button>
+    <button class="tbtn" id="dye" title="Release a sheet of particles at the inlet face">Dye sheet</button>
+    <span class="sep"></span>
+    <button class="tbtn" id="probeBtn" aria-pressed="true" title="Show field values under the cursor">Probe</button>
+    <span class="sep"></span>
+    <a class="tbtn" href="../" title="Stage 5b 3-D assemblies: compare and 3-D flow" style="text-decoration:none">Back to 3-D assemblies</a>
+  </div>
+
+  <aside class="dock left">
+    <div class="dhdr">Cases <span class="num" id="nCases"></span></div>
+    <div class="dbody tree" id="tree"></div>
+    <div class="dhdr">Display</div>
+    <div class="dbody props">
+      <div class="pgrid">
+        <div class="sec">Cut plane</div>
+        <label for="pField">Colour by</label>
+        <select id="pField">
+          <option value="speed">Velocity magnitude</option>
+          <option value="Ux">Axial velocity</option>
+          <option value="Ur">Radial velocity</option>
+          <option value="p">Static pressure</option>
+          <option value="p0">Total pressure</option>
+        </select>
+        <label for="pCmap">Colour map</label>
+        <select id="pCmap">
+          <option value="viridis">Viridis</option>
+          <option value="coolwarm">Cool to warm</option>
+          <option value="jet">Jet</option>
+          <option value="inferno">Inferno</option>
+          <option value="gray">Grayscale</option>
+        </select>
+        <label for="pRange">Range</label>
+        <select id="pRange">
+          <option value="shared">Shared by viewports</option>
+          <option value="auto">Each viewport</option>
+          <option value="custom">Custom</option>
+        </select>
+        <label>Min / max</label>
+        <div class="row2"><input type="number" id="pMin" step="any" aria-label="Range minimum"><input type="number" id="pMax" step="any" aria-label="Range maximum"></div>
+        <label for="pBands">Bands</label>
+        <div class="row2"><input type="range" id="pBands" min="0" max="32" value="0"><span class="num" id="pBandsV"></span></div>
+        <label for="pZero">Centre on 0</label>
+        <input type="checkbox" id="pZero">
+        <label for="pReverse">Reverse flag</label>
+        <span class="chk"><input type="checkbox" id="pReverse" checked><span>mark Ux &lt; 0 red</span></span>
+
+        <div class="sec">Wall</div>
+        <label for="wField">Colour by</label>
+        <select id="wField">
+          <option value="tau">Axial wall shear</option>
+          <option value="p">Wall pressure</option>
+          <option value="none">Solid</option>
+        </select>
+        <label for="wOpacity">Opacity</label>
+        <div class="row2"><input type="range" id="wOpacity" min="0" max="100" value="100"><span class="num" id="wOpacityV"></span></div>
+        <label for="wSweep">Shell sweep</label>
+        <select id="wSweep">
+          <option value="180">Back half</option>
+          <option value="270">Three quarters</option>
+          <option value="360">Full</option>
+        </select>
+
+        <div class="sec">Show</div>
+        <label>Objects</label>
+        <div class="row2" style="flex-wrap:wrap">
+          <span class="chk"><input type="checkbox" id="sCut" checked>Cut</span>
+          <span class="chk"><input type="checkbox" id="sStream" checked>Streamlines</span>
+          <span class="chk"><input type="checkbox" id="sMesh">Mesh</span>
+          <span class="chk"><input type="checkbox" id="sLine" checked>Probe line</span>
+        </div>
+        <label for="sMeshStride">Mesh stride</label>
+        <select id="sMeshStride"><option value="1">Every line</option><option value="2" selected>Every 2nd</option><option value="4">Every 4th</option></select>
+
+        <div class="sec">Particles</div>
+        <label for="aSeed">Seed</label>
+        <select id="aSeed"><option value="inlet">Inlet face</option><option value="wall">Near the wall</option><option value="all">Whole volume</option></select>
+        <label for="aCount">Count</label>
+        <div class="row2"><input type="range" id="aCount" min="0" max="5000" step="100" value="1500"><span class="num" id="aCountV"></span></div>
+        <label for="aSlow">Time scale</label>
+        <div class="row2"><input type="range" id="aSlow" min="0" max="100" value="45"><span class="num" id="aSlowV"></span></div>
+        <label for="aSize">Point size</label>
+        <div class="row2"><input type="range" id="aSize" min="5" max="60" value="22"><span class="num" id="aSizeV"></span></div>
+        <label for="aColour">Colour</label>
+        <select id="aColour"><option value="speed">Speed (cut map)</option><option value="white">White</option><option value="age">Residence time</option></select>
+      </div>
+    </div>
+  </aside>
+
+  <div class="vpwrap l2" id="vpwrap"></div>
+
+  <aside class="dock right">
+    <div class="dhdr">Information <span class="num" id="infoKey"></span></div>
+    <div class="dbody info" id="info"></div>
+  </aside>
+
+  <section class="bottom">
+    <div class="tabs" role="tablist">
+      <button role="tab" data-tab="wall" aria-selected="true">Plot over wall</button>
+      <button role="tab" data-tab="line" aria-selected="false">Plot over line</button>
+      <button role="tab" data-tab="sweep" aria-selected="false">Flow sweep</button>
+      <button role="tab" data-tab="conv" aria-selected="false">Convergence</button>
+      <button role="tab" data-tab="sheet" aria-selected="false">Spreadsheet</button>
+    </div>
+    <div class="pane" data-pane="wall">
+      <div class="ctl">
+        <label>Quantity<select id="wpVar"><option value="p">Wall pressure (kPa)</option><option value="tau">Axial wall shear (Pa)</option><option value="R">Wall radius (mm)</option></select></label>
+        <label>Y min / max (blank = auto)<span class="row2"><input type="number" id="wpYmin" step="any" aria-label="Y minimum"><input type="number" id="wpYmax" step="any" aria-label="Y maximum"></span></label>
+        <span class="chk"><input type="checkbox" id="wpPort" checked>Mark port</span>
+        <span class="chk"><input type="checkbox" id="wpDiff" checked>Shade diffuser</span>
+      </div>
+      <div class="plot" id="plotWall"></div>
+    </div>
+    <div class="pane" data-pane="line" hidden>
+      <div class="ctl">
+        <label>Line<select id="lnDir"><option value="radial">Radial, at depth z</option><option value="axial">Axial, at r/R</option></select></label>
+        <label><span id="lnPosLab">z (mm)</span><span class="row2"><input type="range" id="lnPos" min="0" max="1000" value="250"><span class="num" id="lnPosV"></span></span></label>
+        <label>Quantity<select id="lnVar"><option value="Ux">Axial velocity (m/s)</option><option value="Ur">Radial velocity (m/s)</option><option value="speed">Velocity magnitude (m/s)</option><option value="p">Static pressure (kPa)</option><option value="p0">Total pressure (kPa)</option></select></label>
+        <span class="chk"><input type="checkbox" id="lnNorm">Divide by section mean velocity</span>
+      </div>
+      <div class="plot" id="plotLine"></div>
+    </div>
+    <div class="pane" data-pane="sweep" hidden>
+      <div class="ctl">
+        <label>Y quantity<select id="swVar"></select></label>
+        <label>Designs<div class="chips" id="swGeoms"></div></label>
+      </div>
+      <div class="plot" id="plotSweep"></div>
+    </div>
+    <div class="pane" data-pane="conv" hidden>
+      <div class="ctl">
+        <label>Series<select id="cvVar"><option value="res">Initial residuals (log)</option><option value="lvl">Inlet static pressure history (cm of water)</option></select></label>
+        <label>Viewport case<select id="cvVp"></select></label>
+      </div>
+      <div class="plot" id="plotConv"></div>
+    </div>
+    <div class="pane" data-pane="sheet" hidden>
+      <div class="sheet" id="sheet"></div>
+    </div>
+  </section>
+
+  <div class="sb" id="sb"><span>Ready</span></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(async function () {
+"use strict";
+const $ = id => document.getElementById(id);
+const IDX = (await fetch("index.json").then(r => r.json())).cases;
+const BYKEY = Object.fromEntries(IDX.map(c => [c.key, c]));
+const GEOMS = [...new Set(IDX.map(c => c.geometry))];
+const qOf = c => c.Q_lpm;
+const cache = new Map();
+async function load(key) {
+  if (!cache.has(key)) cache.set(key, fetch(`cases/${key}.json`).then(r => r.json()).then(prep));
+  return cache.get(key);
+}
+// derived fields + sampler
+function prep(D) {
+  D.cut_p0 = D.cut_p_kPa.map((row, i) => row.map((p, j) => p + 0.5 * 997 * D.cut_speed[i][j] ** 2 / 1000));
+  D.F = { speed: D.cut_speed, Ux: D.cut_Ux, Ur: D.cut_Ur, p: D.cut_p_kPa, p0: D.cut_p0 };
+  D.zEnd = D.z_nodes[D.z_nodes.length - 1];
+  D.zc = D.z_nodes.slice(1).map((z, i) => 0.5 * (z + D.z_nodes[i]));
+  const zc = D.cut_z, Rc = D.cut_R, eta = D.cut_eta, NI = zc.length, NJ = eta.length;
+  const flat = {}; for (const k in D.F) flat[k] = Float32Array.from(D.F[k].flat());
+  const find = (a, x) => { let lo = 0, hi = a.length - 1; if (x <= a[0]) return [0, 0]; if (x >= a[hi]) return [hi - 1, 1];
+    while (hi - lo > 1) { const m = (lo + hi) >> 1; if (a[m] <= x) lo = m; else hi = m; } return [lo, (x - a[lo]) / (a[lo + 1] - a[lo])]; };
+  D.Rwall = z => { const [i, f] = find(D.z_nodes, z); return D.R_nodes[i] + f * (D.R_nodes[i + 1] - D.R_nodes[i]); };
+  D.sample = (z, r, keys) => {
+    const [i, fi] = find(zc, z), R = Rc[i] + fi * (Rc[i + 1] - Rc[i]), e = r / R, out = {};
+    let j, fj, s = 1;
+    if (e >= eta[NJ - 1]) { j = NJ - 2; fj = 1; s = Math.max(0, (1 - e) / (1 - eta[NJ - 1])); } else [j, fj] = find(eta, e);
+    for (const k of keys) {
+      const A = flat[k], a = A[i * NJ + j] + fj * (A[i * NJ + j + 1] - A[i * NJ + j]), b = A[(i + 1) * NJ + j] + fj * (A[(i + 1) * NJ + j + 1] - A[(i + 1) * NJ + j]);
+      let v = a + fi * (b - a); if (k === "Ux" || k === "Ur" || k === "speed") v *= s; out[k] = v;
+    }
+    return out;
+  };
+  return D;
+}
+
+// ---------------------------------------------------------------- colour maps
+const CM = {
+  viridis: [[68,1,84],[72,40,120],[62,74,137],[49,104,142],[38,130,142],[31,158,137],[53,183,121],[109,205,89],[180,222,44],[253,231,37]],
+  coolwarm: [[59,76,192],[98,130,234],[141,176,254],[184,208,249],[221,221,221],[245,196,173],[244,154,123],[222,96,77],[180,4,38]],
+  jet: [[0,0,143],[0,0,255],[0,127,255],[0,255,255],[127,255,127],[255,255,0],[255,127,0],[255,0,0],[127,0,0]],
+  inferno: [[0,0,4],[40,11,84],[101,21,110],[159,42,99],[212,72,66],[245,125,21],[250,193,39],[252,255,164]],
+  gray: [[20,20,20],[235,235,235]],
+};
+function ramp(name, t) { const s = CM[name]; t = Math.min(1, Math.max(0, t)); const x = t * (s.length - 1), i = Math.min(s.length - 2, Math.floor(x)), f = x - i; return [0, 1, 2].map(k => (s[i][k] + f * (s[i + 1][k] - s[i][k])) / 255); }
+const UI = {
+  field: "speed", cmap: "viridis", range: "shared", cmin: 0, cmax: 1, bands: 0, zero: false, revFlag: true,
+  wall: "tau", wOpacity: 1, sweep: 180, sCut: true, sStream: true, sMesh: false, sLine: true, meshStride: 2,
+  seed: "inlet", count: 1500, slow: 0.008, psize: 2.2, pcol: "speed", playing: false, probe: true, link: true,
+  lnDir: "radial", lnPos: 0.25,
+};
+function mapper(lo, hi) {
+  let a = lo, b = hi;
+  if (UI.zero && a < 0 && b > 0) { const m = Math.max(-a, b); a = -m; b = m; }
+  const span = b - a || 1;
+  return v => { let t = (v - a) / span; if (UI.bands > 1) t = (Math.floor(Math.min(0.9999, Math.max(0, t)) * UI.bands) + 0.5) / UI.bands; return ramp(UI.cmap, t); };
+}
+const FIELD_LABEL = { speed: "|U| (m/s)", Ux: "Ux (m/s)", Ur: "Ur (m/s)", p: "p (kPa)", p0: "p0 (kPa)" };
+const WALL_LABEL = { tau: "tau_x (Pa)", p: "p_wall (kPa)" };
+
+// ---------------------------------------------------------------- viewports
+const vpwrap = $("vpwrap");
+const VPS = [];
+let active = 0, syncing = false;
+const defaults = ["V1__Q30", "B_1in__Q30", "V3__Q30", "V4__Q30"];
+function makeVP(n) {
+  const el = document.createElement("div"); el.className = "vp";
+  el.innerHTML = `<div class="vphdr"><span class="idx">${n + 1}</span><select aria-label="Case in viewport ${n + 1}"></select><span class="tag"></span></div>
+    <canvas></canvas><div class="triad">flow ↓  (−y)</div>
+    <div class="cbar"><div class="t"></div><div class="inner"><canvas width="16" height="160"></canvas><div class="ticks"></div></div></div>
+    <div class="cbar cbar2"><div class="t"></div><div class="inner"><canvas width="16" height="160"></canvas><div class="ticks"></div></div></div>`;
+  vpwrap.appendChild(el);
+  const sel = el.querySelector("select");
+  for (const g of GEOMS) { const og = document.createElement("optgroup"); og.label = BYKEY[IDX.find(c => c.geometry === g).key].desc;
+    for (const c of IDX.filter(c => c.geometry === g)) { const o = document.createElement("option"); o.value = c.key; o.textContent = `${g}  ${c.case}`; og.appendChild(o); } sel.appendChild(og); }
+  const canvas = el.querySelector("canvas");
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(2, devicePixelRatio)); renderer.setClearColor(0x000000, 0);
+  const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(30, 1, 0.5, 4000);
+  const controls = new THREE.OrbitControls(camera, canvas);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.72)); const sun = new THREE.DirectionalLight(0xffffff, 0.4); sun.position.set(80, 60, 140); scene.add(sun);
+  const vp = { n, el, sel, canvas, renderer, scene, camera, controls, key: null, D: null, grp: null, dirty: true, cutMesh: null };
+  controls.addEventListener("change", () => { vp.dirty = true; if (!UI.link || syncing) return; syncing = true;
+    for (const o of VPS) if (o !== vp) { o.camera.position.copy(camera.position); o.controls.target.copy(controls.target); o.controls.update(); o.dirty = true; } syncing = false; });
+  el.addEventListener("pointerdown", () => setActive(n));
+  sel.addEventListener("change", () => setCase(vp, sel.value));
+  canvas.addEventListener("pointermove", e => probe(vp, e));
+  canvas.addEventListener("pointerleave", () => status());
+  makeParticles(vp);
+  setCam(vp, "iso");
+  return vp;
+}
+function setActive(n) { active = n; VPS.forEach(v => v.el.classList.toggle("active", v.n === n)); refreshTree(); info(); plotConv(); }
+async function setCase(vp, key) {
+  vp.key = key; vp.sel.value = key; vp.D = await load(key); vp.P.init = false;
+  const c = BYKEY[key]; vp.el.querySelector(".tag").textContent = `${c.level_above_inlet_cm.toFixed(1)} cm · ${c.port_wall_p_kPa_orifice_avg.toFixed(2)} kPa`;
+  rebuildAll(); refreshTree(); info(); plots();
+}
+function setCam(vp, mode) {
+  const L = vp.D ? vp.D.zEnd : 130, cy = -L / 2, d = L * 2.3;
+  const P = { front: [0, cy, d], iso: [d * 0.45, cy + d * 0.18, d * 0.9], top: [0.01, 90 + L * 0.3, 0.01], fit: null }[mode];
+  vp.controls.target.set(0, cy, 0);
+  if (P) vp.camera.position.set(...P); else { const dir = vp.camera.position.clone().sub(vp.controls.target).normalize(); vp.camera.position.copy(vp.controls.target.clone().add(dir.multiplyScalar(d))); }
+  vp.controls.update(); vp.dirty = true;
+}
+function visibleVPs() { return VPS.filter(v => !v.el.hidden && v.D); }
+
+function ranges() {
+  const r = {};
+  const fr = D => { let lo = Infinity, hi = -Infinity; for (const row of D.F[UI.field]) for (const v of row) { if (v < lo) lo = v; if (v > hi) hi = v; } return [lo, hi]; };
+  const wr = D => { if (UI.wall === "none") return [0, 1]; const a = UI.wall === "tau" ? D.wall_tau_Pa : D.wall_p_kPa; let lo = Math.min(...a), hi = Math.max(...a); if (UI.wall === "tau") { lo = Math.max(lo, -3); hi = Math.min(hi, 20); } return [lo, hi]; };
+  const vis = visibleVPs();
+  if (UI.range === "custom") { for (const v of vis) r[v.n] = { cut: [UI.cmin, UI.cmax], wall: wr(v.D) }; }
+  else if (UI.range === "auto") { for (const v of vis) r[v.n] = { cut: fr(v.D), wall: wr(v.D) }; }
+  else { const c = vis.map(v => fr(v.D)), w = vis.map(v => wr(v.D));
+    const cut = [Math.min(...c.map(x => x[0])), Math.max(...c.map(x => x[1]))], wall = [Math.min(...w.map(x => x[0])), Math.max(...w.map(x => x[1]))];
+    for (const v of vis) r[v.n] = { cut, wall }; }
+  return r;
+}
+
+function rebuildAll() {
+  const R = ranges();
+  for (const v of visibleVPs()) build(v, R[v.n]);
+  const first = visibleVPs()[0];
+  if (first && UI.range !== "custom") { $("pMin").value = +R[first.n].cut[0].toPrecision(4); $("pMax").value = +R[first.n].cut[1].toPrecision(4); }
+}
+
+function build(vp, rg) {
+  const D = vp.D;
+  if (vp.grp) { vp.scene.remove(vp.grp); vp.grp.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); }); }
+  const grp = new THREE.Group(), m = mapper(rg.cut[0], rg.cut[1]);
+  // cut plane (both halves)
+  const zc = D.cut_z, Rc = D.cut_R, eta = D.cut_eta, NI = zc.length, NJ = eta.length, data = D.F[UI.field], ux = D.cut_Ux;
+  const cols = [-1, ...eta.slice().reverse().map(e => -e), ...eta, 1], NC = cols.length, pos = [], col = [], idx = [];
+  for (let i = 0; i < NI; i++) {
+    const row = data[i], vals = [row[NJ - 1], ...row.slice().reverse(), ...row, row[NJ - 1]], ur = ux[i], uv = [ur[NJ - 1], ...ur.slice().reverse(), ...ur, ur[NJ - 1]];
+    cols.forEach((s, j) => { pos.push(s * Rc[i], -zc[i], 0); col.push(...(UI.revFlag && uv[j] < -1e-4 && (j > 0 && j < NC - 1) ? [0.86, 0.1, 0.1] : m(vals[j]))); });
+  }
+  for (let i = 0; i < NI - 1; i++) for (let j = 0; j < NC - 1; j++) { const a = i * NC + j, b = a + 1, c = a + NC, d = c + 1; idx.push(a, c, b, b, c, d); }
+  const cg = new THREE.BufferGeometry(); cg.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)); cg.setAttribute("color", new THREE.Float32BufferAttribute(col, 3)); cg.setIndex(idx);
+  const cut = new THREE.Mesh(cg, new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 }));
+  cut.visible = UI.sCut; grp.add(cut); vp.cutMesh = cut;
+  // wall shell
+  const zn = D.z_nodes, Rn = D.R_nodes, NT = 64;
+  const th0 = UI.sweep === 360 ? 0 : UI.sweep === 270 ? Math.PI / 2 : Math.PI, th1 = 2 * Math.PI;
+  const wa = UI.wall === "tau" ? D.wall_tau_Pa : UI.wall === "p" ? D.wall_p_kPa : null;
+  const wm = wa ? (UI.wall === "tau" ? (v => v < 0 ? [0.86, 0.12, 0.1] : mapper(0, rg.wall[1])(v)) : mapper(rg.wall[0], rg.wall[1])) : null;
+  const rows = []; for (let i = 0; i < zn.length; i += 2) rows.push(i); if (rows[rows.length - 1] !== zn.length - 1) rows.push(zn.length - 1);
+  const sp = [], sc = [], si = [];
+  for (const i of rows) { const c = wm ? wm(wa[Math.min(i, wa.length - 1)]) : [0.72, 0.75, 0.78];
+    for (let t = 0; t <= NT; t++) { const th = th0 + (th1 - th0) * t / NT; sp.push(Rn[i] * Math.cos(th), -zn[i], Rn[i] * Math.sin(th)); sc.push(...c); } }
+  for (let i = 0; i < rows.length - 1; i++) for (let t = 0; t < NT; t++) { const a = i * (NT + 1) + t, b = a + 1, c = a + NT + 1, d = c + 1; si.push(a, b, c, b, d, c); }
+  const sg = new THREE.BufferGeometry(); sg.setAttribute("position", new THREE.Float32BufferAttribute(sp, 3)); sg.setAttribute("color", new THREE.Float32BufferAttribute(sc, 3)); sg.setIndex(si); sg.computeVertexNormals();
+  const shell = new THREE.Mesh(sg, new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide, transparent: UI.wOpacity < 1, opacity: UI.wOpacity, depthWrite: UI.wOpacity >= 1 }));
+  shell.visible = UI.wOpacity > 0; grp.add(shell);
+  // mesh lines on the cut plane
+  if (UI.sMesh) {
+    const en = D.eta_nodes, st = UI.meshStride, lp = [];
+    for (let i = 0; i < zn.length; i += st) { lp.push(-Rn[i], -zn[i], 0.05, Rn[i], -zn[i], 0.05); }
+    for (let j = 0; j < en.length; j += st) for (const s of [1, -1]) for (let i = 0; i < zn.length - 1; i++) lp.push(s * en[j] * Rn[i], -zn[i], 0.05, s * en[j] * Rn[i + 1], -zn[i + 1], 0.05);
+    const lg = new THREE.BufferGeometry(); lg.setAttribute("position", new THREE.Float32BufferAttribute(lp, 3));
+    grp.add(new THREE.LineSegments(lg, new THREE.LineBasicMaterial({ color: 0x111111, transparent: true, opacity: 0.55 })));
+  }
+  // streamlines
+  if (UI.sStream) { const lm = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
+    for (const L of D.streamlines_rz) for (const s of [1, -1]) grp.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(L.map(([r, z]) => new THREE.Vector3(s * r, -z, 0.12))), lm)); }
+  // probe line
+  if (UI.sLine && $("lnDir")) {
+    let pts;
+    if (UI.lnDir === "radial") { const z = UI.lnPos * D.zEnd, R = D.Rwall(z); pts = [new THREE.Vector3(-R, -z, 0.2), new THREE.Vector3(R, -z, 0.2)]; }
+    else { pts = D.z_nodes.filter((_, i) => i % 4 === 0).map((z, i) => new THREE.Vector3(UI.lnPos * D.Rwall(z), -z, 0.2)); }
+    grp.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0xff3fd0 })));
+  }
+  // port
+  const ip = zn.findIndex(z => z >= D.port_z);
+  const port = new THREE.Mesh(new THREE.CylinderGeometry(0.835, 0.835, 7, 16), new THREE.MeshLambertMaterial({ color: 0xe06a2a }));
+  port.rotation.z = Math.PI / 2; port.position.set(-Rn[ip] - 3.5, -D.port_z, 0); grp.add(port);
+  vp.scene.add(grp); vp.grp = grp; vp.dirty = true;
+  colourbar(vp.el.querySelector(".cbar:not(.cbar2)"), rg.cut, FIELD_LABEL[UI.field], mapper(rg.cut[0], rg.cut[1]), UI.zero);
+  const cb2 = vp.el.querySelector(".cbar2"); cb2.hidden = !wa;
+  if (wa) colourbar(cb2, UI.wall === "tau" ? [0, rg.wall[1]] : rg.wall, "wall " + WALL_LABEL[UI.wall], UI.wall === "tau" ? mapper(0, rg.wall[1]) : mapper(rg.wall[0], rg.wall[1]), UI.wall === "p" && UI.zero);
+}
+function colourbar(el, rg, label, m, zero) {
+  let [a, b] = rg; if (zero && a < 0 && b > 0) { const mm = Math.max(-a, b); a = -mm; b = mm; }
+  const cv = el.querySelector("canvas"), x = cv.getContext("2d");
+  for (let i = 0; i < 160; i++) { const v = b - (b - a) * i / 159, c = m(v); x.fillStyle = `rgb(${c.map(u => Math.round(255 * u))})`; x.fillRect(0, i, 16, 1); }
+  el.querySelector(".t").textContent = label;
+  el.querySelector(".ticks").innerHTML = [0, 0.25, 0.5, 0.75, 1].map(f => `<span>${(b - (b - a) * f).toPrecision(3)}</span>`).join("");
+}
+
+// ---------------------------------------------------------------- particles
+const MAXP = 5000;
+function makeParticles(vp) {
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.Float32BufferAttribute(new Float32Array(MAXP * 3), 3));
+  g.setAttribute("color", new THREE.Float32BufferAttribute(new Float32Array(MAXP * 3), 3));
+  const pts = new THREE.Points(g, new THREE.PointsMaterial({ size: UI.psize, vertexColors: true }));
+  pts.frustumCulled = false; vp.scene.add(pts);
+  vp.P = { pts, z: new Float32Array(MAXP), r: new Float32Array(MAXP), th: new Float32Array(MAXP), age: new Float32Array(MAXP), init: false };
+}
+function spawn(D, P, k, mode) {
+  let z, r;
+  if (mode === "inlet") { z = 0.2 + Math.random() * 0.6; r = D.Rwall(z) * Math.sqrt(Math.random()) * 0.995; }
+  else if (mode === "wall") { z = Math.random() * D.zEnd * 0.98; r = D.Rwall(z) * (0.86 + 0.13 * Math.random()); }
+  else { z = Math.random() * D.zEnd * 0.98; r = D.Rwall(z) * Math.sqrt(Math.random()) * 0.995; }
+  P.z[k] = z; P.r[k] = r; P.th[k] = 0.12 + Math.random() * (Math.PI - 0.24); P.age[k] = 0;
+}
+function resetP(vp, mode) { if (!vp.D) return; for (let k = 0; k < MAXP; k++) spawn(vp.D, vp.P, k, mode); vp.P.init = true; }
+function stepP(vp, dt, m, vmax) {
+  const D = vp.D, P = vp.P; if (!P.init) resetP(vp, UI.seed);
+  const pos = P.pts.geometry.attributes.position.array, col = P.pts.geometry.attributes.color.array, n = UI.count, h = dt * UI.slow * 1000;
+  for (let k = 0; k < n; k++) {
+    let z = P.z[k], r = P.r[k];
+    const a = D.sample(z, r, ["Ux", "Ur"]), zm = z + 0.5 * h * a.Ux, rm = Math.max(0, r + 0.5 * h * a.Ur), b = D.sample(zm, rm, ["Ux", "Ur"]);
+    z += h * b.Ux; r = Math.max(0, r + h * b.Ur); const Rw = D.Rwall(Math.min(Math.max(z, 0), D.zEnd)); if (r > 0.998 * Rw) r = 0.998 * Rw;
+    P.age[k] += dt * UI.slow;
+    if (z > D.zEnd || z < 0 || P.age[k] > 2) { spawn(D, P, k, UI.seed); z = P.z[k]; r = P.r[k]; }
+    P.z[k] = z; P.r[k] = r;
+    pos[3 * k] = r * Math.cos(P.th[k]); pos[3 * k + 1] = -z; pos[3 * k + 2] = r * Math.sin(P.th[k]);
+    const sp = Math.hypot(b.Ux, b.Ur);
+    const c = (UI.revFlag && b.Ux < 0) ? [0.95, 0.15, 0.12] : UI.pcol === "white" ? [1, 1, 1] : UI.pcol === "age" ? ramp("inferno", P.age[k] / 0.15) : ramp(UI.cmap, sp / vmax);
+    col[3 * k] = c[0]; col[3 * k + 1] = c[1]; col[3 * k + 2] = c[2];
+  }
+  P.pts.geometry.setDrawRange(0, n); P.pts.material.size = UI.psize;
+  P.pts.geometry.attributes.position.needsUpdate = true; P.pts.geometry.attributes.color.needsUpdate = true;
+}
+
+// ---------------------------------------------------------------- probe + status bar
+const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+function status(extra) {
+  const v = VPS[active], c = v && v.key ? BYKEY[v.key] : null;
+  $("sb").innerHTML = (c ? `<span>VP${active + 1} <b>${c.key}</b></span><span>cells <b>${c.cells}</b></span><span>it <b>${c.iterations}</b></span><span>p res <b>${c.res_final.p ? c.res_final.p.final.toExponential(2) : "-"}</b></span><span>mass imb <b>${c.mass_imbalance_rel.toExponential(1)}</b></span>` : "") + (extra || "");
+}
+function probe(vp, e) {
+  if (!UI.probe || !vp.cutMesh || !vp.D) return;
+  const r = vp.canvas.getBoundingClientRect(); mouse.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(mouse, vp.camera);
+  const hit = ray.intersectObject(vp.cutMesh)[0];
+  if (!hit) { status(); return; }
+  const z = -hit.point.y, rr = Math.abs(hit.point.x), s = vp.D.sample(z, rr, ["speed", "Ux", "Ur", "p", "p0"]);
+  status(`<span>| probe VP${vp.n + 1}</span><span>z <b>${z.toFixed(2)}</b> mm</span><span>r <b>${rr.toFixed(2)}</b> mm</span><span>r/R <b>${(rr / vp.D.Rwall(z)).toFixed(3)}</b></span><span>|U| <b>${s.speed.toFixed(3)}</b></span><span>Ux <b>${s.Ux.toFixed(3)}</b></span><span>Ur <b>${s.Ur.toFixed(4)}</b> m/s</span><span>p <b>${s.p.toFixed(3)}</b></span><span>p0 <b>${s.p0.toFixed(3)}</b> kPa</span>`);
+}
+
+// ---------------------------------------------------------------- left: case tree
+function refreshTree() {
+  const tree = $("tree"), open = new Set([...tree.querySelectorAll("details[open]")].map(d => d.dataset.g));
+  if (!tree.childElementCount) GEOMS.forEach(g => open.add(g));
+  tree.innerHTML = "";
+  for (const g of GEOMS) {
+    const list = IDX.filter(c => c.geometry === g).sort((a, b) => qOf(a) - qOf(b) || a.case.localeCompare(b.case));
+    const d = document.createElement("details"); d.dataset.g = g; if (open.has(g)) d.open = true;
+    d.innerHTML = `<summary>${g}<small>${list.length}</small></summary>`;
+    for (const c of list) {
+      const b = document.createElement("button"), inVp = VPS.filter(v => v.key === c.key && !v.el.hidden).map(v => v.n + 1);
+      b.className = VPS[active] && VPS[active].key === c.key ? "on" : "";
+      b.innerHTML = `<span class="dot ${c.inlet_static_negative_FLAG ? "flag" : ""}" title="${c.inlet_static_negative_FLAG ? "Inlet static pressure below atmospheric" : "Converged"}"></span>${c.Q_lpm} L/min${c.mesh_level !== "medium" ? " · " + c.mesh_level + " mesh" : ""}<span class="vpn">${inVp.join(",")}</span>`;
+      b.addEventListener("click", () => setCase(VPS[active], c.key));
+      d.appendChild(b);
+    }
+    tree.appendChild(d);
+  }
+  $("nCases").textContent = IDX.length;
+}
+
+// ---------------------------------------------------------------- right: information
+const INFO = [
+  ["Case", [["Geometry", c => c.desc], ["Flow", c => `${c.Q_lpm} L/min`], ["Inlet / throat / exit", c => `${c.inlet_D_mm.toFixed(1)} / ${c.throat_D_mm.toFixed(1)} / ${c.outlet_D_mm.toFixed(1)} mm`], ["Length", c => `${c.length_mm.toFixed(1)} mm`]]],
+  ["Overflow", [["Level above inlet", c => `${c.level_above_inlet_cm.toFixed(2)} cm`], ["Inlet total p", c => `${c.inlet_total_Pa.toFixed(0)} Pa`], ["Inlet static p", c => `${c.inlet_static_Pa.toFixed(0)} Pa`, c => c.inlet_static_negative_FLAG ? "flag" : ""]]],
+  ["Chlorine port", [["Port wall p (orifice)", c => `${c.port_wall_p_kPa_orifice_avg.toFixed(3)} kPa`], ["Port z", c => `${c.port_z_mm.toFixed(2)} mm`], ["Min wall p", c => `${c.min_wall_p_kPa.toFixed(3)} kPa`], ["at z", c => `${c.min_wall_p_z_mm.toFixed(1)} mm`]]],
+  ["Diffuser", [["Cp / ideal", c => `${c.diffuser_Cp.toFixed(3)} / ${c.diffuser_Cp_ideal.toFixed(3)}`], ["Recovery", c => `${(100 * c.diffuser_recovery_frac_of_ideal).toFixed(1)} %`], ["Wall shear min", c => `${c.diffuser_wall_shear_min_Pa.toFixed(3)} Pa`, c => c.diffuser_wall_shear_min_Pa < 0 ? "flag" : "ok"], ["Reversed wall length", c => `${(100 * c.diffuser_reversed_wall_length_frac).toFixed(1)} %`, c => c.diffuser_reversed_wall_length_frac > 0 ? "flag" : "ok"], ["Reversed z (mm)", c => c.reversed_wall_flow_z_ranges_mm.length ? c.reversed_wall_flow_z_ranges_mm.map(r => r.map(x => x.toFixed(0)).join("–")).join(", ") : "none"]]],
+  ["Head budget", [["Drop to outlet", c => `${c.drop_cm.toFixed(2)} cm`], ["Outlet jet head", c => `${c.outlet_KE_head_cm.toFixed(2)} cm`], ["Outlet alpha", c => c.outlet_KE_alpha.toFixed(3)], ["Internal loss", c => `${c.internal_loss_cm.toFixed(2)} cm`]]],
+  ["Solution", [["Iterations", c => c.iterations], ["p / Ux residual", c => c.res_final.p ? `${c.res_final.p.final.toExponential(1)} / ${c.res_final.Ux.final.toExponential(1)}` : "-"], ["k / omega residual", c => c.res_final.k ? `${c.res_final.k.final.toExponential(1)} / ${c.res_final.omega.final.toExponential(1)}` : "-"], ["Inlet p change, last 500", c => c.inlet_p_change_last500_rel.toExponential(1)], ["Mass imbalance", c => c.mass_imbalance_rel.toExponential(1)], ["Outlet backflow faces", c => c.outlet_backflow_faces]]],
+  ["Mesh", [["Cells", c => c.cells], ["Level", c => c.mesh_level], ["y+ max / mean", c => `${c.yplus_max.toFixed(2)} / ${c.yplus_mean.toFixed(2)}`, c => c.yplus_max > 1 ? "flag" : ""], ["Max non-orthogonality", c => `${c.checkMesh_max_nonortho_deg.toFixed(1)}°`], ["Max skewness", c => c.checkMesh_max_skewness.toFixed(2)], ["checkMesh", c => c.checkMesh_ok ? "OK" : "FAILED", c => c.checkMesh_ok ? "ok" : "flag"]]],
+];
+function info() {
+  const v = VPS[active]; if (!v || !v.key) return; const c = BYKEY[v.key];
+  $("infoKey").textContent = `VP${active + 1}`;
+  $("info").innerHTML = INFO.map(([g, rows]) => `<div class="grp">${g}</div><dl>` + rows.map(([k, f, cls]) => `<dt>${k}</dt><dd class="${cls ? cls(c) : ""}">${f(c)}</dd>`).join("") + "</dl>").join("");
+  status();
+}
+
+// ---------------------------------------------------------------- plots
+const NS = "http://www.w3.org/2000/svg", PAL = ["#4a9be0", "#e0a040", "#6bbf7a", "#d0607a", "#a98be0", "#40c0c0", "#e0e070", "#c08060", "#909aa3"];
+const vpColour = n => PAL[n];
+const geomColour = g => PAL[GEOMS.indexOf(g) % PAL.length];
+function niceTicks(lo, hi, n, log) {
+  if (log) { const t = []; for (let e = Math.floor(lo); e <= Math.ceil(hi); e++) t.push(e); return t; }
+  const span = hi - lo || 1, s0 = span / n, m = 10 ** Math.floor(Math.log10(s0)), r = s0 / m, step = (r < 1.5 ? 1 : r < 3 ? 2 : r < 7 ? 5 : 10) * m, t = [];
+  for (let v = Math.ceil(lo / step) * step; v <= hi + 1e-12; v += step) t.push(+v.toPrecision(10)); return t;
+}
+function plot(host, series, o) {
+  const box = host.getBoundingClientRect(), W = Math.max(300, box.width), H = Math.max(140, box.height);
+  const L = 58, R = 12, T = 12, B = 30;
+  host.innerHTML = ""; const svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", `0 0 ${W} ${H}`); host.appendChild(svg);
+  const el = (n, a, txt) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; };
+  const tx = v => o.log ? Math.log10(Math.max(v, 1e-30)) : v;
+  const xs = series.flatMap(s => s.pts.map(p => p[0])), ys = series.flatMap(s => s.pts.filter(p => p[1] != null && isFinite(p[1])).map(p => tx(p[1])));
+  if (!xs.length) { el("text", { x: W / 2, y: H / 2, "text-anchor": "middle" }, "No data"); return; }
+  let [x0, x1] = o.x || [Math.min(...xs), Math.max(...xs)];
+  let y0 = o.ymin != null ? tx(o.ymin) : Math.min(...ys), y1 = o.ymax != null ? tx(o.ymax) : Math.max(...ys);
+  if (o.zero && !o.log) { y0 = Math.min(y0, 0); y1 = Math.max(y1, 0); }
+  if (o.ymin == null && o.ymax == null) { const p = (y1 - y0) * 0.05 || 1; y0 -= p; y1 += p; }
+  const X = v => L + (v - x0) / (x1 - x0 || 1) * (W - L - R), Y = v => T + (y1 - v) / (y1 - y0 || 1) * (H - T - B);
+  for (const sh of o.shade || []) el("rect", { x: X(sh[0]), y: T, width: Math.max(0, X(sh[1]) - X(sh[0])), height: H - T - B, fill: "#ffffff", "fill-opacity": 0.05 });
+  for (const t of niceTicks(y0, y1, 5, o.log)) { if (t < y0 - 1e-9 || t > y1 + 1e-9) continue; el("line", { x1: L, x2: W - R, y1: Y(t), y2: Y(t), stroke: "#3b4146" }); el("text", { x: L - 5, y: Y(t) + 3, "text-anchor": "end" }, o.log ? `1e${t}` : t); }
+  for (const t of o.xt || niceTicks(x0, x1, 8)) { el("line", { x1: X(t), x2: X(t), y1: T, y2: H - B, stroke: "#30363b" }); el("text", { x: X(t), y: H - B + 13, "text-anchor": "middle" }, t); }
+  if (!o.log && y0 < 0 && y1 > 0) el("line", { x1: L, x2: W - R, y1: Y(0), y2: Y(0), stroke: "#8d969d" });
+  for (const m of o.marks || []) { el("line", { x1: X(m[0]), x2: X(m[0]), y1: T, y2: H - B, stroke: m[1] || "#e06a2a", "stroke-dasharray": "3 3" }); if (m[2]) el("text", { x: X(m[0]) + 3, y: T + 10 }, m[2]); }
+  el("text", { x: (L + W - R) / 2, y: H - 3, "text-anchor": "middle" }, o.xl);
+  el("text", { x: 11, y: (T + H - B) / 2, "text-anchor": "middle", transform: `rotate(-90 11 ${(T + H - B) / 2})` }, o.yl);
+  const clip = v => Math.max(y0, Math.min(y1, v));
+  for (const s of series) {
+    const pp = s.pts.filter(p => p[1] != null && isFinite(tx(p[1])));
+    el("polyline", { points: pp.map(([a, b]) => `${X(a).toFixed(1)},${Y(clip(tx(b))).toFixed(1)}`).join(" "), fill: "none", stroke: s.c, "stroke-width": s.w || 1.6, "stroke-dasharray": s.dash || "" });
+    if (s.dots) for (const [a, b] of pp) el("circle", { cx: X(a), cy: Y(clip(tx(b))), r: 2.6, fill: s.c });
+  }
+  // legend
+  let lx = L + 8; const ly = T + 4;
+  for (const s of series.filter(s => s.name)) { el("line", { x1: lx, x2: lx + 14, y1: ly + 4, y2: ly + 4, stroke: s.c, "stroke-width": 2, "stroke-dasharray": s.dash || "" }); const t = el("text", { x: lx + 18, y: ly + 7, fill: "#d5d9dc" }, s.name); lx += 26 + s.name.length * 6; }
+}
+function vpSeries() { return visibleVPs().map(v => ({ v, D: v.D, c: vpColour(v.n), name: `${v.n + 1}: ${v.key.replace("__", " ")}` })); }
+function plotWall() {
+  const q = $("wpVar").value, ymin = $("wpYmin").value, ymax = $("wpYmax").value, S = vpSeries();
+  const series = S.map(s => ({ name: s.name, c: s.c, pts: q === "R" ? s.D.z_nodes.map((z, i) => [z, s.D.R_nodes[i]]) : (q === "p" ? s.D.wall_p_kPa : s.D.wall_tau_Pa).map((v, i) => [s.D.zc[i], v]) }));
+  const marks = $("wpPort").checked ? S.map(s => [s.D.port_z, s.c, "port"]) : [];
+  const shade = $("wpDiff").checked ? S.map(s => s.D.diffuser) : [];
+  plot($("plotWall"), series, { xl: "z below inlet face (mm)", yl: { p: "wall pressure (kPa)", tau: "axial wall shear (Pa)", R: "wall radius (mm)" }[q], marks, shade, ymin: ymin === "" ? null : +ymin, ymax: ymax === "" ? null : +ymax });
+}
+function plotLine() {
+  const q = $("lnVar").value, norm = $("lnNorm").checked, S = vpSeries(), radial = UI.lnDir === "radial";
+  $("lnPosLab").textContent = radial ? "z / length" : "r / R";
+  $("lnPosV").textContent = UI.lnPos.toFixed(2);
+  const series = S.map(s => {
+    const D = s.D, pts = [];
+    if (radial) {
+      const z = UI.lnPos * D.zEnd, R = D.Rwall(z), Qm = BYKEY[s.v.key].Q_lpm / 60000, um = Qm / (Math.PI * (R / 1000) ** 2);
+      for (let k = -60; k <= 60; k++) { const rr = Math.abs(k) / 60 * R * 0.9999, v = D.sample(z, rr, [q])[q]; pts.push([k / 60, norm ? v / um : v]); }
+    } else {
+      for (let i = 0; i < D.z_nodes.length; i += 2) { const z = D.z_nodes[i], R = D.Rwall(z), Qm = BYKEY[s.v.key].Q_lpm / 60000, um = Qm / (Math.PI * (R / 1000) ** 2), v = D.sample(z, UI.lnPos * R, [q])[q]; pts.push([z, norm ? v / um : v]); }
+    }
+    return { name: s.name, c: s.c, pts };
+  });
+  plot($("plotLine"), series, { xl: radial ? "r / R" : "z below inlet face (mm)", yl: (norm ? "÷ mean velocity: " : "") + FIELD_LABEL[q], zero: true, x: radial ? [-1, 1] : null, xt: radial ? [-1, -0.5, 0, 0.5, 1] : null });
+}
+const SWEEP = [
+  ["level_above_inlet_cm", "Level above inlet (cm)"], ["inlet_static_Pa", "Inlet static pressure (Pa)"], ["port_wall_p_kPa_orifice_avg", "Port wall pressure (kPa)"],
+  ["min_wall_p_kPa", "Minimum wall pressure (kPa)"], ["diffuser_recovery_frac_of_ideal", "Diffuser recovery (fraction of ideal)"], ["diffuser_reversed_wall_length_frac", "Reversed diffuser wall (fraction)"],
+  ["diffuser_wall_shear_min_Pa", "Minimum diffuser wall shear (Pa)"], ["outlet_KE_head_cm", "Outlet jet head (cm)"], ["outlet_KE_alpha", "Outlet alpha"], ["internal_loss_cm", "Internal loss (cm)"],
+  ["inlet_total_Pa", "Inlet total pressure (Pa)"], ["yplus_max", "y+ max"], ["mass_imbalance_rel", "Mass imbalance"],
+];
+const swOn = new Set(["V1", "V2", "V3", "V4", "B_1in"]);
+function plotSweep() {
+  const k = $("swVar").value;
+  const series = GEOMS.filter(g => swOn.has(g)).map(g => ({ name: g, c: geomColour(g), dots: true,
+    pts: IDX.filter(c => c.geometry === g && c.mesh_level === "medium").sort((a, b) => a.Q_lpm - b.Q_lpm).map(c => [c.Q_lpm, c[k]]) }));
+  plot($("plotSweep"), series, { xl: "flow (L/min)", yl: SWEEP.find(s => s[0] === k)[1], zero: k === "level_above_inlet_cm" || k === "inlet_static_Pa", xt: [6, 8, 12, 20, 25, 30, 40, 50] });
+}
+function plotConv() {
+  const vsel = $("cvVp"); const n = vsel.value === "" ? active : +vsel.value, v = VPS[n]; if (!v || !v.D) return;
+  const H = v.D.residuals, I = v.D.inlet_p_hist;
+  if ($("cvVar").value === "res") {
+    const C = { p: "#4a9be0", Ux: "#e0a040", Uy: "#6bbf7a", k: "#d0607a", omega: "#a98be0" };
+    plot($("plotConv"), Object.keys(C).map(f => ({ name: f, c: C[f], pts: H.it.map((t, i) => [t, H[f][i]]) })), { xl: "iteration", yl: "initial residual", log: true });
+  } else plot($("plotConv"), [{ name: "inlet static pressure", c: "#4a9be0", pts: I.it.map((t, i) => [t, I.level_cm[i]]) }], { xl: "iteration", yl: "p_in,static / rho g (cm)" });
+}
+const COLS = [["key", "Case", null], ["Q_lpm", "Q", 0], ["level_above_inlet_cm", "Level cm", 2], ["inlet_static_Pa", "p_in,s Pa", 0], ["port_wall_p_kPa_orifice_avg", "Port kPa", 3], ["min_wall_p_kPa", "Min wall kPa", 3],
+  ["diffuser_recovery_frac_of_ideal", "Recovery", 3], ["diffuser_reversed_wall_length_frac", "Rev. wall", 3], ["outlet_KE_head_cm", "Jet cm", 2], ["outlet_KE_alpha", "Alpha", 2], ["internal_loss_cm", "Loss cm", 2],
+  ["drop_cm", "Drop cm", 1], ["yplus_max", "y+ max", 2], ["mass_imbalance_rel", "Mass imb", "e"], ["iterations", "Iter", 0], ["cells", "Cells", 0]];
+let sortK = "key", sortDir = 1;
+function sheet() {
+  const rows = IDX.slice().sort((a, b) => { const x = a[sortK], y = b[sortK]; return (typeof x === "string" ? x.localeCompare(y) : x - y) * sortDir; });
+  const vpKeys = new Set(visibleVPs().map(v => v.key));
+  $("sheet").innerHTML = `<table><thead><tr>${COLS.map(([k, h]) => `<th tabindex="0" data-k="${k}">${h}${sortK === k ? (sortDir > 0 ? " ▴" : " ▾") : ""}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map(c => `<tr data-key="${c.key}" class="${vpKeys.has(c.key) ? "on" : ""}">` + COLS.map(([k, , d]) => {
+      const v = c[k], cls = (k === "inlet_static_Pa" && v < 0) || (k === "diffuser_reversed_wall_length_frac" && v > 0) || (k === "yplus_max" && v > 1) ? "flag" : "";
+      return `<td class="${cls}">${d === null ? v.replace("__", " ") : d === "e" ? v.toExponential(1) : v.toFixed(d)}</td>`; }).join("") + "</tr>").join("") + "</tbody></table>";
+  $("sheet").querySelectorAll("th").forEach(th => { const go = () => { const k = th.dataset.k; sortDir = sortK === k ? -sortDir : 1; sortK = k; sheet(); }; th.addEventListener("click", go); th.addEventListener("keydown", e => e.key === "Enter" && go()); });
+  $("sheet").querySelectorAll("tbody tr").forEach(tr => tr.addEventListener("click", () => setCase(VPS[active], tr.dataset.key)));
+}
+let tab = "wall";
+function plots() {
+  if (tab === "wall") plotWall(); else if (tab === "line") plotLine(); else if (tab === "sweep") plotSweep(); else if (tab === "conv") plotConv(); else sheet();
+  const cv = $("cvVp"), cur = cv.value; cv.innerHTML = `<option value="">Active viewport</option>` + visibleVPs().map(v => `<option value="${v.n}">${v.n + 1}: ${v.key}</option>`).join(""); cv.value = [...cv.options].some(o => o.value === cur) ? cur : "";
+}
+
+// ---------------------------------------------------------------- wiring
+function setLayout(n) {
+  document.querySelectorAll("[data-layout]").forEach(b => b.setAttribute("aria-pressed", +b.dataset.layout === n));
+  vpwrap.className = "vpwrap l" + n; VPS.forEach(v => v.el.hidden = v.n >= n);
+  if (active >= n) setActive(0);
+  requestAnimationFrame(() => { resize(); rebuildAll(); refreshTree(); plots(); });
+}
+document.querySelectorAll("[data-layout]").forEach(b => b.addEventListener("click", () => setLayout(+b.dataset.layout)));
+document.querySelectorAll("[data-cam]").forEach(b => b.addEventListener("click", () => { const tgt = UI.link ? VPS : [VPS[active]]; tgt.forEach(v => setCam(v, b.dataset.cam)); }));
+$("linkCam").addEventListener("click", e => { UI.link = !UI.link; e.currentTarget.setAttribute("aria-pressed", UI.link); });
+$("probeBtn").addEventListener("click", e => { UI.probe = !UI.probe; e.currentTarget.setAttribute("aria-pressed", UI.probe); status(); });
+$("play").addEventListener("click", e => { UI.playing = !UI.playing; e.currentTarget.setAttribute("aria-pressed", UI.playing); e.currentTarget.lastChild.textContent = UI.playing ? "Pause" : "Play"; });
+$("dye").addEventListener("click", () => { visibleVPs().forEach(v => resetP(v, "inlet")); if (!UI.playing) $("play").click(); });
+const bind = (id, key, conv, after) => $(id).addEventListener(($(id).type === "range" || $(id).type === "number") ? "input" : "change", e => { const t = e.target; UI[key] = conv ? conv(t.type === "checkbox" ? t.checked : t.value) : (t.type === "checkbox" ? t.checked : t.value); (after || rebuildAll)(); });
+bind("pField", "field"); bind("pCmap", "cmap"); bind("pZero", "zero"); bind("pReverse", "revFlag");
+bind("pRange", "range", null, () => { if (UI.range === "custom") { UI.cmin = +$("pMin").value; UI.cmax = +$("pMax").value; } rebuildAll(); });
+const custom = () => { $("pRange").value = "custom"; UI.range = "custom"; UI.cmin = +$("pMin").value; UI.cmax = +$("pMax").value; rebuildAll(); };
+$("pMin").addEventListener("change", custom); $("pMax").addEventListener("change", custom);
+bind("pBands", "bands", Number, () => { $("pBandsV").textContent = UI.bands || "off"; rebuildAll(); });
+bind("wField", "wall"); bind("wOpacity", "wOpacity", v => v / 100, () => { $("wOpacityV").textContent = Math.round(UI.wOpacity * 100); rebuildAll(); }); bind("wSweep", "sweep", Number);
+bind("sCut", "sCut"); bind("sStream", "sStream"); bind("sMesh", "sMesh"); bind("sLine", "sLine"); bind("sMeshStride", "meshStride", Number);
+bind("aSeed", "seed", null, () => visibleVPs().forEach(v => resetP(v, UI.seed)));
+bind("aCount", "count", Number, () => { $("aCountV").textContent = UI.count; });
+const slowConv = v => 10 ** (-3.3 + 2.3 * v / 100);
+bind("aSlow", "slow", slowConv, () => { $("aSlowV").textContent = "1/" + Math.round(1 / UI.slow); });
+bind("aSize", "psize", v => v / 10, () => { $("aSizeV").textContent = UI.psize.toFixed(1); });
+bind("aColour", "pcol", null, () => {});
+$("pBandsV").textContent = "off"; $("wOpacityV").textContent = 100; $("aCountV").textContent = UI.count; UI.slow = slowConv(45); $("aSlowV").textContent = "1/" + Math.round(1 / UI.slow); $("aSizeV").textContent = UI.psize.toFixed(1);
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+  tab = b.dataset.tab; document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
+  document.querySelectorAll(".pane").forEach(p => p.hidden = p.dataset.pane !== tab); requestAnimationFrame(plots); }));
+["wpVar", "wpYmin", "wpYmax", "wpPort", "wpDiff"].forEach(id => $(id).addEventListener("input", plotWall));
+$("lnDir").addEventListener("change", e => { UI.lnDir = e.target.value; UI.lnPos = UI.lnDir === "radial" ? 0.25 : 0.9; $("lnPos").value = UI.lnPos * 1000; rebuildAll(); plotLine(); });
+$("lnPos").addEventListener("input", e => { UI.lnPos = e.target.value / 1000; rebuildAll(); plotLine(); });
+["lnVar", "lnNorm"].forEach(id => $(id).addEventListener("input", plotLine));
+$("swVar").innerHTML = SWEEP.map(([k, l]) => `<option value="${k}">${l}</option>`).join(""); $("swVar").addEventListener("change", plotSweep);
+$("swGeoms").innerHTML = GEOMS.map(g => `<label><input type="checkbox" value="${g}" ${swOn.has(g) ? "checked" : ""}><i style="background:${geomColour(g)}"></i>${g}</label>`).join("");
+$("swGeoms").addEventListener("change", e => { e.target.checked ? swOn.add(e.target.value) : swOn.delete(e.target.value); plotSweep(); });
+["cvVar", "cvVp"].forEach(id => $(id).addEventListener("change", plotConv));
+
+function resize() {
+  for (const v of VPS) { if (v.el.hidden) continue; const w = v.canvas.clientWidth, h = v.canvas.clientHeight; if (!w || !h) continue;
+    v.renderer.setSize(w, h, false); v.camera.aspect = w / h; v.camera.updateProjectionMatrix(); v.dirty = true; }
+  plots();
+}
+new ResizeObserver(() => resize()).observe(vpwrap);
+new ResizeObserver(() => plots()).observe(document.querySelector(".bottom"));
+
+for (let i = 0; i < 4; i++) VPS.push(makeVP(i));
+await Promise.all(VPS.map((v, i) => setCase(v, defaults[i])));
+setLayout(2); setActive(0);
+VPS.forEach(v => setCam(v, "iso"));
+
+let last = performance.now();
+(function loop(now) {
+  now = now || performance.now(); const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  const vis = visibleVPs();
+  if (UI.playing && vis.length) {
+    const vmax = Math.max(...vis.map(v => Math.max(...v.D.cut_speed.flat())));
+    for (const v of vis) { stepP(v, dt, null, vmax); v.dirty = true; }
+  }
+  for (const v of vis) if (v.dirty) { v.renderer.render(v.scene, v.camera); v.dirty = false; }
+  requestAnimationFrame(loop);
+})();
+})();
+</script>

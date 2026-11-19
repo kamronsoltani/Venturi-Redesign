@@ -1,0 +1,9 @@
+assembly asm1lr_V3
+Q_lpm 60
+level medium
+background_cell_m 0.0016
+U_inlet_m_s 0.659162
+k_inlet 0.00162936
+omega_inlet 23.9547
+wall_treatment wall functions (nutkWallFunction, omegaWallFunction)
+half_domain yes (symmetry z=0)

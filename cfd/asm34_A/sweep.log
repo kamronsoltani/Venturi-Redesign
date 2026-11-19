@@ -12,3 +12,27 @@
 2026-11-18 00:53:03 sweep finished
 2026-11-18 07:22:03 sweep start: asm34_A flows [20] level medium, 2000 iterations, 8 cores
 2026-11-18 07:22:03 Q20: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q30; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q30)
+2026-11-18 09:52:49 sweep start: asm34_A flows [20] level medium, 2000 iterations, 8 cores
+2026-11-18 09:52:49 Q20: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q20; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q30)
+2026-11-18 10:12:08 Q20: done. level_inlet_cm 2.404 static_inlet_cm 2.151 
+2026-11-18 10:12:08 sweep finished
+2026-11-18 14:25:40 sweep start: asm34_A flows [40] level medium, 2000 iterations, 8 cores
+2026-11-18 14:25:40 Q40: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q20; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q30)
+2026-11-18 14:43:00 Q40: done. level_inlet_cm 47 static_inlet_cm 45.99 
+2026-11-18 14:43:00 sweep finished
+2026-11-18 19:13:27 sweep start: asm34_A flows [25] level medium, 2000 iterations, 8 cores
+2026-11-18 19:13:28 Q25: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q20; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q20)
+2026-11-18 19:30:45 Q25: done. level_inlet_cm 11.3 static_inlet_cm 10.91 
+2026-11-18 19:30:45 sweep finished
+2026-11-18 23:45:58 sweep start: asm34_A flows [50] level medium, 2000 iterations, 8 cores
+2026-11-18 23:45:58 Q50: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q20; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q40)
+2026-11-19 00:03:12 Q50: done. level_inlet_cm 79.17 static_inlet_cm 77.59 
+2026-11-19 00:03:12 sweep finished
+2026-11-19 04:21:14 sweep start: asm34_A flows [10] level medium, 2000 iterations, 8 cores
+2026-11-19 04:21:15 Q10: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q20; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q8)
+2026-11-19 04:38:52 Q10: done. level_inlet_cm -9.893 static_inlet_cm -9.956 
+2026-11-19 04:38:53 sweep finished
+2026-11-19 08:51:42 sweep start: asm34_A flows [60] level medium, 2000 iterations, 8 cores
+2026-11-19 08:51:43 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q50)
+2026-11-19 09:09:04 Q60: done. level_inlet_cm 118.4 static_inlet_cm 116.2 
+2026-11-19 09:09:04 sweep finished
