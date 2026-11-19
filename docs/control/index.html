@@ -78,7 +78,7 @@ td.asm:hover b{color:var(--accent);text-decoration:underline dotted}
 
   <section class="card">
     <h2>All cases</h2>
-    <div class="small" style="margin-bottom:6px"><b>Columns are the pump flow rate (L/min) set for each run. Numbers in the cells are the result: how high water backs up above the inlet (cm).</b> Lower is better. The overflow limit is about 8.5 cm on an Afridev and about 19 cm on an India Mark II at the normal 20–30 L/min. A negative level means the full pipe pulls a suction at the inlet; a real pump would draw air there (“air”). ✓ converged, ⚠ check. <span class="muted">Hover or tap an assembly name to see its model. Tap a cell to fill the run form.</span></div>
+    <div class="small" style="margin-bottom:6px"><b>Columns are the pump flow rate (L/min) set for each run. Numbers in the cells are the result: how high water backs up above the inlet centre, where the pump spout couples on (cm).</b> Lower is better. The overflow limit is about 5.8 cm on an Afridev and about 16.3 cm on an India Mark II above the inlet centre, at the normal 20–30 L/min (the project limits of 8.5 and 19 cm are measured above the current part's Venturi inlet face, which sits 2.7 cm below the inlet centre). Rows marked "aligned mesh" use the corrected mesh with the symmetry plane exactly on the centreline; asm34lr_current pairs with asm34_current_zfix. A negative level means the full pipe pulls a suction at the inlet; a real pump would draw air there (“air”). ✓ converged, ⚠ check. <span class="muted">Hover or tap an assembly name to see its model. Tap a cell to fill the run form.</span></div>
     <div class="tablewrap" id="grid"></div>
   </section>
 
@@ -126,7 +126,7 @@ td.asm:hover b{color:var(--accent);text-decoration:underline dotted}
 </main>
 <script>
 const O="kamronsoltani", R="Venturi-Redesign";
-const ASMS=["asm34_current","asm34lr_current","asm34_A","asm34_Bvane","asm1e_V1","asm1e_V2","asm1e_V3","asm1e_V4","asm1lr_V1","asm1lr_V2","asm1lr_V3","asm1lr_V4"];
+const ASMS=["asm34_current","asm34_current_zfix","asm34lr_current","asm34_A","asm34_Bvane","asm1e_V1","asm1e_V2","asm1e_V3","asm1e_V4","asm1lr_V1","asm1lr_V2","asm1lr_V3","asm1lr_V4"];
 const BASE_FLOWS=[6,8,20,25,30,40,50];
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const $=id=>document.getElementById(id);
