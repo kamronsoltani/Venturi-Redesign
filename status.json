@@ -1,0 +1,2923 @@
+{
+ "generated": "2026-11-19T21:16:14-08:00",
+ "agent_version": "1.0",
+ "host": "lab PC",
+ "running": false,
+ "processes": [],
+ "current": null,
+ "sweep": {
+  "assembly": "asm34_current_zfix",
+  "flows": "60",
+  "level": "medium"
+ },
+ "campaign": null,
+ "campaign_log": [
+  "2026-11-19 10:20:36 asm1e_V2 Q60: done (iteration 2000)",
+  "2026-11-19 10:49:00 asm1e_V3 Q60: done (iteration 2000)",
+  "2026-11-19 11:18:08 asm1e_V4 Q60: done (iteration 2000)",
+  "2026-11-19 11:48:16 asm1lr_V1 Q60: done (iteration 2000)",
+  "2026-11-19 12:19:35 asm1lr_V2 Q60: done (iteration 2000)",
+  "2026-11-19 12:52:10 asm1lr_V3 Q60: done (iteration 2000)",
+  "2026-11-19 13:27:09 asm1lr_V4 Q60: done (iteration 2000)",
+  "2026-11-19 13:27:09 campaign finished"
+ ],
+ "grid": {
+  "asm34_current": {
+   "label": "3/4in E-Sig + 3/4in threaded elbow + current Venturi",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 629864  max non-orthogonality 64.04428842 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -8.26,
+      "level_venturi_in_cm": -6.87,
+      "static_inlet_cm": -8.32,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.23,
+      "loss_venturi_cm": 2.09,
+      "mass_imbalance_pct": 0.158,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.4e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 629864  max non-orthogonality 64.04428842 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 8.16,
+      "level_venturi_in_cm": 5.92,
+      "static_inlet_cm": 7.92,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -2.988,
+      "loss_venturi_cm": 7.67,
+      "mass_imbalance_pct": 0.124,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "4.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 629864  max non-orthogonality 64.04428842 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 18.9,
+      "level_venturi_in_cm": 14.11,
+      "static_inlet_cm": 18.52,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -4.426,
+      "loss_venturi_cm": 10.98,
+      "mass_imbalance_pct": 0.117,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.13,
+     "final_res_p": "1.5e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 3000)",
+     "mesh": "cells 629864  max non-orthogonality 64.04428842 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 32.08,
+      "level_venturi_in_cm": 24.26,
+      "static_inlet_cm": 31.53,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.168,
+      "loss_venturi_cm": 14.75,
+      "mass_imbalance_pct": 0.116,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.17,
+     "final_res_p": "2.1e-03",
+     "iterations": "3000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "coarse",
+     "dir": "Q30_coarse",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 269499  max non-orthogonality 63.25457718 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 39.27,
+      "level_venturi_in_cm": 31.2,
+      "static_inlet_cm": 38.71,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.45,
+      "loss_venturi_cm": 17.37,
+      "mass_imbalance_pct": 0.131,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "4.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "fine",
+     "dir": "Q30_fine",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1444552  max non-orthogonality 64.86549538 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 36.34,
+      "level_venturi_in_cm": 28.32,
+      "static_inlet_cm": 35.78,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.972,
+      "loss_venturi_cm": 16.94,
+      "mass_imbalance_pct": 0.085,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.43,
+     "final_res_p": "5.0e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 629864  max non-orthogonality 64.04428842 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 64.99,
+      "level_venturi_in_cm": 49.5,
+      "static_inlet_cm": 64.02,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -10.668,
+      "loss_venturi_cm": 24.55,
+      "mass_imbalance_pct": 0.107,
+      "flow_in_Lpm": 40.0
+     },
+     "drift_last500_cm": 0.26,
+     "final_res_p": "2.4e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 629864  max non-orthogonality 64.04428842 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 106.71,
+      "level_venturi_in_cm": 81.37,
+      "static_inlet_cm": 105.2,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -16.485,
+      "loss_venturi_cm": 36.96,
+      "mass_imbalance_pct": 0.103,
+      "flow_in_Lpm": 50.0
+     },
+     "drift_last500_cm": 0.35,
+     "final_res_p": "2.6e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 629864  max non-orthogonality 64.04428842 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -12.0,
+      "level_venturi_in_cm": -9.78,
+      "static_inlet_cm": -12.03,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -0.873,
+      "loss_venturi_cm": 0.81,
+      "mass_imbalance_pct": 0.191,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "4.6e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 629864  max non-orthogonality 64.04428842 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 157.36,
+      "level_venturi_in_cm": 119.93,
+      "static_inlet_cm": 155.18,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -23.601,
+      "loss_venturi_cm": 51.55,
+      "mass_imbalance_pct": 0.105,
+      "flow_in_Lpm": 59.99
+     },
+     "drift_last500_cm": 0.5,
+     "final_res_p": "3.5e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 0.5 cm"
+     ]
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 629864  max non-orthogonality 64.04428842 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -10.34,
+      "level_venturi_in_cm": -8.47,
+      "static_inlet_cm": -10.37,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.026,
+      "loss_venturi_cm": 1.37,
+      "mass_imbalance_pct": 0.171,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.6e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 04:21:13 sweep finished",
+    "2026-11-19 08:51:41 sweep start: asm34_current flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 08:51:41 Q60: results exist, skipped",
+    "2026-11-19 08:51:41 sweep finished"
+   ]
+  },
+  "asm34_A": {
+   "label": "3/4in E-Sig + 3/4in threaded elbow + Venturi A (14 mm throat, 19 mm exit)",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -9.89,
+      "level_venturi_in_cm": -8.47,
+      "static_inlet_cm": -9.96,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.207,
+      "loss_venturi_cm": 1.63,
+      "mass_imbalance_pct": -0.002,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.0e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 2.4,
+      "level_venturi_in_cm": 0.13,
+      "static_inlet_cm": 2.15,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -2.297,
+      "loss_venturi_cm": 5.8,
+      "mass_imbalance_pct": 0.011,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "3.8e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 11.3,
+      "level_venturi_in_cm": 6.46,
+      "static_inlet_cm": 10.91,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -3.112,
+      "loss_venturi_cm": 8.81,
+      "mass_imbalance_pct": 0.015,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "7.3e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 21.59,
+      "level_venturi_in_cm": 13.7,
+      "static_inlet_cm": 21.03,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -4.149,
+      "loss_venturi_cm": 12.09,
+      "mass_imbalance_pct": 0.017,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "7.3e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 47.0,
+      "level_venturi_in_cm": 31.39,
+      "static_inlet_cm": 45.99,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.939,
+      "loss_venturi_cm": 20.16,
+      "mass_imbalance_pct": 0.021,
+      "flow_in_Lpm": 40.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "7.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 79.17,
+      "level_venturi_in_cm": 53.73,
+      "static_inlet_cm": 77.59,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -10.529,
+      "loss_venturi_cm": 30.21,
+      "mass_imbalance_pct": 0.024,
+      "flow_in_Lpm": 50.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "8.0e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -12.53,
+      "level_venturi_in_cm": -10.32,
+      "static_inlet_cm": -12.55,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -0.96,
+      "loss_venturi_cm": 0.73,
+      "mass_imbalance_pct": -0.002,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "3.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 118.43,
+      "level_venturi_in_cm": 81.02,
+      "static_inlet_cm": 116.15,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -14.883,
+      "loss_venturi_cm": 42.32,
+      "mass_imbalance_pct": 0.024,
+      "flow_in_Lpm": 60.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "1.0e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -11.37,
+      "level_venturi_in_cm": -9.5,
+      "static_inlet_cm": -11.41,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.07,
+      "loss_venturi_cm": 1.12,
+      "mass_imbalance_pct": -0.004,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "2.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 08:51:42 sweep start: asm34_A flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 08:51:43 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_A/Q50)",
+    "2026-11-19 09:09:04 Q60: done. level_inlet_cm 118.4 static_inlet_cm 116.2 ",
+    "2026-11-19 09:09:04 sweep finished"
+   ]
+  },
+  "asm34_Bvane": {
+   "label": "3/4in E-Sig + 3/4in threaded elbow + Venturi B (14 mm throat, 26 mm exit) + cross-vane",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -9.25,
+      "level_venturi_in_cm": -7.82,
+      "static_inlet_cm": -9.32,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.145,
+      "loss_venturi_cm": 2.05,
+      "mass_imbalance_pct": 0.029,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.06,
+     "final_res_p": "1.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 4.74,
+      "level_venturi_in_cm": 2.5,
+      "static_inlet_cm": 4.49,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -2.068,
+      "loss_venturi_cm": 7.83,
+      "mass_imbalance_pct": 0.01,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 1.02,
+     "final_res_p": "3.5e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 1.02 cm"
+     ]
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 11.64,
+      "level_venturi_in_cm": 6.83,
+      "static_inlet_cm": 11.24,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -3.08,
+      "loss_venturi_cm": 13.05,
+      "mass_imbalance_pct": 0.057,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 2.71,
+     "final_res_p": "4.8e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 2.71 cm"
+     ]
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 22.53,
+      "level_venturi_in_cm": 14.68,
+      "static_inlet_cm": 21.96,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -4.057,
+      "loss_venturi_cm": 18.63,
+      "mass_imbalance_pct": 0.071,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 5.28,
+     "final_res_p": "7.7e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 5.28 cm"
+     ]
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 41.62,
+      "level_venturi_in_cm": 26.09,
+      "static_inlet_cm": 40.61,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -7.464,
+      "loss_venturi_cm": 31.44,
+      "mass_imbalance_pct": 0.04,
+      "flow_in_Lpm": 40.0
+     },
+     "drift_last500_cm": 7.34,
+     "final_res_p": "1.1e-02",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 7.34 cm"
+     ]
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 84.85,
+      "level_venturi_in_cm": 59.51,
+      "static_inlet_cm": 83.27,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -9.972,
+      "loss_venturi_cm": 52.99,
+      "mass_imbalance_pct": -0.055,
+      "flow_in_Lpm": 50.0
+     },
+     "drift_last500_cm": 18.09,
+     "final_res_p": "8.0e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 18.09 cm"
+     ]
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -12.39,
+      "level_venturi_in_cm": -10.19,
+      "static_inlet_cm": -12.41,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -0.947,
+      "loss_venturi_cm": 0.85,
+      "mass_imbalance_pct": 0.052,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "2.6e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 133.26,
+      "level_venturi_in_cm": 96.03,
+      "static_inlet_cm": 130.98,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -13.423,
+      "loss_venturi_cm": 69.82,
+      "mass_imbalance_pct": 0.095,
+      "flow_in_Lpm": 60.0
+     },
+     "drift_last500_cm": 13.9,
+     "final_res_p": "8.1e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 13.9 cm"
+     ]
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -11.0,
+      "level_venturi_in_cm": -9.13,
+      "static_inlet_cm": -11.04,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.034,
+      "loss_venturi_cm": 1.4,
+      "mass_imbalance_pct": 0.034,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.04,
+     "final_res_p": "1.9e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 09:09:05 sweep start: asm34_Bvane flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 09:09:06 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_Bvane/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_Bvane/Q50)",
+    "2026-11-19 09:29:02 Q60: done. level_inlet_cm 133.3 static_inlet_cm 131 ",
+    "2026-11-19 09:29:02 sweep finished"
+   ]
+  },
+  "asm1e_V1": {
+   "label": "1in E-Sig + McMaster 4880K464 1in elbow + V1 (14 mm throat, 26 mm exit) + vane",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -11.56,
+      "level_venturi_in_cm": -9.39,
+      "static_inlet_cm": -11.62,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.338,
+      "loss_venturi_cm": 1.6,
+      "mass_imbalance_pct": 0.055,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "7.7e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -1.27,
+      "level_venturi_in_cm": 0.1,
+      "static_inlet_cm": -1.52,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -2.439,
+      "loss_venturi_cm": 5.61,
+      "mass_imbalance_pct": -0.023,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.05,
+     "final_res_p": "3.9e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 6.74,
+      "level_venturi_in_cm": 7.44,
+      "static_inlet_cm": 6.34,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -3.24,
+      "loss_venturi_cm": 8.9,
+      "mass_imbalance_pct": -0.043,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.17,
+     "final_res_p": "6.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 17.27,
+      "level_venturi_in_cm": 17.23,
+      "static_inlet_cm": 16.7,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -4.123,
+      "loss_venturi_cm": 12.95,
+      "mass_imbalance_pct": -0.022,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.81,
+     "final_res_p": "2.1e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 0.81 cm"
+     ]
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 41.96,
+      "level_venturi_in_cm": 40.26,
+      "static_inlet_cm": 40.95,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.567,
+      "loss_venturi_cm": 24.08,
+      "mass_imbalance_pct": -0.045,
+      "flow_in_Lpm": 40.0
+     },
+     "drift_last500_cm": 2.57,
+     "final_res_p": "3.8e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 2.57 cm"
+     ]
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 73.05,
+      "level_venturi_in_cm": 69.33,
+      "static_inlet_cm": 71.47,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -9.756,
+      "loss_venturi_cm": 34.73,
+      "mass_imbalance_pct": -0.022,
+      "flow_in_Lpm": 50.0
+     },
+     "drift_last500_cm": 6.17,
+     "final_res_p": "7.0e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 6.17 cm"
+     ]
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -13.46,
+      "level_venturi_in_cm": -11.14,
+      "static_inlet_cm": -13.49,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.057,
+      "loss_venturi_cm": 0.66,
+      "mass_imbalance_pct": 0.026,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "2.1e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 112.3,
+      "level_venturi_in_cm": 106.07,
+      "static_inlet_cm": 110.02,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -13.536,
+      "loss_venturi_cm": 48.32,
+      "mass_imbalance_pct": -0.02,
+      "flow_in_Lpm": 60.0
+     },
+     "drift_last500_cm": 13.37,
+     "final_res_p": "1.1e-02",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 13.37 cm"
+     ]
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -12.63,
+      "level_venturi_in_cm": -10.37,
+      "static_inlet_cm": -12.67,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.182,
+      "loss_venturi_cm": 1.12,
+      "mass_imbalance_pct": 0.067,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "6.6e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 09:29:03 sweep start: asm1e_V1 flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 09:29:04 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V1/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V1/Q50)",
+    "2026-11-19 09:53:50 Q60: done. level_inlet_cm 112.3 static_inlet_cm 110 ",
+    "2026-11-19 09:53:50 sweep finished"
+   ]
+  },
+  "asm1e_V2": {
+   "label": "1in E-Sig + McMaster 4880K464 1in elbow + V2 (16 mm throat, 26 mm exit) + vane",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -12.73,
+      "level_venturi_in_cm": -10.57,
+      "static_inlet_cm": -12.79,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.184,
+      "loss_venturi_cm": 0.99,
+      "mass_imbalance_pct": 0.027,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.0e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -6.23,
+      "level_venturi_in_cm": -4.82,
+      "static_inlet_cm": -6.48,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.806,
+      "loss_venturi_cm": 3.43,
+      "mass_imbalance_pct": 0.005,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "1.9e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -0.92,
+      "level_venturi_in_cm": -0.16,
+      "static_inlet_cm": -1.31,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -2.24,
+      "loss_venturi_cm": 5.38,
+      "mass_imbalance_pct": -0.009,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.04,
+     "final_res_p": "3.7e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 6.14,
+      "level_venturi_in_cm": 6.14,
+      "static_inlet_cm": 5.57,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -2.691,
+      "loss_venturi_cm": 7.95,
+      "mass_imbalance_pct": -0.015,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.16,
+     "final_res_p": "6.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 21.19,
+      "level_venturi_in_cm": 19.56,
+      "static_inlet_cm": 20.18,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -4.096,
+      "loss_venturi_cm": 13.98,
+      "mass_imbalance_pct": 0.001,
+      "flow_in_Lpm": 40.0
+     },
+     "drift_last500_cm": 1.28,
+     "final_res_p": "2.1e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 1.28 cm"
+     ]
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 38.93,
+      "level_venturi_in_cm": 35.35,
+      "static_inlet_cm": 37.35,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.042,
+      "loss_venturi_cm": 19.63,
+      "mass_imbalance_pct": -0.01,
+      "flow_in_Lpm": 50.0
+     },
+     "drift_last500_cm": 1.72,
+     "final_res_p": "4.9e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 1.72 cm"
+     ]
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -13.97,
+      "level_venturi_in_cm": -11.64,
+      "static_inlet_cm": -13.99,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.024,
+      "loss_venturi_cm": 0.41,
+      "mass_imbalance_pct": 0.019,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "2.3e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 63.68,
+      "level_venturi_in_cm": 57.67,
+      "static_inlet_cm": 61.4,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -8.129,
+      "loss_venturi_cm": 28.87,
+      "mass_imbalance_pct": -0.018,
+      "flow_in_Lpm": 60.0
+     },
+     "drift_last500_cm": 3.53,
+     "final_res_p": "4.9e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 3.53 cm"
+     ]
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -13.41,
+      "level_venturi_in_cm": -11.16,
+      "static_inlet_cm": -13.45,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.094,
+      "loss_venturi_cm": 0.68,
+      "mass_imbalance_pct": 0.039,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.4e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 09:53:51 sweep start: asm1e_V2 flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 09:53:51 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V2/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V2/Q50)",
+    "2026-11-19 10:20:36 Q60: done. level_inlet_cm 63.68 static_inlet_cm 61.4 ",
+    "2026-11-19 10:20:36 sweep finished"
+   ]
+  },
+  "asm1e_V3": {
+   "label": "1in E-Sig + McMaster 4880K464 1in elbow + V3 (18 mm throat, 26 mm exit) + vane",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -13.28,
+      "level_venturi_in_cm": -11.11,
+      "static_inlet_cm": -13.35,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.109,
+      "loss_venturi_cm": 0.6,
+      "mass_imbalance_pct": 0.051,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "9.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -8.43,
+      "level_venturi_in_cm": -7.05,
+      "static_inlet_cm": -8.69,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.459,
+      "loss_venturi_cm": 2.24,
+      "mass_imbalance_pct": 0.038,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.05,
+     "final_res_p": "2.9e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -4.96,
+      "level_venturi_in_cm": -4.22,
+      "static_inlet_cm": -5.36,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.736,
+      "loss_venturi_cm": 3.62,
+      "mass_imbalance_pct": 0.031,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.04,
+     "final_res_p": "6.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -0.43,
+      "level_venturi_in_cm": -0.4,
+      "static_inlet_cm": -1.0,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -2.044,
+      "loss_venturi_cm": 5.29,
+      "mass_imbalance_pct": 0.023,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "5.8e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 10.31,
+      "level_venturi_in_cm": 8.67,
+      "static_inlet_cm": 9.3,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -2.874,
+      "loss_venturi_cm": 9.18,
+      "mass_imbalance_pct": 0.002,
+      "flow_in_Lpm": 40.0
+     },
+     "drift_last500_cm": 0.18,
+     "final_res_p": "1.9e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 23.32,
+      "level_venturi_in_cm": 19.75,
+      "static_inlet_cm": 21.74,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -3.986,
+      "loss_venturi_cm": 13.55,
+      "mass_imbalance_pct": 0.043,
+      "flow_in_Lpm": 50.0
+     },
+     "drift_last500_cm": 0.45,
+     "final_res_p": "2.7e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -14.22,
+      "level_venturi_in_cm": -11.9,
+      "static_inlet_cm": -14.25,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.019,
+      "loss_venturi_cm": 0.27,
+      "mass_imbalance_pct": 0.052,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "2.3e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 39.29,
+      "level_venturi_in_cm": 33.37,
+      "static_inlet_cm": 37.01,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -5.35,
+      "loss_venturi_cm": 19.0,
+      "mass_imbalance_pct": 0.011,
+      "flow_in_Lpm": 60.0
+     },
+     "drift_last500_cm": 1.0,
+     "final_res_p": "3.5e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 1.0 cm"
+     ]
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -13.77,
+      "level_venturi_in_cm": -11.52,
+      "static_inlet_cm": -13.81,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.055,
+      "loss_venturi_cm": 0.45,
+      "mass_imbalance_pct": 0.042,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.4e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 10:20:37 sweep start: asm1e_V3 flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 10:20:38 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V3/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V3/Q50)",
+    "2026-11-19 10:49:00 Q60: done. level_inlet_cm 39.29 static_inlet_cm 37.01 ",
+    "2026-11-19 10:49:00 sweep finished"
+   ]
+  },
+  "asm1e_V4": {
+   "label": "1in E-Sig + McMaster 4880K464 1in elbow + V4 (14 mm throat, 30 mm exit) + 6-blade vane",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -14.51,
+      "level_venturi_in_cm": -12.35,
+      "static_inlet_cm": -14.57,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.627,
+      "loss_venturi_cm": 1.72,
+      "mass_imbalance_pct": 0.272,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.03,
+     "final_res_p": "4.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -4.88,
+      "level_venturi_in_cm": -3.51,
+      "static_inlet_cm": -5.13,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -2.793,
+      "loss_venturi_cm": 6.53,
+      "mass_imbalance_pct": 0.162,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.17,
+     "final_res_p": "6.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 3.29,
+      "level_venturi_in_cm": 4.0,
+      "static_inlet_cm": 2.89,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -3.581,
+      "loss_venturi_cm": 10.3,
+      "mass_imbalance_pct": 0.152,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.21,
+     "final_res_p": "1.3e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 13.92,
+      "level_venturi_in_cm": 13.85,
+      "static_inlet_cm": 13.35,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -4.449,
+      "loss_venturi_cm": 15.26,
+      "mass_imbalance_pct": 0.135,
+      "flow_in_Lpm": 29.99
+     },
+     "drift_last500_cm": 0.52,
+     "final_res_p": "2.3e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 0.52 cm"
+     ]
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 38.63,
+      "level_venturi_in_cm": 36.87,
+      "static_inlet_cm": 37.62,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.887,
+      "loss_venturi_cm": 27.87,
+      "mass_imbalance_pct": 0.119,
+      "flow_in_Lpm": 39.99
+     },
+     "drift_last500_cm": 1.73,
+     "final_res_p": "3.8e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 1.73 cm"
+     ]
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 69.49,
+      "level_venturi_in_cm": 65.66,
+      "static_inlet_cm": 67.91,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -10.089,
+      "loss_venturi_cm": 40.79,
+      "mass_imbalance_pct": 0.119,
+      "flow_in_Lpm": 49.99
+     },
+     "drift_last500_cm": 1.11,
+     "final_res_p": "2.9e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 1.11 cm"
+     ]
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -16.46,
+      "level_venturi_in_cm": -14.12,
+      "static_inlet_cm": -16.48,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.351,
+      "loss_venturi_cm": 0.73,
+      "mass_imbalance_pct": 0.195,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "3.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 107.48,
+      "level_venturi_in_cm": 101.14,
+      "static_inlet_cm": 105.2,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -13.99,
+      "loss_venturi_cm": 59.17,
+      "mass_imbalance_pct": 0.111,
+      "flow_in_Lpm": 59.99
+     },
+     "drift_last500_cm": 3.41,
+     "final_res_p": "2.0e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 3.41 cm"
+     ]
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -15.53,
+      "level_venturi_in_cm": -13.27,
+      "static_inlet_cm": -15.57,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.466,
+      "loss_venturi_cm": 1.22,
+      "mass_imbalance_pct": 0.284,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.3e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 10:49:01 sweep start: asm1e_V4 flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 10:49:01 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V4/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1e_V4/Q50)",
+    "2026-11-19 11:18:08 Q60: done. level_inlet_cm 107.5 static_inlet_cm 105.2 ",
+    "2026-11-19 11:18:08 sweep finished"
+   ]
+  },
+  "asm1lr_V1": {
+   "label": "1in long-radius reducing elbow + V1 (14 mm throat, 26 mm exit) + vane",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1005366  max non-orthogonality 64.69681396 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -16.8,
+      "level_venturi_in_cm": -9.64,
+      "static_inlet_cm": -16.86,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.264,
+      "loss_venturi_cm": 1.18,
+      "mass_imbalance_pct": 0.176,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "5.9e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1005366  max non-orthogonality 64.69681396 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -8.95,
+      "level_venturi_in_cm": -1.89,
+      "static_inlet_cm": -9.19,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -2.262,
+      "loss_venturi_cm": 4.39,
+      "mass_imbalance_pct": 0.11,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.33,
+     "final_res_p": "2.0e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1005366  max non-orthogonality 64.69681396 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -3.33,
+      "level_venturi_in_cm": 3.66,
+      "static_inlet_cm": -3.7,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -3.031,
+      "loss_venturi_cm": 6.36,
+      "mass_imbalance_pct": 0.094,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.77,
+     "final_res_p": "3.0e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 0.77 cm"
+     ]
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1005366  max non-orthogonality 64.69681396 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 3.12,
+      "level_venturi_in_cm": 10.04,
+      "static_inlet_cm": 2.58,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -3.998,
+      "loss_venturi_cm": 8.71,
+      "mass_imbalance_pct": 0.113,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 1.28,
+     "final_res_p": "4.5e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 1.28 cm"
+     ]
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1005366  max non-orthogonality 64.69681396 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 18.67,
+      "level_venturi_in_cm": 25.38,
+      "static_inlet_cm": 17.7,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.549,
+      "loss_venturi_cm": 15.12,
+      "mass_imbalance_pct": 0.108,
+      "flow_in_Lpm": 39.99
+     },
+     "drift_last500_cm": 2.27,
+     "final_res_p": "5.7e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 2.27 cm"
+     ]
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1005366  max non-orthogonality 64.69681396 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 40.98,
+      "level_venturi_in_cm": 47.44,
+      "static_inlet_cm": 39.47,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -9.653,
+      "loss_venturi_cm": 23.33,
+      "mass_imbalance_pct": 0.124,
+      "flow_in_Lpm": 49.99
+     },
+     "drift_last500_cm": 2.64,
+     "final_res_p": "1.3e-02",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 2.64 cm"
+     ]
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1005366  max non-orthogonality 64.69681396 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -18.49,
+      "level_venturi_in_cm": -11.3,
+      "static_inlet_cm": -18.51,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.037,
+      "loss_venturi_cm": 0.52,
+      "mass_imbalance_pct": 0.225,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.04,
+     "final_res_p": "8.0e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1005366  max non-orthogonality 64.69681396 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 65.18,
+      "level_venturi_in_cm": 71.29,
+      "static_inlet_cm": 63.0,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -13.711,
+      "loss_venturi_cm": 31.69,
+      "mass_imbalance_pct": 0.064,
+      "flow_in_Lpm": 59.99
+     },
+     "drift_last500_cm": 3.61,
+     "final_res_p": "1.4e-02",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 3.61 cm"
+     ]
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1005366  max non-orthogonality 64.69681396 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -17.73,
+      "level_venturi_in_cm": -10.55,
+      "static_inlet_cm": -17.77,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.135,
+      "loss_venturi_cm": 0.82,
+      "mass_imbalance_pct": 0.179,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "5.6e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 11:18:09 sweep start: asm1lr_V1 flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 11:18:10 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1lr_V1/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1lr_V1/Q50)",
+    "2026-11-19 11:48:16 Q60: done. level_inlet_cm 65.18 static_inlet_cm 63 ",
+    "2026-11-19 11:48:16 sweep finished"
+   ]
+  },
+  "asm1lr_V2": {
+   "label": "1in long-radius reducing elbow + V2 (16 mm throat, 26 mm exit) + vane",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1062994  max non-orthogonality 64.70928955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -17.8,
+      "level_venturi_in_cm": -10.64,
+      "static_inlet_cm": -17.86,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.14,
+      "loss_venturi_cm": 0.67,
+      "mass_imbalance_pct": 0.17,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.3e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1062994  max non-orthogonality 64.70928955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -12.98,
+      "level_venturi_in_cm": -5.92,
+      "static_inlet_cm": -13.23,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.721,
+      "loss_venturi_cm": 2.29,
+      "mass_imbalance_pct": 0.148,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "1.4e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1062994  max non-orthogonality 64.70928955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -9.25,
+      "level_venturi_in_cm": -2.26,
+      "static_inlet_cm": -9.63,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -2.132,
+      "loss_venturi_cm": 3.6,
+      "mass_imbalance_pct": 0.137,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "3.7e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1062994  max non-orthogonality 64.70928955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -5.15,
+      "level_venturi_in_cm": 1.76,
+      "static_inlet_cm": -5.7,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -2.683,
+      "loss_venturi_cm": 4.96,
+      "mass_imbalance_pct": 0.147,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.09,
+     "final_res_p": "1.5e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1062994  max non-orthogonality 64.70928955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 4.94,
+      "level_venturi_in_cm": 11.66,
+      "static_inlet_cm": 3.98,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -4.096,
+      "loss_venturi_cm": 8.07,
+      "mass_imbalance_pct": 0.133,
+      "flow_in_Lpm": 39.99
+     },
+     "drift_last500_cm": 0.23,
+     "final_res_p": "3.2e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1062994  max non-orthogonality 64.70928955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 18.44,
+      "level_venturi_in_cm": 24.9,
+      "static_inlet_cm": 16.93,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -5.865,
+      "loss_venturi_cm": 12.27,
+      "mass_imbalance_pct": 0.1,
+      "flow_in_Lpm": 49.99
+     },
+     "drift_last500_cm": 0.29,
+     "final_res_p": "5.4e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1062994  max non-orthogonality 64.70928955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -18.91,
+      "level_venturi_in_cm": -11.72,
+      "static_inlet_cm": -18.93,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.013,
+      "loss_venturi_cm": 0.3,
+      "mass_imbalance_pct": 0.21,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "8.7e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1062994  max non-orthogonality 64.70928955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 35.33,
+      "level_venturi_in_cm": 41.45,
+      "static_inlet_cm": 33.16,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -8.014,
+      "loss_venturi_cm": 17.14,
+      "mass_imbalance_pct": 0.104,
+      "flow_in_Lpm": 59.99
+     },
+     "drift_last500_cm": 0.35,
+     "final_res_p": "5.3e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1062994  max non-orthogonality 64.70928955 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -18.41,
+      "level_venturi_in_cm": -11.23,
+      "static_inlet_cm": -18.45,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.068,
+      "loss_venturi_cm": 0.47,
+      "mass_imbalance_pct": 0.188,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "5.4e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 11:48:17 sweep start: asm1lr_V2 flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 11:48:18 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1lr_V2/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1lr_V2/Q50)",
+    "2026-11-19 12:19:35 Q60: done. level_inlet_cm 35.33 static_inlet_cm 33.16 ",
+    "2026-11-19 12:19:35 sweep finished"
+   ]
+  },
+  "asm1lr_V3": {
+   "label": "1in long-radius reducing elbow + V3 (18 mm throat, 26 mm exit) + vane",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1113578  max non-orthogonality 64.70438188 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -18.34,
+      "level_venturi_in_cm": -11.17,
+      "static_inlet_cm": -18.4,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.082,
+      "loss_venturi_cm": 0.41,
+      "mass_imbalance_pct": 0.22,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1113578  max non-orthogonality 64.70438188 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -14.97,
+      "level_venturi_in_cm": -7.91,
+      "static_inlet_cm": -15.21,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.432,
+      "loss_venturi_cm": 1.25,
+      "mass_imbalance_pct": 0.18,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "5.8e-05",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1113578  max non-orthogonality 64.70438188 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -12.32,
+      "level_venturi_in_cm": -5.33,
+      "static_inlet_cm": -12.7,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.655,
+      "loss_venturi_cm": 2.03,
+      "mass_imbalance_pct": 0.174,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "2.1e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1113578  max non-orthogonality 64.70438188 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -9.31,
+      "level_venturi_in_cm": -2.39,
+      "static_inlet_cm": -9.85,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.962,
+      "loss_venturi_cm": 2.86,
+      "mass_imbalance_pct": 0.171,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "4.1e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1113578  max non-orthogonality 64.70438188 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -2.01,
+      "level_venturi_in_cm": 4.71,
+      "static_inlet_cm": -2.97,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -2.781,
+      "loss_venturi_cm": 4.72,
+      "mass_imbalance_pct": 0.162,
+      "flow_in_Lpm": 39.99
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "5.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1113578  max non-orthogonality 64.70438188 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 7.07,
+      "level_venturi_in_cm": 13.53,
+      "static_inlet_cm": 5.56,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -3.845,
+      "loss_venturi_cm": 6.87,
+      "mass_imbalance_pct": 0.153,
+      "flow_in_Lpm": 49.99
+     },
+     "drift_last500_cm": 0.04,
+     "final_res_p": "1.7e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1113578  max non-orthogonality 64.70438188 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -19.14,
+      "level_venturi_in_cm": -11.94,
+      "static_inlet_cm": -19.16,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.01,
+      "loss_venturi_cm": 0.18,
+      "mass_imbalance_pct": 0.267,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "8.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1113578  max non-orthogonality 64.70438188 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 18.14,
+      "level_venturi_in_cm": 24.26,
+      "static_inlet_cm": 15.97,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -5.157,
+      "loss_venturi_cm": 9.47,
+      "mass_imbalance_pct": 0.145,
+      "flow_in_Lpm": 59.99
+     },
+     "drift_last500_cm": 0.06,
+     "final_res_p": "2.9e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1113578  max non-orthogonality 64.70438188 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -18.78,
+      "level_venturi_in_cm": -11.6,
+      "static_inlet_cm": -18.82,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.041,
+      "loss_venturi_cm": 0.29,
+      "mass_imbalance_pct": 0.238,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "5.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 12:19:36 sweep start: asm1lr_V3 flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 12:19:36 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1lr_V3/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1lr_V3/Q50)",
+    "2026-11-19 12:52:10 Q60: done. level_inlet_cm 18.14 static_inlet_cm 15.97 ",
+    "2026-11-19 12:52:10 sweep finished"
+   ]
+  },
+  "asm1lr_V4": {
+   "label": "1in long-radius reducing elbow + V4 (14 mm throat, 30 mm exit) + 6-blade vane",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1166907  max non-orthogonality 64.99505319 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -19.75,
+      "level_venturi_in_cm": -12.59,
+      "static_inlet_cm": -19.81,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.553,
+      "loss_venturi_cm": 1.36,
+      "mass_imbalance_pct": 0.007,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.8e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1166907  max non-orthogonality 64.99505319 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -12.04,
+      "level_venturi_in_cm": -4.98,
+      "static_inlet_cm": -12.28,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -2.566,
+      "loss_venturi_cm": 5.03,
+      "mass_imbalance_pct": 0.035,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.22,
+     "final_res_p": "2.7e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1166907  max non-orthogonality 64.99505319 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -6.86,
+      "level_venturi_in_cm": 0.13,
+      "static_inlet_cm": -7.24,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -3.38,
+      "loss_venturi_cm": 7.36,
+      "mass_imbalance_pct": 0.037,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.29,
+     "final_res_p": "6.3e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1166907  max non-orthogonality 64.99505319 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -0.36,
+      "level_venturi_in_cm": 6.55,
+      "static_inlet_cm": -0.9,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -4.344,
+      "loss_venturi_cm": 10.5,
+      "mass_imbalance_pct": 0.022,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.47,
+     "final_res_p": "1.4e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1166907  max non-orthogonality 64.99505319 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 16.34,
+      "level_venturi_in_cm": 23.04,
+      "static_inlet_cm": 15.37,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.785,
+      "loss_venturi_cm": 17.99,
+      "mass_imbalance_pct": 0.023,
+      "flow_in_Lpm": 40.0
+     },
+     "drift_last500_cm": 0.93,
+     "final_res_p": "2.0e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 0.93 cm"
+     ]
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1166907  max non-orthogonality 64.99505319 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 38.6,
+      "level_venturi_in_cm": 45.04,
+      "static_inlet_cm": 37.09,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -9.895,
+      "loss_venturi_cm": 27.94,
+      "mass_imbalance_pct": 0.012,
+      "flow_in_Lpm": 49.99
+     },
+     "drift_last500_cm": 1.58,
+     "final_res_p": "2.3e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 1.58 cm"
+     ]
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1166907  max non-orthogonality 64.99505319 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -21.35,
+      "level_venturi_in_cm": -14.15,
+      "static_inlet_cm": -21.37,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.317,
+      "loss_venturi_cm": 0.59,
+      "mass_imbalance_pct": 0.019,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.03,
+     "final_res_p": "7.9e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1166907  max non-orthogonality 64.99505319 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 63.86,
+      "level_venturi_in_cm": 69.94,
+      "static_inlet_cm": 61.69,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -13.863,
+      "loss_venturi_cm": 36.91,
+      "mass_imbalance_pct": 0.017,
+      "flow_in_Lpm": 59.99
+     },
+     "drift_last500_cm": 3.93,
+     "final_res_p": "2.1e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 3.93 cm"
+     ]
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1166907  max non-orthogonality 64.99505319 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -20.62,
+      "level_venturi_in_cm": -13.44,
+      "static_inlet_cm": -20.66,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.419,
+      "loss_venturi_cm": 0.94,
+      "mass_imbalance_pct": 0.013,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "6.7e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 12:52:11 sweep start: asm1lr_V4 flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 12:52:11 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1lr_V4/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm1lr_V4/Q50)",
+    "2026-11-19 13:27:09 Q60: done. level_inlet_cm 63.86 static_inlet_cm 61.69 ",
+    "2026-11-19 13:27:09 sweep finished"
+   ]
+  },
+  "asm34lr_current": {
+   "label": "3/4in E-Sig + 3/4in long-radius elbow (R 42 mm, no reduction) [aligned mesh] + current Venturi",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 787599  max non-orthogonality 61.37408596 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -11.28,
+      "level_venturi_in_cm": -6.29,
+      "static_inlet_cm": -11.34,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.27,
+      "loss_venturi_cm": 1.76,
+      "mass_imbalance_pct": 0.138,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "5.4e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 787599  max non-orthogonality 61.37408596 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 4.38,
+      "level_venturi_in_cm": 7.63,
+      "static_inlet_cm": 4.13,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -3.209,
+      "loss_venturi_cm": 5.9,
+      "mass_imbalance_pct": 0.127,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.04,
+     "final_res_p": "3.7e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 787599  max non-orthogonality 61.37408596 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 14.92,
+      "level_venturi_in_cm": 16.98,
+      "static_inlet_cm": 14.53,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -4.756,
+      "loss_venturi_cm": 8.34,
+      "mass_imbalance_pct": 0.126,
+      "flow_in_Lpm": 25.0
+     },
+     "drift_last500_cm": 0.03,
+     "final_res_p": "5.1e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 787599  max non-orthogonality 61.37408596 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 28.02,
+      "level_venturi_in_cm": 28.73,
+      "static_inlet_cm": 27.47,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.618,
+      "loss_venturi_cm": 11.43,
+      "mass_imbalance_pct": 0.123,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.03,
+     "final_res_p": "5.9e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 787599  max non-orthogonality 61.37408596 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 60.65,
+      "level_venturi_in_cm": 58.19,
+      "static_inlet_cm": 59.66,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -11.398,
+      "loss_venturi_cm": 18.63,
+      "mass_imbalance_pct": 0.12,
+      "flow_in_Lpm": 40.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "4.6e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 787599  max non-orthogonality 61.37408596 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 101.49,
+      "level_venturi_in_cm": 95.41,
+      "static_inlet_cm": 99.94,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -17.615,
+      "loss_venturi_cm": 27.53,
+      "mass_imbalance_pct": 0.118,
+      "flow_in_Lpm": 50.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "6.4e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 787599  max non-orthogonality 61.37408596 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -14.97,
+      "level_venturi_in_cm": -9.6,
+      "static_inlet_cm": -14.99,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -0.889,
+      "loss_venturi_cm": 0.69,
+      "mass_imbalance_pct": 0.155,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.01,
+     "final_res_p": "1.8e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 787599  max non-orthogonality 61.37408596 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 150.61,
+      "level_venturi_in_cm": 140.33,
+      "static_inlet_cm": 148.39,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -25.251,
+      "loss_venturi_cm": 38.12,
+      "mass_imbalance_pct": 0.116,
+      "flow_in_Lpm": 60.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "9.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 787599  max non-orthogonality 61.37408596 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -13.47,
+      "level_venturi_in_cm": -8.27,
+      "static_inlet_cm": -13.51,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.07,
+      "loss_venturi_cm": 1.09,
+      "mass_imbalance_pct": 0.146,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "1.1e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 20:27:37 sweep start: asm34lr_current flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 20:27:37 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34lr_current/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34lr_current/Q50)",
+    "2026-11-19 20:48:27 Q60: done. level_inlet_cm 150.6 static_inlet_cm 148.4 ",
+    "2026-11-19 20:48:27 sweep finished"
+   ]
+  },
+  "asm34_current_zfix": {
+   "label": "3/4in E-Sig + 3/4in threaded elbow + current Venturi [aligned mesh, pairs with asm34lr_current]",
+   "cases": [
+    {
+     "q": 10.0,
+     "level": "medium",
+     "dir": "Q10",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 641964  max non-orthogonality 62.77210008 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -7.93,
+      "level_venturi_in_cm": -6.44,
+      "static_inlet_cm": -7.99,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.259,
+      "loss_venturi_cm": 2.2,
+      "mass_imbalance_pct": 0.161,
+      "flow_in_Lpm": 10.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "2.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 20.0,
+     "level": "medium",
+     "dir": "Q20",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 641964  max non-orthogonality 62.77210008 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 8.27,
+      "level_venturi_in_cm": 6.24,
+      "static_inlet_cm": 8.02,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -3.248,
+      "loss_venturi_cm": 7.7,
+      "mass_imbalance_pct": 0.143,
+      "flow_in_Lpm": 20.0
+     },
+     "drift_last500_cm": 0.03,
+     "final_res_p": "3.4e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 25.0,
+     "level": "medium",
+     "dir": "Q25",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 641964  max non-orthogonality 62.77210008 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 19.27,
+      "level_venturi_in_cm": 14.75,
+      "static_inlet_cm": 18.89,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -4.82,
+      "loss_venturi_cm": 11.07,
+      "mass_imbalance_pct": 0.14,
+      "flow_in_Lpm": 24.99
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "5.2e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "medium",
+     "dir": "Q30",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 641964  max non-orthogonality 62.77210008 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 32.92,
+      "level_venturi_in_cm": 25.37,
+      "static_inlet_cm": 32.37,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.711,
+      "loss_venturi_cm": 15.23,
+      "mass_imbalance_pct": 0.138,
+      "flow_in_Lpm": 29.99
+     },
+     "drift_last500_cm": 0.04,
+     "final_res_p": "7.5e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "coarse",
+     "dir": "Q30_coarse",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 277260  max non-orthogonality 64.52303191 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 34.28,
+      "level_venturi_in_cm": 26.85,
+      "static_inlet_cm": 33.72,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.554,
+      "loss_venturi_cm": 15.57,
+      "mass_imbalance_pct": 0.145,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "3.7e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 30.0,
+     "level": "fine",
+     "dir": "Q30_fine",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 1489382  max non-orthogonality 62.7343697 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 33.26,
+      "level_venturi_in_cm": 25.49,
+      "static_inlet_cm": 32.7,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -6.679,
+      "loss_venturi_cm": 15.54,
+      "mass_imbalance_pct": 0.113,
+      "flow_in_Lpm": 30.0
+     },
+     "drift_last500_cm": 0.4,
+     "final_res_p": "5.7e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 40.0,
+     "level": "medium",
+     "dir": "Q40",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 641964  max non-orthogonality 62.77210008 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 66.46,
+      "level_venturi_in_cm": 51.25,
+      "static_inlet_cm": 65.47,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -11.639,
+      "loss_venturi_cm": 25.14,
+      "mass_imbalance_pct": 0.136,
+      "flow_in_Lpm": 39.99
+     },
+     "drift_last500_cm": 0.22,
+     "final_res_p": "2.0e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 50.0,
+     "level": "medium",
+     "dir": "Q50",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 641964  max non-orthogonality 62.77210008 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 109.1,
+      "level_venturi_in_cm": 84.3,
+      "static_inlet_cm": 107.56,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -17.979,
+      "loss_venturi_cm": 37.54,
+      "mass_imbalance_pct": 0.136,
+      "flow_in_Lpm": 49.99
+     },
+     "drift_last500_cm": 0.51,
+     "final_res_p": "3.3e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 0.51 cm"
+     ]
+    },
+    {
+     "q": 6.0,
+     "level": "medium",
+     "dir": "Q6",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 641964  max non-orthogonality 62.77210008 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -11.95,
+      "level_venturi_in_cm": -9.71,
+      "static_inlet_cm": -11.97,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -0.892,
+      "loss_venturi_cm": 0.82,
+      "mass_imbalance_pct": 0.167,
+      "flow_in_Lpm": 6.0
+     },
+     "drift_last500_cm": 0.02,
+     "final_res_p": "1.7e-03",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    },
+    {
+     "q": 60.0,
+     "level": "medium",
+     "dir": "Q60",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 641964  max non-orthogonality 62.77210008 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": 161.06,
+      "level_venturi_in_cm": 124.91,
+      "static_inlet_cm": 158.84,
+      "static_inlet_negative": false,
+      "port_p_mean_kPa": -25.692,
+      "loss_venturi_cm": 52.4,
+      "mass_imbalance_pct": 0.135,
+      "flow_in_Lpm": 59.99
+     },
+     "drift_last500_cm": 0.84,
+     "final_res_p": "5.2e-03",
+     "iterations": "2000",
+     "converged": false,
+     "concerns": [
+      "drift 0.84 cm"
+     ]
+    },
+    {
+     "q": 8.0,
+     "level": "medium",
+     "dir": "Q8",
+     "status": "done (iteration 2000)",
+     "mesh": "cells 641964  max non-orthogonality 62.77210008 deg  Mesh OK.",
+     "result": {
+      "level_inlet_cm": -10.34,
+      "level_venturi_in_cm": -8.41,
+      "static_inlet_cm": -10.38,
+      "static_inlet_negative": true,
+      "port_p_mean_kPa": -1.068,
+      "loss_venturi_cm": 1.36,
+      "mass_imbalance_pct": 0.161,
+      "flow_in_Lpm": 8.0
+     },
+     "drift_last500_cm": 0.0,
+     "final_res_p": "5.0e-04",
+     "iterations": "2000",
+     "converged": true,
+     "concerns": []
+    }
+   ],
+   "sweep_log": [
+    "2026-11-19 20:48:28 sweep start: asm34_current_zfix flows [60] level medium, 2000 iterations, 8 cores",
+    "2026-11-19 20:48:28 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q50)",
+    "2026-11-19 21:05:21 Q60: done. level_inlet_cm 161.1 static_inlet_cm 158.8 ",
+    "2026-11-19 21:05:21 sweep finished"
+   ]
+  }
+ },
+ "meshcheck": [
+  {
+   "assembly": "asm34_A",
+   "summary": "cells 665282  max non-orthogonality 63.35401246 deg  Mesh OK."
+  },
+  {
+   "assembly": "asm34_Bvane",
+   "summary": "cells 727324  max non-orthogonality 64.9879617 deg  Mesh OK."
+  },
+  {
+   "assembly": "asm1e_V1",
+   "summary": "cells 858742  max non-orthogonality 64.76649855 deg  Mesh OK."
+  },
+  {
+   "assembly": "asm1e_V2",
+   "summary": "cells 916454  max non-orthogonality 64.96921985 deg  Mesh OK."
+  },
+  {
+   "assembly": "asm1e_V4",
+   "summary": "cells 999331  max non-orthogonality 64.97463955 deg  Mesh OK."
+  },
+  {
+   "assembly": "asm1e_V3",
+   "summary": "cells 967473  max non-orthogonality 64.55289257 deg  Mesh OK."
+  },
+  {
+   "assembly": "asm1lr_V1..V4",
+   "summary": "refinement box reduced to the Venturi + 25 mm of the bend (the box over the whole bend gave ~2.9M cells before snapping and stalled); first check happens in the lab run (checkMesh before every solve)"
+  }
+ ],
+ "queue": [],
+ "cmdlog": [],
+ "repo_head": "75b4b60",
+ "last_push_ok": "2026-11-19T21:14:10-08:00"
+}
