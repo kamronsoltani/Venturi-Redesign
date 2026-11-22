@@ -11,6 +11,7 @@ UPSTREAM = {
     "asm34": "3/4in E-Sig (flat side down) + 3/4in threaded elbow",
     "asm1e": "1in E-Sig (flat side down) + 1in elbow",
     "asm1lr": "1in long-radius reducer",
+    "asm34lr": "3/4in E-Sig (flat side down) + 3/4in long-radius elbow (no reduction)",
 }
 
 

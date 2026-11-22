@@ -166,11 +166,11 @@ ul.note{padding-left:16px;margin:6px 0}
 <div class="page" id="compare">
   <div class="card" id="chartCard">
     <h2>Water level above the inlet centre vs flow</h2>
-    <div class="note">Steady RANS, medium mesh, 11 assemblies × 9 flows. Overflow when the level reaches the spout: about 5.8 cm on an Afridev, 16.3 cm on an India Mark II. Hollow markers: the level was still moving by more than 3 cm over the last 500 iterations (unsteady separation), so treat the point as a band, not a value.</div>
+    <div class="note">Steady RANS, medium mesh, 11 assemblies × 9 flows plus the 3/4in elbow retrofit pair. Overflow when the level reaches the spout: about 5.8 cm on an Afridev, 16.3 cm on an India Mark II. Hollow markers: the level was still moving by more than 3 cm over the last 500 iterations (unsteady separation), so treat the point as a band, not a value. Dashed lines: the 3/4in elbow retrofit pair on the corrected (aligned) mesh.</div>
     <div class="ctrl"><span class="lab">Y range</span>
       <div class="segs" id="yr"><button data-y="spout" class="on">Around the spouts</button><button data-y="full">Full range</button></div>
       <span class="lab" style="margin-left:10px">Show</span>
-      <div class="segs" id="quick"><button data-s="all">All</button><button data-s="lr">Long-radius only</button><button data-s="best">Shortlist</button></div>
+      <div class="segs" id="quick"><button data-s="all">All</button><button data-s="lr">Long-radius only</button><button data-s="best">Shortlist</button><button data-s="retro">3/4in elbow retrofit</button></div>
     </div>
     <svg id="chart" viewBox="0 0 760 400"></svg>
     <div class="legend" id="legend3"></div>
@@ -183,7 +183,7 @@ ul.note{padding-left:16px;margin:6px 0}
   </div>
   <div class="card" id="matrixCard">
     <h2>All cases: level above the inlet centre (cm)</h2>
-    <div class="note">Click any cell to open that design at that flow in the 3-D viewer.</div>
+    <div class="note">Click any cell to open that design at that flow in the 3-D viewer. The last two rows (3/4in elbow retrofit) were run on the corrected, aligned mesh, whose symmetry plane sits exactly on the centreline; compare them with each other. The other rows use the original mesh setting, which reads the same part up to about 1 cm differently at 30 L/min.</div>
     <table id="matrix"></table>
     <div class="keyrow"><span><b class="lv0"></b>below the Afridev spout</span><span><b class="lv1"></b>overflows an Afridev, below the India Mark II spout</span><span><b class="lv2"></b>overflows both</span><span><i class="unst">~12.3</i> unsteady, band rather than value</span></div>
   </div>
@@ -254,7 +254,9 @@ const isUnst=c=>c&&c.drift!=null&&Math.abs(c.drift)>UNSTEADY;
 
 const COL={asm34_current:"#e05a4d",asm34_A:"#e0a23a",asm34_Bvane:"#c77dba",
   asm1e_V1:"#9cc8f0",asm1e_V2:"#62a6e6",asm1e_V3:"#2f7fcf",asm1e_V4:"#8a9bb0",
-  asm1lr_V1:"#a6dcb4",asm1lr_V2:"#5cb87a",asm1lr_V3:"#2e8f50",asm1lr_V4:"#b5c27a"};
+  asm1lr_V1:"#a6dcb4",asm1lr_V2:"#5cb87a",asm1lr_V3:"#2e8f50",asm1lr_V4:"#b5c27a",
+  asm34_current_zfix:"#f2b8b0",asm34lr_current:"#ffc94d"};
+const DASHED=g=>g==="p34";   // aligned-mesh pair: drawn dashed, compare with each other
 // shortlist from the Stage 5b physics review (2026-11-19): Afridev-safe / IM2-safe average flow, L/min
 const VERDICT=[
   ["asm1lr_V3",47,58,"rec","Recommend: most margin; no overflow in the field check"],
@@ -262,13 +264,14 @@ const VERDICT=[
   ["asm1lr_V1",31,37,"pos","Possible: unsteady above 30 L/min"],
   ["asm1e_V3",35,44,"pos","Fallback if the long-radius elbow can't be used"],
   ["asm1e_V2",29,37,"pos","India Mark II only"],
+  ["asm34lr_current",20,25,"pos","Cheap retrofit: same Venturi, ~2 L/min more than the threaded elbow (aligned mesh)"],
   ["asm1lr_V4",33,39,"rej","30 mm exit: no dosing at 8 L/min"],
   ["asm1e_V4",25,31,"rej","30 mm exit: no dosing at 8 L/min"],
   ["asm1e_V1",23,29,"rej","Low margin, unsteady"],
   ["asm34_A",21,27,"rej","Only +3 L/min over current"],
   ["asm34_Bvane",20,25,"rej","Unsteady above 20 L/min"],
   ["asm34_current",18,23,"rej","Overflows an Afridev in normal use"]];
-const shortName=a=>{const A=SITE.assemblies.find(x=>x.id===a);return {e34:"3/4in",e1:"1in E-Sig",lr:"1in long-radius"}[A.group]+" · "+A.venturi;};
+const shortName=a=>{const A=SITE.assemblies.find(x=>x.id===a);return {e34:"3/4in",e1:"1in E-Sig",lr:"1in long-radius",p34:"3/4in current Venturi"}[A.group]+" · "+A.venturi;};
 
 // ------------------------------------------------ tabs + routing
 function show(tab){
@@ -315,7 +318,7 @@ function drawChart(){
   s+=`<clipPath id="clp"><rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}"/></clipPath><g clip-path="url(#clp)">`;
   SITE.assemblies.filter(a=>visible.has(a.id)).forEach(a=>{
     const pts=a.flows.map(q=>[q,SITE.cases[caseKey(a.id,q)]]).filter(p=>p[1]&&p[1].level!=null);
-    s+=`<polyline fill="none" stroke="${COL[a.id]}" stroke-width="2" points="${pts.map(([q,c])=>`${xs(q)},${ys(c.level)}`).join(" ")}"/>`;
+    s+=`<polyline fill="none" stroke="${COL[a.id]}" stroke-width="2"${DASHED(a.group)?' stroke-dasharray="7 4"':""} points="${pts.map(([q,c])=>`${xs(q)},${ys(c.level)}`).join(" ")}"/>`;
     pts.forEach(([q,c])=>{const u=isUnst(c);
       s+=`<circle cx="${xs(q)}" cy="${ys(c.level)}" r="${u?4.2:3.2}" fill="${u?var_("--panel"):COL[a.id]}" stroke="${COL[a.id]}" stroke-width="1.6" style="cursor:pointer" data-a="${a.id}" data-q="${q}"><title>${shortName(a.id)}, ${q} L/min: ${fmt(c.level,1)} cm${u?` (unsteady, moving ${fmt(c.drift,1)} cm)`:""}</title></circle>`;});
   });
@@ -325,11 +328,11 @@ function drawChart(){
 }
 function buildLegend(){
   $("legend3").innerHTML=Object.entries(SITE.groups).map(([g,gl])=>`<div class="g"><span class="gh">${gl}</span>`+
-    SITE.assemblies.filter(a=>a.group===g).map(a=>`<label><input type="checkbox" data-a="${a.id}"${visible.has(a.id)?" checked":""}><i style="background:${COL[a.id]}"></i>${a.venturi}</label>`).join("")+"</div>").join("");
+    SITE.assemblies.filter(a=>a.group===g).map(a=>`<label><input type="checkbox" data-a="${a.id}"${visible.has(a.id)?" checked":""}><i style="background:${DASHED(a.group)?`repeating-linear-gradient(90deg,${COL[a.id]} 0 5px,transparent 5px 8px)`:COL[a.id]}"></i>${a.venturi}</label>`).join("")+"</div>").join("");
   $("legend3").querySelectorAll("input").forEach(i=>i.addEventListener("change",()=>{i.checked?visible.add(i.dataset.a):visible.delete(i.dataset.a);drawChart();}));
 }
 function quick(k){visible.clear();
-  SITE.assemblies.forEach(a=>{if(k==="all"||(k==="lr"&&a.group==="lr")||(k==="best"&&["asm34_current","asm1lr_V1","asm1lr_V2","asm1lr_V3","asm1e_V3"].includes(a.id)))visible.add(a.id);});
+  SITE.assemblies.forEach(a=>{if(k==="all"||(k==="lr"&&a.group==="lr")||(k==="best"&&["asm34_current","asm1lr_V1","asm1lr_V2","asm1lr_V3","asm1e_V3"].includes(a.id))||(k==="retro"&&a.group==="p34"))visible.add(a.id);});
   document.querySelectorAll("#quick button").forEach(b=>b.classList.toggle("on",b.dataset.s===k));buildLegend();drawChart();}
 $("quick").addEventListener("click",e=>{if(e.target.dataset.s)quick(e.target.dataset.s);});
 $("yr").addEventListener("click",e=>{if(!e.target.dataset.y)return;yMode=e.target.dataset.y;document.querySelectorAll("#yr button").forEach(b=>b.classList.toggle("on",b===e.target));drawChart();});

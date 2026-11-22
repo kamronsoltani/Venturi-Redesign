@@ -139,8 +139,8 @@ st = mwm.load_stations(os.path.join(GEOM, "bore_stations.csv"), TAG)
 wall = mwm.build_wall(st, 0.3)
 ks = mwm.key_stations(st)
 three_q = TAG in ("current",) or TAG.endswith("3-4in")
-if UP == "esig34" and not three_q:
-    raise SystemExit(f"{TAG} has a 1in inlet; esig34 is the 3/4in train")
+if UP in ("esig34", "lr34") and not three_q:
+    raise SystemExit(f"{TAG} has a 1in inlet; {UP} is a 3/4in train")
 if UP in ("esig1", "lr1") and three_q:
     raise SystemExit(f"{TAG} has a 3/4in inlet; {UP} is a 1in train")
 
@@ -271,8 +271,38 @@ elif UP == "lr1":
         "Long-radius reducing bend installed with the 1in port DOWN (spigot horizontal toward the pump)",
         f"{TAG} plain spigot press-fitted into the reducer's 1in port and seated on the port shoulder ({ENG:.1f} mm deep); bore steps 31.16 -> {2 * wall[0][1]:.2f} mm, flush",
         f"Reducer bore rebuilt from {N_SEC} circle-fitted sections of its STEP (blank port, thread not modelled)"]
+elif UP == "lr34":
+    # 3/4in long-radius elbow, no reduction (generated part, no STEP): the same female 3/4in NPT
+    # leg, E-Sig engagement, thread cavity, bore and Venturi slip socket as the esig34 threaded
+    # elbow, but the 14.7 mm bend is replaced by a smooth bend of centreline radius LR34_R
+    # (default 42 mm = 2 bore diameters) with a short straight tangent at each end.
+    BEND_R = float(os.environ.get("LR34_R", "42.0"))
+    BORE_R, MINOR_R, ENG = 10.465, 11.9, 14.0          # as esig34
+    TAN = 3.0                                          # straight tangent each side of the bend
+    THREAD_DEPTH = 35.56 - 14.73                       # female leg face to shoulder, as esig34
+    Y_SH = BEND_R + TAN                                # thread shoulder (horizontal leg)
+    ES_END_Y = Y_SH + THREAD_DEPTH - ENG
+    VENT_IN_X = -(BEND_R + TAN)                        # Venturi seated on the socket shoulder
+    es, Y_IN, X_IN, SPIG_Y = build_esig("upstream/ESig_reducer_3-4in_NPT_male.step", 10.46, ES_END_Y)
+    parts += es
+    ep = [occ.addCylinder(0, ES_END_Y, 0, 0, Y_SH - ES_END_Y, 0, MINOR_R),            # thread cavity
+          occ.addCylinder(0, Y_SH + 0.5, 0, 0, BEND_R - Y_SH - 1.0, 0, BORE_R),         # tangent, horizontal leg
+          occ.addCylinder(-BEND_R + 0.5, 0, 0, VENT_IN_X - (-BEND_R + 0.5), 0, 0, BORE_R)]   # tangent, Venturi leg
+    tor = occ.addTorus(-BEND_R, BEND_R, 0, BEND_R, BORE_R, angle=math.pi / 2)
+    occ.rotate([(3, tor)], -BEND_R, BEND_R, 0, 0, 0, 1, -math.pi / 2)
+    parts += [(3, t) for t in ep + [tor]]
+    LIP_R = BORE_R
+    FINE = [None, -16.0, -1.0, 14.0, ES_END_Y + 12.0, 25.0]      # whole elbow + Venturi, as esig34
+    INSIDE = (0.0, ES_END_Y + 60.0, 5.0)
+    WALL_SPLIT_Y = ES_END_Y
+    assumptions += [
+        f"3/4in long-radius elbow (generated): bore {2 * BORE_R:.2f} mm, bend centreline radius {BEND_R:.1f} mm "
+        f"(R/D {BEND_R / (2 * BORE_R):.2f}), {TAN:.0f} mm straight tangent each end; no reduction",
+        f"E-Sig 3/4in NPT male engaged {ENG:.1f} mm into the female leg; thread cavity to the shoulder modelled as a 23.8 mm cylinder (as the threaded elbow)",
+        f"{TAG} Venturi spigot fully seated in the elbow's slip socket; inlet face on the socket shoulder (as the threaded elbow)",
+        "E-Sig flat side down (spigot end high, S-curve drops to the elbow)"]
 else:
-    raise SystemExit("upstream must be esig34, esig1 or lr1")
+    raise SystemExit("upstream must be esig34, esig1, lr1 or lr34")
 
 assumptions += [f"Inlet extension of {INLET_EXT:.0f} mm at the spigot bore stands in for the rubber coupler and pump spout",
                 "Half domain: symmetric about the bend plane (the chlorine port is not modelled)"]

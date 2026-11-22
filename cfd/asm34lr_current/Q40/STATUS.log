@@ -1,0 +1,6 @@
+19:11:37 reusing mesh from Venturi-Redesign/cfd/asm34lr_current/Q10
+19:11:37 checkMesh
+19:11:46 initialising from Venturi-Redesign/cfd/asm34lr_current/Q30
+19:11:52 solving (8 cores)
+19:32:21 reconstructing
+19:32:22 done (iteration 2000)

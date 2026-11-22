@@ -31,6 +31,7 @@ label() {
         asm34_*)  up="3/4in E-Sig + 3/4in threaded elbow" ;;
         asm1e_*)  up="1in E-Sig + McMaster 4880K464 1in elbow" ;;
         asm1lr_*) up="1in long-radius reducing elbow" ;;
+        asm34lr_*) up="3/4in E-Sig + 3/4in long-radius elbow (R 42 mm, no reduction)" ;;
     esac
     case "${1#*_}" in
         current) v="current Venturi" ;;

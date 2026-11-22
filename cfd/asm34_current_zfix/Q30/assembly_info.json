@@ -1,0 +1,56 @@
+{
+ "frame": "elbow frame, mm; Venturi axis = x, flow -x (down, gravity -x); threaded leg = y, flow -y; z>=0 half",
+ "engage_mm": 14.0,
+ "esig_flat_side": "down",
+ "esig_end_face_y": 21.560000000000002,
+ "venturi_inlet_x": -15.49,
+ "outlet_x": -131.99,
+ "inlet_y": 392.78000000000003,
+ "inlet_centre_x": 11.504999999999999,
+ "inlet_radius": 21.965,
+ "inlet_extension_mm": 130.0,
+ "spigot_entry_y": 262.78,
+ "port_x": -62.99,
+ "port_side": "unknown; wall pressure sampled all round",
+ "cavity_radius": 11.9,
+ "elbow_bend_radius": 14.732,
+ "elbow_bore_radius": 10.465,
+ "venturi_wall": [
+  [
+   0.0,
+   10.77
+  ],
+  [
+   15.6,
+   10.5
+  ],
+  [
+   34.95,
+   6.35
+  ],
+  [
+   47.5,
+   6.13
+  ],
+  [
+   60.35,
+   6.35
+  ],
+  [
+   79.4,
+   7.94
+  ],
+  [
+   116.5,
+   8.585
+  ]
+ ],
+ "fluid_volume_mm3_half": 207377.76240609647,
+ "assumptions": [
+  "E-Sig 3/4in NPT male engaged 14.0 mm into the elbow female leg (L1 8.6 mm + 3 wrench turns)",
+  "Current Venturi spigot fully seated in the elbow socket; inlet face on the socket shoulder",
+  "Female-thread cavity between E-Sig end and elbow shoulder modelled as a 23.8 mm cylinder",
+  "E-Sig flat side down (spigot end high, S-curve drops to the elbow); inlet extension of 130 mm at the 43.9 mm spigot bore",
+  "Half domain: symmetric about the bend plane (the chlorine port is not modelled)"
+ ]
+}

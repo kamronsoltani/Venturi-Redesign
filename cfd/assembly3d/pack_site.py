@@ -28,8 +28,12 @@ ASM = {  # id: (upstream group, venturi name, short label)
     "asm1lr_V2": ("lr", "V2", "1in long-radius reducing elbow + V2 (16 mm throat, 26 mm exit)"),
     "asm1lr_V3": ("lr", "V3", "1in long-radius reducing elbow + V3 (18 mm throat, 26 mm exit)"),
     "asm1lr_V4": ("lr", "V4", "1in long-radius reducing elbow + V4 (14 mm throat, 30 mm exit)"),
+    # aligned-mesh pair (symmetry plane exactly on the centreline): compare these two with each other
+    "asm34_current_zfix": ("p34", "Threaded elbow", "3/4in E-Sig + 3/4in threaded elbow + current Venturi (aligned mesh)"),
+    "asm34lr_current":    ("p34", "Long-radius 42 mm", "3/4in E-Sig + 3/4in long-radius elbow (R 42 mm, no reduction) + current Venturi (aligned mesh)"),
 }
-GROUPS = {"e34": "3/4in E-Sig + 3/4in elbow", "e1": "1in E-Sig + McMaster elbow", "lr": "1in long-radius elbow"}
+GROUPS = {"e34": "3/4in E-Sig + 3/4in elbow", "e1": "1in E-Sig + McMaster elbow", "lr": "1in long-radius elbow",
+          "p34": "3/4in elbow retrofit, aligned mesh"}
 
 
 def write_bin(path, meta, arrays):
@@ -63,7 +67,7 @@ def write_bin(path, meta, arrays):
 
 rows = {}
 for r in csv.DictReader(open(csv_path)):
-    if r["mesh_level"] != "medium" or "zfix" in r["assembly"]:
+    if r["mesh_level"] != "medium" or r["assembly"] not in ASM:
         continue
     rows[(r["assembly"], int(float(r["Q_Lpm"])))] = r
 

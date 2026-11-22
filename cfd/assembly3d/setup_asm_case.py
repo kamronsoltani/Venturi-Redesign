@@ -108,6 +108,14 @@ zmin, zmax = -1.0e-3, 25e-3
 if "bbox_mm" in info:   # written by build_assembly.py: [xmin, xmax, ymin, ymax, zmax] of the water volume
     bx = info["bbox_mm"]
     xmin, xmax, ymin, ymax, zmax = bx[0] * 1e-3 - 3e-3, bx[1] * 1e-3 + 3e-3, bx[2] * 1e-3 - 3e-3, bx[3] * 1e-3 + 3e-3, bx[4] * 1e-3 + 3e-3
+if os.environ.get("ZALIGN") == "1":
+    # Put the symmetry plane z = 0 exactly on a background grid line (one cell of size h
+    # below it, exact spacing h in z). With refinement splitting cells by 2, z = 0 then stays
+    # a cell face at every level, so the half domain is not offset by a fraction of a cell
+    # (the old zmin = -1 mm with a rounded cell count left the plane 0.1-0.3 mm off).
+    import math
+    zmin = -h
+    zmax = zmin + math.ceil((zmax - zmin) / h - 1e-9) * h
 n = [max(1, round((xmax - xmin) / h)), max(1, round((ymax - ymin) / h)), max(1, round((zmax - zmin) / h))]
 write("system/blockMeshDict", hdr("dictionary", "system", "blockMeshDict") + f"""\
 convertToMeters 1;

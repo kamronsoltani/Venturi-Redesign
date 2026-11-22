@@ -28,7 +28,7 @@ tri = {k: np.array(v).reshape(-1, 3, 3) for k, v in sol.items() if v}
 COL = {"wall_esig": "#4c78a8", "wall_elbow": "#f2a03d", "wall_venturi": "#8e6bbf", "inlet": "#54a24b", "outlet": "#e45756"}
 up = info.get("upstream", "esig34")
 NAME = {"wall_esig": "long-radius reducer, straight part" if up == "lr1" else "E-Sig reducer",
-        "wall_elbow": "reducing bend" if up == "lr1" else "elbow", "wall_venturi": "Venturi"}
+        "wall_elbow": "reducing bend" if up == "lr1" else ("long-radius elbow" if up == "lr34" else "elbow"), "wall_venturi": "Venturi"}
 vx, split = info["venturi_inlet_x"], info["esig_end_face_y"]
 
 

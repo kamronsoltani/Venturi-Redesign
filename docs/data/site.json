@@ -2,7 +2,8 @@
  "groups": {
   "e34": "3/4in E-Sig + 3/4in elbow",
   "e1": "1in E-Sig + McMaster elbow",
-  "lr": "1in long-radius elbow"
+  "lr": "1in long-radius elbow",
+  "p34": "3/4in elbow retrofit, aligned mesh"
  },
  "assemblies": [
   {
@@ -180,6 +181,40 @@
    "group": "lr",
    "venturi": "V4",
    "label": "1in long-radius reducing elbow + V4 (14 mm throat, 30 mm exit)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm34_current_zfix",
+   "group": "p34",
+   "venturi": "Threaded elbow",
+   "label": "3/4in E-Sig + 3/4in threaded elbow + current Venturi (aligned mesh)",
+   "flows": [
+    6,
+    8,
+    10,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ]
+  },
+  {
+   "id": "asm34lr_current",
+   "group": "p34",
+   "venturi": "Long-radius 42 mm",
+   "label": "3/4in E-Sig + 3/4in long-radius elbow (R 42 mm, no reduction) + current Venturi (aligned mesh)",
    "flows": [
     6,
     8,
@@ -985,6 +1020,150 @@
    "jet": 48.49,
    "recovery": 0.68,
    "imbalance": 0.017
+  },
+  "asm34_current_zfix_Q6": {
+   "level": -11.95,
+   "drift": 0.02,
+   "port": -0.892,
+   "jet": 1.38,
+   "recovery": 0.644,
+   "imbalance": 0.167
+  },
+  "asm34_current_zfix_Q8": {
+   "level": -10.34,
+   "drift": 0.0,
+   "port": -1.068,
+   "jet": 2.36,
+   "recovery": 0.673,
+   "imbalance": 0.161
+  },
+  "asm34_current_zfix_Q10": {
+   "level": -7.93,
+   "drift": 0.0,
+   "port": -1.259,
+   "jet": 3.81,
+   "recovery": 0.63,
+   "imbalance": 0.161
+  },
+  "asm34_current_zfix_Q20": {
+   "level": 8.27,
+   "drift": 0.03,
+   "port": -3.248,
+   "jet": 13.38,
+   "recovery": 0.733,
+   "imbalance": 0.143
+  },
+  "asm34_current_zfix_Q25": {
+   "level": 19.27,
+   "drift": 0.02,
+   "port": -4.82,
+   "jet": 20.26,
+   "recovery": 0.766,
+   "imbalance": 0.14
+  },
+  "asm34_current_zfix_Q30": {
+   "level": 32.92,
+   "drift": 0.04,
+   "port": -6.711,
+   "jet": 28.91,
+   "recovery": 0.769,
+   "imbalance": 0.138
+  },
+  "asm34_current_zfix_Q40": {
+   "level": 66.46,
+   "drift": 0.22,
+   "port": -11.639,
+   "jet": 50.35,
+   "recovery": 0.794,
+   "imbalance": 0.136
+  },
+  "asm34_current_zfix_Q50": {
+   "level": 109.1,
+   "drift": 0.51,
+   "port": -17.979,
+   "jet": 77.92,
+   "recovery": 0.809,
+   "imbalance": 0.136
+  },
+  "asm34_current_zfix_Q60": {
+   "level": 161.06,
+   "drift": 0.84,
+   "port": -25.692,
+   "jet": 112.0,
+   "recovery": 0.814,
+   "imbalance": 0.135
+  },
+  "asm34lr_current_Q6": {
+   "level": -14.97,
+   "drift": 0.01,
+   "port": -0.889,
+   "jet": 1.44,
+   "recovery": 0.593,
+   "imbalance": 0.155
+  },
+  "asm34lr_current_Q8": {
+   "level": -13.47,
+   "drift": 0.0,
+   "port": -1.07,
+   "jet": 2.42,
+   "recovery": 0.664,
+   "imbalance": 0.146
+  },
+  "asm34lr_current_Q10": {
+   "level": -11.28,
+   "drift": 0.0,
+   "port": -1.27,
+   "jet": 3.82,
+   "recovery": 0.629,
+   "imbalance": 0.138
+  },
+  "asm34lr_current_Q20": {
+   "level": 4.38,
+   "drift": 0.04,
+   "port": -3.209,
+   "jet": 14.14,
+   "recovery": 0.709,
+   "imbalance": 0.127
+  },
+  "asm34lr_current_Q25": {
+   "level": 14.92,
+   "drift": 0.03,
+   "port": -4.756,
+   "jet": 21.45,
+   "recovery": 0.745,
+   "imbalance": 0.126
+  },
+  "asm34lr_current_Q30": {
+   "level": 28.02,
+   "drift": 0.03,
+   "port": -6.618,
+   "jet": 30.61,
+   "recovery": 0.756,
+   "imbalance": 0.123
+  },
+  "asm34lr_current_Q40": {
+   "level": 60.65,
+   "drift": 0.02,
+   "port": -11.398,
+   "jet": 53.88,
+   "recovery": 0.769,
+   "imbalance": 0.12
+  },
+  "asm34lr_current_Q50": {
+   "level": 101.49,
+   "drift": 0.01,
+   "port": -17.615,
+   "jet": 83.25,
+   "recovery": 0.783,
+   "imbalance": 0.118
+  },
+  "asm34lr_current_Q60": {
+   "level": 150.61,
+   "drift": 0.02,
+   "port": -25.251,
+   "jet": 118.83,
+   "recovery": 0.794,
+   "imbalance": 0.116
   }
  }
 }

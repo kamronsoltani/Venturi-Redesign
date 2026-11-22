@@ -1,0 +1,44 @@
+2026-11-18 07:29:38 sweep start: asm34_current_zfix flows [30] level coarse, 2000 iterations, 8 cores
+2026-11-18 07:29:39 Q30_coarse: start (mesh from: new; init from: uniform)
+2026-11-18 07:36:19 Q30_coarse: done. level_inlet_cm 34.28 static_inlet_cm 33.72 
+2026-11-18 07:36:19 sweep finished
+2026-11-18 07:36:20 sweep start: asm34_current_zfix flows [30] level medium, 2000 iterations, 8 cores
+2026-11-18 07:36:20 Q30: start (mesh from: new; init from: uniform)
+2026-11-18 07:54:58 Q30: done. level_inlet_cm 32.92 static_inlet_cm 32.37 
+2026-11-18 07:54:58 sweep finished
+2026-11-18 07:54:59 sweep start: asm34_current_zfix flows [30] level fine, 2000 iterations, 8 cores
+2026-11-18 07:54:59 Q30_fine: start (mesh from: new; init from: uniform)
+2026-11-18 08:44:08 Q30_fine: done. level_inlet_cm 33.26 static_inlet_cm 32.7 
+2026-11-18 08:44:08 sweep finished
+2026-11-19 16:24:06 sweep start: asm34_current_zfix flows [25] level medium, 2000 iterations, 8 cores
+2026-11-19 16:24:07 Q25: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q30; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q30)
+2026-11-19 16:40:29 Q25: done. level_inlet_cm 19.27 static_inlet_cm 18.89 
+2026-11-19 16:40:29 sweep finished
+2026-11-19 17:01:52 sweep start: asm34_current_zfix flows [20] level medium, 2000 iterations, 8 cores
+2026-11-19 17:03:30 Q20: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q25; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q25)
+2026-11-19 17:18:30 Q20: done. level_inlet_cm 8.271 static_inlet_cm 8.024 
+2026-11-19 17:18:30 sweep finished
+2026-11-19 17:39:39 sweep start: asm34_current_zfix flows [10] level medium, 2000 iterations, 8 cores
+2026-11-19 17:39:40 Q10: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q20; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q20)
+2026-11-19 17:56:18 Q10: done. level_inlet_cm -7.928 static_inlet_cm -7.989 
+2026-11-19 17:56:18 sweep finished
+2026-11-19 18:17:28 sweep start: asm34_current_zfix flows [8] level medium, 2000 iterations, 8 cores
+2026-11-19 18:17:29 Q8: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q10)
+2026-11-19 18:34:04 Q8: done. level_inlet_cm -10.34 static_inlet_cm -10.38 
+2026-11-19 18:34:04 sweep finished
+2026-11-19 18:55:07 sweep start: asm34_current_zfix flows [6] level medium, 2000 iterations, 8 cores
+2026-11-19 18:55:07 Q6: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q8)
+2026-11-19 19:11:35 Q6: done. level_inlet_cm -11.95 static_inlet_cm -11.97 
+2026-11-19 19:11:35 sweep finished
+2026-11-19 19:32:44 sweep start: asm34_current_zfix flows [40] level medium, 2000 iterations, 8 cores
+2026-11-19 19:32:45 Q40: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q30)
+2026-11-19 19:49:31 Q40: done. level_inlet_cm 66.46 static_inlet_cm 65.47 
+2026-11-19 19:49:31 sweep finished
+2026-11-19 20:10:49 sweep start: asm34_current_zfix flows [50] level medium, 2000 iterations, 8 cores
+2026-11-19 20:10:49 Q50: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q40)
+2026-11-19 20:27:36 Q50: done. level_inlet_cm 109.1 static_inlet_cm 107.6 
+2026-11-19 20:27:36 sweep finished
+2026-11-19 20:48:28 sweep start: asm34_current_zfix flows [60] level medium, 2000 iterations, 8 cores
+2026-11-19 20:48:28 Q60: start (mesh from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q10; init from: /home/pickering/turitap_cfd/Venturi-Redesign/cfd/asm34_current_zfix/Q50)
+2026-11-19 21:05:21 Q60: done. level_inlet_cm 161.1 static_inlet_cm 158.8 
+2026-11-19 21:05:21 sweep finished

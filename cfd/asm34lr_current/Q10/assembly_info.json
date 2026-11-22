@@ -1,0 +1,78 @@
+{
+ "frame": "mm; Venturi axis = x, flow -x (down, gravity -x); leg toward the pump = +y, flow -y; z>=0 half",
+ "upstream": "lr34",
+ "venturi": "current",
+ "vane": false,
+ "engage_mm": 14.0,
+ "esig_end_face_y": 51.83,
+ "venturi_inlet_x": -45.0,
+ "outlet_x": -161.5,
+ "inlet_y": 423.05,
+ "inlet_centre_x": 11.504999999999999,
+ "inlet_radius": 21.965,
+ "inlet_extension_mm": 130.0,
+ "spigot_entry_y": 293.05,
+ "port_x": -92.5,
+ "port_side": "not modelled; wall pressure sampled all round",
+ "diffuser_start_mm": 60.35,
+ "diffuser_end_mm": 79.4,
+ "venturi_wall": [
+  [
+   0.0,
+   10.77
+  ],
+  [
+   15.6,
+   10.5
+  ],
+  [
+   34.95,
+   6.35
+  ],
+  [
+   47.5,
+   6.13
+  ],
+  [
+   60.35,
+   6.35
+  ],
+  [
+   79.4,
+   7.94
+  ],
+  [
+   116.5,
+   8.585
+  ]
+ ],
+ "fluid_volume_mm3_half": 215648,
+ "bbox_mm": [
+  -161.50060348984275,
+  41.05005505791485,
+  -14.788310278183197,
+  423.0506034898428,
+  32.65098411867341
+ ],
+ "inside_point_mm": [
+  0.0,
+  111.83,
+  5.0
+ ],
+ "fine_box_mm": [
+  -162.5,
+  -16.0,
+  -1.0,
+  14.0,
+  63.83,
+  25.0
+ ],
+ "assumptions": [
+  "3/4in long-radius elbow (generated): bore 20.93 mm, bend centreline radius 42.0 mm (R/D 2.01), 3 mm straight tangent each end; no reduction",
+  "E-Sig 3/4in NPT male engaged 14.0 mm into the female leg; thread cavity to the shoulder modelled as a 23.8 mm cylinder (as the threaded elbow)",
+  "current Venturi spigot fully seated in the elbow's slip socket; inlet face on the socket shoulder (as the threaded elbow)",
+  "E-Sig flat side down (spigot end high, S-curve drops to the elbow)",
+  "Inlet extension of 130 mm at the spigot bore stands in for the rubber coupler and pump spout",
+  "Half domain: symmetric about the bend plane (the chlorine port is not modelled)"
+ ]
+}

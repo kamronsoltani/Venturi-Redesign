@@ -1,0 +1,9 @@
+assembly asm34_current_zfix
+Q_lpm 50
+level medium
+background_cell_m 0.0016
+U_inlet_m_s 0.549802
+k_inlet 0.00113356
+omega_inlet 19.9895
+wall_treatment wall functions (nutkWallFunction, omegaWallFunction)
+half_domain yes (symmetry z=0)
