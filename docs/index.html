@@ -5,164 +5,214 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TuriTap Venturi Redesign</title>
 <style>
-:root{--bg:#fbfaf7;--text:#222;--mute:#6b6b6b;--rule:#d9d6cf;--link:#1f5c99;--soft:#f0eee9;
-  --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-@media (prefers-color-scheme:dark){:root{--bg:#1c1c1b;--text:#e4e2dd;--mute:#9a978f;--rule:#3a3936;--link:#86b6e6;--soft:#262624}}
+:root{--ink:#0d1117;--mute:#57606a;--line:#d0d7de;--bg:#eef1f5;--panel:#fff;--head:#e6ebf1;--navy:#0f2a44;--navy2:#183b5e;
+  --blue:#0b5cad;--green:#1a7f37;--amber:#9a6700;--red:#cf222e;--gray:#6e7781;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--mono:ui-monospace,"SFMono-Regular",Consolas,Menlo,monospace}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 var(--serif)}
-main{max-width:760px;margin:0 auto;padding:40px 18px 60px}
-a{color:var(--link);text-underline-offset:2px}
-h1{font-size:30px;line-height:1.2;margin:0 0 6px;font-weight:700}
-.sub{color:var(--mute);font-size:15px;margin:0 0 14px}
-nav{font:14px/1.8 var(--sans);color:var(--mute);margin-bottom:8px}
-nav a{color:var(--mute);text-decoration:none;margin-right:14px;white-space:nowrap}
-nav a:hover{color:var(--link);text-decoration:underline}
-h2{font-size:21px;margin:44px 0 12px;padding-top:18px;border-top:1px solid var(--rule)}
-h3{font-size:16px;margin:24px 0 6px}
-p{margin:0 0 12px}
-ul,ol{margin:0 0 12px;padding-left:22px}
-li{margin:4px 0}
-.st{color:var(--mute);font-style:italic}
-li.done{color:var(--mute)}
-dl{margin:0;display:grid;grid-template-columns:130px 1fr;gap:6px 16px}
-dt{font-weight:700}dd{margin:0}
-@media (max-width:560px){dl{grid-template-columns:1fr;gap:0}dd{margin-bottom:10px}h1{font-size:25px}main{padding-top:26px}}
-.tw{overflow-x:auto;margin:6px 0 10px}
-table{border-collapse:collapse;width:100%;font:14.5px/1.45 var(--sans)}
-th,td{text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--rule);vertical-align:top}
-th{font-weight:600;color:var(--mute);font-size:13px}
-td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.note{color:var(--mute);font-size:14.5px}
-.log td:first-child{white-space:nowrap;color:var(--mute);padding-right:18px;width:1%}
-figure{margin:8px 0 14px}
-svg{display:block;width:100%;height:auto;color:var(--text)}
-svg text{fill:var(--mute);font:12px var(--sans)}
-#viewer{position:relative;height:340px;border:1px solid var(--rule);background:var(--soft);margin:8px 0 6px}
-#vmsg{position:absolute;left:10px;top:8px;right:10px;font:13px var(--sans);color:var(--mute);pointer-events:none}
-.cad td:first-child a{cursor:pointer}
-.cad tr.on td{background:var(--soft)}
-footer{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);color:var(--mute);font:13px/1.6 var(--sans)}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:52px}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans)}
+a{color:var(--blue)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+/* banner */
+.banner{background:var(--navy);color:#fff;border-bottom:4px solid var(--blue)}
+.banner .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px 24px;padding-top:22px;padding-bottom:18px}
+.banner h1{margin:0;font-size:26px;letter-spacing:.2px}
+.banner p{margin:4px 0 0;color:#c4d3e3;font-size:14.5px}
+.banner .upd{color:#c4d3e3;font-size:13px;text-align:right}
+.banner .upd b{color:#fff;font-weight:600}
+/* nav */
+nav{position:sticky;top:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;white-space:nowrap}
+nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:13.5px;padding:12px 10px;border-bottom:3px solid transparent}
+nav a:hover{border-bottom-color:var(--blue);color:var(--blue)}
+/* status strip */
+.strip{background:var(--panel);border-bottom:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.strip .c{padding:14px 16px;border-left:1px solid var(--line)}
+.strip .c:first-child{border-left:0;padding-left:0}
+.strip .k{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.strip .v{font-size:18px;font-weight:700;margin-top:2px}
+.strip .s{font-size:13px;color:var(--mute)}
+.strip .c.live .v::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:2px}
+/* sections */
+section{background:var(--panel);border:1px solid var(--line);margin:18px 0}
+section>h2{margin:0;font-size:16px;background:var(--head);border-bottom:1px solid var(--line);border-left:5px solid var(--navy);padding:9px 14px}
+section>h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
+.body{padding:14px 16px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.cols>div{padding:14px 16px}
+.cols>div+div{border-left:1px solid var(--line)}
+h3{font-size:14px;margin:0 0 8px}
+.summary{margin:0;padding:0;list-style:none}
+.summary li{padding:7px 0;border-bottom:1px solid #eaeef2}
+.summary li:last-child{border-bottom:0}
+.summary b{color:var(--navy)}
+/* tables */
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:7px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f6f8fa;font-weight:600;font-size:13px;white-space:nowrap}
+tbody tr:nth-child(even) td{background:#fafbfc}
+td.n,th.n{text-align:right;font-family:var(--mono);font-size:13.5px;white-space:nowrap}
+.st{font-weight:700;white-space:nowrap}
+.st::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;background:currentColor}
+.done,.pass{color:var(--green)}.active{color:var(--blue)}.planned,.rule{color:var(--gray)}.open{color:var(--amber)}.fail{color:var(--red)}
+.note{color:var(--mute);font-size:13px;margin:8px 0 0}
+#logT td:first-child{white-space:nowrap}
+ol.find{margin:0;padding-left:22px}ol.find li{margin:6px 0}
+/* charts */
+svg{display:block;width:100%;height:auto}
+svg text{font:12.5px var(--sans);fill:#3d444d}
+svg .t{font-weight:700;fill:var(--ink);font-size:13px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;margin:4px 0 0}
+.legend i{display:inline-block;width:16px;height:3px;vertical-align:4px;margin-right:5px}
+/* cad */
+.cad{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.cad .list{max-height:480px;overflow:auto;border-right:1px solid var(--line)}
+.cad .g{background:#f6f8fa;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);padding:7px 12px;border-bottom:1px solid var(--line);position:sticky;top:0}
+.cad .f{display:flex;align-items:center;gap:8px;padding:6px 12px;border-bottom:1px solid #eaeef2;cursor:pointer;font-size:13.5px}
+.cad .f:hover{background:#f3f7fc}.cad .f.on{background:#ddeaf7;box-shadow:inset 3px 0 0 var(--blue)}
+.cad .f span{flex:1;min-width:0;overflow-wrap:anywhere}
+.cad .f small{color:var(--mute);font-family:var(--mono);white-space:nowrap}
+.cad .f a{font-size:12.5px;font-weight:600;white-space:nowrap}
+#viewer{position:relative;min-height:480px;background:linear-gradient(#f7f9fb,#e4e9ef)}
+#vmsg{position:absolute;left:12px;top:10px;right:12px;font-size:13px;font-weight:600;color:#3d444d;pointer-events:none}
+footer{color:var(--mute);font-size:13px;padding:6px 0 34px}
+@media (max-width:860px){.strip .wrap{grid-template-columns:1fr 1fr}.strip .c:nth-child(3){border-left:0;padding-left:0}
+  .strip .c{border-top:1px solid var(--line)}.strip .c:nth-child(-n+2){border-top:0}
+  .cols{grid-template-columns:1fr}.cols>div+div{border-left:0;border-top:1px solid var(--line)}
+  .cad{grid-template-columns:1fr}.cad .list{border-right:0;border-bottom:1px solid var(--line);max-height:320px}#viewer{min-height:320px}
+  .banner h1{font-size:22px}.banner .upd{text-align:left}}
 </style>
 </head>
 <body>
-<main>
-<h1>TuriTap Venturi Redesign</h1>
-<p class="sub" id="upd">Project log</p>
-<nav><a href="#status">Status</a><a href="#goal">Goal</a><a href="#plan">Plan</a><a href="#findings">Findings</a><a href="#designs">Designs</a><a href="#bench">Bench data</a><a href="#log">Log</a><a href="#cad">CAD files</a><a href="cfd/">CFD viewer</a></nav>
+<header class="banner"><div class="wrap">
+  <div><h1>TuriTap Venturi Redesign</h1><p>Chlorine-dosing Venturi for handpumps and piped supply · engineering status</p></div>
+  <div class="upd">Last updated<br><b id="upd">–</b></div>
+</div></header>
+<nav><div class="wrap"><a href="#summary">Summary</a><a href="#schedule">Schedule</a><a href="#requirements">Requirements</a><a href="#results">Results</a><a href="#designs">Designs</a><a href="#actions">Action items</a><a href="#bench">Bench data</a><a href="#log">Log</a><a href="#cad">CAD files</a><a href="cfd/">CFD viewer ↗</a></div></nav>
+<div class="strip"><div class="wrap" id="strip"></div></div>
 
-<h2 id="status">Status</h2>
-<div id="summary"></div>
+<main class="wrap">
+<section id="summary"><h2>Summary</h2><div class="body"><ul class="summary" id="sum"></ul></div></section>
 
-<h2 id="goal">Goal</h2>
-<dl id="goalList"></dl>
+<section id="schedule"><h2>Schedule <small>where we were, where we are, what's next</small></h2><div class="body"><div id="gantt"></div>
+  <div class="legend"><span><i style="background:var(--green)"></i>done</span><span><i style="background:var(--blue)"></i>in progress</span><span><i style="background:#b8c2cc"></i>planned</span><span><i style="background:var(--red);width:2px;height:12px;vertical-align:-1px"></i>today</span></div></div></section>
 
-<h2 id="plan">Plan</h2>
-<ol id="planList"></ol>
-<h3>To do on the lab PC</h3><ul id="todoLab"></ul>
-<h3>To do on the bench</h3><ul id="todoBench"></ul>
+<section id="requirements"><h2>Requirements <small>targets vs current status</small></h2><div class="body"><div class="tw"><table id="req"></table></div></div></section>
 
-<h2 id="findings">Findings so far</h2>
-<ol id="findList"></ol>
+<section id="results"><h2>Results <small>3-D CFD, long-radius reducer, steady flow</small></h2>
+  <div class="cols"><div><h3>Piped flow: relative dose vs flow</h3><div id="c1"></div>
+    <p class="note">Dose ∝ port suction ÷ flow (needle valve fixed), each design scaled to its own minimum. Below the red line, one needle setting stays within 0.3–0.8 mg/L.</p></div>
+  <div><h3>Handpump: water level at the spout vs flow</h3><div id="c2"></div>
+    <p class="note">Above the bore top the Venturi stays full (good dosing); above +5.8 cm the Afridev overflows. Shaded: both conditions met.</p></div></div>
+  <div class="cols" style="border-top:1px solid var(--line)"><div><h3>Port suction vs flow</h3><div id="c3"></div>
+    <p class="note">Suction drives the chlorine draw. At low flow it is set by the water column below the port (about 1 kPa).</p></div>
+  <div><h3>Key findings</h3><ol class="find" id="find"></ol></div></div></section>
 
-<h2 id="designs">Designs</h2>
-<figure id="chart"></figure>
-<div class="tw"><table id="designTable"></table></div>
-<p class="note" id="designNote"></p>
+<section id="designs"><h2>Designs</h2><div class="body"><div class="tw"><table id="des"></table></div><p class="note" id="desNote"></p></div></section>
 
-<h2 id="bench">Bench data</h2>
-<p class="note" id="benchNote"></p>
-<div class="tw"><table><thead><tr><th>Run</th><th class="n">Flow, L/min</th><th class="n">Dose, mg/L</th></tr></thead><tbody id="benchRows"></tbody></table></div>
+<section id="actions"><h2>Action items</h2><div class="cols"><div><h3>Lab PC / simulations</h3><div class="tw"><table id="actLab"></table></div></div><div><h3>Bench</h3><div class="tw"><table id="actBench"></table></div></div></div></section>
 
-<h2 id="log">Log</h2>
-<div class="tw"><table class="log"><tbody id="logRows"></tbody></table></div>
+<section id="bench"><h2>Bench data <small id="benchNote"></small></h2><div class="cols"><div><div id="c4"></div>
+  <p class="note">Green band: ideal 0.3–0.8 mg/L. Light band: acceptable 0.1–1.5 mg/L.</p></div><div><div class="tw"><table id="benchT"></table></div></div></div></section>
 
-<h2 id="cad">CAD files</h2>
-<p class="note">Click a name to preview it (drag to rotate, scroll or pinch to zoom). The download link gives the STEP file.</p>
-<div id="viewer"><div id="vmsg">No file selected</div></div>
-<div id="cadList"></div>
+<section id="log"><h2>Log</h2><div class="body"><div class="tw"><table id="logT"></table></div></div></section>
 
-<footer>
-<span id="links"></span><br>
-Simulations: OpenFOAM 13 on the lab PC. Page data: <a href="home/status.json">status.json</a>, <a href="cad/cad.json">cad.json</a>.
-</footer>
+<section id="cad"><h2>CAD files <small>click to preview · drag to rotate · scroll to zoom</small></h2><div class="cad"><div class="list" id="cadList"></div><div id="viewer"><div id="vmsg">Select a file</div></div></div></section>
+
+<footer><span id="links"></span> · Simulations: OpenFOAM 13 on the lab PC · Data: <a href="home/status.json">status.json</a>, <a href="home/charts.json">charts.json</a>, <a href="cad/cad.json">cad.json</a></footer>
 </main>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
 <script>
-const $=id=>document.getElementById(id), esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const word={running:"running",next:"next",open:"",done:"done"};
-const item=([t,s])=>`<li class="${s}">${esc(t)}${word[s]?` <span class="st">(${word[s]})</span>`:""}</li>`;
+const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const COL=["#0b5cad","#d55e00","#1a7f37","#7a3fb0","#b8860b","#3d444d"];
+const LBL={done:"Done",active:"In progress",planned:"Planned",open:"Open",pass:"Pass",fail:"Not met",rule:"Rule"};
+const st=s=>`<span class="st ${s}">${LBL[s]||s}</span>`;
+const table=(cols,rows,num=[])=>`<thead><tr>${cols.map((c,i)=>`<th${num.includes(i)?' class="n"':""}>${esc(c)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td${num.includes(i)?' class="n"':""}>${c}</td>`).join("")}</tr>`).join("")}</tbody>`;
 
-function chart(c){
-  const W=680,H=260,m={l:38,r:96,t:10,b:40},L=Math.log,q0=c.q[0],q1=c.q[c.q.length-1];
-  const x=q=>m.l+(L(q)-L(q0))/(L(q1)-L(q0))*(W-m.l-m.r);
-  const top=Math.max(2.8,...c.series.flatMap(s=>s[1])),y=v=>m.t+(1-(v-1)/(top-1))*(H-m.t-m.b);
-  const ink=["#1f5c99","#2e7d4f","#b5651d"];
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(c.title)}">`;
-  for(let v=1;v<=top+1e-9;v+=0.5)s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(v)}" y2="${y(v)}" stroke="currentColor" stroke-opacity=".1"/><text x="${m.l-6}" y="${y(v)+4}" text-anchor="end">${v.toFixed(1)}</text>`;
-  s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(2.67)}" y2="${y(2.67)}" stroke="currentColor" stroke-opacity=".45" stroke-dasharray="5 4"/>`;
-  c.q.forEach(q=>s+=`<text x="${x(q)}" y="${H-m.b+18}" text-anchor="middle">${q}</text>`);
-  s+=`<text x="${(m.l+W-m.r)/2}" y="${H-4}" text-anchor="middle">flow, L/min</text>`;
-  const ends=c.series.map(([n,v],i)=>({n,i,y:y(v[v.length-1])})).sort((a,b)=>a.y-b.y);
-  for(let k=1;k<ends.length;k++)if(ends[k].y-ends[k-1].y<14)ends[k].y=ends[k-1].y+14;
-  c.series.forEach(([n,v],i)=>{s+=`<polyline fill="none" stroke="${ink[i]}" stroke-width="2" points="${v.map((d,j)=>x(c.q[j])+","+y(d)).join(" ")}"/>`;});
-  ends.forEach(e=>s+=`<text x="${W-m.r+8}" y="${e.y+4}" style="fill:${ink[e.i]}">${esc(e.n)}</text>`);
-  return `${s}</svg><p class="note"><b>${esc(c.title)}.</b> ${esc(c.note)}</p>`;
+/* generic x-y chart */
+function plot(o){
+  const W=480,H=300,m={l:50,r:12,t:12,b:44},iw=W-m.l-m.r,ih=H-m.t-m.b,lg=o.xlog;
+  const fx=v=>lg?Math.log(v):v,x=v=>m.l+(fx(v)-fx(o.x[0]))/(fx(o.x[1])-fx(o.x[0]))*iw,y=v=>m.t+(1-(v-o.y[0])/(o.y[1]-o.y[0]))*ih;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.aria||"")}"><defs><clipPath id="cp${o.id}"><rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}"/></clipPath></defs>`;
+  (o.bands||[]).forEach(b=>s+=`<rect x="${m.l}" width="${iw}" y="${y(b[1])}" height="${y(b[0])-y(b[1])}" fill="${b[2]}"/>`);
+  o.yt.forEach(v=>s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#d8dee4"/><text x="${m.l-7}" y="${y(v)+4}" text-anchor="end">${v}</text>`);
+  o.xt.forEach(v=>s+=`<line y1="${m.t}" y2="${H-m.b}" x1="${x(v)}" x2="${x(v)}" stroke="#eef1f4"/><text x="${x(v)}" y="${H-m.b+17}" text-anchor="middle">${v}</text>`);
+  s+=`<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="none" stroke="#8c959f"/>`;
+  (o.hl||[]).forEach(h=>s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(h[0])}" y2="${y(h[0])}" stroke="${h[2]}" stroke-width="1.8" stroke-dasharray="${h[3]||"6 4"}"/><text x="${h[4]?m.l+5:W-m.r-5}" y="${h[4]?y(h[0])+15:y(h[0])-5}" text-anchor="${h[4]?"start":"end"}" style="fill:${h[2]};font-weight:700">${esc(h[1])}</text>`);
+  s+=`<g clip-path="url(#cp${o.id})">`;
+  o.series.forEach((se,i)=>{const c=se.color||COL[i];
+    if(!o.scatter)s+=`<polyline fill="none" stroke="${c}" stroke-width="2.3" points="${se.pts.map(p=>x(p[0])+","+y(p[1])).join(" ")}"/>`;
+    s+=se.pts.map(p=>`<circle cx="${x(p[0])}" cy="${y(p[1])}" r="${o.scatter?4.5:3}" fill="${c}" stroke="#fff" stroke-width="1"/>`).join("");});
+  s+=`</g><text x="${m.l+iw/2}" y="${H-6}" text-anchor="middle" class="t">${esc(o.xl)}</text><text transform="translate(14 ${m.t+ih/2}) rotate(-90)" text-anchor="middle" class="t">${esc(o.yl)}</text></svg>`;
+  s+=`<div class="legend">${o.series.map((se,i)=>`<span><i style="background:${se.color||COL[i]}"></i>${esc(se.name)}</span>`).join("")}</div>`;
+  return s;
 }
-
-fetch("home/status.json",{cache:"no-cache"}).then(r=>r.json()).then(S=>{
-  $("upd").textContent="Project log. Last updated "+S.updated+".";
-  $("summary").innerHTML=S.summary.map(p=>`<p>${esc(p)}</p>`).join("");
-  $("goalList").innerHTML=S.goal.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
-  $("planList").innerHTML=S.plan.map(item).join("");
-  $("todoLab").innerHTML=S.todo_lab.map(item).join("");
-  $("todoBench").innerHTML=S.todo_bench.map(item).join("");
-  $("findList").innerHTML=S.findings.map(t=>`<li>${esc(t)}</li>`).join("");
-  $("chart").innerHTML=chart(S.piped_chart);
-  const D=S.designs,num=i=>i>=2&&i<=4;
-  $("designTable").innerHTML=`<thead><tr>${D.cols.map((c,i)=>`<th${num(i)?' class="n"':""}>${esc(c)}</th>`).join("")}</tr></thead><tbody>`+
-    D.rows.map(r=>`<tr>${r.map((c,i)=>`<td${num(i)?' class="n"':""}>${esc(c)}</td>`).join("")}</tr>`).join("")+"</tbody>";
-  $("designNote").textContent=D.note; $("benchNote").textContent=S.bench.note;
-  $("benchRows").innerHTML=S.bench.rows.map(r=>`<tr><td>${esc(r[0])}</td><td class="n">${r[1].toFixed(2)}</td><td class="n">${r[2].toFixed(2)}</td></tr>`).join("");
-  $("logRows").innerHTML=S.log.map(([d,t])=>`<tr><td>${esc(d)}</td><td>${esc(t)}</td></tr>`).join("");
+/* gantt */
+function gantt(G,today){
+  const d=s=>new Date(s+"T00:00:00Z").getTime()/864e5,t0=d("2026-11-12"),t1=d("2026-12-06"),W=900,rh=26,lw=230,H=G.length*rh+34;
+  const x=v=>lw+(v-t0)/(t1-t0)*(W-lw-10);let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Project schedule">`;
+  for(let v=t0;v<=t1;v++){const dt=new Date(v*864e5),wd=dt.getUTCDay();if(wd===0||wd===6)s+=`<rect x="${x(v)}" y="20" width="${x(v+1)-x(v)}" height="${H-20}" fill="#f3f5f8"/>`;
+    if(wd===1||v===t0)s+=`<line x1="${x(v)}" x2="${x(v)}" y1="20" y2="${H}" stroke="#d8dee4"/><text x="${x(v)+3}" y="14">${dt.toLocaleString("en-US",{month:"short",timeZone:"UTC"})} ${dt.getUTCDate()}</text>`;}
+  G.forEach(([n,a,b,stt],i)=>{const yy=24+i*rh,c={done:"#1a7f37",active:"#0b5cad",planned:"#b8c2cc"}[stt];
+    s+=`<text x="0" y="${yy+15}" style="font-size:14px;font-weight:${stt==="active"?700:400};fill:${stt==="planned"?"#57606a":"#0d1117"}">${esc(n)}</text>`;
+    s+=`<rect x="${x(d(a))}" y="${yy+4}" width="${Math.max(x(d(b)+1)-x(d(a)),6)}" height="${rh-9}" fill="${c}"/>`;});
+  const tx=x(d(today)+0.6);s+=`<line x1="${tx}" x2="${tx}" y1="18" y2="${H}" stroke="#cf222e" stroke-width="2"/><text x="${tx+4}" y="${H-4}" style="fill:#cf222e;font-weight:700">today</text>`;
+  return s+"</svg>";
+}
+Promise.all([fetch("home/status.json",{cache:"no-cache"}).then(r=>r.json()),fetch("home/charts.json",{cache:"no-cache"}).then(r=>r.json())]).then(([S,C])=>{
+  $("upd").textContent=S.updated;
+  $("strip").innerHTML=S.strip.map(([k,v,sub],i)=>`<div class="c${i===1&&/running/i.test(v)?" live":""}"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="s">${esc(sub)}</div></div>`).join("");
+  $("sum").innerHTML=S.summary.map(([a,b])=>`<li><b>${esc(a)}</b> ${esc(b)}</li>`).join("");
+  $("gantt").innerHTML=gantt(S.gantt,S.today);
+  const R=S.requirements;$("req").innerHTML=table(R.cols,R.rows.map(r=>[...r.slice(0,4).map(esc),st(r[4])]));
+  $("c1").innerHTML=plot({id:1,aria:"Relative dose vs flow",x:[6,60],xlog:true,xt:[6,10,20,30,40,60],y:[1,2.8],yt:[1,1.5,2,2.5],xl:"flow, L/min (log)",yl:"relative dose",
+    series:C.piped.map(s=>({name:s.name,pts:s.pts})),hl:[[2.67,"limit for 0.3–0.8 mg/L","#cf222e"]]});
+  $("c2").innerHTML=plot({id:2,aria:"Water level vs flow",x:[0,40],xt:[0,10,20,30,40],y:[-25,30],yt:[-20,-10,0,10,20,30],xl:"flow, L/min",yl:"level above spout centre, cm",
+    series:C.level.map(s=>({name:s.name,pts:s.pts})),bands:[[2.2,5.8,"rgba(26,127,55,.13)"]],hl:[[5.8,"overflow +5.8","#cf222e","0"],[2.2,"bore top +2.2","#9a6700","6 4",1]]});
+  $("c3").innerHTML=plot({id:3,aria:"Port suction vs flow",x:[0,60],xt:[0,10,20,30,40,50,60],y:[0,14],yt:[0,2,4,6,8,10,12,14],xl:"flow, L/min",yl:"port suction, kPa",series:C.suction.map(s=>({name:s.name,pts:s.pts}))});
+  $("find").innerHTML=S.findings.map(([a,b])=>`<li><b>${esc(a)}</b> ${esc(b)}</li>`).join("");
+  const D=S.designs;$("des").innerHTML=table(D.cols,D.rows.map(r=>r.map(esc)),[3,4,5]);$("desNote").textContent=D.note;
+  $("actLab").innerHTML=table(["Item","Due","Status"],S.actions_lab.map(([a,b,c])=>[esc(a),esc(b),st(c)]));
+  $("actBench").innerHTML=table(["Item","Due","Status"],S.actions_bench.map(([a,b,c])=>[esc(a),esc(b),st(c)]));
+  $("benchNote").textContent=S.bench.note;
+  const hp=S.bench.rows.filter(r=>/Handpump/.test(r[0])),ot=S.bench.rows.filter(r=>!/Handpump/.test(r[0]));
+  $("c4").innerHTML=plot({id:4,aria:"Bench dose vs flow",scatter:true,x:[0,32],xt:[0,5,10,15,20,25,30],y:[0,2.2],yt:[0,0.5,1,1.5,2],xl:"flow, L/min",yl:"dose, mg/L",
+    bands:[[0.1,1.5,"rgba(26,127,55,.08)"],[0.3,0.8,"rgba(26,127,55,.2)"]],series:[{name:"V1 handpump",pts:hp.map(r=>[r[1],r[2]]),color:"#0b5cad"},{name:"V1 bench / piped",pts:ot.map(r=>[r[1],r[2]]),color:"#d55e00"}]});
+  $("benchT").innerHTML=table(["Run","Flow, L/min","Dose, mg/L"],S.bench.rows.map(r=>[esc(r[0]),r[1].toFixed(2),r[2].toFixed(2)]),[1,2]);
+  $("logT").innerHTML=table(["Date","What happened"],S.log.map(([a,b])=>[`<b>${esc(a)}</b>`,esc(b)]));
   $("links").innerHTML=S.links.map(([t,u])=>`<a href="${esc(u)}">${esc(t)}</a>`).join(" · ");
-}).catch(e=>{$("summary").innerHTML=`<p>Could not load the status file (${esc(e.message)}).</p>`});
+}).catch(e=>{$("sum").innerHTML=`<li>Could not load the page data (${esc(e.message)}).</li>`});
 
-let R,scene,cam,ctl,mesh;
-function initViewer(){
-  const el=$("viewer");R=new THREE.WebGLRenderer({antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
-  R.setSize(el.clientWidth,el.clientHeight);el.appendChild(R.domElement);scene=new THREE.Scene();
-  cam=new THREE.PerspectiveCamera(35,el.clientWidth/el.clientHeight,0.1,1e5);ctl=new THREE.OrbitControls(cam,R.domElement);
-  scene.add(new THREE.HemisphereLight(0xffffff,0x556070,0.9));const d=new THREE.DirectionalLight(0xffffff,0.6);d.position.set(1,2,3);cam.add(d);scene.add(cam);
-  new ResizeObserver(()=>{R.setSize(el.clientWidth,el.clientHeight);cam.aspect=el.clientWidth/el.clientHeight;cam.updateProjectionMatrix();}).observe(el);
-  (function loop(){requestAnimationFrame(loop);ctl.update();R.render(scene,cam);})();
-}
-function show(it,tr){
-  document.querySelectorAll(".cad tr").forEach(r=>r.classList.remove("on"));tr.classList.add("on");
-  $("viewer").scrollIntoView({behavior:"smooth",block:"nearest"});
+/* CAD list + STL preview */
+let Rr,scene,cam,ctl,mesh;
+function initViewer(){const el=$("viewer");Rr=new THREE.WebGLRenderer({antialias:true,alpha:true});Rr.setPixelRatio(Math.min(devicePixelRatio,2));
+  Rr.setSize(el.clientWidth,el.clientHeight);el.appendChild(Rr.domElement);scene=new THREE.Scene();
+  cam=new THREE.PerspectiveCamera(35,el.clientWidth/el.clientHeight,0.1,1e5);ctl=new THREE.OrbitControls(cam,Rr.domElement);
+  scene.add(new THREE.HemisphereLight(0xffffff,0x556070,0.95));const dl=new THREE.DirectionalLight(0xffffff,0.65);dl.position.set(1,2,3);cam.add(dl);scene.add(cam);
+  new ResizeObserver(()=>{Rr.setSize(el.clientWidth,el.clientHeight);cam.aspect=el.clientWidth/el.clientHeight;cam.updateProjectionMatrix();}).observe(el);
+  (function loop(){requestAnimationFrame(loop);ctl.update();Rr.render(scene,cam);})();}
+function show(it,row){document.querySelectorAll(".cad .f").forEach(r=>r.classList.remove("on"));row.classList.add("on");
+  if(innerWidth<860)$("viewer").scrollIntoView({behavior:"smooth",block:"nearest"});
   if(!it.stl){$("vmsg").textContent="No preview for this file";return;}
-  if(!R){try{initViewer();}catch(e){$("vmsg").textContent="3-D preview isn't available in this browser";return;}}
+  if(!Rr){try{initViewer();}catch(e){$("vmsg").textContent="3-D preview isn't available in this browser";return;}}
   $("vmsg").textContent="Loading "+it.name+" …";
-  new THREE.STLLoader().load("cad/"+it.stl,g=>{
-    if(mesh){scene.remove(mesh);mesh.geometry.dispose();}
+  new THREE.STLLoader().load("cad/"+it.stl,g=>{if(mesh){scene.remove(mesh);mesh.geometry.dispose();}
     g.computeVertexNormals();g.computeBoundingBox();const c=new THREE.Vector3();g.boundingBox.getCenter(c);g.translate(-c.x,-c.y,-c.z);g.computeBoundingBox();
-    mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0xa9b7c4,metalness:0.05,roughness:0.65,side:THREE.DoubleSide}));scene.add(mesh);
-    const sz=g.boundingBox.getSize(new THREE.Vector3()),r=sz.length();
-    cam.position.set(r*0.9,r*0.6,r*1.1);cam.near=r/100;cam.far=r*20;cam.updateProjectionMatrix();ctl.target.set(0,0,0);
-    $("vmsg").textContent=`${it.name}, ${sz.x.toFixed(0)} × ${sz.y.toFixed(0)} × ${sz.z.toFixed(0)} mm`;
-  },undefined,()=>{$("vmsg").textContent="The preview didn't load";});
-}
-fetch("cad/cad.json",{cache:"no-cache"}).then(r=>r.json()).then(C=>{
-  const box=$("cadList");
+    mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x8fa6bd,metalness:0.05,roughness:0.6,side:THREE.DoubleSide}));scene.add(mesh);
+    const sz=g.boundingBox.getSize(new THREE.Vector3()),r=sz.length();cam.position.set(r*0.9,r*0.6,r*1.1);cam.near=r/100;cam.far=r*20;cam.updateProjectionMatrix();ctl.target.set(0,0,0);
+    $("vmsg").textContent=`${it.name} — ${sz.x.toFixed(0)} × ${sz.y.toFixed(0)} × ${sz.z.toFixed(0)} mm`;},undefined,()=>{$("vmsg").textContent="The preview didn't load";});}
+fetch("cad/cad.json",{cache:"no-cache"}).then(r=>r.json()).then(C=>{const box=$("cadList");let first=null;
   C.groups.forEach(g=>{const its=C.items.filter(i=>i.group===g);if(!its.length)return;
-    const h=document.createElement("h3");h.textContent=g;box.appendChild(h);
-    const wrap=document.createElement("div");wrap.className="tw";const t=document.createElement("table");t.className="cad";
-    its.forEach(it=>{const tr=document.createElement("tr");
-      tr.innerHTML=`<td><a role="button" tabindex="0">${esc(it.name)}</a></td><td class="n">${it.kb>1024?(it.kb/1024).toFixed(1)+" MB":it.kb+" KB"}</td><td class="n"><a href="${esc(it.step)}" download>Download</a></td>`;
-      const a=tr.querySelector("td a");a.onclick=()=>show(it,tr);a.onkeydown=e=>{if(e.key==="Enter")show(it,tr)};t.appendChild(tr);});
-    wrap.appendChild(t);box.appendChild(wrap);});
+    const h=document.createElement("div");h.className="g";h.textContent=g;box.appendChild(h);
+    its.forEach(it=>{const d=document.createElement("div");d.className="f";
+      d.innerHTML=`<span>${esc(it.name)}</span><small>${it.kb>1024?(it.kb/1024).toFixed(1)+" MB":it.kb+" KB"}</small><a href="${esc(it.step)}" download>STEP ↓</a>`;
+      d.querySelector("a").onclick=e=>e.stopPropagation();d.onclick=()=>show(it,d);box.appendChild(d);if(!first)first=[it,d];});});
+  const io=new IntersectionObserver(es=>{if(es[0].isIntersecting&&first&&!Rr){show(...first);io.disconnect();}});io.observe($("viewer"));
 }).catch(e=>{$("cadList").textContent="Could not load the file list ("+e.message+").";});
 </script>
 </body>
