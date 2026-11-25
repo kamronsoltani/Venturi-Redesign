@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TuriTap CFD</title>
+<style>
+:root{
+  --bg:#1d2024; --panel:#25292e; --panel2:#2c3137; --line:#3a4048; --text:#d9dde2; --mute:#8d959f;
+  --acc:#4d9de0; --accB:#e0a23a; --warn:#e0a23a; --bad:#e05a4d; --ok:#5cb87a;
+  --mono: ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --sans: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:13px/1.35 var(--sans)}
+body{display:flex;flex-direction:column;height:100vh}
+#top{flex:0 0 40px;display:flex;align-items:center;gap:2px;padding:0 10px;background:var(--panel);border-bottom:1px solid var(--line)}
+#top .title{font-weight:600;margin-right:14px;white-space:nowrap}
+#top .tab{background:none;border:0;border-bottom:2px solid transparent;color:var(--mute);font:inherit;padding:10px 12px 9px;cursor:pointer;white-space:nowrap}
+#top .tab.on{color:var(--text);border-bottom-color:var(--acc)}
+#top .sp{flex:1}
+#top a{color:var(--mute);text-decoration:none;font-size:12px;margin-left:12px;white-space:nowrap}
+#top a:hover{color:var(--text)}
+.page{flex:1;min-height:0;display:none}
+.page.on{display:flex}
+button.seg,.segs button{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:3px;padding:4px 9px;font:inherit;cursor:pointer}
+.segs{display:flex;flex-wrap:wrap;gap:4px}
+.segs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.segs.b button.on{background:var(--accB);border-color:var(--accB);color:#1d2024}
+.sec{border-bottom:1px solid var(--line);padding:9px 11px}
+.sec h3{margin:0 0 7px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.note{color:var(--mute);font-size:11.5px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+td,th{padding:3px 4px;border-bottom:1px solid #30353c}
+td.n{text-align:right;font-family:var(--mono)}
+
+/* ---------- compare */
+#compare{overflow:auto;padding:14px;gap:14px;flex-wrap:wrap;align-content:flex-start}
+.card{background:var(--panel);border:1px solid var(--line);padding:12px 14px}
+.card h2{margin:0 0 4px;font-size:14px;font-weight:600}
+#chartCard{flex:1 1 640px;min-width:0}
+#sideCard{flex:0 1 380px}
+#matrixCard{flex:1 1 100%}
+#chart{width:100%;height:auto;display:block}
+#chart text{fill:var(--mute);font:11px var(--sans)}
+#chart .ax{stroke:var(--line)}
+#chart .grid{stroke:#2e3339}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px}
+.legend .g{display:flex;flex-direction:column;gap:3px;min-width:150px}
+.legend .gh{color:var(--mute);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.legend label{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px}
+.legend i{display:inline-block;width:16px;height:3px}
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 4px}
+.ctrl .lab{color:var(--mute);font-size:12px}
+#matrix th{color:var(--mute);font-weight:500;text-align:right;font-size:11.5px}
+#matrix th.l,#matrix td.l{text-align:left}
+#matrix td.c{text-align:right;font-family:var(--mono);cursor:pointer;width:62px}
+#matrix td.c:hover{outline:1px solid var(--acc);outline-offset:-1px}
+#matrix td.g{color:var(--mute);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding-top:9px}
+.lv0{background:#1f3a2a}.lv1{background:#4a3c1c}.lv2{background:#4d2422}
+.unst{font-style:italic;color:#c9b38a}
+.keyrow{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--mute)}
+.keyrow span b{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin-right:5px}
+#verdict td{vertical-align:top}
+#verdict .rec{color:var(--ok);font-weight:600}
+#verdict .rej{color:var(--mute)}
+#verdict .pos{color:var(--warn)}
+#verdict tr{cursor:pointer}
+#verdict tr:hover td{background:var(--panel2)}
+
+/* ---------- 3-D */
+#v3{display:none;grid-template-columns:280px minmax(0,1fr) 310px;grid-template-rows:minmax(0,1fr);min-height:0}
+#v3.on{display:grid}
+#left,#right{background:var(--panel);overflow:auto;min-height:0}
+#left{border-right:1px solid var(--line)}
+#right{border-left:1px solid var(--line)}
+.row{display:flex;align-items:center;gap:6px;margin:5px 0}
+.row label{flex:0 0 74px;color:var(--mute)}
+.row input[type=range]{flex:1;min-width:0}
+.row select{flex:1;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:3px;padding:2px}
+.row .v{font-family:var(--mono);font-size:11px;flex:0 0 46px;text-align:right}
+.chk{display:flex;align-items:center;gap:6px;margin:4px 0;cursor:pointer}
+.pick{margin-bottom:9px}
+.pick .lab{color:var(--mute);font-size:11.5px;margin-bottom:4px}
+#pickUp button{flex:1 1 100%;text-align:left}
+#pickQ button{min-width:38px}
+#pickQ button.unst::after{content:"~";color:var(--warn);margin-left:1px}
+#pickQ button.on.unst::after{color:inherit}
+#abRow{display:none;margin-bottom:9px}
+#v3.cmp #abRow{display:flex}
+#abRow button{flex:1}
+#abRow button[data-v="0"].on{background:var(--acc);border-color:var(--acc);color:#fff}
+#abRow button[data-v="1"].on{background:var(--accB);border-color:var(--accB);color:#1d2024}
+#center{display:flex;flex-direction:column;min-height:0;min-width:0}
+#viewBar{flex:0 0 auto;display:flex;gap:4px;align-items:center;flex-wrap:wrap;padding:6px 8px;border-bottom:1px solid var(--line);background:var(--panel)}
+#viewBar .sp{flex:1}
+#viewBar label{color:var(--mute);font-size:12px;display:flex;align-items:center;gap:4px;margin-left:8px}
+#views{flex:1;display:flex;min-height:0}
+.vp{position:relative;flex:1;min-width:0;overflow:hidden;border:2px solid transparent}
+.vp+.vp{border-left:1px solid var(--line)}
+#v3.cmp .vp.act{border-color:var(--acc)}
+#v3.cmp #vp1.act{border-color:var(--accB)}
+#vp1{display:none}
+#v3.cmp #vp1{display:block}
+.vp canvas{display:block}
+.vtag{display:none;position:absolute;left:8px;top:8px;font:600 12px var(--sans);padding:1px 7px;background:var(--acc);color:#fff}
+#vp1 .vtag{background:var(--accB);color:#1d2024}
+#v3.cmp .vtag{display:block}
+.leg{position:absolute;right:10px;top:10px;height:200px;width:70px;pointer-events:none}
+.leg .bar{position:absolute;right:0;top:4px;width:18px;height:180px;border:1px solid var(--line)}
+.leg .labs{position:absolute;right:24px;top:0;height:190px;display:flex;flex-direction:column;justify-content:space-between;font:11px var(--mono);text-align:right;text-shadow:0 0 3px #000}
+.leg .lt{position:absolute;right:0;top:188px;font:11px var(--sans);color:var(--mute);white-space:nowrap}
+.head{position:absolute;left:12px;bottom:10px;right:14px;font:12px var(--sans);color:var(--text);text-shadow:0 0 3px #000;pointer-events:none}
+.head .q{font:600 19px var(--sans)}
+.head .w{color:var(--warn)}
+.probe{position:absolute;display:none;pointer-events:none;background:rgba(20,23,27,.93);border:1px solid var(--line);padding:6px 9px;font:12px var(--sans);min-width:170px;z-index:3}
+.probe .ph{color:var(--mute);font-size:11px;margin-bottom:3px}
+.probe table td{border:0;padding:1px 0}
+.probe td.n{padding-left:12px}
+.probe tr.on td{color:#fff;font-weight:600}
+.probe .pl{color:var(--mute);font-size:11px;margin-top:3px}
+.loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--mute);background:rgba(29,32,36,.55)}
+.bars .b{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:12px}
+.bars .b span.l{flex:0 0 120px;color:var(--mute)}
+.bars .b span.t{height:10px;background:var(--acc)}
+.bars .b span.n{font-family:var(--mono);font-size:11px}
+.flag{color:var(--warn)}
+details summary{cursor:pointer;color:var(--mute);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+ul.note{padding-left:16px;margin:6px 0}
+#cmpSec{display:none}
+#v3.cmp #cmpSec{display:block}
+#cmpTab th{font-weight:600;text-align:right;font-size:11.5px}
+#cmpTab th.a{color:var(--acc)}#cmpTab th.b{color:var(--accB)}
+#cmpTab td.l{color:var(--mute)}
+#cmpTab td.gh{color:var(--mute);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding-top:8px}
+.better{color:var(--ok)}.worse{color:var(--bad)}
+
+/* ---------- iframes */
+.page iframe{flex:1;border:0}
+#lab iframe{background:#fff}
+
+@media (max-width:900px){
+  body{height:auto;min-height:100vh}
+  #top{flex-wrap:wrap;height:auto;padding:4px 8px}
+  #v3.on{display:flex;flex-direction:column}
+  #center{flex:none}
+  #views{height:70vh;flex-direction:column}
+  .vp+.vp{border-left:0;border-top:1px solid var(--line)}
+  #left,#right{border:0;border-top:1px solid var(--line)}
+  .page iframe{height:85vh}
+}
+</style>
+</head>
+<body>
+<div id="top">
+  <span class="title">TuriTap CFD · Stage 5b</span>
+  <button class="tab" data-tab="compare">Compare</button>
+  <button class="tab" data-tab="v3">3-D flow</button>
+  <button class="tab" data-tab="v2">2-D Venturi studies</button>
+  <span class="sp"></span>
+  <button class="tab" data-tab="lab">Lab PC status</button>
+  <a href="../">Home</a><a href="https://github.com/kamronsoltani/Venturi-Redesign">GitHub</a>
+</div>
+
+<!-- ======================= COMPARE ======================= -->
+<div class="page" id="compare">
+  <div class="card" id="chartCard">
+    <h2>Water level above the inlet centre vs flow</h2>
+    <div class="note">Steady RANS, medium mesh, 11 assemblies × 9 flows plus the 3/4in elbow retrofit pair. Overflow when the level reaches the spout: about 5.8 cm on an Afridev, 16.3 cm on an India Mark II. Hollow markers: the level was still moving by more than 3 cm over the last 500 iterations (unsteady separation), so treat the point as a band, not a value. Dashed lines: the 3/4in elbow retrofit pair on the corrected (aligned) mesh.</div>
+    <div class="ctrl"><span class="lab">Y range</span>
+      <div class="segs" id="yr"><button data-y="spout" class="on">Around the spouts</button><button data-y="full">Full range</button></div>
+      <span class="lab" style="margin-left:10px">Show</span>
+      <div class="segs" id="quick"><button data-s="all">All</button><button data-s="lr">Long-radius only</button><button data-s="best">Shortlist</button><button data-s="retro">3/4in elbow retrofit</button></div>
+    </div>
+    <svg id="chart" viewBox="0 0 760 400"></svg>
+    <div class="legend" id="legend3"></div>
+  </div>
+  <div class="card" id="sideCard">
+    <h2>Shortlist</h2>
+    <div class="note" style="margin-bottom:6px">Highest average flow with no overflow (low end of the onset range), from fits of level vs flow. Click a row to open it in 3-D at 30 L/min.</div>
+    <table id="verdict"></table>
+    <div class="note" style="margin-top:8px">The 26 mm exits are expected to stop dosing just under 8 L/min; the current part doses down to about 6 L/min on the bench. A 23–24 mm exit on V2/V3 is the candidate fix (not yet simulated).</div>
+  </div>
+  <div class="card" id="matrixCard">
+    <h2>All cases: level above the inlet centre (cm)</h2>
+    <div class="note">Click any cell to open that design at that flow in the 3-D viewer. The last two rows (3/4in elbow retrofit) were run on the corrected, aligned mesh, whose symmetry plane sits exactly on the centreline; compare them with each other. The other rows use the original mesh setting, which reads the same part up to about 1 cm differently at 30 L/min.</div>
+    <table id="matrix"></table>
+    <div class="keyrow"><span><b class="lv0"></b>below the Afridev spout</span><span><b class="lv1"></b>overflows an Afridev, below the India Mark II spout</span><span><b class="lv2"></b>overflows both</span><span><i class="unst">~12.3</i> unsteady, band rather than value</span></div>
+  </div>
+</div>
+
+<!-- ======================= 3-D ======================= -->
+<div class="page" id="v3">
+  <div id="left">
+    <div class="sec"><h3>Design</h3>
+      <div class="segs" id="abRow"><button data-v="0" class="on">Left (A)</button><button data-v="1">Right (B)</button></div>
+      <div class="pick"><div class="lab">Reducer and elbow</div><div class="segs" id="pickUp"></div></div>
+      <div class="pick"><div class="lab">Venturi</div><div class="segs" id="pickV"></div></div>
+      <div class="pick" style="margin:0"><div class="lab">Flow, L/min</div><div class="segs" id="pickQ"></div></div>
+    </div>
+    <div class="sec"><h3>Show</h3>
+      <div class="row"><label>Centre plane</label><select id="cf"><option value="spd">speed (m/s)</option><option value="p">pressure (kPa)</option><option value="off">hidden</option></select></div>
+      <div class="row"><label>Wall</label><select id="wf"><option value="none" selected>plain</option><option value="p">pressure (kPa)</option><option value="tau">wall shear (Pa)</option></select></div>
+      <div class="row"><label>Wall opacity</label><input type="range" id="wo" min="0" max="1" step="0.05" value="0.3"><span class="v" id="woV"></span></div>
+      <label class="chk"><input type="checkbox" id="cut" checked> Cutaway (front half removed)</label>
+      <label class="chk"><input type="checkbox" id="showP" checked> Moving particles</label>
+      <label class="chk"><input type="checkbox" id="showSL"> Streamlines</label>
+      <label class="chk"><input type="checkbox" id="lockScale"> Keep colour scale when switching cases</label>
+    </div>
+    <div class="sec"><details><summary>More display settings</summary>
+      <div class="row"><label>Particles</label><input type="range" id="np" min="500" max="20000" step="500" value="8000"><span class="v" id="npV"></span></div>
+      <div class="row"><label>Slow-down</label><input type="range" id="ts" min="-3" max="0" step="0.05" value="-1.3"><span class="v" id="tsV"></span></div>
+      <div class="row"><label>Point size</label><input type="range" id="ps" min="0.5" max="6" step="0.1" value="2.2"><span class="v" id="psV"></span></div>
+      <div class="row"><label>Colour map</label><select id="cmap"><option>turbo</option><option>viridis</option><option>coolwarm</option></select></div>
+    </details></div>
+    <div class="sec note">Drag to rotate, right-drag to pan, wheel to zoom. Particles start at the inlet and follow computed streamlines at the local water speed, slowed down for viewing. Half domain, mirrored. In side-by-side mode click a view to make it the one the Design buttons change.</div>
+  </div>
+  <div id="center">
+    <div id="viewBar">
+      <div class="segs" id="modeSeg"><button data-m="1" class="on">Single</button><button data-m="2">Side by side</button></div>
+      <span class="sp"></span>
+      <button class="seg" data-cam="iso">Iso</button><button class="seg" data-cam="side">Side</button><button class="seg" data-cam="venturi">Venturi</button><button class="seg" data-cam="elbow">Elbow</button><button class="seg" id="play">Pause</button>
+      <label class="cmpOnly"><input type="checkbox" id="syncCam" checked> Link cameras</label>
+      <label class="cmpOnly"><input type="checkbox" id="sameScale" checked> Same colour scale</label>
+    </div>
+    <div id="views"></div>
+  </div>
+  <div id="right">
+    <div class="sec" id="cmpSec"><h3>A vs B</h3><table id="cmpTab"></table>
+      <div class="note" style="margin-top:6px">Green/red in the B−A column: B is better/worse (a lower water level and lower losses are better; stronger port suction is better).</div></div>
+    <div class="sec"><h3 id="detH">Water level (cm)</h3><table id="lv"></table></div>
+    <div class="sec"><h3>Where the head goes (cm)</h3><div class="bars" id="loss"></div></div>
+    <div class="sec"><h3>Chlorine port wall pressure</h3><table id="port"></table></div>
+    <div class="sec"><h3>Outlet and diffuser</h3><table id="out"></table></div>
+    <div class="sec"><h3>Run quality</h3><table id="qual"></table></div>
+    <div class="sec"><details><summary>Assumptions</summary><ul class="note" id="asm"></ul></details></div>
+  </div>
+</div>
+
+<!-- ======================= 2-D + LAB ======================= -->
+<div class="page" id="v2"><iframe id="v2Frame" title="2-D Venturi studies"></iframe></div>
+<div class="page" id="lab"><iframe id="labFrame" title="Lab PC status and controls"></iframe></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const fmt=(v,d=2)=>v==null||isNaN(v)?"–":(+v).toFixed(d);
+const AFRIDEV=5.8, IM2=16.3, UNSTEADY=3;
+let SITE=null;
+const caseKey=(a,q)=>`${a}_Q${q}`;
+const isUnst=c=>c&&c.drift!=null&&Math.abs(c.drift)>UNSTEADY;
+
+const COL={asm34_current:"#e05a4d",asm34_A:"#e0a23a",asm34_Bvane:"#c77dba",
+  asm1e_V1:"#9cc8f0",asm1e_V2:"#62a6e6",asm1e_V3:"#2f7fcf",asm1e_V4:"#8a9bb0",
+  asm1lr_V1:"#a6dcb4",asm1lr_V2:"#5cb87a",asm1lr_V3:"#2e8f50",asm1lr_V4:"#b5c27a",
+  asm34_current_zfix:"#f2b8b0",asm34lr_current:"#ffc94d"};
+const DASHED=g=>g==="p34";   // aligned-mesh pair: drawn dashed, compare with each other
+// shortlist from the Stage 5b physics review (2026-11-19): Afridev-safe / IM2-safe average flow, L/min
+const VERDICT=[
+  ["asm1lr_V3",47,58,"rec","Recommend: most margin; no overflow in the field check"],
+  ["asm1lr_V2",39,48,"rec","Recommend: best balance; steady"],
+  ["asm1lr_V1",31,37,"pos","Possible: unsteady above 30 L/min"],
+  ["asm1e_V3",35,44,"pos","Fallback if the long-radius elbow can't be used"],
+  ["asm1e_V2",29,37,"pos","India Mark II only"],
+  ["asm34lr_current",20,25,"pos","Cheap retrofit: same Venturi, ~2 L/min more than the threaded elbow (aligned mesh)"],
+  ["asm1lr_V4",33,39,"rej","30 mm exit: no dosing at 8 L/min"],
+  ["asm1e_V4",25,31,"rej","30 mm exit: no dosing at 8 L/min"],
+  ["asm1e_V1",23,29,"rej","Low margin, unsteady"],
+  ["asm34_A",21,27,"rej","Only +3 L/min over current"],
+  ["asm34_Bvane",20,25,"rej","Unsteady above 20 L/min"],
+  ["asm34_current",18,23,"rej","Overflows an Afridev in normal use"]];
+const shortName=a=>{const A=SITE.assemblies.find(x=>x.id===a);return {e34:"3/4in",e1:"1in E-Sig",lr:"1in long-radius",p34:"3/4in current Venturi"}[A.group]+" · "+A.venturi;};
+
+// ------------------------------------------------ tabs + routing
+function show(tab){
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id===tab));
+  if(tab==="lab"&&!$("labFrame").src)$("labFrame").src="../control/";
+  if(tab==="v2"&&!$("v2Frame").src)$("v2Frame").src="../2d/";
+  if(tab==="v3"){if(!started)start3d();resizeAll();}
+}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
+  if(b.dataset.tab==="v3")setHash();else location.hash=b.dataset.tab;}));
+
+let cmp=false,active=0;
+const sels=[{asm:"asm1lr_V2",q:30},{asm:"asm34_current",q:30}];
+function setHash(){location.hash="3d/"+sels[0].asm+"/"+sels[0].q+(cmp?"/"+sels[1].asm+"/"+sels[1].q:"");}
+function validSel(a,q,s){if(a&&SITE.assemblies.some(x=>x.id===a))s.asm=a;if(q&&+q)s.q=+q;}
+function route(){
+  const h=location.hash.replace(/^#/,"");
+  if(h.startsWith("3d")){const p=h.split("/");
+    validSel(p[1],p[2],sels[0]);
+    if(p.length>=5){validSel(p[3],p[4],sels[1]);setCmp(true,false);}else setCmp(false,false);
+    show("v3");syncPickers();loadAll();}
+  else if(h==="lab"||h==="v2")show(h);else show("compare");
+}
+addEventListener("hashchange",route);
+const open3d=(a,q)=>{sels[active].asm=a;sels[active].q=q;setHash();};
+
+// ------------------------------------------------ compare: chart
+const visible=new Set();
+let yMode="spout";
+function var_(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+function drawChart(){
+  const W=760,H=400,m={l:52,r:14,t:12,b:38};
+  const xs=q=>m.l+q/62*(W-m.l-m.r);
+  const [y0,y1]=yMode==="spout"?[-22,40]:[-22,170];
+  const ys=v=>m.t+(1-(v-y0)/(y1-y0))*(H-m.t-m.b);
+  let s="";
+  const yt=yMode==="spout"?[-20,-10,0,10,20,30,40]:[0,25,50,75,100,125,150];
+  yt.forEach(v=>{s+=`<line class="grid" x1="${m.l}" x2="${W-m.r}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${m.l-6}" y="${ys(v)+4}" text-anchor="end">${v}</text>`;});
+  [0,10,20,30,40,50,60].forEach(q=>{s+=`<line class="grid" y1="${m.t}" y2="${H-m.b}" x1="${xs(q)}" x2="${xs(q)}"/><text x="${xs(q)}" y="${H-m.b+16}" text-anchor="middle">${q}</text>`;});
+  s+=`<text x="${(m.l+W-m.r)/2}" y="${H-4}" text-anchor="middle">flow, L/min</text><text transform="translate(13 ${(m.t+H-m.b)/2}) rotate(-90)" text-anchor="middle">level above inlet centre, cm</text>`;
+  [[AFRIDEV,"Afridev spout",var_("--warn")],[IM2,"India Mark II spout",var_("--bad")]].forEach(([v,l,c])=>{
+    s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${ys(v)}" y2="${ys(v)}" stroke="${c}" stroke-dasharray="6 4" stroke-width="1.3"/><text x="${m.l+6}" y="${ys(v)-5}" style="fill:${c}">${l} (${v} cm)</text>`;});
+  s+=`<clipPath id="clp"><rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}"/></clipPath><g clip-path="url(#clp)">`;
+  SITE.assemblies.filter(a=>visible.has(a.id)).forEach(a=>{
+    const pts=a.flows.map(q=>[q,SITE.cases[caseKey(a.id,q)]]).filter(p=>p[1]&&p[1].level!=null);
+    s+=`<polyline fill="none" stroke="${COL[a.id]}" stroke-width="2"${DASHED(a.group)?' stroke-dasharray="7 4"':""} points="${pts.map(([q,c])=>`${xs(q)},${ys(c.level)}`).join(" ")}"/>`;
+    pts.forEach(([q,c])=>{const u=isUnst(c);
+      s+=`<circle cx="${xs(q)}" cy="${ys(c.level)}" r="${u?4.2:3.2}" fill="${u?var_("--panel"):COL[a.id]}" stroke="${COL[a.id]}" stroke-width="1.6" style="cursor:pointer" data-a="${a.id}" data-q="${q}"><title>${shortName(a.id)}, ${q} L/min: ${fmt(c.level,1)} cm${u?` (unsteady, moving ${fmt(c.drift,1)} cm)`:""}</title></circle>`;});
+  });
+  s+=`</g><line class="ax" x1="${m.l}" x2="${m.l}" y1="${m.t}" y2="${H-m.b}"/><line class="ax" x1="${m.l}" x2="${W-m.r}" y1="${H-m.b}" y2="${H-m.b}"/>`;
+  $("chart").innerHTML=s;
+  $("chart").querySelectorAll("circle[data-a]").forEach(c=>c.addEventListener("click",()=>open3d(c.dataset.a,+c.dataset.q)));
+}
+function buildLegend(){
+  $("legend3").innerHTML=Object.entries(SITE.groups).map(([g,gl])=>`<div class="g"><span class="gh">${gl}</span>`+
+    SITE.assemblies.filter(a=>a.group===g).map(a=>`<label><input type="checkbox" data-a="${a.id}"${visible.has(a.id)?" checked":""}><i style="background:${DASHED(a.group)?`repeating-linear-gradient(90deg,${COL[a.id]} 0 5px,transparent 5px 8px)`:COL[a.id]}"></i>${a.venturi}</label>`).join("")+"</div>").join("");
+  $("legend3").querySelectorAll("input").forEach(i=>i.addEventListener("change",()=>{i.checked?visible.add(i.dataset.a):visible.delete(i.dataset.a);drawChart();}));
+}
+function quick(k){visible.clear();
+  SITE.assemblies.forEach(a=>{if(k==="all"||(k==="lr"&&a.group==="lr")||(k==="best"&&["asm34_current","asm1lr_V1","asm1lr_V2","asm1lr_V3","asm1e_V3"].includes(a.id))||(k==="retro"&&a.group==="p34"))visible.add(a.id);});
+  document.querySelectorAll("#quick button").forEach(b=>b.classList.toggle("on",b.dataset.s===k));buildLegend();drawChart();}
+$("quick").addEventListener("click",e=>{if(e.target.dataset.s)quick(e.target.dataset.s);});
+$("yr").addEventListener("click",e=>{if(!e.target.dataset.y)return;yMode=e.target.dataset.y;document.querySelectorAll("#yr button").forEach(b=>b.classList.toggle("on",b===e.target));drawChart();});
+
+function buildMatrix(){
+  const flows=[...new Set(SITE.assemblies.flatMap(a=>a.flows))].sort((a,b)=>a-b);
+  let h=`<tr><th class="l">Design</th>${flows.map(q=>`<th>${q} L/min</th>`).join("")}</tr>`;
+  Object.entries(SITE.groups).forEach(([g,gl])=>{
+    h+=`<tr><td class="g" colspan="${flows.length+1}">${gl}</td></tr>`;
+    SITE.assemblies.filter(a=>a.group===g).forEach(a=>{
+      h+=`<tr><td class="l"><i style="display:inline-block;width:10px;height:10px;background:${COL[a.id]};margin-right:6px"></i>${a.venturi}</td>`+flows.map(q=>{
+        const c=SITE.cases[caseKey(a.id,q)];if(!c||c.level==null)return "<td></td>";
+        const k=c.level<AFRIDEV?"lv0":c.level<IM2?"lv1":"lv2",u=isUnst(c);
+        return `<td class="c ${k}${u?" unst":""}" data-a="${a.id}" data-q="${q}" title="${shortName(a.id)}, ${q} L/min${u?`: unsteady, level still moving ${fmt(c.drift,1)} cm`:""}">${u?"~":""}${fmt(c.level,1)}</td>`;}).join("")+"</tr>";});
+  });
+  $("matrix").innerHTML=h;
+  $("matrix").querySelectorAll("td.c").forEach(td=>td.addEventListener("click",()=>open3d(td.dataset.a,+td.dataset.q)));
+  $("verdict").innerHTML=`<tr><th class="l" style="text-align:left">Design</th><th>Afridev</th><th>IM2</th></tr>`+VERDICT.map(([a,af,im,k,t])=>
+    `<tr data-a="${a}"><td><span class="${k}">${shortName(a)}</span><div class="note">${t}</div></td><td class="n">${af}</td><td class="n">${im}</td></tr>`).join("");
+  $("verdict").querySelectorAll("tr[data-a]").forEach(tr=>tr.addEventListener("click",()=>open3d(tr.dataset.a,30)));
+}
+
+// ================================================= 3-D viewers
+const CMAPS={
+ turbo:[[48,18,59],[70,107,227],[40,170,240],[31,220,181],[108,250,96],[190,240,52],[250,186,57],[245,107,26],[204,46,4],[122,4,3]],
+ viridis:[[68,1,84],[72,40,120],[62,74,137],[49,104,142],[38,130,142],[31,158,137],[53,183,121],[110,206,88],[181,222,43],[253,231,37]],
+ coolwarm:[[59,76,192],[98,130,234],[141,176,254],[184,208,249],[221,221,221],[245,196,173],[244,154,123],[222,96,77],[180,4,38],[180,4,38]]
+};
+function cm(name,t){const c=CMAPS[name];t=Math.min(1,Math.max(0,t))*(c.length-1);const i=Math.min(c.length-2,Math.floor(t)),f=t-i;
+ return [(c[i][0]+(c[i+1][0]-c[i][0])*f)/255,(c[i][1]+(c[i+1][1]-c[i][1])*f)/255,(c[i][2]+(c[i+1][2]-c[i][2])*f)/255];}
+function pct(a,lo,hi){const s=Float32Array.from(a).sort();return [s[Math.floor(lo*(s.length-1))],s[Math.floor(hi*(s.length-1))]];}
+
+async function loadBin(url){
+  const r=await fetch(url);if(!r.ok)throw new Error(url+" "+r.status);
+  const buf=await r.arrayBuffer(),dv=new DataView(buf),hl=dv.getUint32(0,true);
+  const hdr=JSON.parse(new TextDecoder().decode(new Uint8Array(buf,4,hl))),base=4+hl,o={meta:hdr.meta};
+  for(const a of hdr.arrays){const n=a.n*a.comp,off=base+a.offset;
+    if(a.type==="u16"){const q=new Uint16Array(buf,off,n),f=new Float32Array(n),k=a.comp;
+      for(let c=0;c<k;c++){const lo=a.lo[c],sc=(a.hi[c]-a.lo[c])/65535;for(let i=c;i<n;i+=k)f[i]=lo+q[i]*sc;}o[a.name]=f;}
+    else if(a.type==="u32")o[a.name]=new Uint32Array(buf,off,n);else o[a.name]=new Float32Array(buf,off,n);}
+  return o;
+}
+const geoCache=new Map();
+const getGeo=a=>{if(!geoCache.has(a))geoCache.set(a,loadBin(`../data/geom/${a}.bin`));return geoCache.get(a);};
+
+function meshFrom(pos0,tri,mirror){
+  const g=new THREE.BufferGeometry(),pos=Float32Array.from(pos0);
+  if(mirror)for(let i=2;i<pos.length;i+=3)pos[i]=-pos[i];
+  g.setAttribute("position",new THREE.BufferAttribute(pos,3));
+  const idx=Uint32Array.from(tri);
+  if(mirror)for(let i=0;i<idx.length;i+=3){const t=idx[i+1];idx[i+1]=idx[i+2];idx[i+2]=t;}
+  g.setIndex(new THREE.BufferAttribute(idx,1));
+  g.setAttribute("color",new THREE.BufferAttribute(new Float32Array(pos.length),3));
+  g.computeVertexNormals();return g;
+}
+function colorize(geom,vals,lo,hi,map){const c=geom.attributes.color.array;
+  for(let i=0;i<vals.length;i++){const k=cm(map,(vals[i]-lo)/(hi-lo||1));c[3*i]=k[0];c[3*i+1]=k[1];c[3*i+2]=k[2];}
+  geom.attributes.color.needsUpdate=true;}
+
+let lockedRanges={};
+const shared=()=>cmp&&$("sameScale").checked;
+// colour range for one field: this view alone, or the union of both views when "Same colour scale" is on
+function rangeFor(v,key){
+  const lk=shared()?key:v.idx+":"+key;
+  if($("lockScale").checked&&lockedRanges[lk])return lockedRanges[lk];
+  const list=shared()?viewers.filter(x=>x.F&&x.visible()):[v];
+  let lo=Infinity,hi=-Infinity;
+  for(const x of list){const r=x.pctOf(key);lo=Math.min(lo,r[0]);hi=Math.max(hi,r[1]);}
+  return lockedRanges[lk]=[lo,hi];
+}
+const FIELD={wp:"wall_p",wtau:"wall_tau",cspd:"centre_spd",cp:"centre_p",s:"sl_spd"};
+
+let syncing=false;
+class Viewer{
+  constructor(idx){
+    this.idx=idx;this.sel=sels[idx];
+    const el=document.createElement("div");el.className="vp";el.id="vp"+idx;
+    el.innerHTML=`<canvas></canvas><div class="vtag">${idx?"B":"A"}</div><div class="leg"><div class="bar"></div><div class="labs"></div><div class="lt"></div></div><div class="head"></div><div class="probe"></div><div class="loading">Loading…</div>`;
+    $("views").appendChild(el);this.el=el;this.cv=el.querySelector("canvas");
+    el.addEventListener("pointerdown",()=>setActive(idx));
+    // hover probe: value under the cursor (mirrored to the other view when cameras are linked)
+    this.hover=null;this.hoverDirty=false;
+    const setH=h=>{const list=cmp&&$("syncCam").checked?viewers.filter(v=>v.visible()):[this];list.forEach(v=>{v.hover=h;v.hoverDirty=true;});};
+    this.cv.addEventListener("pointermove",e=>{const r=this.cv.getBoundingClientRect();
+      setH(e.buttons?null:{fx:(e.clientX-r.left)/r.width,fy:(e.clientY-r.top)/r.height});});
+    this.cv.addEventListener("pointerleave",()=>setH(null));
+    this.cv.addEventListener("pointerdown",()=>setH(null));
+    this.R=null;this.wantKey=null;this.seq=0;this.curAsm=null;this.G=null;this.F=null;this.pc={};
+  }
+  visible(){return this.idx===0||cmp;}
+  init(){
+    if(this.R)return;
+    const R=this.R=new THREE.WebGLRenderer({canvas:this.cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));R.setClearColor(0x1d2024);
+    this.scene=new THREE.Scene();this.cam=new THREE.PerspectiveCamera(35,1,1,5000);
+    this.ctl=new THREE.OrbitControls(this.cam,this.cv);this.ctl.enableDamping=true;
+    this.ctl.addEventListener("change",()=>{
+      if(syncing||!cmp||!$("syncCam").checked)return;const o=viewers[1-this.idx];if(!o||!o.R)return;
+      syncing=true;o.cam.position.copy(this.cam.position);o.ctl.target.copy(this.ctl.target);o.ctl.update();syncing=false;});
+    this.scene.add(new THREE.HemisphereLight(0xffffff,0x334455,0.9));
+    const dl=new THREE.DirectionalLight(0xffffff,0.5);dl.position.set(200,300,400);this.scene.add(dl);
+    this.root=new THREE.Group();this.scene.add(this.root);
+    this.ray=new THREE.Raycaster();this.ndc=new THREE.Vector2();
+    this.marker=new THREE.Mesh(new THREE.SphereGeometry(1.3,16,12),new THREE.MeshBasicMaterial({color:0xffffff,depthTest:false}));
+    this.marker.renderOrder=10;this.marker.visible=false;this.scene.add(this.marker);
+  }
+  probe(){
+    this.hoverDirty=false;
+    const tip=this.el.querySelector(".probe"),hide=()=>{tip.style.display="none";if(this.marker)this.marker.visible=false;};
+    const h=this.hover;if(!h||!this.F||!this.R)return hide();
+    this.ndc.set(h.fx*2-1,-h.fy*2+1);this.ray.setFromCamera(this.ndc,this.cam);
+    const T=[];if(this.cenMesh)T.push(this.cenMesh);
+    if(+$("wo").value>=0.05){T.push(this.wallMesh);if(this.wallMeshM.visible)T.push(this.wallMeshM);}
+    // prefer the surface that is being coloured: a plain see-through wall should not block the centre plane
+    const hits=this.ray.intersectObjects(T,false);
+    const onC=hits.find(x=>x.object===this.cenMesh),onW=hits.find(x=>x.object!==this.cenMesh);
+    const hit=$("wf").value==="none"?(onC||onW):(onW||onC);if(!hit)return hide();
+    const f=hit.face,P=hit.object.geometry.attributes.position,F=this.F;
+    const a=new THREE.Vector3().fromBufferAttribute(P,f.a),b=new THREE.Vector3().fromBufferAttribute(P,f.b),c=new THREE.Vector3().fromBufferAttribute(P,f.c);
+    const bc=new THREE.Vector3();THREE.Triangle.getBarycoord(hit.point,a,b,c,bc);
+    const val=arr=>arr[f.a]*bc.x+arr[f.b]*bc.y+arr[f.c]*bc.z;
+    const isC=hit.object===this.cenMesh,cf=$("cf").value,wf=$("wf").value;
+    const kpa=v=>`${fmt(v,2)} kPa <span class="note">(${fmt(v*101.97,1)} mm water)</span>`;
+    const rows=isC?[["Speed",fmt(val(F.centre_spd),2)+" m/s",cf==="spd"],["Pressure",kpa(val(F.centre_p)),cf==="p"]]
+                  :[["Wall pressure",kpa(val(F.wall_p)),wf==="p"],["Wall shear",fmt(val(F.wall_tau),2)+" Pa",wf==="tau"]];
+    const S=this.G.meta.stations,p=hit.point;
+    tip.innerHTML=`<div class="ph">${cmp?(this.idx?"B · ":"A · "):""}${isC?"Centre plane":"Wall"}</div><table>`+
+      rows.map(([l,v,on])=>`<tr class="${on?"on":""}"><td>${l}</td><td class="n">${v}</td></tr>`).join("")+
+      `</table><div class="pl">${fmt(p.y-S.port_Y,0)} mm ${p.y>=S.port_Y?"above":"below"} the chlorine port · x ${fmt(p.x,0)}, y ${fmt(p.y,0)}, z ${fmt(Math.abs(p.z),0)} mm</div>`;
+    tip.style.display="block";
+    const W=this.el.clientWidth,H=this.el.clientHeight,x=h.fx*W,y=h.fy*H;
+    tip.style.left=Math.min(x+16,W-tip.offsetWidth-6)+"px";tip.style.top=Math.min(y+16,H-tip.offsetHeight-6)+"px";
+    this.marker.position.copy(p);this.marker.visible=true;
+  }
+  resize(){if(!this.R)return;const w=this.el.clientWidth,h=this.el.clientHeight;if(!w||!h)return;
+    this.R.setSize(w,h,false);this.cv.style.width=w+"px";this.cv.style.height=h+"px";this.cam.aspect=w/h;this.cam.updateProjectionMatrix();}
+  pctOf(key){if(!this.pc[key]){const v=this.F[FIELD[key]];this.pc[key]=key==="s"?[0,pct(v,0,0.98)[1]]:pct(v,0.02,0.98);}return this.pc[key];}
+  async load(){
+    this.init();
+    const a=this.sel.asm,q=this.sel.q,key=caseKey(a,q);
+    if(this.wantKey===key)return;
+    this.wantKey=key;const my=++this.seq,L=this.el.querySelector(".loading");
+    L.style.display="flex";L.textContent="Loading…";
+    try{
+      const [g,f]=await Promise.all([getGeo(a),loadBin(`../data/flow/${a}_Q${q}.bin`)]);
+      if(my!==this.seq)return;
+      this.G=g;this.F=f;this.pc={};
+      f.lines=[];let st=0;for(const n of f.sl_len){f.lines.push([st,n]);st+=n;}
+      this.resize();
+      if(shared())viewers.forEach(v=>{if(v.F&&v.visible())v.build();});else this.build();
+      if(this.curAsm!==a){this.bbox=new THREE.Box3().setFromObject(this.wallMesh).union(new THREE.Box3().setFromObject(this.wallMeshM));
+        const o=viewers[1-this.idx];
+        if(cmp&&$("syncCam").checked&&o&&o.F&&o.curAsm){this.cam.position.copy(o.cam.position);this.ctl.target.copy(o.ctl.target);this.ctl.update();}
+        else this.camPreset("iso");
+        this.curAsm=a;}
+      this.fillHead();L.style.display="none";fillPanels();
+    }catch(err){if(my===this.seq){this.wantKey=null;L.textContent="Could not load this case: "+err.message;}}
+  }
+  build(){
+    const root=this.root,G=this.G,F=this.F;root.clear();
+    const mapn=$("cmap").value,wf=$("wf").value,cf=$("cf").value,op=+$("wo").value;
+    const wm=new THREE.MeshPhongMaterial({vertexColors:wf!=="none",color:wf==="none"?0x9aa4ae:0xffffff,transparent:true,opacity:op,side:THREE.DoubleSide,depthWrite:op>0.95,shininess:20});
+    const g1=meshFrom(G.wall_pos,G.wall_tri,false),g2=meshFrom(G.wall_pos,G.wall_tri,true);
+    let leg=null;
+    if(wf!=="none"){const k=wf==="p"?"wp":"wtau",v=F[FIELD[k]],[lo,hi]=rangeFor(this,k);colorize(g1,v,lo,hi,mapn);colorize(g2,v,lo,hi,mapn);leg=[wf==="p"?"wall p, kPa":"wall shear, Pa",lo,hi];}
+    this.wallMesh=new THREE.Mesh(g1,wm);this.wallMesh.renderOrder=2;root.add(this.wallMesh);
+    this.wallMeshM=new THREE.Mesh(g2,wm);this.wallMeshM.renderOrder=2;this.wallMeshM.visible=!$("cut").checked;root.add(this.wallMeshM);
+    this.cenMesh=null;
+    if(cf!=="off"){const k=cf==="spd"?"cspd":"cp",gc=meshFrom(G.centre_pos,G.centre_tri,false),v=F[FIELD[k]],[lo,hi]=rangeFor(this,k);
+      colorize(gc,v,lo,hi,mapn);this.cenMesh=new THREE.Mesh(gc,new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide}));root.add(this.cenMesh);
+      leg=[cf==="spd"?"speed, m/s":"p, kPa",lo,hi];}
+    this.setLegend(leg,mapn);
+    const smax=rangeFor(this,"s")[1];
+    const npt=F.sl_spd.length,sp=new Float32Array(6*npt),sc=new Float32Array(6*npt);let m=0,st=0;
+    for(const n of F.sl_len){for(let i=st;i<st+n-1;i++){for(const j of [i,i+1]){sp[3*m]=F.sl_pos[3*j];sp[3*m+1]=F.sl_pos[3*j+1];sp[3*m+2]=F.sl_pos[3*j+2];
+          const k=cm(mapn,F.sl_spd[j]/smax);sc[3*m]=k[0];sc[3*m+1]=k[1];sc[3*m+2]=k[2];m++;}}st+=n;}
+    const gl=new THREE.BufferGeometry();gl.setAttribute("position",new THREE.BufferAttribute(sp.subarray(0,3*m),3));gl.setAttribute("color",new THREE.BufferAttribute(sc.subarray(0,3*m),3));
+    this.slLines=new THREE.LineSegments(gl,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0.55}));
+    this.slLines.visible=$("showSL").checked;root.add(this.slLines);
+    const N=+$("np").value,pg=new THREE.BufferGeometry();
+    pg.setAttribute("position",new THREE.BufferAttribute(new Float32Array(3*N),3));pg.setAttribute("color",new THREE.BufferAttribute(new Float32Array(3*N),3));
+    this.pts=new THREE.Points(pg,new THREE.PointsMaterial({size:+$("ps").value,vertexColors:true,sizeAttenuation:true}));this.pts.visible=$("showP").checked;root.add(this.pts);
+    const line=new Int32Array(N),phase=new Float32Array(N);
+    for(let i=0;i<N;i++){line[i]=Math.floor(Math.random()*F.lines.length);phase[i]=Math.random();}
+    this.pState={N,line,phase,smax,cursor:new Int32Array(N)};
+  }
+  setLegend(leg,map){
+    const L=this.el.querySelector(".leg");if(!leg){L.style.display="none";return;}L.style.display="";
+    const c=document.createElement("canvas");c.width=1;c.height=100;const x=c.getContext("2d");
+    for(let i=0;i<100;i++){const k=cm(map,1-i/99);x.fillStyle=`rgb(${k.map(v=>v*255|0)})`;x.fillRect(0,i,1,1);}
+    const bar=L.querySelector(".bar");bar.style.background=`url(${c.toDataURL()})`;bar.style.backgroundSize="100% 100%";
+    L.querySelector(".labs").innerHTML=[0,1,2,3,4].map(i=>`<span>${fmt(leg[2]-(leg[2]-leg[1])*i/4,2)}</span>`).join("");
+    L.querySelector(".lt").textContent=leg[0];
+  }
+  step(){
+    if(!this.pts||!this.pts.visible)return;
+    const P=this.pts.geometry.attributes.position.array,C=this.pts.geometry.attributes.color.array,F=this.F,L=F.lines,map=$("cmap").value;
+    const {N,line,phase,smax,cursor}=this.pState,X=F.sl_pos,S=F.sl_spd,Tt=F.sl_t;
+    for(let i=0;i<N;i++){const [a,n]=L[line[i]];if(n<2)continue;const T=Tt[a+n-1];if(T<=0)continue;
+      const tt=((simT/Math.max(T,1e-6))+phase[i])%1*T;
+      let k=cursor[i];if(k>=n-1||Tt[a+k]>tt)k=0;while(k<n-2&&Tt[a+k+1]<tt)k++;cursor[i]=k;
+      const j=a+k,f=(tt-Tt[j])/((Tt[j+1]-Tt[j])||1);
+      for(let c=0;c<3;c++)P[3*i+c]=X[3*j+c]+(X[3*j+3+c]-X[3*j+c])*f;
+      const k2=cm(map,(S[j]+(S[j+1]-S[j])*f)/smax);C[3*i]=k2[0];C[3*i+1]=k2[1];C[3*i+2]=k2[2];}
+    this.pts.geometry.attributes.position.needsUpdate=true;this.pts.geometry.attributes.color.needsUpdate=true;
+  }
+  render(){if(!this.R||!this.F)return;this.step();const moved=this.ctl.update();
+    if(this.hover&&(this.hoverDirty||moved))this.probe();else if(this.hoverDirty)this.probe();
+    this.R.render(this.scene,this.cam);}
+  camPreset(n){
+    if(!this.bbox)return;
+    const cam=this.cam,ctl=this.ctl,c=this.bbox.getCenter(new THREE.Vector3()),S=this.G.meta.stations;
+    const s=this.bbox.getSize(new THREE.Vector3()).length()*Math.max(1,1.4/cam.aspect);
+    if(n==="iso"){ctl.target.copy(c);cam.position.set(c.x-0.35*s,c.y+0.55*s,c.z+1.45*s);}
+    if(n==="side"){ctl.target.copy(c);cam.position.set(c.x,c.y,c.z+1.6*s);}
+    if(n==="venturi"){const t=new THREE.Vector3(0,(S.venturi_inlet_Y+S.outlet_Y)/2,0);ctl.target.copy(t);cam.position.set(t.x+110,t.y+40,t.z+300);}
+    if(n==="elbow"){const t=new THREE.Vector3(10,-5,0);ctl.target.copy(t);cam.position.set(t.x+60,t.y+40,t.z+130);}
+    ctl.update();
+  }
+  fillHead(){
+    const r=this.F.meta.results,c=SITE.cases[caseKey(this.sel.asm,this.sel.q)]||{},u=isUnst(c),lvl=r.level_inlet_cm;
+    const k=lvl<AFRIDEV?"below both spouts":lvl<IM2?"overflows an Afridev":"overflows Afridev and India Mark II";
+    this.el.querySelector(".head").innerHTML=`<div class="q">${shortName(this.sel.asm)} · ${this.sel.q} L/min</div>`+
+      (cmp?"":`${this.F.meta.label}<br>`)+`Level ${fmt(lvl,1)} cm above the inlet centre: ${k}.`+(u?` <span class="w">Unsteady (level moving ${fmt(c.drift,1)} cm).</span>`:"");
+  }
+}
+const viewers=[];
+let started=false,simT=0,last=performance.now(),playing=true;
+
+function setActive(i){if(!cmp)i=0;active=i;
+  viewers.forEach(v=>v.el.classList.toggle("act",v.idx===i));
+  document.querySelectorAll("#abRow button").forEach(b=>b.classList.toggle("on",+b.dataset.v===i));
+  $("pickUp").classList.toggle("b",i===1);$("pickV").classList.toggle("b",i===1);$("pickQ").classList.toggle("b",i===1);
+  syncPickers();fillPanels();}
+function setCmp(on,updateHash=true){
+  cmp=on;$("v3").classList.toggle("cmp",on);
+  document.querySelectorAll("#modeSeg button").forEach(b=>b.classList.toggle("on",+b.dataset.m===(on?2:1)));
+  document.querySelectorAll(".cmpOnly").forEach(e=>e.style.display=on?"":"none");
+  if(!on)setActive(0);else setActive(active);
+  if(updateHash)setHash();
+  requestAnimationFrame(()=>{resizeAll();viewers.forEach(v=>{if(v.F&&v.visible()){v.build();v.fillHead();}});});
+}
+function resizeAll(){viewers.forEach(v=>v.resize());}
+addEventListener("resize",resizeAll);
+function loadAll(){if(!started)return;viewers.forEach(v=>{if(v.visible())v.load();});}
+
+function syncPickers(){
+  if(!SITE)return;
+  const s=sels[active],A=SITE.assemblies.find(a=>a.id===s.asm);
+  if(!A.flows.includes(s.q))s.q=A.flows.reduce((b,q)=>Math.abs(q-s.q)<Math.abs(b-s.q)?q:b,A.flows[0]);
+  $("pickUp").innerHTML=Object.entries(SITE.groups).map(([g,l])=>`<button data-g="${g}" class="${A.group===g?"on":""}">${l}</button>`).join("");
+  $("pickV").innerHTML=SITE.assemblies.filter(a=>a.group===A.group).map(a=>`<button data-a="${a.id}" class="${a.id===s.asm?"on":""}">${a.venturi}</button>`).join("");
+  $("pickQ").innerHTML=A.flows.map(q=>{const u=isUnst(SITE.cases[caseKey(A.id,q)]);return `<button data-q="${q}" class="${q===s.q?"on":""}${u?" unst":""}" title="${u?"unsteady at this flow":""}">${q}</button>`;}).join("");
+}
+$("pickUp").addEventListener("click",e=>{const g=e.target.dataset.g;if(!g)return;
+  const s=sels[active],cur=SITE.assemblies.find(a=>a.id===s.asm).venturi;
+  const same=SITE.assemblies.find(a=>a.group===g&&a.venturi===cur)||SITE.assemblies.find(a=>a.group===g&&a.venturi==="V2")||SITE.assemblies.find(a=>a.group===g);
+  open3d(same.id,s.q);});
+$("pickV").addEventListener("click",e=>{if(e.target.dataset.a)open3d(e.target.dataset.a,sels[active].q);});
+$("pickQ").addEventListener("click",e=>{if(e.target.dataset.q)open3d(sels[active].asm,+e.target.dataset.q);});
+$("abRow").addEventListener("click",e=>{if(e.target.dataset.v)setActive(+e.target.dataset.v);});
+$("modeSeg").addEventListener("click",e=>{if(e.target.dataset.m)setCmp(e.target.dataset.m==="2");});
+
+// ------------------------------------------------ right panel
+function fillPanels(){
+  const v=viewers[active];if(!v||!v.F)return;
+  const M=v.F.meta,r=M.results,c=SITE.cases[caseKey(v.sel.asm,v.sel.q)]||{};
+  $("detH").textContent=cmp?`Details for ${active?"B":"A"} · water level (cm)`:"Water level (cm)";
+  $("lv").innerHTML=[["Above inlet centre (total)",r.level_inlet_cm],["Above spigot entry (total)",r.level_spigot_cm],
+   ["Above Venturi inlet (total)",r.level_venturi_in_cm],["Static at inlet",r.static_inlet_cm,r.static_inlet_cm<0],
+   ["Static at Venturi inlet",r.static_venturi_in_cm,r.static_venturi_in_cm<0]]
+   .map(([a,b,f])=>`<tr><td${f?' class="flag"':""}>${a}${f?" (negative: would draw air)":""}</td><td class="n">${fmt(b,1)}</td></tr>`).join("");
+  const L=M.losses;const items=[["Inlet pipe + spigot",L["inlet_extension+spigot"]],["E-Sig reducer",L.esig_reducer],["Elbow + thread cavity",L.elbow_incl_thread_cavity],
+    ["Venturi (internal)",L.venturi_total],["Outlet jet energy",r.outlet_ke_head_cm]];
+  const mx=Math.max(...items.map(i=>Math.abs(i[1]||0)))||1;
+  $("loss").innerHTML=items.map(([a,b])=>`<div class="b"><span class="l">${a}</span><span class="t" style="width:${Math.abs(b||0)/mx*110}px;${b<0?"background:var(--warn)":""}"></span><span class="n">${fmt(b,1)}</span></div>`).join("")+
+   `<div class="note">Mechanical-energy losses between sections (flux-weighted), plus the kinetic energy that leaves with the jet.</div>`;
+  const p=M.port;
+  $("port").innerHTML=[["Mean around the wall",p.mean],["Min / max",null,`${fmt(p.min)} / ${fmt(p.max)}`],["E-Sig side (+y)",p.at_plus_y],["Opposite side (−y)",p.at_minus_y],["90° to bend plane",p.at_plus_z]]
+   .map(([a,b,s])=>`<tr><td>${a}</td><td class="n">${s??fmt(b)} kPa</td></tr>`).join("");
+  $("out").innerHTML=[["Outlet jet KE head",fmt(r.outlet_ke_head_cm,1)+" cm"],["Outlet KE factor α",fmt(r.outlet_alpha)],["Diffuser recovery / ideal",fmt(r.diffuser_recovery_frac)],["Diffuser wall reversed",fmt(100*r.diffuser_reversed_area_frac,0)+" %"]]
+   .map(([a,b])=>`<tr><td>${a}</td><td class="n">${b}</td></tr>`).join("");
+  const y=M.yplus||{},f=M.final_residuals||{};
+  $("qual").innerHTML=[["Mass imbalance",fmt(r.mass_imbalance_pct,3)+" %"],["Level drift, last 500 it.",fmt(c.drift,2)+" cm"],...Object.entries(y).map(([k,v])=>[`y+ ${k.replace("wall_","")} (mean, p95)`,`${fmt(v.mean,0)}, ${fmt(v.p95,0)}`]),
+   ["Final residual p / Ux",`${(f.p??NaN).toExponential(1)} / ${(f.Ux??NaN).toExponential(1)}`],["Iterations",M.final_iteration??"–"]].map(([a,b])=>`<tr><td>${a}</td><td class="n">${b}</td></tr>`).join("");
+  $("asm").innerHTML=(M.assumptions||[]).map(a=>`<li>${a}</li>`).join("");
+  fillCompare();
+}
+function fillCompare(){
+  if(!cmp)return;const [a,b]=viewers;
+  if(!a||!b||!a.F||!b.F){$("cmpTab").innerHTML=`<tr><td class="note">Loading…</td></tr>`;return;}
+  const g=(v,f)=>f(v.F.meta),ca=SITE.cases[caseKey(a.sel.asm,a.sel.q)]||{},cb=SITE.cases[caseKey(b.sel.asm,b.sel.q)]||{};
+  // [label, getter, digits, unit, lowerIsBetter (true/false/null)]
+  const rows=[["Water level",null],
+    ["Above inlet centre, cm",m=>m.results.level_inlet_cm,1,true],
+    ["Static at inlet, cm",m=>m.results.static_inlet_cm,1,true],
+    ["Head losses, cm",null],
+    ["Inlet pipe + spigot",m=>m.losses["inlet_extension+spigot"],1,true],
+    ["E-Sig reducer",m=>m.losses.esig_reducer,1,true],
+    ["Elbow + thread cavity",m=>m.losses.elbow_incl_thread_cavity,1,true],
+    ["Venturi (internal)",m=>m.losses.venturi_total,1,true],
+    ["Outlet jet energy",m=>m.results.outlet_ke_head_cm,1,true],
+    ["Chlorine port",null],
+    ["Mean wall p, kPa",m=>m.port.mean,2,true],
+    ["Diffuser",null],
+    ["Recovery / ideal",m=>m.results.diffuser_recovery_frac,2,false],
+    ["Wall reversed, %",m=>100*m.results.diffuser_reversed_area_frac,0,true],
+    ["Run quality",null],
+    ["Level drift, cm",null,2,null,[ca.drift,cb.drift]],
+    ["Mass imbalance, %",m=>m.results.mass_imbalance_pct,3,null]];
+  let h=`<tr><th style="text-align:left"></th><th class="a">A</th><th class="b">B</th><th>B−A</th></tr>`+
+    `<tr><td class="l">Case</td><td class="n" style="color:var(--acc)">${a.sel.q}</td><td class="n" style="color:var(--accB)">${b.sel.q}</td><td class="n note">L/min</td></tr>`;
+  for(const [lab,fn,d,lower,raw] of rows){
+    if(fn===null&&!raw){h+=`<tr><td class="gh" colspan="4">${lab}</td></tr>`;continue;}
+    const va=raw?raw[0]:g(a,fn),vb=raw?raw[1]:g(b,fn),df=(va!=null&&vb!=null)?vb-va:null;
+    let cls="";if(lower!=null&&df!=null&&Math.abs(df)>Math.pow(10,-d)){cls=(lower?df<0:df>0)?"better":"worse";}
+    h+=`<tr><td class="l">${lab}</td><td class="n">${fmt(va,d)}</td><td class="n">${fmt(vb,d)}</td><td class="n ${cls}">${df==null?"–":(df>0?"+":"")+fmt(df,d)}</td></tr>`;
+  }
+  $("cmpTab").innerHTML=`<tr><td colspan="4" class="note" style="padding-bottom:6px"><span style="color:var(--acc)">A</span> ${shortName(a.sel.asm)} · <span style="color:var(--accB)">B</span> ${shortName(b.sel.asm)}</td></tr>`+h;
+}
+
+function loop(now){
+  const dt=Math.min(0.1,(now-last)/1000);last=now;
+  if(playing)simT+=dt*Math.pow(10,+$("ts").value);
+  if($("v3").classList.contains("on"))viewers.forEach(v=>{if(v.visible())v.render();});
+  requestAnimationFrame(loop);
+}
+function start3d(){started=true;viewers.push(new Viewer(0),new Viewer(1));setActive(active);vals();requestAnimationFrame(loop);loadAll();}
+
+function vals(){$("npV").textContent=$("np").value;$("tsV").textContent=Math.pow(10,+$("ts").value).toFixed(3)+"×";$("psV").textContent=$("ps").value;$("woV").textContent=$("wo").value;}
+const rebuild=()=>viewers.forEach(v=>{if(v.F&&v.visible())v.build();});
+["np","cmap","wf","cf"].forEach(id=>$(id).addEventListener("change",()=>{vals();rebuild();}));
+["lockScale","sameScale"].forEach(id=>$(id).addEventListener("change",()=>{lockedRanges={};rebuild();}));
+$("wo").addEventListener("input",()=>{vals();viewers.forEach(v=>{if(v.wallMesh)[v.wallMesh,v.wallMeshM].forEach(m=>{m.material.opacity=+$("wo").value;m.material.depthWrite=+$("wo").value>0.95;});});});
+$("ps").addEventListener("input",()=>{vals();viewers.forEach(v=>{if(v.pts)v.pts.material.size=+$("ps").value;});});
+$("ts").addEventListener("input",vals);$("np").addEventListener("input",vals);
+$("cut").addEventListener("change",()=>viewers.forEach(v=>{if(v.wallMeshM)v.wallMeshM.visible=!$("cut").checked;}));
+$("showSL").addEventListener("change",()=>viewers.forEach(v=>{if(v.slLines)v.slLines.visible=$("showSL").checked;}));
+$("showP").addEventListener("change",()=>viewers.forEach(v=>{if(v.pts)v.pts.visible=$("showP").checked;}));
+$("syncCam").addEventListener("change",()=>{if($("syncCam").checked&&viewers[1].R){const a=viewers[active],o=viewers[1-active];o.cam.position.copy(a.cam.position);o.ctl.target.copy(a.ctl.target);o.ctl.update();}});
+$("play").addEventListener("click",()=>{playing=!playing;$("play").textContent=playing?"Pause":"Play";});
+document.querySelectorAll("[data-cam]").forEach(b=>b.addEventListener("click",()=>{
+  const list=cmp&&$("syncCam").checked?viewers:[viewers[active]];list.forEach(v=>v.camPreset(b.dataset.cam));}));
+
+(async()=>{
+  SITE=await (await fetch("../data/site.json")).json();
+  document.querySelectorAll(".cmpOnly").forEach(e=>e.style.display="none");
+  quick("all");buildMatrix();route();
+})();
+</script>
+</body>
+</html>
