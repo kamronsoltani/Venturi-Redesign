@@ -1,10 +1,10 @@
 {
-  "updated": "2026-11-25 15:40 PST",
+  "updated": "2026-11-25 15:10 PST",
   "today": "2026-11-25",
   "strip": [
     ["Current phase", "Round 1: 2-D shape screen", "15 shapes × 7 flows, 6–120 L/min"],
-    ["Lab PC", "Running", "105 cases, 12 in parallel"],
-    ["Next result", "Round 1 ranking", "Nov 25, evening"],
+    ["Lab PC", "Running", "105 cases, 12 in parallel, ~46 min each"],
+    ["Next result", "Round 1 ranking", "Nov 25, about 10 pm"],
     ["Bench test", "Week of Nov 30", "Print files due Nov 29"]
   ],
   "summary": [
