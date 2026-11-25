@@ -5,199 +5,283 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TuriTap Venturi Redesign</title>
 <style>
-:root{--ink:#0d1117;--mute:#57606a;--line:#d0d7de;--bg:#eef1f5;--panel:#fff;--head:#e6ebf1;--navy:#0f2a44;--navy2:#183b5e;
-  --blue:#0b5cad;--green:#1a7f37;--amber:#9a6700;--red:#cf222e;--gray:#6e7781;
+:root{--ink:#0d1117;--ink2:#3d444d;--mute:#57606a;--line:#d0d7de;--soft:#eaeef2;--bg:#eef1f5;--panel:#fff;--head:#e6ebf1;
+  --navy:#0f2a44;--blue:#0b5cad;--blueBg:#e7f0fa;--green:#1a7f37;--amber:#9a6700;--red:#cf222e;--gray:#6e7781;
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--mono:ui-monospace,"SFMono-Regular",Consolas,Menlo,monospace}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:52px}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans)}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans)}
 a{color:var(--blue)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 18px}
-/* banner */
-.banner{background:var(--navy);color:#fff;border-bottom:4px solid var(--blue)}
-.banner .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px 24px;padding-top:22px;padding-bottom:18px}
-.banner h1{margin:0;font-size:26px;letter-spacing:.2px}
-.banner p{margin:4px 0 0;color:#c4d3e3;font-size:14.5px}
-.banner .upd{color:#c4d3e3;font-size:13px;text-align:right}
-.banner .upd b{color:#fff;font-weight:600}
-/* nav */
-nav{position:sticky;top:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;gap:2px;overflow-x:auto;white-space:nowrap}
-nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:13.5px;padding:12px 10px;border-bottom:3px solid transparent}
-nav a:hover{border-bottom-color:var(--blue);color:var(--blue)}
-/* status strip */
+.banner{background:var(--navy);color:#fff}
+.banner .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:6px 24px;padding-top:20px;padding-bottom:14px}
+.banner h1{margin:0;font-size:25px}
+.banner p{margin:3px 0 0;color:#c4d3e3;font-size:14.5px}
+.banner .upd{color:#c4d3e3;font-size:13px;text-align:right}.banner .upd b{color:#fff}
+.tabs{background:var(--navy);border-bottom:4px solid var(--blue);position:sticky;top:0;z-index:10}
+.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs a{color:#c4d3e3;text-decoration:none;font-weight:600;font-size:14px;padding:10px 14px;white-space:nowrap;border-radius:3px 3px 0 0}
+.tabs a:hover{color:#fff;background:#183b5e}
+.tabs a.on{background:var(--blue);color:#fff}
+.tabs a .n{display:inline-block;min-width:18px;padding:0 5px;margin-left:6px;border-radius:9px;background:#d55e00;color:#fff;font-size:11.5px;line-height:18px;text-align:center}
+.tabs a.ext{margin-left:auto;font-weight:500}
 .strip{background:var(--panel);border-bottom:1px solid var(--line)}
 .strip .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
-.strip .c{padding:14px 16px;border-left:1px solid var(--line)}
+.strip .c{padding:12px 16px;border-left:1px solid var(--line)}
 .strip .c:first-child{border-left:0;padding-left:0}
 .strip .k{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
-.strip .v{font-size:18px;font-weight:700;margin-top:2px}
+.strip .v{font-size:17px;font-weight:700}
 .strip .s{font-size:13px;color:var(--mute)}
-.strip .c.live .v::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:2px}
-/* sections */
-section{background:var(--panel);border:1px solid var(--line);margin:18px 0}
-section>h2{margin:0;font-size:16px;background:var(--head);border-bottom:1px solid var(--line);border-left:5px solid var(--navy);padding:9px 14px}
-section>h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
-.body{padding:14px 16px}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.cols>div{padding:14px 16px}
-.cols>div+div{border-left:1px solid var(--line)}
-h3{font-size:14px;margin:0 0 8px}
-.summary{margin:0;padding:0;list-style:none}
-.summary li{padding:7px 0;border-bottom:1px solid #eaeef2}
-.summary li:last-child{border-bottom:0}
-.summary b{color:var(--navy)}
-/* tables */
+.strip .live .v::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px;animation:p 2s infinite}
+@keyframes p{50%{opacity:.35}}
+.view{display:none;padding:16px 0 30px}.view.on{display:block}
+.panel{background:var(--panel);border:1px solid var(--line);margin:0 0 16px}
+.panel>h2{margin:0;font-size:15.5px;background:var(--head);border-bottom:1px solid var(--line);border-left:5px solid var(--navy);padding:8px 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.panel>h2 small{font-weight:400;color:var(--mute);font-size:13px}
+.panel>h2 .r{margin-left:auto;font-size:13px;font-weight:600}
+.pb{padding:14px 16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid2>.panel{margin:0}
+.lead{font-size:15.5px;margin:0}
+.latest{border:1px solid var(--blue);background:var(--panel);margin:0 0 16px}
+.latest .bar{background:var(--blue);color:#fff;padding:7px 14px;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;display:flex;gap:12px;flex-wrap:wrap}
+.latest .bar span{font-weight:500;letter-spacing:0;text-transform:none;opacity:.9}
+.latest .in{padding:14px 16px}
+.latest h3{margin:0 0 6px;font-size:19px;line-height:1.3}
+.latest p{margin:0 0 10px;font-size:15.5px}
+.latest .more{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;border-top:1px solid var(--soft);padding-top:9px;font-size:13.5px;color:var(--mute)}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:600;font-size:13.5px;padding:6px 12px;border-radius:3px}
+.btn:hover{background:#094c8f}
+.upd-item{background:var(--panel);border:1px solid var(--line);margin:0 0 12px;display:grid;grid-template-columns:150px 1fr}
+.upd-item .meta{background:#f6f8fa;border-right:1px solid var(--line);padding:12px 14px;font-size:13px;color:var(--mute)}
+.upd-item .meta b{display:block;color:var(--ink);font-size:14px}
+.tag{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue)}
+.tag.Decision{color:#7a3fb0}.tag.CAD{color:#b8860b}.tag.Bench{color:var(--green)}
+.upd-item details{padding:12px 16px}
+.upd-item summary{cursor:pointer;list-style:none}
+.upd-item summary::-webkit-details-marker{display:none}
+.upd-item summary h3{margin:0;font-size:16.5px;line-height:1.35}
+.upd-item summary h3::after{content:" ▸";color:var(--mute);font-size:13px}
+.upd-item details[open] summary h3::after{content:" ▾"}
+.tldr{background:var(--blueBg);border-left:4px solid var(--blue);padding:8px 12px;margin:8px 0 10px;font-size:14.5px}
+.tldr b{color:var(--blue)}
+.upd-item .bd p{margin:0 0 9px}.upd-item .bd ul{margin:0 0 9px;padding-left:20px}
 .tw{overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-size:14px}
 th,td{padding:7px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}
 th{background:#f6f8fa;font-weight:600;font-size:13px;white-space:nowrap}
 tbody tr:nth-child(even) td{background:#fafbfc}
 td.n,th.n{text-align:right;font-family:var(--mono);font-size:13.5px;white-space:nowrap}
+tr.cur td{background:#fff8e6!important}
 .st{font-weight:700;white-space:nowrap}
 .st::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;background:currentColor}
 .done,.pass{color:var(--green)}.active{color:var(--blue)}.planned,.rule{color:var(--gray)}.open{color:var(--amber)}.fail{color:var(--red)}
 .note{color:var(--mute);font-size:13px;margin:8px 0 0}
-#logT td:first-child{white-space:nowrap}
-ol.find{margin:0;padding-left:22px}ol.find li{margin:6px 0}
-/* charts */
+ol.find{margin:0;padding-left:20px}ol.find li{margin:0 0 8px}
+.swatch{display:inline-block;width:11px;height:11px;margin-right:7px;vertical-align:-1px}
 svg{display:block;width:100%;height:auto}
-svg text{font:12.5px var(--sans);fill:#3d444d}
-svg .t{font-weight:700;fill:var(--ink);font-size:13px}
-.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;margin:4px 0 0}
-.legend i{display:inline-block;width:16px;height:3px;vertical-align:4px;margin-right:5px}
-/* cad */
+svg text{font:12.5px var(--sans);fill:var(--ink2)}
+svg .ax{font-weight:700;fill:var(--ink);font-size:13px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 6px;margin:6px 0 0;font-size:12.5px}
+.legend button{border:1px solid var(--line);background:#fff;border-radius:3px;font:12.5px var(--sans);padding:3px 8px;cursor:pointer;color:var(--ink)}
+.legend button i{display:inline-block;width:14px;height:3px;vertical-align:3px;margin-right:6px}
+.legend button.off{opacity:.4;text-decoration:line-through}
+#tip{position:fixed;pointer-events:none;background:var(--navy);color:#fff;font:12.5px/1.4 var(--sans);padding:5px 8px;border-radius:3px;display:none;z-index:50;white-space:nowrap}
 .cad{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
-.cad .list{max-height:480px;overflow:auto;border-right:1px solid var(--line)}
+.cad .list{max-height:520px;overflow:auto;border-right:1px solid var(--line)}
 .cad .g{background:#f6f8fa;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);padding:7px 12px;border-bottom:1px solid var(--line);position:sticky;top:0}
-.cad .f{display:flex;align-items:center;gap:8px;padding:6px 12px;border-bottom:1px solid #eaeef2;cursor:pointer;font-size:13.5px}
-.cad .f:hover{background:#f3f7fc}.cad .f.on{background:#ddeaf7;box-shadow:inset 3px 0 0 var(--blue)}
+.cad .f{display:flex;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid var(--soft);cursor:pointer;font-size:13.5px}
+.cad .f:hover{background:#f3f7fc}.cad .f.on{background:var(--blueBg);box-shadow:inset 3px 0 0 var(--blue)}
 .cad .f span{flex:1;min-width:0;overflow-wrap:anywhere}
 .cad .f small{color:var(--mute);font-family:var(--mono);white-space:nowrap}
 .cad .f a{font-size:12.5px;font-weight:600;white-space:nowrap}
-#viewer{position:relative;min-height:480px;background:linear-gradient(#f7f9fb,#e4e9ef)}
-#vmsg{position:absolute;left:12px;top:10px;right:12px;font-size:13px;font-weight:600;color:#3d444d;pointer-events:none}
-footer{color:var(--mute);font-size:13px;padding:6px 0 34px}
-@media (max-width:860px){.strip .wrap{grid-template-columns:1fr 1fr}.strip .c:nth-child(3){border-left:0;padding-left:0}
-  .strip .c{border-top:1px solid var(--line)}.strip .c:nth-child(-n+2){border-top:0}
-  .cols{grid-template-columns:1fr}.cols>div+div{border-left:0;border-top:1px solid var(--line)}
-  .cad{grid-template-columns:1fr}.cad .list{border-right:0;border-bottom:1px solid var(--line);max-height:320px}#viewer{min-height:320px}
-  .banner h1{font-size:22px}.banner .upd{text-align:left}}
+#viewer{position:relative;min-height:520px;background:linear-gradient(#f7f9fb,#e1e7ee)}
+#vmsg{position:absolute;left:12px;top:10px;right:12px;font-size:13px;font-weight:600;color:var(--ink2);pointer-events:none}
+footer{color:var(--mute);font-size:13px;padding:0 0 30px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}.strip .wrap{grid-template-columns:1fr 1fr}
+  .strip .c:nth-child(3){border-left:0;padding-left:0}.strip .c:nth-child(n+3){border-top:1px solid var(--line)}
+  .cad{grid-template-columns:1fr}.cad .list{border-right:0;border-bottom:1px solid var(--line);max-height:300px}#viewer{min-height:320px}
+  .upd-item{grid-template-columns:1fr}.upd-item .meta{border-right:0;border-bottom:1px solid var(--line);padding:8px 14px}
+  .upd-item .meta b{display:inline;margin-right:8px}.upd-item .tag{margin:0 0 0 8px}
+  .banner h1{font-size:21px}.banner .upd{text-align:left}.tabs a.ext{margin-left:0}}
 </style>
 </head>
 <body>
 <header class="banner"><div class="wrap">
-  <div><h1>TuriTap Venturi Redesign</h1><p>Chlorine-dosing Venturi for handpumps and piped supply · engineering status</p></div>
+  <div><h1>TuriTap Venturi Redesign</h1><p>Chlorine-dosing Venturi for handpumps and piped supply</p></div>
   <div class="upd">Last updated<br><b id="upd">–</b></div>
 </div></header>
-<nav><div class="wrap"><a href="#summary">Summary</a><a href="#schedule">Schedule</a><a href="#requirements">Requirements</a><a href="#results">Results</a><a href="#designs">Designs</a><a href="#actions">Action items</a><a href="#bench">Bench data</a><a href="#log">Log</a><a href="#cad">CAD files</a><a href="cfd/">CFD viewer ↗</a></div></nav>
+<nav class="tabs"><div class="wrap">
+  <a href="#overview" data-v="overview">Overview</a><a href="#updates" data-v="updates">Updates<span class="n" id="nUpd"></span></a>
+  <a href="#results" data-v="results">Results</a><a href="#designs" data-v="designs">Designs</a><a href="#schedule" data-v="schedule">Schedule</a>
+  <a href="#cad" data-v="cad">CAD files</a><a class="ext" href="cfd/">CFD viewer ↗</a>
+</div></nav>
 <div class="strip"><div class="wrap" id="strip"></div></div>
 
 <main class="wrap">
-<section id="summary"><h2>Summary</h2><div class="body"><ul class="summary" id="sum"></ul></div></section>
+<section class="view" id="v-overview">
+  <div class="latest" id="latest"></div>
+  <div class="panel"><h2>Goal</h2><div class="pb"><p class="lead" id="goal"></p></div></div>
+  <div class="panel"><h2>Requirements <small>targets vs the current part, V1 and the best design so far</small></h2><div class="pb"><div class="tw"><table id="req"></table></div><p class="note" id="reqNote"></p></div></div>
+  <div class="grid2">
+    <div class="panel"><h2>Piped flow: dose consistency <a class="r" href="#results">All results →</a></h2><div class="pb"><div id="o1"></div></div></div>
+    <div class="panel"><h2>Handpump: water level vs overflow <a class="r" href="#results">All results →</a></h2><div class="pb"><div id="o2"></div></div></div>
+  </div>
+  <div class="panel" style="margin-top:16px"><h2>Key findings</h2><div class="pb"><ol class="find" id="find"></ol></div></div>
+</section>
 
-<section id="schedule"><h2>Schedule <small>where we were, where we are, what's next</small></h2><div class="body"><div id="gantt"></div>
-  <div class="legend"><span><i style="background:var(--green)"></i>done</span><span><i style="background:var(--blue)"></i>in progress</span><span><i style="background:#b8c2cc"></i>planned</span><span><i style="background:var(--red);width:2px;height:12px;vertical-align:-1px"></i>today</span></div></div></section>
+<section class="view" id="v-updates"><div id="feed"></div></section>
 
-<section id="requirements"><h2>Requirements <small>targets vs current status</small></h2><div class="body"><div class="tw"><table id="req"></table></div></div></section>
+<section class="view" id="v-results">
+  <div class="grid2">
+    <div class="panel"><h2>Piped flow: relative dose vs flow</h2><div class="pb"><div id="r1"></div>
+      <p class="note">Dose ∝ port suction ÷ flow (needle valve fixed), each design scaled to its own minimum. Flatter is better; below the red line, one needle setting stays within 0.3–0.8 mg/L.</p></div></div>
+    <div class="panel"><h2>Handpump: water level at the spout vs flow</h2><div class="pb"><div id="r2"></div>
+      <p class="note">Above the bore top the Venturi stays full; above +5.8 cm the Afridev overflows. Green band: both met.</p></div></div>
+    <div class="panel"><h2>Port suction vs flow</h2><div class="pb"><div id="r3"></div>
+      <p class="note">Suction draws the chlorine. At low flow it is set by the water column below the port (about 1 kPa).</p></div></div>
+    <div class="panel"><h2>Bench: V1 dose vs flow</h2><div class="pb"><div id="r4"></div>
+      <p class="note">Dark band: ideal 0.3–0.8 mg/L. Light band: acceptable 0.1–1.5 mg/L.</p></div></div>
+  </div>
+  <p class="note">3-D steady CFD. The current part runs on its 3/4" E-Sig + elbow train; the others on the 1" long-radius reducer. Click a legend entry to hide or show a design; hover a point for its value.</p>
+  <div class="panel" style="margin-top:16px"><h2>Bench data <small id="benchNote"></small></h2><div class="pb"><div class="tw"><table id="benchT"></table></div></div></div>
+</section>
 
-<section id="results"><h2>Results <small>3-D CFD, long-radius reducer, steady flow</small></h2>
-  <div class="cols"><div><h3>Piped flow: relative dose vs flow</h3><div id="c1"></div>
-    <p class="note">Dose ∝ port suction ÷ flow (needle valve fixed), each design scaled to its own minimum. Below the red line, one needle setting stays within 0.3–0.8 mg/L.</p></div>
-  <div><h3>Handpump: water level at the spout vs flow</h3><div id="c2"></div>
-    <p class="note">Above the bore top the Venturi stays full (good dosing); above +5.8 cm the Afridev overflows. Shaded: both conditions met.</p></div></div>
-  <div class="cols" style="border-top:1px solid var(--line)"><div><h3>Port suction vs flow</h3><div id="c3"></div>
-    <p class="note">Suction drives the chlorine draw. At low flow it is set by the water column below the port (about 1 kPa).</p></div>
-  <div><h3>Key findings</h3><ol class="find" id="find"></ol></div></div></section>
+<section class="view" id="v-designs">
+  <div class="panel"><h2>Bore profiles <small>diameter along the flow, inlet face at 0 mm</small></h2><div class="pb"><div id="prof"></div>
+    <p class="note">Station points joined by straight lines (fillets not drawn). The current part has a 3/4" inlet; the V-series a 1" inlet. Click legend entries to compare.</p></div></div>
+  <div class="panel"><h2>Design comparison <small>3-D CFD; highlighted row = existing part</small></h2><div class="pb"><div class="tw"><table id="des"></table></div>
+    <p class="note">Spread = highest ÷ lowest dose on piped flow. 6–100 is extrapolated from data to 60 L/min. Overflow = steady flow at which the Afridev level reaches +5.8 cm. V1–V4 piped numbers use the older mesh; V1 level and overflow use the corrected mesh.</p></div></div>
+  <div class="panel" id="r1panel" style="display:none"><h2>Round 1 shapes (2-D) <small>ranked by piped dose spread</small></h2><div class="pb"><div class="tw"><table id="r1t"></table></div></div></div>
+</section>
 
-<section id="designs"><h2>Designs</h2><div class="body"><div class="tw"><table id="des"></table></div><p class="note" id="desNote"></p></div></section>
+<section class="view" id="v-schedule">
+  <div class="panel"><h2>Schedule <small>where we were, where we are, what's next</small></h2><div class="pb"><div id="gantt"></div>
+    <div class="legend"><span><i class="swatch" style="background:var(--green)"></i>done</span><span><i class="swatch" style="background:var(--blue)"></i>in progress</span><span><i class="swatch" style="background:#b8c2cc"></i>planned</span><span><i class="swatch" style="background:var(--red);width:3px"></i>today</span></div></div></div>
+  <div class="grid2">
+    <div class="panel"><h2>Action items: lab PC</h2><div class="pb"><div class="tw"><table id="actLab"></table></div></div></div>
+    <div class="panel"><h2>Action items: bench</h2><div class="pb"><div class="tw"><table id="actBench"></table></div></div></div>
+  </div>
+</section>
 
-<section id="actions"><h2>Action items</h2><div class="cols"><div><h3>Lab PC / simulations</h3><div class="tw"><table id="actLab"></table></div></div><div><h3>Bench</h3><div class="tw"><table id="actBench"></table></div></div></div></section>
-
-<section id="bench"><h2>Bench data <small id="benchNote"></small></h2><div class="cols"><div><div id="c4"></div>
-  <p class="note">Green band: ideal 0.3–0.8 mg/L. Light band: acceptable 0.1–1.5 mg/L.</p></div><div><div class="tw"><table id="benchT"></table></div></div></div></section>
-
-<section id="log"><h2>Log</h2><div class="body"><div class="tw"><table id="logT"></table></div></div></section>
-
-<section id="cad"><h2>CAD files <small>click to preview · drag to rotate · scroll to zoom</small></h2><div class="cad"><div class="list" id="cadList"></div><div id="viewer"><div id="vmsg">Select a file</div></div></div></section>
-
-<footer><span id="links"></span> · Simulations: OpenFOAM 13 on the lab PC · Data: <a href="home/status.json">status.json</a>, <a href="home/charts.json">charts.json</a>, <a href="cad/cad.json">cad.json</a></footer>
+<section class="view" id="v-cad">
+  <div class="panel"><h2>CAD files <small>click to preview · drag to rotate · scroll to zoom · STEP ↓ downloads</small></h2>
+    <div class="cad"><div class="list" id="cadList"></div><div id="viewer"><div id="vmsg">Select a file</div></div></div></div>
+</section>
+<footer><span id="links"></span> · OpenFOAM 13 on the lab PC · Data: <a href="home/updates.json">updates</a>, <a href="home/status.json">status</a>, <a href="home/charts.json">charts</a>, <a href="cad/cad.json">CAD list</a></footer>
 </main>
+<div id="tip"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
 <script>
-const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const COL=["#0b5cad","#d55e00","#1a7f37","#7a3fb0","#b8860b","#3d444d"];
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const CLR={"Current part":"#24292f","V1":"#0b5cad","V2":"#d55e00","V3":"#1a7f37","V4":"#b8860b","V12":"#7a3fb0","V11t":"#e7298a","V10":"#8c564b"};
 const LBL={done:"Done",active:"In progress",planned:"Planned",open:"Open",pass:"Pass",fail:"Not met",rule:"Rule"};
-const st=s=>`<span class="st ${s}">${LBL[s]||s}</span>`;
-const table=(cols,rows,num=[])=>`<thead><tr>${cols.map((c,i)=>`<th${num.includes(i)?' class="n"':""}>${esc(c)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td${num.includes(i)?' class="n"':""}>${c}</td>`).join("")}</tr>`).join("")}</tbody>`;
+const st=s=>`<span class="st ${s}">${LBL[s]||esc(s)}</span>`;
+const fmtD=d=>new Date(d+"T12:00:00Z").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric",timeZone:"UTC"});
+function table(cols,rows,num=[],rowCls=()=>""){return `<thead><tr>${cols.map((c,i)=>`<th${num.includes(i)?' class="n"':""}>${esc(c)}</th>`).join("")}</tr></thead><tbody>${rows.map((r,k)=>`<tr class="${rowCls(k)}">${r.map((c,i)=>`<td${num.includes(i)?' class="n"':""}>${c}</td>`).join("")}</tr>`).join("")}</tbody>`;}
 
-/* generic x-y chart */
-function plot(o){
-  const W=480,H=300,m={l:50,r:12,t:12,b:44},iw=W-m.l-m.r,ih=H-m.t-m.b,lg=o.xlog;
-  const fx=v=>lg?Math.log(v):v,x=v=>m.l+(fx(v)-fx(o.x[0]))/(fx(o.x[1])-fx(o.x[0]))*iw,y=v=>m.t+(1-(v-o.y[0])/(o.y[1]-o.y[0]))*ih;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.aria||"")}"><defs><clipPath id="cp${o.id}"><rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}"/></clipPath></defs>`;
-  (o.bands||[]).forEach(b=>s+=`<rect x="${m.l}" width="${iw}" y="${y(b[1])}" height="${y(b[0])-y(b[1])}" fill="${b[2]}"/>`);
-  o.yt.forEach(v=>s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#d8dee4"/><text x="${m.l-7}" y="${y(v)+4}" text-anchor="end">${v}</text>`);
-  o.xt.forEach(v=>s+=`<line y1="${m.t}" y2="${H-m.b}" x1="${x(v)}" x2="${x(v)}" stroke="#eef1f4"/><text x="${x(v)}" y="${H-m.b+17}" text-anchor="middle">${v}</text>`);
-  s+=`<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="none" stroke="#8c959f"/>`;
-  (o.hl||[]).forEach(h=>s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(h[0])}" y2="${y(h[0])}" stroke="${h[2]}" stroke-width="1.8" stroke-dasharray="${h[3]||"6 4"}"/><text x="${h[4]?m.l+5:W-m.r-5}" y="${h[4]?y(h[0])+15:y(h[0])-5}" text-anchor="${h[4]?"start":"end"}" style="fill:${h[2]};font-weight:700">${esc(h[1])}</text>`);
-  s+=`<g clip-path="url(#cp${o.id})">`;
-  o.series.forEach((se,i)=>{const c=se.color||COL[i];
-    if(!o.scatter)s+=`<polyline fill="none" stroke="${c}" stroke-width="2.3" points="${se.pts.map(p=>x(p[0])+","+y(p[1])).join(" ")}"/>`;
-    s+=se.pts.map(p=>`<circle cx="${x(p[0])}" cy="${y(p[1])}" r="${o.scatter?4.5:3}" fill="${c}" stroke="#fff" stroke-width="1"/>`).join("");});
-  s+=`</g><text x="${m.l+iw/2}" y="${H-6}" text-anchor="middle" class="t">${esc(o.xl)}</text><text transform="translate(14 ${m.t+ih/2}) rotate(-90)" text-anchor="middle" class="t">${esc(o.yl)}</text></svg>`;
-  s+=`<div class="legend">${o.series.map((se,i)=>`<span><i style="background:${se.color||COL[i]}"></i>${esc(se.name)}</span>`).join("")}</div>`;
-  return s;
+const tip=$("tip");
+document.addEventListener("pointerover",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(!t)return;tip.textContent=t.dataset.tip;tip.style.display="block";});
+document.addEventListener("pointermove",e=>{if(tip.style.display==="block"){tip.style.left=Math.max(4,Math.min(e.clientX+12,innerWidth-tip.offsetWidth-6))+"px";tip.style.top=(e.clientY-34)+"px";}});
+document.addEventListener("pointerout",e=>{if(e.target.closest&&e.target.closest("[data-tip]"))tip.style.display="none";});
+
+function chart(el,o){
+  const hidden=new Set(o.hide||[]);
+  function draw(){
+    const W=o.W||520,H=o.H||320,m={l:52,r:14,t:12,b:46},iw=W-m.l-m.r,ih=H-m.t-m.b,lg=o.xlog;
+    const fx=v=>lg?Math.log(v):v,x=v=>m.l+(fx(v)-fx(o.x[0]))/(fx(o.x[1])-fx(o.x[0]))*iw,y=v=>m.t+(1-(v-o.y[0])/(o.y[1]-o.y[0]))*ih;
+    let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.aria)}"><defs><clipPath id="cp-${o.id}"><rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}"/></clipPath></defs>`;
+    (o.bands||[]).forEach(b=>s+=`<rect x="${m.l}" width="${iw}" y="${y(b[1])}" height="${y(b[0])-y(b[1])}" fill="${b[2]}"/>`);
+    o.yt.forEach(v=>s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#d8dee4"/><text x="${m.l-7}" y="${y(v)+4}" text-anchor="end">${v}</text>`);
+    o.xt.forEach(v=>s+=`<line y1="${m.t}" y2="${H-m.b}" x1="${x(v)}" x2="${x(v)}" stroke="#eef1f4"/><text x="${x(v)}" y="${H-m.b+17}" text-anchor="middle">${v}</text>`);
+    s+=`<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="none" stroke="#8c959f"/>`;
+    (o.hl||[]).forEach(h=>s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(h.y)}" y2="${y(h.y)}" stroke="${h.c}" stroke-width="1.8" stroke-dasharray="${h.dash||"6 4"}"/><text x="${h.below?m.l+6:W-m.r-6}" y="${h.below?y(h.y)+15:y(h.y)-5}" text-anchor="${h.below?"start":"end"}" style="fill:${h.c};font-weight:700">${esc(h.t)}</text>`);
+    s+=`<g clip-path="url(#cp-${o.id})">`;
+    o.series.forEach(se=>{if(hidden.has(se.name))return;const c=se.color,cur=se.name==="Current part";
+      if(!o.scatter)s+=`<polyline fill="none" stroke="${c}" stroke-width="${cur?2.8:2.2}" ${cur?'stroke-dasharray="8 4"':""} points="${se.pts.map(p=>x(p[0])+","+y(p[1])).join(" ")}"/>`;
+      s+=se.pts.map(p=>`<circle cx="${x(p[0])}" cy="${y(p[1])}" r="${o.scatter?5:3.4}" fill="${c}" stroke="#fff" stroke-width="1.2" data-tip="${esc(se.name)}: ${p[0]} ${esc(o.xu||"L/min")} → ${p[1]}${esc(o.unit||"")}"/>`).join("");});
+    s+=`</g><text x="${m.l+iw/2}" y="${H-6}" text-anchor="middle" class="ax">${esc(o.xl)}</text><text transform="translate(14 ${m.t+ih/2}) rotate(-90)" text-anchor="middle" class="ax">${esc(o.yl)}</text></svg>`;
+    s+=`<div class="legend">${o.series.map(se=>`<button type="button" data-n="${esc(se.name)}" class="${hidden.has(se.name)?"off":""}" title="Show / hide"><i style="background:${se.color}"></i>${esc(se.name)}</button>`).join("")}</div>`;
+    el.innerHTML=s;
+    el.querySelectorAll(".legend button").forEach(b=>b.onclick=()=>{const n=b.dataset.n;hidden.has(n)?hidden.delete(n):hidden.add(n);draw();});
+  }
+  draw();
 }
-/* gantt */
 function gantt(G,today){
-  const d=s=>new Date(s+"T00:00:00Z").getTime()/864e5,t0=d("2026-11-12"),t1=d("2026-12-06"),W=900,rh=26,lw=230,H=G.length*rh+34;
-  const x=v=>lw+(v-t0)/(t1-t0)*(W-lw-10);let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Project schedule">`;
+  const d=s=>new Date(s+"T00:00:00Z").getTime()/864e5,t0=d("2026-11-12"),t1=d("2026-12-06"),W=900,rh=26,lw=225,H=G.length*rh+34;
+  const x=v=>lw+(v-t0)/(t1-t0)*(W-lw-8);let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Project schedule">`;
   for(let v=t0;v<=t1;v++){const dt=new Date(v*864e5),wd=dt.getUTCDay();if(wd===0||wd===6)s+=`<rect x="${x(v)}" y="20" width="${x(v+1)-x(v)}" height="${H-20}" fill="#f3f5f8"/>`;
     if(wd===1||v===t0)s+=`<line x1="${x(v)}" x2="${x(v)}" y1="20" y2="${H}" stroke="#d8dee4"/><text x="${x(v)+3}" y="14">${dt.toLocaleString("en-US",{month:"short",timeZone:"UTC"})} ${dt.getUTCDate()}</text>`;}
   G.forEach(([n,a,b,stt],i)=>{const yy=24+i*rh,c={done:"#1a7f37",active:"#0b5cad",planned:"#b8c2cc"}[stt];
-    s+=`<text x="0" y="${yy+15}" style="font-size:14px;font-weight:${stt==="active"?700:400};fill:${stt==="planned"?"#57606a":"#0d1117"}">${esc(n)}</text>`;
-    s+=`<rect x="${x(d(a))}" y="${yy+4}" width="${Math.max(x(d(b)+1)-x(d(a)),6)}" height="${rh-9}" fill="${c}"/>`;});
+    s+=`<text x="0" y="${yy+15}" style="font-size:13.5px;font-weight:${stt==="active"?700:400};fill:${stt==="planned"?"#57606a":"#0d1117"}">${esc(n)}</text>`;
+    s+=`<rect x="${x(d(a))}" y="${yy+4}" width="${Math.max(x(d(b)+1)-x(d(a)),6)}" height="${rh-9}" fill="${c}" data-tip="${esc(n)}: ${fmtD(a)}${a!==b?" – "+fmtD(b):""} (${LBL[stt]})"/>`;});
   const tx=x(d(today)+0.6);s+=`<line x1="${tx}" x2="${tx}" y1="18" y2="${H}" stroke="#cf222e" stroke-width="2"/><text x="${tx+4}" y="${H-4}" style="fill:#cf222e;font-weight:700">today</text>`;
   return s+"</svg>";
 }
-Promise.all([fetch("home/status.json",{cache:"no-cache"}).then(r=>r.json()),fetch("home/charts.json",{cache:"no-cache"}).then(r=>r.json())]).then(([S,C])=>{
+const block=b=>b[0]==="p"?`<p>${esc(b[1])}</p>`:b[0]==="list"?`<ul>${b[1].map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:"";
+
+function route(){const parts=(location.hash||"#overview").slice(1).split("/");const v=["overview","updates","results","designs","schedule","cad"].includes(parts[0])?parts[0]:"overview";
+  document.querySelectorAll(".view").forEach(s=>s.classList.toggle("on",s.id==="v-"+v));
+  document.querySelectorAll(".tabs a[data-v]").forEach(a=>a.classList.toggle("on",a.dataset.v===v));
+  if(v==="cad")cadInit();
+  const el=parts[1]&&$("u-"+parts[1]);if(v==="updates"&&el){el.querySelector("details").open=true;el.scrollIntoView();}else scrollTo(0,0);}
+addEventListener("hashchange",route);
+
+Promise.all(["home/status.json","home/updates.json","home/charts.json"].map(u=>fetch(u,{cache:"no-cache"}).then(r=>{if(!r.ok)throw new Error(u);return r.json();}))).then(([S,U,C])=>{
   $("upd").textContent=S.updated;
-  $("strip").innerHTML=S.strip.map(([k,v,sub],i)=>`<div class="c${i===1&&/running/i.test(v)?" live":""}"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="s">${esc(sub)}</div></div>`).join("");
-  $("sum").innerHTML=S.summary.map(([a,b])=>`<li><b>${esc(a)}</b> ${esc(b)}</li>`).join("");
-  $("gantt").innerHTML=gantt(S.gantt,S.today);
-  const R=S.requirements;$("req").innerHTML=table(R.cols,R.rows.map(r=>[...r.slice(0,4).map(esc),st(r[4])]));
-  $("c1").innerHTML=plot({id:1,aria:"Relative dose vs flow",x:[6,60],xlog:true,xt:[6,10,20,30,40,60],y:[1,2.8],yt:[1,1.5,2,2.5],xl:"flow, L/min (log)",yl:"relative dose",
-    series:C.piped.map(s=>({name:s.name,pts:s.pts})),hl:[[2.67,"limit for 0.3–0.8 mg/L","#cf222e"]]});
-  $("c2").innerHTML=plot({id:2,aria:"Water level vs flow",x:[0,40],xt:[0,10,20,30,40],y:[-25,30],yt:[-20,-10,0,10,20,30],xl:"flow, L/min",yl:"level above spout centre, cm",
-    series:C.level.map(s=>({name:s.name,pts:s.pts})),bands:[[2.2,5.8,"rgba(26,127,55,.13)"]],hl:[[5.8,"overflow +5.8","#cf222e","0"],[2.2,"bore top +2.2","#9a6700","6 4",1]]});
-  $("c3").innerHTML=plot({id:3,aria:"Port suction vs flow",x:[0,60],xt:[0,10,20,30,40,50,60],y:[0,14],yt:[0,2,4,6,8,10,12,14],xl:"flow, L/min",yl:"port suction, kPa",series:C.suction.map(s=>({name:s.name,pts:s.pts}))});
+  $("strip").innerHTML=S.strip.map(([k,v,sub])=>`<div class="c${/running/i.test(v)?" live":""}"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="s">${esc(sub)}</div></div>`).join("");
+  U.sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));
+  const nToday=U.filter(u=>u.date===S.today).length;if(nToday)$("nUpd").textContent=nToday;else $("nUpd").remove();
+  const L=U[0];
+  $("latest").innerHTML=`<div class="bar">Latest update <span>${fmtD(L.date)}, ${esc(L.time)} · ${esc(L.tag)}</span></div><div class="in"><h3>${esc(L.title)}</h3><p>${esc(L.tldr)}</p>
+    <div class="more"><a class="btn" href="#updates/${esc(L.id)}">Read the full update</a>${U.slice(1,3).map(u=>`<span>Earlier: <a href="#updates/${esc(u.id)}">${esc(u.title)}</a> (${fmtD(u.date)})</span>`).join("")}</div></div>`;
+  $("feed").innerHTML=U.map((u,i)=>`<article class="upd-item" id="u-${esc(u.id)}"><div class="meta"><b>${fmtD(u.date)}</b>${esc(u.time)} PST<br><span class="tag ${esc(u.tag)}">${esc(u.tag)}</span></div>
+    <details${i<2?" open":""}><summary><h3>${esc(u.title)}</h3></summary><div class="tldr"><b>TL;DR</b> ${esc(u.tldr)}</div><div class="bd">${u.body.map(block).join("")}</div></details></article>`).join("");
+  $("goal").textContent=S.goal;
+  const R=S.requirements;$("req").innerHTML=table(R.cols,R.rows.map(r=>[`<b>${esc(r[0])}</b>`,...r.slice(1,5).map(esc),st(r[5])]));$("reqNote").textContent=R.note;
   $("find").innerHTML=S.findings.map(([a,b])=>`<li><b>${esc(a)}</b> ${esc(b)}</li>`).join("");
-  const D=S.designs;$("des").innerHTML=table(D.cols,D.rows.map(r=>r.map(esc)),[3,4,5]);$("desNote").textContent=D.note;
+  const D=C.designs,ser=(key,names)=>D.filter(d=>!names||names.includes(d.name)).map(d=>({name:d.name,color:CLR[d.name]||"#444",pts:d[key]}));
+  const doseOpt=(id,names)=>({id,aria:"Relative dose vs flow",x:[6,60],xlog:true,xt:[6,10,20,30,40,60],y:[1,3.6],yt:[1,1.5,2,2.5,3,3.5],xl:"flow, L/min (log scale)",yl:"relative dose",unit:"×",
+    series:ser("dose",names),hl:[{y:2.67,t:"limit for 0.3–0.8 mg/L",c:"#cf222e"}]});
+  const lvlOpt=(id,names)=>({id,aria:"Water level vs flow",x:[0,40],xt:[0,10,20,30,40],y:[-25,30],yt:[-20,-10,0,10,20,30],xl:"flow, L/min",yl:"level above spout centre, cm",unit:" cm",
+    series:ser("level",names).map(s=>({...s,pts:s.pts.filter(p=>p[0]<=40)})),bands:[[2.2,5.8,"rgba(26,127,55,.16)"]],hl:[{y:5.8,t:"overflow +5.8 cm",c:"#cf222e",dash:"0"},{y:2.2,t:"bore top +2.2 cm",c:"#9a6700",below:1}]});
+  chart($("o1"),doseOpt("o1",["Current part","V1","V2","V3"]));
+  chart($("o2"),lvlOpt("o2",["Current part","V1","V2","V12","V11t"]));
+  chart($("r1"),doseOpt("r1",["Current part","V1","V2","V3","V4"]));
+  chart($("r2"),lvlOpt("r2"));
+  chart($("r3"),{id:"r3",aria:"Port suction vs flow",x:[0,60],xt:[0,10,20,30,40,50,60],y:[0,26],yt:[0,5,10,15,20,25],xl:"flow, L/min",yl:"port suction, kPa",unit:" kPa",series:ser("suction")});
+  const hp=S.bench.rows.filter(r=>/Handpump/.test(r[0])),ot=S.bench.rows.filter(r=>!/Handpump/.test(r[0]));
+  chart($("r4"),{id:"r4",aria:"Bench dose vs flow",scatter:true,x:[0,32],xt:[0,5,10,15,20,25,30],y:[0,2.2],yt:[0,0.5,1,1.5,2],xl:"flow, L/min",yl:"dose, mg/L",unit:" mg/L",
+    bands:[[0.1,1.5,"rgba(26,127,55,.09)"],[0.3,0.8,"rgba(26,127,55,.22)"]],series:[{name:"V1 handpump",color:"#0b5cad",pts:hp.map(r=>[r[1],r[2]])},{name:"V1 bench / piped",color:"#d55e00",pts:ot.map(r=>[r[1],r[2]])}]});
+  $("benchNote").textContent=S.bench.note;
+  $("benchT").innerHTML=table(["Run","Flow, L/min","Dose, mg/L"],S.bench.rows.map(r=>[esc(r[0]),r[1].toFixed(2),r[2].toFixed(2)]),[1,2]);
+  const P=D.filter(d=>d.profile);
+  chart($("prof"),{id:"prof",W:940,H:330,aria:"Bore profiles",x:[0,155],xt:[0,25,50,75,100,125,150],y:[8,32],yt:[10,15,20,25,30],xl:"distance from inlet face, mm",yl:"bore diameter, mm",unit:" mm",xu:"mm",
+    series:P.map(d=>({name:d.name,color:CLR[d.name]||"#444",pts:d.profile})),hide:["V4","V12","V10"]});
+  const f=v=>v==null?"–":typeof v==="number"?String(+v.toFixed(2)):esc(v);
+  $("des").innerHTML=table(["Design","Throat, mm","Train in CFD","Piped spread 6–30","Piped spread 6–60","Piped spread 6–100","Suction at 6 L/min, kPa","Level at 20 L/min, cm","Overflows above, L/min","Notes"],
+    D.map(d=>[`<i class="swatch" style="background:${CLR[d.name]||"#444"}"></i><b>${esc(d.name)}</b>`,f(d.throat),esc(d.train),f(d.spread_6_30),f(d.spread_6_60),f(d.spread_6_100),f(d.suction_6),f(d.level_20),f(d.overflow_Q),esc(d.note)]),[1,3,4,5,6,7,8],k=>D[k].name==="Current part"?"cur":"");
+  if(C.r1&&C.r1.length){$("r1panel").style.display="";const c=["geom","n_flows","flat_6_100","flat_6_120","s6_kPa","exit_v6_over_bubble","hp_level_20","hp_overflow_Q"];
+    $("r1t").innerHTML=table(["Shape","Flows done","Spread 6–100","Spread 6–120","Suction at 6, kPa","Outlet speed ÷ bubble rise at 6","Est. handpump level at 20, cm","Est. overflow, L/min"],C.r1.map(r=>c.map(k=>esc(r[k]))),[1,2,3,4,5,6,7]);}
+  $("gantt").innerHTML=gantt(S.gantt,S.today);
   $("actLab").innerHTML=table(["Item","Due","Status"],S.actions_lab.map(([a,b,c])=>[esc(a),esc(b),st(c)]));
   $("actBench").innerHTML=table(["Item","Due","Status"],S.actions_bench.map(([a,b,c])=>[esc(a),esc(b),st(c)]));
-  $("benchNote").textContent=S.bench.note;
-  const hp=S.bench.rows.filter(r=>/Handpump/.test(r[0])),ot=S.bench.rows.filter(r=>!/Handpump/.test(r[0]));
-  $("c4").innerHTML=plot({id:4,aria:"Bench dose vs flow",scatter:true,x:[0,32],xt:[0,5,10,15,20,25,30],y:[0,2.2],yt:[0,0.5,1,1.5,2],xl:"flow, L/min",yl:"dose, mg/L",
-    bands:[[0.1,1.5,"rgba(26,127,55,.08)"],[0.3,0.8,"rgba(26,127,55,.2)"]],series:[{name:"V1 handpump",pts:hp.map(r=>[r[1],r[2]]),color:"#0b5cad"},{name:"V1 bench / piped",pts:ot.map(r=>[r[1],r[2]]),color:"#d55e00"}]});
-  $("benchT").innerHTML=table(["Run","Flow, L/min","Dose, mg/L"],S.bench.rows.map(r=>[esc(r[0]),r[1].toFixed(2),r[2].toFixed(2)]),[1,2]);
-  $("logT").innerHTML=table(["Date","What happened"],S.log.map(([a,b])=>[`<b>${esc(a)}</b>`,esc(b)]));
   $("links").innerHTML=S.links.map(([t,u])=>`<a href="${esc(u)}">${esc(t)}</a>`).join(" · ");
-}).catch(e=>{$("sum").innerHTML=`<li>Could not load the page data (${esc(e.message)}).</li>`});
+  route();
+}).catch(e=>{document.querySelector("main").insertAdjacentHTML("afterbegin",`<div class="panel"><div class="pb">Could not load the page data (${esc(e.message)}).</div></div>`);route();});
 
-/* CAD list + STL preview */
-let Rr,scene,cam,ctl,mesh;
+let Rr,scene,cam,ctl,mesh,cadDone=false;
 function initViewer(){const el=$("viewer");Rr=new THREE.WebGLRenderer({antialias:true,alpha:true});Rr.setPixelRatio(Math.min(devicePixelRatio,2));
   Rr.setSize(el.clientWidth,el.clientHeight);el.appendChild(Rr.domElement);scene=new THREE.Scene();
   cam=new THREE.PerspectiveCamera(35,el.clientWidth/el.clientHeight,0.1,1e5);ctl=new THREE.OrbitControls(cam,Rr.domElement);
   scene.add(new THREE.HemisphereLight(0xffffff,0x556070,0.95));const dl=new THREE.DirectionalLight(0xffffff,0.65);dl.position.set(1,2,3);cam.add(dl);scene.add(cam);
-  new ResizeObserver(()=>{Rr.setSize(el.clientWidth,el.clientHeight);cam.aspect=el.clientWidth/el.clientHeight;cam.updateProjectionMatrix();}).observe(el);
+  new ResizeObserver(()=>{if(!el.clientWidth)return;Rr.setSize(el.clientWidth,el.clientHeight);cam.aspect=el.clientWidth/el.clientHeight;cam.updateProjectionMatrix();}).observe(el);
   (function loop(){requestAnimationFrame(loop);ctl.update();Rr.render(scene,cam);})();}
 function show(it,row){document.querySelectorAll(".cad .f").forEach(r=>r.classList.remove("on"));row.classList.add("on");
-  if(innerWidth<860)$("viewer").scrollIntoView({behavior:"smooth",block:"nearest"});
+  if(innerWidth<900)$("viewer").scrollIntoView({behavior:"smooth",block:"nearest"});
   if(!it.stl){$("vmsg").textContent="No preview for this file";return;}
   if(!Rr){try{initViewer();}catch(e){$("vmsg").textContent="3-D preview isn't available in this browser";return;}}
   $("vmsg").textContent="Loading "+it.name+" …";
@@ -206,14 +290,15 @@ function show(it,row){document.querySelectorAll(".cad .f").forEach(r=>r.classLis
     mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x8fa6bd,metalness:0.05,roughness:0.6,side:THREE.DoubleSide}));scene.add(mesh);
     const sz=g.boundingBox.getSize(new THREE.Vector3()),r=sz.length();cam.position.set(r*0.9,r*0.6,r*1.1);cam.near=r/100;cam.far=r*20;cam.updateProjectionMatrix();ctl.target.set(0,0,0);
     $("vmsg").textContent=`${it.name} — ${sz.x.toFixed(0)} × ${sz.y.toFixed(0)} × ${sz.z.toFixed(0)} mm`;},undefined,()=>{$("vmsg").textContent="The preview didn't load";});}
-fetch("cad/cad.json",{cache:"no-cache"}).then(r=>r.json()).then(C=>{const box=$("cadList");let first=null;
-  C.groups.forEach(g=>{const its=C.items.filter(i=>i.group===g);if(!its.length)return;
-    const h=document.createElement("div");h.className="g";h.textContent=g;box.appendChild(h);
-    its.forEach(it=>{const d=document.createElement("div");d.className="f";
-      d.innerHTML=`<span>${esc(it.name)}</span><small>${it.kb>1024?(it.kb/1024).toFixed(1)+" MB":it.kb+" KB"}</small><a href="${esc(it.step)}" download>STEP ↓</a>`;
-      d.querySelector("a").onclick=e=>e.stopPropagation();d.onclick=()=>show(it,d);box.appendChild(d);if(!first)first=[it,d];});});
-  const io=new IntersectionObserver(es=>{if(es[0].isIntersecting&&first&&!Rr){show(...first);io.disconnect();}});io.observe($("viewer"));
-}).catch(e=>{$("cadList").textContent="Could not load the file list ("+e.message+").";});
+function cadInit(){if(cadDone)return;cadDone=true;
+  fetch("cad/cad.json",{cache:"no-cache"}).then(r=>r.json()).then(C=>{const box=$("cadList");let first=null;
+    C.groups.forEach(g=>{const its=C.items.filter(i=>i.group===g);if(!its.length)return;
+      const h=document.createElement("div");h.className="g";h.textContent=g;box.appendChild(h);
+      its.forEach(it=>{const d=document.createElement("div");d.className="f";
+        d.innerHTML=`<span>${esc(it.name)}</span><small>${it.kb>1024?(it.kb/1024).toFixed(1)+" MB":it.kb+" KB"}</small><a href="${esc(it.step)}" download>STEP ↓</a>`;
+        d.querySelector("a").onclick=e=>e.stopPropagation();d.onclick=()=>show(it,d);box.appendChild(d);if(!first)first=[it,d];});});
+    if(first)setTimeout(()=>show(...first),60);
+  }).catch(e=>{$("cadList").textContent="Could not load the file list ("+e.message+").";});}
 </script>
 </body>
 </html>

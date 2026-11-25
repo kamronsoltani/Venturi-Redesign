@@ -1,16 +1,30 @@
 {
-  "updated": "2026-11-25 15:10 PST",
+  "updated": "2026-11-25 15:50 PST",
   "today": "2026-11-25",
   "strip": [
     ["Current phase", "Round 1: 2-D shape screen", "15 shapes × 7 flows, 6–120 L/min"],
-    ["Lab PC", "Running", "105 cases, 12 in parallel, ~46 min each"],
+    ["Lab PC", "Running", "105 cases, 12 at a time, ~46 min each"],
     ["Next result", "Round 1 ranking", "Nov 25, about 10 pm"],
     ["Bench test", "Week of Nov 30", "Print files due Nov 29"]
   ],
-  "summary": [
-    ["Goal.", "Two or three new Venturis, changed in bore shape only, that hold a steady dose on piped flow from 6 to 100+ L/min, still dose at 6 L/min, and don't overflow the handpump."],
-    ["Where we are.", "Round 1 of the 2-D shape screen is running. Of the existing designs, V2 (16 mm throat) holds dose most evenly on piped flow, but no existing design meets the 6–100 L/min target yet."],
-    ["Biggest lever.", "Throat size trades high-flow overdosing (small throats) against weak low-flow suction (large throats). The 1-D estimate puts the best throat at about 16.5–17 mm, with a narrower outlet so the bottom stays full at 6 L/min."]
+  "goal": "Two or three new Venturis, changed in bore shape only, that hold a steady dose on piped flow from 6 to 100+ L/min, still dose at 6 L/min, and don't overflow the handpump. The top two get printed and bench tested the week of Nov 30.",
+  "requirements": {
+    "cols": ["Requirement", "Target", "Current part", "V1", "Best so far", "Status"],
+    "rows": [
+      ["Piped dose spread, 6–100 L/min", "≤ 2.67× (aim 2.2×)", "5.8×", "3.3×", "2.4× (V2)", "fail"],
+      ["Doses at 6 L/min, steady", "Clear suction, outlet full", "0.89 kPa", "1.05 kPa, outlet marginal", "–", "open"],
+      ["Handpump overflow (Afridev)", "None up to 20 L/min", "Overflows at 18.5", "None to 30", "V1", "pass"],
+      ["Handpump dose, 10–20 L/min", "0.1–1.5 mg/L (ideal 0.3–0.8)", "–", "0.38–1.32 (bench)", "V1", "pass"],
+      ["Body length", "≤ 125 mm", "116.5 mm", "125 mm", "–", "pass"],
+      ["Changes allowed", "Bore shape only", "–", "–", "–", "rule"]
+    ],
+    "note": "Spread = highest ÷ lowest dose on piped flow (3-D CFD). 6–100 L/min is extrapolated from data to 60 L/min. The current part is on its own 3/4\" train; V1 on the 1\" long-radius reducer."
+  },
+  "findings": [
+    ["Piped flow sets the throat.", "Small throats overdose at high flow, large throats underdose at low flow. Best balance for 6–100 L/min is about a 16.5–17 mm throat."],
+    ["6 L/min needs a full outlet.", "Low-flow suction comes from the water column below the port; a slightly narrower outlet keeps that column intact."],
+    ["Handpump weak dosing is air, not suction.", "When the pump-head level drops below the inlet bore, air reaches the Venturi and the dose halves (two-phase CFD)."],
+    ["The current part overflows at 18.5 L/min.", "V1 doesn't overflow below 30 L/min and stays within 0.1–1.5 mg/L on the bench; the new design must keep that."]
   ],
   "gantt": [
     ["2-D Venturi studies (54 runs)", "2026-11-12", "2026-11-17", "done"],
@@ -27,29 +41,6 @@
     ["CAD + bench sheet", "2026-11-29", "2026-11-29", "planned"],
     ["Bench testing", "2026-11-30", "2026-12-04", "planned"]
   ],
-  "requirements": {
-    "cols": ["Requirement", "Target", "V1 today", "Best so far", "Status"],
-    "rows": [
-      ["Piped dose spread, 6–100 L/min", "≤ 2.67 (aim 2.2)", "3.28", "2.41 (V2)", "fail"],
-      ["Doses at 6 L/min, steady", "Clear suction, outlet full", "~1.0 kPa, outlet marginal", "–", "open"],
-      ["Handpump dose, 10–20 L/min", "0.1–1.5 mg/L (ideal 0.3–0.8)", "0.38–1.32 (bench)", "V1", "pass"],
-      ["Handpump overflow", "None up to 20 L/min", "Overflows ~30 L/min", "V1", "pass"],
-      ["Body length", "≤ 125 mm", "125 mm", "–", "pass"],
-      ["Changes", "Bore shape only", "–", "–", "rule"]
-    ]
-  },
-  "designs": {
-    "cols": ["Design", "Throat", "Outlet", "Piped spread 6–60", "Piped spread 6–100", "Overflows above", "Status"],
-    "rows": [
-      ["V1", "14 mm", "26 mm", "2.02", "3.28", "30 L/min", "Reference"],
-      ["V2", "16 mm", "26 mm", "1.98", "2.41", "40 L/min", "Best existing"],
-      ["V3", "18 mm", "26 mm", "2.57", "2.49", "48 L/min", "Weak at low flow"],
-      ["V4", "14 mm", "30 mm", "1.80", "2.82", "31 L/min", "Dropped: 153 mm"],
-      ["V10 / V11t / V12", "10–12 mm", "23–26 mm", "–", "–", "15–23 L/min", "Dropped: overflow"],
-      ["Round 1 (15)", "14–18 mm", "20–26 mm", "running", "running", "running", "Screening"]
-    ],
-    "note": "Spread = highest / lowest dose on piped flow, 3-D CFD with the long-radius reducer. 6–100 is extrapolated past the 60 L/min data. Overflow = steady flow at which the Afridev level reaches +5.8 cm. V2–V4 used the older mesh; finalists will be rerun on the corrected mesh."
-  },
   "actions_lab": [
     ["Round 1 2-D screen + independent mesh/convergence check", "Nov 25", "active"],
     ["Round 2 refinement", "Nov 27", "planned"],
@@ -63,26 +54,9 @@
     ["Print and test the top two designs", "Dec 4", "planned"],
     ["Reprint long-radius elbow from rev3", "Nov 24", "done"]
   ],
-  "findings": [
-    ["Piped flow sets the throat.", "Suction = water column below the port + a throat term growing with flow². With the needle valve's viscous feed, small throats overdose at high flow and large throats underdose at low flow. Best balance for 6–100 L/min: about 16.5–17 mm."],
-    ["6 L/min needs a full outlet.", "Almost all low-flow suction comes from the column below the port. In a 26 mm outlet at 6 L/min the water moves only as fast as an air bubble rises; a narrower outlet keeps it full."],
-    ["Handpump weak dosing is air, not suction.", "Two-phase CFD: when the pump-head level drops below the inlet bore, air reaches the Venturi and the dose halves. Shape moves this window but can't widen it much."],
-    ["V1 already meets the handpump band.", "Bench V1 stays within 0.1–1.5 mg/L from 7 to 26 L/min; the new design must not lose that."]
-  ],
   "bench": {
     "note": "V1 with the long-radius reducer, Nov 23.",
     "rows": [["Handpump 15 spm", 3.40, 0.48], ["Handpump 25 spm", 6.92, 0.31], ["Handpump 50 spm", 13.77, 0.93], ["Handpump 50 spm", 14.14, 0.91], ["Handpump 75 spm", 19.50, 1.32], ["Handpump 100 spm", 25.99, 1.32], ["Bench", 10.75, 0.38], ["Bench", 16.0, 1.28], ["Steady piped", 28.0, 1.99], ["Bench", 30.0, 1.86]]
   },
-  "log": [
-    ["Nov 25", "New goal: steady piped dosing 6–100+ L/min, bore shape only. Vent idea dropped. Round 1 2-D screen started. Project homepage added."],
-    ["Nov 24–25", "Narrow throats V10–V12 and V11t in 3-D: more suction but overflow at 15–23 L/min. No fixed throat covers 10–20 L/min on the handpump."],
-    ["Nov 23–24", "Two-phase handpump simulation of V1 at 13 L/min: the head drains, air reaches the Venturi, dose halves."],
-    ["Nov 24", "CAD rev3: fixed a solid wall at the elbow's coupler flange (rev2 bore was blocked)."],
-    ["Nov 23", "Bench test of V1 on the handpump."],
-    ["Nov 22", "Threaded long-radius elbow and V1–V4 drawn for printing."],
-    ["Nov 19–22", "Mesh offset found and fixed (changed port suction ~10%). 3/4\" long-radius elbow compared."],
-    ["Nov 17–19", "3-D CFD of 11 complete assemblies, 6–60 L/min. Upstream parts alone nearly overflow."],
-    ["Nov 12–17", "2-D CFD of the current part, prototypes A/B and V1–V4 (54 runs)."]
-  ],
   "links": [["CFD results viewer", "cfd/"], ["Lab PC status", "control/"], ["GitHub repository", "https://github.com/kamronsoltani/Venturi-Redesign"]]
 }

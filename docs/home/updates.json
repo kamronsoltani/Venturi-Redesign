@@ -1,0 +1,56 @@
+[
+ {
+  "id": "2026-11-25-r1-running",
+  "date": "2026-11-25", "time": "15:45",
+  "tag": "Simulation",
+  "title": "Round 1 shape screen running; current part added for comparison",
+  "tldr": "15 new bore shapes are being simulated at 7 flows from 6 to 120 L/min (105 cases). The first cases are finishing cleanly; the full ranking is due about 10 pm tonight. The existing part is now shown next to every new design on this site.",
+  "body": [
+    ["p", "Round 1 varies two things: throat diameter (14, 15, 16, 17, 18 mm) and outlet diameter (26 mm as V1–V3, or a short contraction to 23 or 20 mm). Everything else is held at the V1 layout: 1\" inlet, 20° inlet cone, 14 mm long throat, port 7 mm down the throat, 4° diffuser, 125 mm body."],
+    ["p", "Why the outlet contraction: at 6 L/min almost all the port suction comes from the water column below the port. That column only exists if the outlet runs full. In a 26 mm outlet at 6 L/min the water moves down about as fast as an air bubble rises, so air can creep in. A 20–23 mm outlet keeps it full, and it also trims suction at high flow, which flattens the dose."],
+    ["list", ["Pipeline check: the 2-D setup re-ran V1 at 30 L/min and matched the earlier result to every digit (level 1.833 cm, port −5.116 kPa).", "Independent agent audit: all 15 shapes match the intended geometry to 0.005 mm; all meshes pass checkMesh (non-orthogonality 20°, 51–54k cells); wall cells stay fine enough (y+ ≈ 1) up to 120 L/min.", "Speed: about 46 min per case with 12 running at once; done about 10 pm."]],
+    ["p", "Current part, for reference (3-D, its own 3/4\" E-Sig + elbow train): it overflows the Afridev at about 18.5 L/min, and on piped flow its dose varies 3.4× over 6–60 L/min (about 5.8× extrapolated to 100). Every new candidate is measured against it and against V1."]
+  ]
+ },
+ {
+  "id": "2026-11-25-plan",
+  "date": "2026-11-25", "time": "14:30",
+  "tag": "Decision",
+  "title": "New goal: steady piped dosing from 6 to 100+ L/min, bore shape only",
+  "tldr": "The redesign now targets consistent dosing on piped flow from 6 to over 100 L/min, a working dose at 6 L/min, and no handpump overflow, changing only the Venturi bore. Of the existing designs V2 (16 mm) is the most even; the best throat looks like 16.5–17 mm.",
+  "body": [
+    ["p", "Dose consistency on piped flow depends on how port suction grows with flow. Suction has two parts: the water column below the port (about 1 kPa, independent of flow) and a throat term that grows with flow². The needle valve passes bleach at about 1 mL/min, a viscous flow, so chlorine flow is proportional to suction and dose is proportional to suction ÷ flow."],
+    ["list", ["Small throats (V1, 14 mm): the flow² term dominates early, so they overdose at high flow (dose spread 3.3× over 6–100 L/min).", "Large throats (V3, 18 mm): the column dominates, so they underdose at low flow (2.5×).", "Best balance for 6–100 L/min: column ≈ 600 × throat coefficient, about a 16.5–17 mm throat, spread about 2.2×. That fits the 0.3–0.8 mg/L band at one needle setting (2.67×)."]],
+    ["p", "Excluded on the user's call: any added part (flap, valve, vent, riser). The vent two-phase run was stopped at 0.33 s."]
+  ]
+ },
+ {
+  "id": "2026-11-25-throats",
+  "date": "2026-11-25", "time": "09:21",
+  "tag": "Simulation",
+  "title": "Narrow throats V10–V12 complete: they overflow inside the handpump range",
+  "tldr": "Five designs at nine flows (6–30 L/min) in 3-D, all converged. Narrower throats give more suction but back the water up: V10 overflows at 14.8 L/min, V11t at 20.5, V12 at 22.9. No fixed throat keeps the Venturi full and below overflow from 10 to 20 L/min on the handpump.",
+  "body": [
+    ["p", "The handpump window is set by two levels in the pump head: above the inlet bore top (+2.2 cm) the Venturi stays full; above +5.8 cm the Afridev overflows. Level rises with flow², so any fixed shape stays in that window over a flow ratio of only about 1.08×. Shape moves the window; it can't widen it."],
+    ["p", "V1 already doses within the acceptable 0.1–1.5 mg/L on the bench from 7 to 26 L/min, so the new design must not raise the level much above V1's."]
+  ]
+ },
+ {
+  "id": "2026-11-24-vof",
+  "date": "2026-11-24", "time": "12:46",
+  "tag": "Simulation",
+  "title": "Two-phase handpump simulation: why dosing drops at low pump rates",
+  "tldr": "V1 at 80 clicks/min (13.2 L/min): the pump head drains, and once the level falls below the top of the inlet bore, air runs along the bore into the Venturi. Suction is lost for part of every stroke and the dose falls to about half.",
+  "body": [
+    ["list", ["Suction weakens at 2.72 s; the port goes dry at 2.73 s; the outlet stops running full at 2.76 s.", "After air reaches the Venturi the solver's time step falls ~10× (bubbly flow).", "This explains the bench result: 0.31 mg/L at 6.9 L/min vs 1.32 at 19.5 L/min."]]
+  ]
+ },
+ {
+  "id": "2026-11-24-cad",
+  "date": "2026-11-24", "time": "15:30",
+  "tag": "CAD",
+  "title": "CAD rev3: blocked bore in the long-radius elbow fixed",
+  "tldr": "The elbow sent on Nov 22 had a 3 mm solid wall across the bore at the coupler flange. Rev3 fixes it; every CAD change now gets an end-to-end water-path probe of the exported file before it is sent.",
+  "body": [["p", "Reprint only the elbow; V1–V4 were unchanged. Files are in the CAD tab (Threaded set, rev3)."]]
+ }
+]
