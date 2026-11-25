@@ -1,15 +1,15 @@
 {
  "groups": [
-  "Threaded set rev3 (print these; Nov 24)",
-  "Venturi set V1-V4 (plain, 1in)",
-  "Upstream parts (reducers, elbows)",
-  "Prototypes A / B",
-  "Prototype C (integrated elbow)",
-  "Current part (reference)"
+  "Threaded set, rev3 (current print files)",
+  "Venturi set V1–V4, unthreaded",
+  "Reducers and elbows",
+  "Prototypes A and B",
+  "Prototype C, integrated elbow",
+  "Current part"
  ],
  "items": [
   {
-   "group": "Threaded set rev3 (print these; Nov 24)",
+   "group": "Threaded set, rev3 (current print files)",
    "name": "TuriTap_HP_V1_throat14_exit26_threaded",
    "file": "TuriTap_HP_V1_throat14_exit26_threaded.step",
    "path": "docs/cad/threaded_rev3/TuriTap_HP_V1_throat14_exit26_threaded.step",
@@ -18,7 +18,7 @@
    "kb": 1158
   },
   {
-   "group": "Threaded set rev3 (print these; Nov 24)",
+   "group": "Threaded set, rev3 (current print files)",
    "name": "TuriTap_HP_V2_throat16_exit26_threaded",
    "file": "TuriTap_HP_V2_throat16_exit26_threaded.step",
    "path": "docs/cad/threaded_rev3/TuriTap_HP_V2_throat16_exit26_threaded.step",
@@ -27,7 +27,7 @@
    "kb": 1238
   },
   {
-   "group": "Threaded set rev3 (print these; Nov 24)",
+   "group": "Threaded set, rev3 (current print files)",
    "name": "TuriTap_HP_V3_throat18_exit26_threaded",
    "file": "TuriTap_HP_V3_throat18_exit26_threaded.step",
    "path": "docs/cad/threaded_rev3/TuriTap_HP_V3_throat18_exit26_threaded.step",
@@ -36,7 +36,7 @@
    "kb": 1365
   },
   {
-   "group": "Threaded set rev3 (print these; Nov 24)",
+   "group": "Threaded set, rev3 (current print files)",
    "name": "TuriTap_HP_V4_throat14_exit30_long_threaded",
    "file": "TuriTap_HP_V4_throat14_exit30_long_threaded.step",
    "path": "docs/cad/threaded_rev3/TuriTap_HP_V4_throat14_exit30_long_threaded.step",
@@ -45,7 +45,7 @@
    "kb": 1212
   },
   {
-   "group": "Threaded set rev3 (print these; Nov 24)",
+   "group": "Threaded set, rev3 (current print files)",
    "name": "TuriTap_LongRadius_reducer_1in_threaded_port",
    "file": "TuriTap_LongRadius_reducer_1in_threaded_port.step",
    "path": "docs/cad/threaded_rev3/TuriTap_LongRadius_reducer_1in_threaded_port.step",
@@ -54,7 +54,7 @@
    "kb": 739
   },
   {
-   "group": "Threaded set rev3 (print these; Nov 24)",
+   "group": "Threaded set, rev3 (current print files)",
    "name": "assembly_elbow_V2_threaded",
    "file": "assembly_elbow_V2_threaded.step",
    "path": "docs/cad/threaded_rev3/assembly_elbow_V2_threaded.step",
@@ -63,7 +63,7 @@
    "kb": 2027
   },
   {
-   "group": "Venturi set V1-V4 (plain, 1in)",
+   "group": "Venturi set V1–V4, unthreaded",
    "name": "TuriTap_HP_V1_throat14_exit26",
    "file": "TuriTap_HP_V1_throat14_exit26.step",
    "path": "geometry/venturi_set_1in/TuriTap_HP_V1_throat14_exit26.step",
@@ -72,7 +72,7 @@
    "kb": 642
   },
   {
-   "group": "Venturi set V1-V4 (plain, 1in)",
+   "group": "Venturi set V1–V4, unthreaded",
    "name": "TuriTap_HP_V2_throat16_exit26",
    "file": "TuriTap_HP_V2_throat16_exit26.step",
    "path": "geometry/venturi_set_1in/TuriTap_HP_V2_throat16_exit26.step",
@@ -81,7 +81,7 @@
    "kb": 622
   },
   {
-   "group": "Venturi set V1-V4 (plain, 1in)",
+   "group": "Venturi set V1–V4, unthreaded",
    "name": "TuriTap_HP_V3_throat18_exit26",
    "file": "TuriTap_HP_V3_throat18_exit26.step",
    "path": "geometry/venturi_set_1in/TuriTap_HP_V3_throat18_exit26.step",
@@ -90,7 +90,7 @@
    "kb": 617
   },
   {
-   "group": "Venturi set V1-V4 (plain, 1in)",
+   "group": "Venturi set V1–V4, unthreaded",
    "name": "TuriTap_HP_V4_throat14_exit30_long",
    "file": "TuriTap_HP_V4_throat14_exit30_long.step",
    "path": "geometry/venturi_set_1in/TuriTap_HP_V4_throat14_exit30_long.step",
@@ -99,7 +99,7 @@
    "kb": 677
   },
   {
-   "group": "Upstream parts (reducers, elbows)",
+   "group": "Reducers and elbows",
    "name": "ESig_reducer_1in_NPT_male",
    "file": "ESig_reducer_1in_NPT_male.step",
    "path": "geometry/upstream/ESig_reducer_1in_NPT_male.step",
@@ -108,7 +108,7 @@
    "kb": 1320
   },
   {
-   "group": "Upstream parts (reducers, elbows)",
+   "group": "Reducers and elbows",
    "name": "ESig_reducer_3-4in_NPT_male",
    "file": "ESig_reducer_3-4in_NPT_male.step",
    "path": "geometry/upstream/ESig_reducer_3-4in_NPT_male.step",
@@ -117,7 +117,7 @@
    "kb": 2461
   },
   {
-   "group": "Upstream parts (reducers, elbows)",
+   "group": "Reducers and elbows",
    "name": "Elbow_1in_NPT_McMaster_4880K464",
    "file": "Elbow_1in_NPT_McMaster_4880K464.step",
    "path": "geometry/upstream/Elbow_1in_NPT_McMaster_4880K464.step",
@@ -126,7 +126,7 @@
    "kb": 2025
   },
   {
-   "group": "Upstream parts (reducers, elbows)",
+   "group": "Reducers and elbows",
    "name": "Elbow_3-4in_NPT_threaded_inch_units",
    "file": "Elbow_3-4in_NPT_threaded_inch_units.step",
    "path": "geometry/upstream/Elbow_3-4in_NPT_threaded_inch_units.step",
@@ -135,7 +135,7 @@
    "kb": 723
   },
   {
-   "group": "Upstream parts (reducers, elbows)",
+   "group": "Reducers and elbows",
    "name": "LongRadius_reducer_1in_NPT_female",
    "file": "LongRadius_reducer_1in_NPT_female.step",
    "path": "geometry/upstream/LongRadius_reducer_1in_NPT_female.step",
@@ -144,7 +144,7 @@
    "kb": 803
   },
   {
-   "group": "Prototypes A / B",
+   "group": "Prototypes A and B",
    "name": "TuriTap_HP_A_safe_1in_inlet",
    "file": "TuriTap_HP_A_safe_1in_inlet.step",
    "path": "geometry/TuriTap_HP_A_safe_1in_inlet.step",
@@ -153,7 +153,7 @@
    "kb": 583
   },
   {
-   "group": "Prototypes A / B",
+   "group": "Prototypes A and B",
    "name": "TuriTap_HP_A_safe_3-4in_inlet",
    "file": "TuriTap_HP_A_safe_3-4in_inlet.step",
    "path": "TuriTap_HP_A_safe_3-4in_inlet.step",
@@ -162,7 +162,7 @@
    "kb": 95
   },
   {
-   "group": "Prototypes A / B",
+   "group": "Prototypes A and B",
    "name": "TuriTap_HP_A_safe_3-4in_inlet",
    "file": "TuriTap_HP_A_safe_3-4in_inlet.step",
    "path": "geometry/TuriTap_HP_A_safe_3-4in_inlet.step",
@@ -171,7 +171,7 @@
    "kb": 583
   },
   {
-   "group": "Prototypes A / B",
+   "group": "Prototypes A and B",
    "name": "TuriTap_HP_B_lowloss_1in_inlet",
    "file": "TuriTap_HP_B_lowloss_1in_inlet.step",
    "path": "geometry/TuriTap_HP_B_lowloss_1in_inlet.step",
@@ -180,7 +180,7 @@
    "kb": 583
   },
   {
-   "group": "Prototypes A / B",
+   "group": "Prototypes A and B",
    "name": "TuriTap_HP_B_lowloss_1in_inlet_crossvane",
    "file": "TuriTap_HP_B_lowloss_1in_inlet_crossvane.step",
    "path": "geometry/TuriTap_HP_B_lowloss_1in_inlet_crossvane.step",
@@ -189,7 +189,7 @@
    "kb": 650
   },
   {
-   "group": "Prototypes A / B",
+   "group": "Prototypes A and B",
    "name": "TuriTap_HP_B_lowloss_3-4in_inlet",
    "file": "TuriTap_HP_B_lowloss_3-4in_inlet.step",
    "path": "geometry/TuriTap_HP_B_lowloss_3-4in_inlet.step",
@@ -198,7 +198,7 @@
    "kb": 583
   },
   {
-   "group": "Prototypes A / B",
+   "group": "Prototypes A and B",
    "name": "TuriTap_HP_B_lowloss_3-4in_inlet_crossvane",
    "file": "TuriTap_HP_B_lowloss_3-4in_inlet_crossvane.step",
    "path": "geometry/TuriTap_HP_B_lowloss_3-4in_inlet_crossvane.step",
@@ -207,7 +207,7 @@
    "kb": 650
   },
   {
-   "group": "Prototype C (integrated elbow)",
+   "group": "Prototype C, integrated elbow",
    "name": "TuriTap_HP_C_integrated_elbow_1in_crossvane",
    "file": "TuriTap_HP_C_integrated_elbow_1in_crossvane.step",
    "path": "geometry/prototype_C/TuriTap_HP_C_integrated_elbow_1in_crossvane.step",
@@ -216,7 +216,7 @@
    "kb": 1121
   },
   {
-   "group": "Prototype C (integrated elbow)",
+   "group": "Prototype C, integrated elbow",
    "name": "TuriTap_HP_C_integrated_elbow_1in_crossvane_fluid",
    "file": "TuriTap_HP_C_integrated_elbow_1in_crossvane_fluid.step",
    "path": "geometry/prototype_C/TuriTap_HP_C_integrated_elbow_1in_crossvane_fluid.step",
@@ -225,7 +225,7 @@
    "kb": 103
   },
   {
-   "group": "Prototype C (integrated elbow)",
+   "group": "Prototype C, integrated elbow",
    "name": "TuriTap_HP_C_venturi_1in_crossvane",
    "file": "TuriTap_HP_C_venturi_1in_crossvane.step",
    "path": "geometry/prototype_C_venturi/TuriTap_HP_C_venturi_1in_crossvane.step",
@@ -234,7 +234,7 @@
    "kb": 894
   },
   {
-   "group": "Prototype C (integrated elbow)",
+   "group": "Prototype C, integrated elbow",
    "name": "TuriTap_HP_C_venturi_1in_open",
    "file": "TuriTap_HP_C_venturi_1in_open.step",
    "path": "geometry/prototype_C_venturi/TuriTap_HP_C_venturi_1in_open.step",
@@ -243,7 +243,7 @@
    "kb": 825
   },
   {
-   "group": "Current part (reference)",
+   "group": "Current part",
    "name": "1-2 Venturi 03",
    "file": "1-2 Venturi 03.step",
    "path": ".step files/1-2 Venturi 03.step",
@@ -252,7 +252,7 @@
    "kb": 802
   },
   {
-   "group": "Current part (reference)",
+   "group": "Current part",
    "name": "1-2_Venturi_03_current_part",
    "file": "1-2_Venturi_03_current_part.step",
    "path": "reference/1-2_Venturi_03_current_part.step",
@@ -261,7 +261,7 @@
    "kb": 802
   },
   {
-   "group": "Current part (reference)",
+   "group": "Current part",
    "name": "1-2_Venturi_current_part_v2_reupload",
    "file": "1-2_Venturi_current_part_v2_reupload.step",
    "path": "reference/1-2_Venturi_current_part_v2_reupload.step",
