@@ -1,62 +1,424 @@
 {
-  "updated": "2026-11-25 15:50 PST",
-  "today": "2026-11-25",
-  "strip": [
-    ["Current phase", "Round 1: 2-D shape screen", "15 shapes × 7 flows, 6–120 L/min"],
-    ["Lab PC", "Running", "105 cases, 12 at a time, ~46 min each"],
-    ["Next result", "Round 1 ranking", "Nov 25, about 10 pm"],
-    ["Bench test", "Week of Nov 30", "Print files due Nov 29"]
+ "updated": "2026-11-25 16:30 PST",
+ "today": "2026-11-25",
+ "strip": [
+  [
+   "Current phase",
+   "Round 1: 2-D shape screen",
+   "Redirected to 12.5–16 mm throats"
   ],
-  "goal": "Two or three new Venturis, changed in bore shape only, that hold a steady dose on piped flow from 6 to 100+ L/min, still dose at 6 L/min, and don't overflow the handpump. The top two get printed and bench tested the week of Nov 30.",
-  "requirements": {
-    "cols": ["Requirement", "Target", "Current part", "V1", "Best so far", "Status"],
-    "rows": [
-      ["Piped dose spread, 6–100 L/min", "≤ 2.67× (aim 2.2×)", "5.8×", "3.3×", "2.4× (V2)", "fail"],
-      ["Doses at 6 L/min, steady", "Clear suction, outlet full", "0.89 kPa", "1.05 kPa, outlet marginal", "–", "open"],
-      ["Handpump overflow (Afridev)", "None up to 20 L/min", "Overflows at 18.5", "None to 30", "V1", "pass"],
-      ["Handpump dose, 10–20 L/min", "0.1–1.5 mg/L (ideal 0.3–0.8)", "–", "0.38–1.32 (bench)", "V1", "pass"],
-      ["Body length", "≤ 125 mm", "116.5 mm", "125 mm", "–", "pass"],
-      ["Changes allowed", "Bore shape only", "–", "–", "–", "rule"]
+  [
+   "Lab PC",
+   "Running",
+   "16 cases at a time, ~46 min each"
+  ],
+  [
+   "Next result",
+   "Round 1 ranking",
+   "Nov 26, early morning"
+  ],
+  [
+   "Bench test",
+   "Week of Nov 30",
+   "Print files due Nov 29"
+  ]
+ ],
+ "goal": "Two or three new Venturis, changed in bore shape only, that hold a steady dose on piped flow from 6 to 100+ L/min, still dose at 6 L/min, and don't overflow the handpump. The top two get printed and bench tested the week of Nov 30.",
+ "requirements": {
+  "cols": [
+   "Requirement",
+   "Target",
+   "Current part",
+   "V1",
+   "Best so far",
+   "Status"
+  ],
+  "rows": [
+   [
+    "Piped dose spread, 6–100 L/min",
+    "≤ 2.67× (aim ~1.6×, the best a fixed shape can do)",
+    "1.96× (1.3–1.5× measured, 6–38)",
+    "1.83×",
+    "1.83× (V1)",
+    "open"
+   ],
+   [
+    "Doses at 6 L/min, steady",
+    "Clear suction, outlet full",
+    "Yes (bench)",
+    "1.05 kPa, outlet marginal",
+    "–",
+    "open"
+   ],
+   [
+    "Handpump overflow (Afridev)",
+    "None up to 20 L/min",
+    "Overflows at 18.5",
+    "None to 30",
+    "V1",
+    "fail"
+   ],
+   [
+    "Handpump dose, 10–20 L/min",
+    "0.1–1.5 mg/L (ideal 0.3–0.8)",
+    "–",
+    "0.38–1.32 (bench)",
+    "V1",
+    "pass"
+   ],
+   [
+    "Body length",
+    "≤ 125 mm",
+    "116.5 mm",
+    "125 mm",
+    "–",
+    "pass"
+   ],
+   [
+    "Changes allowed",
+    "Bore shape only",
+    "–",
+    "–",
+    "–",
+    "rule"
+   ]
+  ],
+  "note": "Spread = highest ÷ lowest dose on piped flow, with the feed law measured on the bench (chlorine flow ∝ suction^0.73). 6–100 L/min extrapolated from CFD to 60 L/min. Status is for the new design: piped consistency must match or beat the current part, and the handpump must not overflow."
+ },
+ "findings": [
+  [
+   "The feed law is now measured.",
+   "The current part's pipe-flow bench curves fit chlorine flow ∝ suction^0.73 (within 5%). Neither the viscous (n = 1) nor the orifice (n = 0.5) assumption fits."
+  ],
+  [
+   "The current part is consistent on piped flow; its problem is overflow.",
+   "Measured 1.3–1.5× from 6 to 38 L/min, and the CFD + feed law reproduces that. It overflows the Afridev at 18.5 L/min."
+  ],
+  [
+   "Best fixed shape: about a 13 mm throat.",
+   "With n = 0.73 the flattest Venturi spans 6–100 L/min at about 1.6×. In the 1\" V-layout that's a throat of about 13–13.5 mm. Large throats (V2, V3) are worse, not better."
+  ],
+  [
+   "Handpump weak dosing is air, not suction.",
+   "When the pump-head level drops below the inlet bore, air reaches the Venturi and the dose halves (two-phase CFD)."
+  ]
+ ],
+ "gantt": [
+  [
+   "2-D Venturi studies (54 runs)",
+   "2026-11-12",
+   "2026-11-17",
+   "done"
+  ],
+  [
+   "3-D assemblies, 11 trains",
+   "2026-11-17",
+   "2026-11-19",
+   "done"
+  ],
+  [
+   "Mesh alignment fix",
+   "2026-11-19",
+   "2026-11-22",
+   "done"
+  ],
+  [
+   "Threaded CAD (rev2 → rev3)",
+   "2026-11-22",
+   "2026-11-24",
+   "done"
+  ],
+  [
+   "Handpump bench test, V1",
+   "2026-11-23",
+   "2026-11-23",
+   "done"
+  ],
+  [
+   "Two-phase handpump baseline",
+   "2026-11-23",
+   "2026-11-24",
+   "done"
+  ],
+  [
+   "Narrow throats V10–V12",
+   "2026-11-24",
+   "2026-11-25",
+   "done"
+  ],
+  [
+   "Round 1: 2-D shape screen",
+   "2026-11-25",
+   "2026-11-26",
+   "active"
+  ],
+  [
+   "Round 2: refine",
+   "2026-11-26",
+   "2026-11-27",
+   "planned"
+  ],
+  [
+   "3-D check, both reducers",
+   "2026-11-27",
+   "2026-11-28",
+   "planned"
+  ],
+  [
+   "Handpump check",
+   "2026-11-28",
+   "2026-11-29",
+   "planned"
+  ],
+  [
+   "CAD + bench sheet",
+   "2026-11-29",
+   "2026-11-29",
+   "planned"
+  ],
+  [
+   "Bench testing",
+   "2026-11-30",
+   "2026-12-04",
+   "planned"
+  ]
+ ],
+ "actions_lab": [
+  [
+   "Round 1 2-D screen (redirected to 12.5–16 mm) + independent checks",
+   "Nov 25",
+   "active"
+  ],
+  [
+   "Round 2 refinement",
+   "Nov 27",
+   "planned"
+  ],
+  [
+   "3-D check of finalists, both reducers, 6–120 L/min",
+   "Nov 28",
+   "planned"
+  ],
+  [
+   "Handpump check of finalists",
+   "Nov 29",
+   "planned"
+  ],
+  [
+   "CAD (threaded, water path probed), report, bench sheet",
+   "Nov 29",
+   "planned"
+  ]
+ ],
+ "actions_bench": [
+  [
+   "Needle-valve test: bleach flow at 5 / 10 / 20 / 40 cm suction",
+   "Nov 30",
+   "planned"
+  ],
+  [
+   "Pipe rig: dose + port suction at 6–100 L/min",
+   "Nov 30",
+   "planned"
+  ],
+  [
+   "Print and test the top two designs",
+   "Dec 4",
+   "planned"
+  ],
+  [
+   "Reprint long-radius elbow from rev3",
+   "Nov 24",
+   "done"
+  ]
+ ],
+ "bench": {
+  "note": "V1 with the long-radius reducer, Nov 23.",
+  "rows": [
+   [
+    "Handpump 15 spm",
+    3.4,
+    0.48
+   ],
+   [
+    "Handpump 25 spm",
+    6.92,
+    0.31
+   ],
+   [
+    "Handpump 50 spm",
+    13.77,
+    0.93
+   ],
+   [
+    "Handpump 50 spm",
+    14.14,
+    0.91
+   ],
+   [
+    "Handpump 75 spm",
+    19.5,
+    1.32
+   ],
+   [
+    "Handpump 100 spm",
+    25.99,
+    1.32
+   ],
+   [
+    "Bench",
+    10.75,
+    0.38
+   ],
+   [
+    "Bench",
+    16.0,
+    1.28
+   ],
+   [
+    "Steady piped",
+    28.0,
+    1.99
+   ],
+   [
+    "Bench",
+    30.0,
+    1.86
+   ]
+  ]
+ },
+ "links": [
+  [
+   "CFD results viewer",
+   "cfd/"
+  ],
+  [
+   "Lab PC status",
+   "control/"
+  ],
+  [
+   "GitHub repository",
+   "https://github.com/kamronsoltani/Venturi-Redesign"
+  ]
+ ],
+ "bench_pipe": {
+  "note": "Current part, steady pipe flow, 7 devices (letter, needle setting). Each normalised to its own value at ~15 L/min.",
+  "devices": {
+   "A, 6.5": [
+    [
+     5.8,
+     1.4
     ],
-    "note": "Spread = highest ÷ lowest dose on piped flow (3-D CFD). 6–100 L/min is extrapolated from data to 60 L/min. The current part is on its own 3/4\" train; V1 on the 1\" long-radius reducer."
+    [
+     15.2,
+     1.08
+    ],
+    [
+     37.8,
+     1.37
+    ]
+   ],
+   "B, 6.5": [
+    [
+     5.8,
+     1.35
+    ],
+    [
+     15.2,
+     1.01
+    ],
+    [
+     37.8,
+     1.48
+    ]
+   ],
+   "C, 5.5": [
+    [
+     5.8,
+     1.15
+    ],
+    [
+     15.2,
+     0.93
+    ],
+    [
+     26.5,
+     1.01
+    ],
+    [
+     37.8,
+     1.21
+    ]
+   ],
+   "D, 7": [
+    [
+     5.8,
+     1.44
+    ],
+    [
+     15.2,
+     1.03
+    ],
+    [
+     37.8,
+     1.21
+    ]
+   ],
+   "E, 7": [
+    [
+     5.8,
+     1.39
+    ],
+    [
+     7.5,
+     1.22
+    ],
+    [
+     15.2,
+     0.94
+    ],
+    [
+     22.7,
+     0.97
+    ],
+    [
+     30.3,
+     1.02
+    ],
+    [
+     37.8,
+     1.14
+    ]
+   ],
+   "F, 7": [
+    [
+     5.8,
+     1.27
+    ],
+    [
+     15.2,
+     0.96
+    ],
+    [
+     37.8,
+     1.11
+    ]
+   ],
+   "G, 4.5": [
+    [
+     5.8,
+     1.23
+    ],
+    [
+     15.2,
+     0.92
+    ],
+    [
+     37.8,
+     1.23
+    ]
+   ]
   },
-  "findings": [
-    ["Piped flow sets the throat.", "Small throats overdose at high flow, large throats underdose at low flow. Best balance for 6–100 L/min is about a 16.5–17 mm throat."],
-    ["6 L/min needs a full outlet.", "Low-flow suction comes from the water column below the port; a slightly narrower outlet keeps that column intact."],
-    ["Handpump weak dosing is air, not suction.", "When the pump-head level drops below the inlet bore, air reaches the Venturi and the dose halves (two-phase CFD)."],
-    ["The current part overflows at 18.5 L/min.", "V1 doesn't overflow below 30 L/min and stays within 0.1–1.5 mg/L on the bench; the new design must keep that."]
-  ],
-  "gantt": [
-    ["2-D Venturi studies (54 runs)", "2026-11-12", "2026-11-17", "done"],
-    ["3-D assemblies, 11 trains", "2026-11-17", "2026-11-19", "done"],
-    ["Mesh alignment fix", "2026-11-19", "2026-11-22", "done"],
-    ["Threaded CAD (rev2 → rev3)", "2026-11-22", "2026-11-24", "done"],
-    ["Handpump bench test, V1", "2026-11-23", "2026-11-23", "done"],
-    ["Two-phase handpump baseline", "2026-11-23", "2026-11-24", "done"],
-    ["Narrow throats V10–V12", "2026-11-24", "2026-11-25", "done"],
-    ["Round 1: 2-D shape screen", "2026-11-25", "2026-11-26", "active"],
-    ["Round 2: refine", "2026-11-26", "2026-11-27", "planned"],
-    ["3-D check, both reducers", "2026-11-27", "2026-11-28", "planned"],
-    ["Handpump check", "2026-11-28", "2026-11-29", "planned"],
-    ["CAD + bench sheet", "2026-11-29", "2026-11-29", "planned"],
-    ["Bench testing", "2026-11-30", "2026-12-04", "planned"]
-  ],
-  "actions_lab": [
-    ["Round 1 2-D screen + independent mesh/convergence check", "Nov 25", "active"],
-    ["Round 2 refinement", "Nov 27", "planned"],
-    ["3-D check of finalists, both reducers, 6–120 L/min", "Nov 28", "planned"],
-    ["Handpump check of finalists", "Nov 29", "planned"],
-    ["CAD (threaded, water path probed), report, bench sheet", "Nov 29", "planned"]
-  ],
-  "actions_bench": [
-    ["Needle-valve test: bleach flow at 5 / 10 / 20 / 40 cm suction", "Nov 30", "planned"],
-    ["Pipe rig: dose + port suction at 6–100 L/min", "Nov 30", "planned"],
-    ["Print and test the top two designs", "Dec 4", "planned"],
-    ["Reprint long-radius elbow from rev3", "Nov 24", "done"]
-  ],
-  "bench": {
-    "note": "V1 with the long-radius reducer, Nov 23.",
-    "rows": [["Handpump 15 spm", 3.40, 0.48], ["Handpump 25 spm", 6.92, 0.31], ["Handpump 50 spm", 13.77, 0.93], ["Handpump 50 spm", 14.14, 0.91], ["Handpump 75 spm", 19.50, 1.32], ["Handpump 100 spm", 25.99, 1.32], ["Bench", 10.75, 0.38], ["Bench", 16.0, 1.28], ["Steady piped", 28.0, 1.99], ["Bench", 30.0, 1.86]]
-  },
-  "links": [["CFD results viewer", "cfd/"], ["Lab PC status", "control/"], ["GitHub repository", "https://github.com/kamronsoltani/Venturi-Redesign"]]
+  "n": 0.73
+ }
 }

@@ -133,6 +133,11 @@ footer{color:var(--mute);font-size:13px;padding:0 0 30px}
 <section class="view" id="v-updates"><div id="feed"></div></section>
 
 <section class="view" id="v-results">
+  <div class="grid2" style="margin-bottom:16px">
+    <div class="panel"><h2>Model check: current part on steady pipe flow</h2><div class="pb"><div id="r0"></div>
+      <p class="note" id="r0note"></p></div></div>
+    <div class="panel"><h2>What the check tells us</h2><div class="pb"><ol class="find" id="r0find"></ol></div></div>
+  </div>
   <div class="grid2">
     <div class="panel"><h2>Piped flow: relative dose vs flow</h2><div class="pb"><div id="r1"></div>
       <p class="note">Dose ∝ port suction ÷ flow (needle valve fixed), each design scaled to its own minimum. Flatter is better; below the red line, one needle setting stays within 0.3–0.8 mg/L.</p></div></div>
@@ -201,8 +206,8 @@ function chart(el,o){
     (o.hl||[]).forEach(h=>s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(h.y)}" y2="${y(h.y)}" stroke="${h.c}" stroke-width="1.8" stroke-dasharray="${h.dash||"6 4"}"/><text x="${h.below?m.l+6:W-m.r-6}" y="${h.below?y(h.y)+15:y(h.y)-5}" text-anchor="${h.below?"start":"end"}" style="fill:${h.c};font-weight:700">${esc(h.t)}</text>`);
     s+=`<g clip-path="url(#cp-${o.id})">`;
     o.series.forEach(se=>{if(hidden.has(se.name))return;const c=se.color,cur=se.name==="Current part";
-      if(!o.scatter)s+=`<polyline fill="none" stroke="${c}" stroke-width="${cur?2.8:2.2}" ${cur?'stroke-dasharray="8 4"':""} points="${se.pts.map(p=>x(p[0])+","+y(p[1])).join(" ")}"/>`;
-      s+=se.pts.map(p=>`<circle cx="${x(p[0])}" cy="${y(p[1])}" r="${o.scatter?5:3.4}" fill="${c}" stroke="#fff" stroke-width="1.2" data-tip="${esc(se.name)}: ${p[0]} ${esc(o.xu||"L/min")} → ${p[1]}${esc(o.unit||"")}"/>`).join("");});
+      if(!o.scatter&&!se.dots)s+=`<polyline fill="none" stroke="${c}" stroke-width="${cur?2.8:2.2}" ${cur?'stroke-dasharray="8 4"':""} points="${se.pts.map(p=>x(p[0])+","+y(p[1])).join(" ")}"/>`;
+      if(!se.noDots)s+=se.pts.map(p=>`<circle cx="${x(p[0])}" cy="${y(p[1])}" r="${o.scatter||se.dots?4.6:3.4}" fill="${c}" stroke="#fff" stroke-width="1.2" data-tip="${esc(se.name)}: ${p[0]} ${esc(o.xu||"L/min")} → ${p[1]}${esc(o.unit||"")}"/>`).join("");});
     s+=`</g><text x="${m.l+iw/2}" y="${H-6}" text-anchor="middle" class="ax">${esc(o.xl)}</text><text transform="translate(14 ${m.t+ih/2}) rotate(-90)" text-anchor="middle" class="ax">${esc(o.yl)}</text></svg>`;
     s+=`<div class="legend">${o.series.map(se=>`<button type="button" data-n="${esc(se.name)}" class="${hidden.has(se.name)?"off":""}" title="Show / hide"><i style="background:${se.color}"></i>${esc(se.name)}</button>`).join("")}</div>`;
     el.innerHTML=s;
@@ -256,6 +261,15 @@ Promise.all(["home/status.json","home/updates.json","home/charts.json"].map(u=>f
   const hp=S.bench.rows.filter(r=>/Handpump/.test(r[0])),ot=S.bench.rows.filter(r=>!/Handpump/.test(r[0]));
   chart($("r4"),{id:"r4",aria:"Bench dose vs flow",scatter:true,x:[0,32],xt:[0,5,10,15,20,25,30],y:[0,2.2],yt:[0,0.5,1,1.5,2],xl:"flow, L/min",yl:"dose, mg/L",unit:" mg/L",
     bands:[[0.1,1.5,"rgba(26,127,55,.09)"],[0.3,0.8,"rgba(26,127,55,.22)"]],series:[{name:"V1 handpump",color:"#0b5cad",pts:hp.map(r=>[r[1],r[2]])},{name:"V1 bench / piped",color:"#d55e00",pts:ot.map(r=>[r[1],r[2]])}]});
+  if(S.bench_pipe){const BP=S.bench_pipe,cur=D.find(d=>d.name==="Current part"),n=BP.n;
+    const sAt=q=>{const p=cur.suction;for(let i=1;i<p.length;i++)if(q<=p[i][0])return p[i-1][1]+(q-p[i-1][0])*(p[i][1]-p[i-1][1])/(p[i][0]-p[i-1][0]);return p[p.length-1][1];};
+    const m15=Math.pow(sAt(15.2),n)/15.2,model=[];for(let q=6;q<=40;q+=1)model.push([q,+(Math.pow(sAt(q),n)/q/m15).toFixed(3)]);
+    const cols=["#0b5cad","#d55e00","#7a3fb0","#e7298a","#1a7f37","#b8860b","#8c564b"];
+    const devs=Object.entries(BP.devices).map(([k,pts],i)=>{const r15=pts.find(p=>Math.abs(p[0]-15.2)<0.5)[1];return {name:"Device "+k,color:cols[i%7],pts:pts.map(p=>[p[0],+(p[1]/r15).toFixed(3)])};});
+    chart($("r0"),{id:"r0",aria:"Bench vs model",x:[0,40],xt:[0,10,20,30,40],y:[0.7,1.6],yt:[0.8,1,1.2,1.4,1.6],xl:"flow, L/min",yl:"dose ÷ dose at 15 L/min",unit:"×",
+      series:[{name:"CFD + feed law (n = "+n+")",color:"#24292f",pts:model,noDots:1},...devs.map(d=>({...d,dots:1}))]});
+    $("r0note").textContent=BP.note+" Black line: 3-D CFD of the current part with chlorine flow ∝ suction^"+n+".";
+    $("r0find").innerHTML=S.findings.slice(0,3).map(([a,b])=>`<li><b>${esc(a)}</b> ${esc(b)}</li>`).join("");}
   $("benchNote").textContent=S.bench.note;
   $("benchT").innerHTML=table(["Run","Flow, L/min","Dose, mg/L"],S.bench.rows.map(r=>[esc(r[0]),r[1].toFixed(2),r[2].toFixed(2)]),[1,2]);
   const P=D.filter(d=>d.profile);
