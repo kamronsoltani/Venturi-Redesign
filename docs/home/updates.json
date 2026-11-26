@@ -1,5 +1,48 @@
 [
  {
+  "id": "2026-11-26-r2-candidates",
+  "date": "2026-11-26",
+  "time": "06:15",
+  "tag": "Decision",
+  "title": "Round 2 complete; three candidates picked and in 3-D",
+  "tldr": "Round 2 (14 shapes, 84 cases) finished and passed an independent check. Across both rounds (32 shapes, 210 cases) the best piped shapes are a 13.5–14 mm throat with a 20–22 mm outlet nozzle, at 1.63–1.66× over 6–100 L/min against a 1.62× limit for any fixed bore. Three candidates (A, B, C) went straight into 3-D with both reducers; results this evening (long-radius) and early Friday (E-Sig + elbow).",
+  "body": [
+   [
+    "p",
+    "Plot, bore profiles and top-12 table: home/r2_candidates.png."
+   ],
+   [
+    "list",
+    [
+     "A: 13.5 mm throat, 22 mm outlet, port 9 mm higher (30° inlet cone). 1.63×; suction at 6 L/min 1.19 kPa (highest of the three).",
+     "B: 14 mm throat, 22 mm outlet, port 10 mm lower (24 mm throat). 1.66×; the widest throat, so the pump head should fill latest on the handpump; suction at 6 L/min 0.97 kPa.",
+     "C: 13.5 mm throat, 20 mm outlet, round 1 port. 1.64×; the 20 mm outlet gives the most margin for running full at 6 L/min.",
+     "All three keep the outlet running full at 6 L/min (exit speed ≥ 1.6× the air-bubble rise speed)."
+    ]
+   ],
+   [
+    "p",
+    "Honest read:"
+   ],
+   [
+    "list",
+    [
+     "The top dozen shapes all sit within 1.63–1.69×; their dose curves nearly coincide. On piped consistency alone the candidates beat V1 (1.67×) by only 2–3%. The real differences are the outlet staying full at 6 L/min (V1's 26 mm outlet does not), the suction margin at 6 L/min, and handpump overflow.",
+     "Feed-law sensitivity (shown in the table): if the true exponent were 0.6 the spread would be ~1.9×, if 1.0 ~3.6× for these throats. The pipe-rig test will check the exponent.",
+     "Against the current part: its 3-D curve is flatter from 6 to 60 L/min (1.51×) but it rises steeply above 40 L/min (≈1.96× extrapolated to 100) and overflows the Afridev at 18.5 L/min. The 3-D runs put the candidates on the same footing."
+    ]
+   ],
+   [
+    "p",
+    "Round 2 check (agent): all 84 cases clean, meshes OK (30° cone non-orthogonality 30°, fillet R14 verified), residuals ≤ 3e-6, wall matches the design stations exactly, no flow separation at the port in the steeper-cone shapes, the port shift changed the 6 L/min suction by the expected ±0.1 kPa, spreads recomputed by hand."
+   ],
+   [
+    "p",
+    "3-D plan: the long-radius reducer at 6–100 L/min for A, B, C first (~12 h), then the E-Sig + 1\" elbow at 6–70 L/min (~7 h); one 8-core case at a time. Each new mesh is agent-checked. Then: handpump model on the 3-D curves, CAD drafts."
+   ]
+  ]
+ },
+ {
   "id": "2026-11-26-r1-done",
   "date": "2026-11-26",
   "time": "02:33",
