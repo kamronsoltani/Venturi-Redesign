@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-26 10:27 PST",
+ "updated": "2026-11-26 14:34 PST",
  "today": "2026-11-26",
  "strip": [
   [
    "Current phase",
-   "3-D check of 3 candidates",
-   "2-D rounds 1 + 2 complete"
+   "3-D of candidates E and F",
+   "A and B done"
   ],
   [
    "Lab PC",
@@ -221,38 +221,43 @@
  ],
  "actions_lab": [
   [
-   "Round 1 2-D screen (12.5–16 mm) + independent checks",
-   "Nov 26 AM",
-   "done"
-  ],
-  [
-   "Round 2: port position × throat 12.5–14 mm (2-D)",
-   "Nov 26 AM",
-   "done"
-  ],
-  [
-   "Pick 3 candidates (universal, handpump-leaning, alternate)",
+   "2-D rounds 1 + 2 (210 cases) + checks",
    "Nov 26",
    "done"
   ],
   [
-   "3-D aligned-mesh check of candidates, 6–100 L/min",
-   "Nov 27 AM",
+   "3-D long-radius: A, B (checked)",
+   "Nov 26",
+   "done"
+  ],
+  [
+   "3-D long-radius: E, F",
+   "Nov 26, ~10 pm",
    "active"
   ],
   [
-   "CAD drafts with water-path probes",
-   "Nov 27",
-   "active"
-  ],
-  [
-   "Two-phase handpump run of the lead candidate",
-   "Nov 29",
+   "3-D E-Sig + 1\" elbow: B, E, F, A",
+   "Nov 27, ~8 am",
    "planned"
   ],
   [
-   "Final CAD, report, bench sheet",
-   "Nov 29",
+   "Outlet-vane test (A with vanes)",
+   "Nov 27, ~9:30 am",
+   "planned"
+  ],
+  [
+   "Handpump model on all 3-D curves; final ranking; pick top 2",
+   "Nov 27",
+   "planned"
+  ],
+  [
+   "Final CAD (top 2), report, bench sheet",
+   "Nov 28–29",
+   "planned"
+  ],
+  [
+   "Then: handpump-specific variant (~12–12.5 mm), informed by the 3-D results",
+   "after Nov 29",
    "planned"
   ]
  ],

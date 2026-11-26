@@ -1,5 +1,44 @@
 [
  {
+  "id": "2026-11-26-plan-thu",
+  "date": "2026-11-26",
+  "time": "14:34",
+  "tag": "Decision",
+  "title": "Where we are, and the plan to the finish",
+  "tldr": "Stay on the current plan. 2-D screening is done (210 cases); 3-D of A and B is done; E and F (13 mm throats, predicted flattest in 3-D) run today, the E-Sig elbow runs and the outlet-vane test run overnight into Friday morning. Friday: handpump model on all 3-D curves, final ranking, top two picked. A handpump-specific variant (~12–12.5 mm) comes after, informed by these results.",
+  "body": [
+   [
+    "p",
+    "Done so far:"
+   ],
+   [
+    "list",
+    [
+     "Feed law measured from the current part's pipe bench curves (chlorine ∝ suction^0.73); CFD + feed law matches the bench within device scatter.",
+     "2-D rounds 1–2: 32 shapes × 6–7 flows, all agent-checked. Optimum: 13–14 mm throat, 20–22 mm outlet nozzle; best fixed bore ≈ 1.6× over 6–100 L/min.",
+     "3-D A (13.5 mm, port +9 mm): 1.72× over 6–100; head fills 28.9, overflows 31.3 L/min. 3-D B (14 mm, port −10 mm): 1.80×; 27.9 / 30.5. Both agent-checked.",
+     "3-D correction (elbow lowers throat suction 10–15%) predicts 3-D within 2–4%; it moves the 3-D optimum to ~13 mm → E (13 mm, 22 mm outlet, port +9 mm) and F (13 mm, 20 mm outlet) predicted ≈ 1.62×.",
+     "CAD drafts of A, B, C, E, F with water-path probes (CAD tab).",
+     "Handpump model v2 (two-phase priming rule + feed law) matches the V1 bench within ~25%."
+    ]
+   ],
+   [
+    "p",
+    "Running / next:"
+   ],
+   [
+    "list",
+    [
+     "Today: E and F, long-radius reducer, 6–100 L/min (done ~10 pm), each agent-checked.",
+     "Overnight: E-Sig + 1\" elbow for B, E, F, A at 6–70 L/min (~8 am), then A with V1's outlet vanes at 6/20/100 L/min (~9:30 am).",
+     "Friday: handpump model on every 3-D curve; final ranking on 6–100 L/min piped consistency + handpump margin; top two chosen (current lean: E universal, A as the safer handpump option); final CAD.",
+     "Sat–Sun: report and bench sheet (pipe rig 6–100 L/min incl. bubbles in the dosing line at high flow; handpump 15–100 spm); print files by Sun Nov 29.",
+     "After the plan: a handpump-specific variant (~12–12.5 mm). The model shows a 12 mm throat doses flat from 7 to 20 L/min (≈1.2×) but overflows above ~22 L/min; the 3-D results will inform its exact size."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-26-3d-A",
   "date": "2026-11-26",
   "time": "10:27",
