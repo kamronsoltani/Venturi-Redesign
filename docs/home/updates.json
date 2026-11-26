@@ -1,5 +1,36 @@
 [
  {
+  "id": "2026-11-25-r1-t14-16",
+  "date": "2026-11-25",
+  "time": "22:35",
+  "tag": "Simulation",
+  "title": "Round 1, 14–16 mm throats complete: 14 mm is the flattest, within 4% of the best possible",
+  "tldr": "All 63 cases (14/15/16 mm throats × 26/23/20 mm outlets × 6–120 L/min) finished clean and passed an independent check. The 14 mm throat (V1's) gives the flattest piped dose: 1.67× (26 mm outlet), 1.69× (23 mm), 1.76× (20 mm) over 6–100 L/min, against 1.62× for the best any fixed bore can do. 15 mm is 1.86–2.02×, 16 mm 2.05–2.49×. The 12.5–13.5 mm throats and round 2 finish overnight.",
+  "body": [
+   [
+    "p",
+    "Plot: r1_t14_16.png on this site (home/r1_t14_16.png)."
+   ],
+   [
+    "list",
+    [
+     "Spread over 6–120 L/min: 14 mm 1.75–1.77×; 15 mm 1.86–2.02×; 16 mm 2.05× and up.",
+     "Every shape's dose is highest at 6 L/min and lowest near 20–40 L/min; for 14 mm the 6 L/min and 100 L/min ends are about equal, which is what a balanced (near-optimal) bore looks like. Wider throats are dominated by the 6 L/min end.",
+     "The smaller outlets cost a little consistency (14 mm: 1.67 → 1.76× going from 26 to 20 mm) but are needed to keep the outlet running full at 6 L/min. Round 2 adds a 22 mm outlet as the compromise.",
+     "Suction at 6 L/min is 1.01–1.08 kPa for all nine shapes (current part 0.89 kPa in 3-D), almost all of it the water column below the port."
+    ]
+   ],
+   [
+    "p",
+    "Independent check (agent): all 63 meshes OK (non-orthogonality 20°, y+ max 2.0 at 120 L/min), residuals ≤ 1e-5, mass balance ~1e-8, port pressure not drifting, geometry matches the design stations to 0.000 mm, scoring recomputed by hand. Two scoring-script caveats fixed (shapes with partial flows are now ranked last; the port scan's measured spread now uses 6–100 L/min only)."
+   ],
+   [
+    "p",
+    "Watch item: at 6 L/min the flow runs backwards along most of the diffuser wall in every shape (low Reynolds number), 6–32% at 10 L/min, and is attached from 20 L/min up. The port, in the throat, is upstream of it, and suction at 6 L/min is still clear; the bench at 6 L/min will tell whether it matters."
+   ]
+  ]
+ },
+ {
   "id": "2026-11-25-r2-launch",
   "date": "2026-11-25",
   "time": "18:40",
