@@ -1,5 +1,33 @@
 [
  {
+  "id": "2026-11-26-r1-done",
+  "date": "2026-11-26",
+  "time": "02:33",
+  "tag": "Simulation",
+  "title": "Round 1 complete: the flat-dose optimum is a broad 13.5–14 mm zone",
+  "tldr": "All 126 round 1 cases finished and passed two independent checks. With the outlet sized to run full at 6 L/min, the 13.5 mm throat + 20 mm outlet is best at 1.64× over 6–100 L/min, against 1.62× for the best possible fixed bore. 13 mm/20 is 1.70×, 14 mm/20 1.76×; with a 23 mm outlet 13.5 and 14 mm are 1.67–1.69×. Round 2 (port position, 22 mm outlet) runs through the morning, then the 3 candidates go to 3-D.",
+  "body": [
+   [
+    "p",
+    "Plot and full table: home/r1_full.png."
+   ],
+   [
+    "list",
+    [
+     "Ranking (6–100 L/min spread, outlet full at 6 L/min): 13.5/20 1.64×, 13/20 1.70×, 14/20 1.76×, 12.5/20 1.77×, 15/20 2.02×, 16/20 2.50×.",
+     "With 23 mm outlets (outlet only marginally full at 6 L/min): 13.5/23 1.67×, 14/23 1.69×. Round 2's 22 mm outlet sits between.",
+     "Over 6–120 L/min, 14/23 (1.75×) and 14/20 (1.76×) edge ahead of 13.5/20 (1.78×): narrower throats lose a little at the top end.",
+     "Trade-off: narrower throats lose more head, so the handpump head fills and overflows sooner (rough 2-D estimate: 13.5 mm ~28 L/min, 14 mm ~28–31). The 3-D runs will settle this.",
+     "Suction at 6 L/min: 1.06–1.15 kPa for every shape; the current part has 0.89 kPa (3-D)."
+    ]
+   ],
+   [
+    "p",
+    "Independent check of the 12.5–13.5 mm cases: all 63 complete and clean (mesh OK, non-orthogonality 20°, y+ ≤ 2.3, residuals ≤ 2e-6, mass balance ≤ 2e-7). No case was run twice by the two drivers. Spread recomputed by hand. One note: with the free 26 mm outlet the narrow throats show a little backflow at the outlet at 6–10 L/min, another reason to use the 20–22 mm outlet nozzle."
+   ]
+  ]
+ },
+ {
   "id": "2026-11-25-r1-t14-16",
   "date": "2026-11-25",
   "time": "22:25",
