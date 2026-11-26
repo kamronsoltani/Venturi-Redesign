@@ -1,6 +1,6 @@
 {
  "groups": [
-  "Flat-dose candidates A / B / C (drafts, 2026-11-26)",
+  "Flat-dose candidates A / B / C / E / F (drafts, 2026-11-26)",
   "Threaded set, rev3 (current print files)",
   "Venturi set V1\u2013V4, unthreaded",
   "Reducers and elbows",
@@ -10,7 +10,7 @@
  ],
  "items": [
   {
-   "group": "Flat-dose candidates A / B / C (drafts, 2026-11-26)",
+   "group": "Flat-dose candidates A / B / C / E / F (drafts, 2026-11-26)",
    "name": "A: 13.5 mm throat, 22 mm outlet nozzle, port 9 mm higher (30\u00b0 inlet cone)",
    "file": "TuriTap_HP_A_t13.5_n22_portUp_threaded.step",
    "path": "docs/cad/candidates/TuriTap_HP_A_t13.5_n22_portUp_threaded.step",
@@ -19,7 +19,7 @@
    "kb": 1155
   },
   {
-   "group": "Flat-dose candidates A / B / C (drafts, 2026-11-26)",
+   "group": "Flat-dose candidates A / B / C / E / F (drafts, 2026-11-26)",
    "name": "B: 14 mm throat, 22 mm outlet nozzle, port 10 mm lower (24 mm throat)",
    "file": "TuriTap_HP_B_t14_n22_portDown_threaded.step",
    "path": "docs/cad/candidates/TuriTap_HP_B_t14_n22_portDown_threaded.step",
@@ -28,13 +28,31 @@
    "kb": 1295
   },
   {
-   "group": "Flat-dose candidates A / B / C (drafts, 2026-11-26)",
+   "group": "Flat-dose candidates A / B / C / E / F (drafts, 2026-11-26)",
    "name": "C: 13.5 mm throat, 20 mm outlet nozzle, V1 port position",
    "file": "TuriTap_HP_C_t13.5_n20_threaded.step",
    "path": "docs/cad/candidates/TuriTap_HP_C_t13.5_n20_threaded.step",
    "step": "cad/candidates/TuriTap_HP_C_t13.5_n20_threaded.step",
    "stl": "candidates/TuriTap_HP_C_t13.5_n20_threaded.stl",
    "kb": 1270
+  },
+  {
+   "group": "Flat-dose candidates A / B / C / E / F (drafts, 2026-11-26)",
+   "name": "E: 13 mm throat, 22 mm outlet nozzle, port 9 mm higher (30\u00b0 inlet cone)",
+   "file": "TuriTap_HP_E_t13_n22_portUp_threaded.step",
+   "path": "docs/cad/candidates/TuriTap_HP_E_t13_n22_portUp_threaded.step",
+   "step": "cad/candidates/TuriTap_HP_E_t13_n22_portUp_threaded.step",
+   "stl": "candidates/TuriTap_HP_E_t13_n22_portUp_threaded.stl",
+   "kb": 1160
+  },
+  {
+   "group": "Flat-dose candidates A / B / C / E / F (drafts, 2026-11-26)",
+   "name": "F: 13 mm throat, 20 mm outlet nozzle, V1 port position",
+   "file": "TuriTap_HP_F_t13_n20_threaded.step",
+   "path": "docs/cad/candidates/TuriTap_HP_F_t13_n20_threaded.step",
+   "step": "cad/candidates/TuriTap_HP_F_t13_n20_threaded.step",
+   "stl": "candidates/TuriTap_HP_F_t13_n20_threaded.stl",
+   "kb": 1140
   },
   {
    "group": "Threaded set, rev3 (current print files)",
