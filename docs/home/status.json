@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25 16:30 PST",
+ "updated": "2026-11-25 16:45 PST",
  "today": "2026-11-25",
  "strip": [
   [
@@ -147,32 +147,56 @@
    "done"
   ],
   [
-   "Round 1: 2-D shape screen",
+   "Feed law fitted to pipe bench data",
+   "2026-11-25",
+   "2026-11-25",
+   "done"
+  ],
+  [
+   "Round 1: 2-D throat/outlet screen",
    "2026-11-25",
    "2026-11-26",
    "active"
   ],
   [
-   "Round 2: refine",
+   "Round 2: 2-D port position + throat",
+   "2026-11-25",
+   "2026-11-26",
+   "planned"
+  ],
+  [
+   "Pick 3 candidates",
+   "2026-11-26",
+   "2026-11-26",
+   "planned"
+  ],
+  [
+   "3-D check, both reducers, 6–100 L/min",
    "2026-11-26",
    "2026-11-27",
    "planned"
   ],
   [
-   "3-D check, both reducers",
+   "CAD drafts + water-path probes",
+   "2026-11-26",
    "2026-11-27",
-   "2026-11-28",
    "planned"
   ],
   [
-   "Handpump check",
-   "2026-11-28",
+   "Handpump check (pulse model)",
+   "2026-11-26",
+   "2026-11-27",
+   "planned"
+  ],
+  [
+   "Two-phase run, lead candidate",
+   "2026-11-27",
    "2026-11-29",
    "planned"
   ],
   [
-   "CAD + bench sheet",
-   "2026-11-29",
+   "Final CAD + bench sheet",
+   "2026-11-28",
    "2026-11-29",
    "planned"
   ],
@@ -185,27 +209,37 @@
  ],
  "actions_lab": [
   [
-   "Round 1 2-D screen (redirected to 12.5–16 mm) + independent checks",
-   "Nov 25",
+   "Round 1 2-D screen (12.5–16 mm) + independent checks",
+   "Nov 26 AM",
    "active"
   ],
   [
-   "Round 2 refinement",
+   "Round 2: port position × throat 12.5–14 mm (2-D)",
+   "Nov 26 AM",
+   "planned"
+  ],
+  [
+   "Pick 3 candidates (universal, handpump-leaning, alternate)",
+   "Nov 26",
+   "planned"
+  ],
+  [
+   "3-D aligned-mesh check of candidates, 6–100 L/min",
+   "Nov 27 AM",
+   "planned"
+  ],
+  [
+   "CAD drafts with water-path probes",
    "Nov 27",
    "planned"
   ],
   [
-   "3-D check of finalists, both reducers, 6–120 L/min",
-   "Nov 28",
-   "planned"
-  ],
-  [
-   "Handpump check of finalists",
+   "Two-phase handpump run of the lead candidate",
    "Nov 29",
    "planned"
   ],
   [
-   "CAD (threaded, water path probed), report, bench sheet",
+   "Final CAD, report, bench sheet",
    "Nov 29",
    "planned"
   ]

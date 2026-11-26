@@ -1,5 +1,73 @@
 [
  {
+  "id": "2026-11-25-plan-2day",
+  "date": "2026-11-25",
+  "time": "16:45",
+  "tag": "Decision",
+  "title": "Plan for the next two days: one universal design plus a handpump-leaning option",
+  "tldr": "Aim for one design that works on both pipe and handpump: a ~13–13.5 mm throat tuned for the flattest piped curve. Bench test it next to a ~12.5 mm handpump-leaning version and V1, so the bench decides whether a second variant is worth it. Two rounds of 2-D screening finish by Thursday morning, 3-D confirmation runs Thursday to Friday morning, and CAD is drafted in parallel.",
+  "body": [
+   [
+    "p",
+    "Wednesday evening (now → ~10 pm):"
+   ],
+   [
+    "list",
+    [
+     "Round 1 keeps running: 14–16 mm throats on 12 cores, 12.5–13.5 mm on 4 cores, all with 26 / 23 / 20 mm outlets.",
+     "Build round 2: the port position sets the water column below the port, which is the second knob for a flat piped dose. Shift the throat up and down the body for 12.5, 13, 13.5 and 14 mm throats.",
+     "Upgrade the handpump pulse model: the bore-top priming rule from the two-phase run, plus the measured feed law."
+    ]
+   ],
+   [
+    "p",
+    "Wednesday ~10 pm → Thursday early morning:"
+   ],
+   [
+    "list",
+    [
+     "14–16 mm part of round 1 done; an agent checks it. Round 2 starts on the 12 freed cores (12 shapes × 6 flows, about 5 h)."
+    ]
+   ],
+   [
+    "p",
+    "Thursday:"
+   ],
+   [
+    "list",
+    [
+     "Morning: rounds 1 and 2 scored with the measured feed law and checked by an agent. Pick 3 candidates: universal (flattest piped curve that overflows above 22 L/min), handpump-leaning (more backup), and an alternate.",
+     "Morning → Friday ~3 am: 3-D on the corrected mesh. Long-radius reducer at 6, 10, 15, 20, 30, 45, 70 and 100 L/min, plus the E-Sig + 1\" elbow at 6, 15, 30 and 70. About 36 runs, ~17 h. Each new mesh is agent-checked before use.",
+     "In parallel (light CPU): handpump dose predictions from the pulse model; threaded CAD drafts of the candidates with end-to-end water-path probes, posted to the CAD tab."
+    ]
+   ],
+   [
+    "p",
+    "Friday:"
+   ],
+   [
+    "list",
+    [
+     "Morning: 3-D results checked; final ranking. If the elbow shifts the optimum, a quick 2-D/3-D tweak during the day.",
+     "Start the two-phase handpump run of the lead candidate at ~15 L/min (about 2 days; results by Sunday).",
+     "Evening: lock the top 2–3, regenerate the final CAD."
+    ]
+   ],
+   [
+    "p",
+    "Saturday–Sunday (buffer): two-phase result, final report, bench sheet; print files ready by Sun Nov 29."
+   ],
+   [
+    "p",
+    "Pass criteria for a candidate: piped dose spread ≤ 1.8× over 6–100 L/min with the measured feed law; handpump overflow above 22 L/min (3-D, long-radius reducer); clear suction at 6 L/min with the outlet running full; no diffuser separation above 10 L/min; body ≤ 125 mm."
+   ],
+   [
+    "p",
+    "Risks: the elbow's swirl can shift 2-D results (that's why 3-D is in the loop); the 100 L/min end is extrapolated until the 3-D run there; the feed law was fitted on one device type (results also shown for exponents 0.6–0.8)."
+   ]
+  ]
+ },
+ {
   "id": "2026-11-25-feedlaw",
   "date": "2026-11-25",
   "time": "16:30",
