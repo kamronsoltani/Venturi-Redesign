@@ -1,5 +1,56 @@
 [
  {
+  "id": "2026-11-25-r2-launch",
+  "date": "2026-11-25",
+  "time": "18:40",
+  "tag": "Simulation",
+  "title": "Round 2 queued; handpump model now matches the V1 bench",
+  "tldr": "Round 2 (14 shapes: port moved up or down, 20/22 mm outlets) is queued and starts as round 1 frees cores; an independent check passed its geometry and driver. Early round 1 numbers put the flattest piped curve near a 14 mm throat (V1-sized) with a 20–23 mm outlet. The upgraded handpump model reproduces the V1 bench and shows why: the dose is even while the pump head never fills, and doubles (then overflows) once it does.",
+  "body": [
+   [
+    "p",
+    "Round 1 so far (40 of 126 cases, no failures; 6–40 L/min only, so not final):"
+   ],
+   [
+    "list",
+    [
+     "14 mm throat: water column ÷ throat loss (s0/k) ≈ 190–225, right at the ~180 the feed law calls for. Spread 1.67–1.76× over 6–40 L/min.",
+     "15–16 mm: s0/k 260–510, spreads 1.86–2.30×. Too wide, as expected.",
+     "20 mm outlet keeps the outlet full at 6 L/min (exit speed 2.05× the bubble rise speed; 26 mm is 1.07×), at a small cost in spread.",
+     "Diffuser: flow reverses along most of the wall at 6 L/min (low Reynolds number) and along 6–30% at 10 L/min; attached at 20 L/min and up for the 26 mm outlet, 1–4% reversed near the nozzle for 20/23 mm. Watching this."
+    ]
+   ],
+   [
+    "p",
+    "Round 2 (14 shapes × 6 flows, 6–100 L/min):"
+   ],
+   [
+    "list",
+    [
+     "Port higher (30° inlet cone, +9 mm column) for 12.5, 13, 13.5 mm throats; port lower (24 mm throat, −10 mm) for 13.5 and 14 mm; plus a 22 mm outlet for the round 1 layout.",
+     "First in the queue: the 120/100/70 L/min cases for the 12.5–13.5 mm round 1 shapes, so round 1 completes sooner.",
+     "Independent agent check: all 14 profiles monotonic, ports inside the straight throat, angles exact, mesher accepts them; driver never touches another driver's case."
+    ]
+   ],
+   [
+    "p",
+    "Handpump model v2 (bore-top priming from the two-phase run + chlorine flow ∝ suction^0.73):"
+   ],
+   [
+    "list",
+    [
+     "V1, long-radius, model vs bench mg/L: 6.9 L/min 0.23 vs 0.31; 13.8 0.96 vs 0.93; 14.1 0.97 vs 0.91; 19.5 1.00 vs 1.32; 26 1.05 vs 1.32. The 3.4 L/min bench point (0.48) is not reproduced.",
+     "While the level stays below the inlet-bore top, air reaches the throat each stroke and the dose sits at about half the piped value, but steadily. Once the head fills, the dose doubles and the Afridev overflows within ~2 L/min (current part 16→18.5 L/min, V12 21→23, V1 29.5→32).",
+     "Design consequence: for an even handpump dose the head should not fill anywhere in the pump's range (up to ~26 L/min). This favours a low-loss, V1-like throat, which is also where round 1 puts the flattest piped curve."
+    ]
+   ],
+   [
+    "p",
+    "Next: round 1 t14–16 finishes ~21:00 and gets an agent check; round 2 runs overnight; ranking Thursday morning."
+   ]
+  ]
+ },
+ {
   "id": "2026-11-25-plan-2day",
   "date": "2026-11-25",
   "time": "16:45",

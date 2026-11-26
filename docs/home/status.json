@@ -1,16 +1,16 @@
 {
- "updated": "2026-11-25 16:45 PST",
+ "updated": "2026-11-25 18:40 PST",
  "today": "2026-11-25",
  "strip": [
   [
    "Current phase",
-   "Round 1: 2-D shape screen",
-   "Redirected to 12.5–16 mm throats"
+   "Rounds 1 + 2: 2-D shape screen",
+   "Round 2 queued behind round 1"
   ],
   [
    "Lab PC",
    "Running",
-   "16 cases at a time, ~46 min each"
+   "16 cases at a time, ~65 min each"
   ],
   [
    "Next result",
@@ -91,6 +91,10 @@
    "The current part's pipe-flow bench curves fit chlorine flow ∝ suction^0.73 (within 5%). Neither the viscous (n = 1) nor the orifice (n = 0.5) assumption fits."
   ],
   [
+   "Handpump: the dose doubles once the head fills, and overflow follows within ~2 L/min.",
+   "Upgraded pulse model (two-phase priming rule + measured feed law) reproduces the V1 handpump bench within ~25% (0.23/0.31, 0.96/0.93, 1.0/1.32 mg/L). A design whose head never fills over the pump's flow range doses most evenly; V1 stays in that regime up to ~29 L/min."
+  ],
+  [
    "The current part is consistent on piped flow; its problem is overflow.",
    "Measured 1.3–1.5× from 6 to 38 L/min, and the CFD + feed law reproduces that. It overflows the Afridev at 18.5 L/min."
   ],
@@ -162,7 +166,7 @@
    "Round 2: 2-D port position + throat",
    "2026-11-25",
    "2026-11-26",
-   "planned"
+   "active"
   ],
   [
    "Pick 3 candidates",
@@ -216,7 +220,7 @@
   [
    "Round 2: port position × throat 12.5–14 mm (2-D)",
    "Nov 26 AM",
-   "planned"
+   "active"
   ],
   [
    "Pick 3 candidates (universal, handpump-leaning, alternate)",
