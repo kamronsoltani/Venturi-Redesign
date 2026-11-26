@@ -1,5 +1,25 @@
 [
  {
+  "id": "2026-11-26-staged",
+  "date": "2026-11-26",
+  "time": "15:11",
+  "tag": "Decision",
+  "title": "Method: staged, no deadline - Venturi alone, then the pipe rig, then the handpump",
+  "tldr": "The goal is a handpump part that never overflows and doses very consistently, reached methodically: Stage 1 optimises the Venturi alone (2-D, straight pipe), Stage 2 tests the leaders on the steady pipe rig (straight 1\" pipe into a 1\" NPT 90° elbow, 3-D, 6-100 L/min), Stage 3 puts the winners on the handpump hardware (long-radius reducer, 1\" E-Sig + 1\" NPT elbow, current 3/4\" E-Sig + elbow) with the pulse model and an elbow bend-radius study. No fixed date: the winners get bench tested when ready and the lab data feeds the next iteration. This replaces the Nov 29/30 schedule in earlier updates.",
+  "body": [
+   [
+    "list",
+    [
+     "Stage 1: rounds 1-2 done (32 shapes, 210 cases, agent-checked, in the CFD viewer); round 3 running (14 shapes: diffuser angle 3/5/6°, 15° inlet cone, throat length 8/22 mm, port nearer the pressure minimum).",
+     "Stage 2: new 3-D pipe-rig model (the McMaster 1\" NPT elbow with 10 diameters of straight 1\" Sch 40 pipe upstream; the E-Sig model is unchanged). Running for A, then E, V1, C, F at 6-100 L/min, each sweep agent-checked.",
+     "Stage 3 (after Stage 2): handpump hardware and fill/overflow, pulse-model dosing, bend-radius study, then iteration; a handpump-specific variant last.",
+     "Every part is measured to 100 L/min on its pipe setup (no extrapolation); the current part is being run in 2-D to 120 L/min now and in 3-D on its own 3/4\" hardware to 100 L/min.",
+     "Checks: every sweep is independently verified before it is used or posted; an independent audit runs every 3 h and a memory/context sync every 2 h."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-26-plan-thu",
   "date": "2026-11-26",
   "time": "14:34",

@@ -1,26 +1,26 @@
 {
- "updated": "2026-11-26 14:34 PST",
+ "updated": "2026-11-26 15:11 PST",
  "today": "2026-11-26",
  "strip": [
   [
    "Current phase",
-   "3-D of candidates E and F",
-   "A and B done"
+   "Stage 2: pipe rig (3-D)",
+   "Stage 1 round 3 (2-D) running"
   ],
   [
    "Lab PC",
    "Running",
-   "3-D, one 8-core case at a time, ~30 min each"
+   "3-D one 8-core case at a time + 2-D single-core runs"
   ],
   [
    "Next result",
-   "3-D long-radius, B / C / D",
-   "Nov 26, ~10 pm"
+   "Pipe-rig curve for A",
+   "Nov 26 evening"
   ],
   [
    "Bench test",
-   "Week of Nov 30",
-   "Print files due Nov 29"
+   "Winners, when ready",
+   "No fixed date"
   ]
  ],
  "goal": "Two or three new Venturis, changed in bore shape only, that hold a steady dose on piped flow from 6 to 100+ L/min, still dose at 6 L/min, and don't overflow the handpump. The top two get printed and bench tested the week of Nov 30.",
@@ -221,43 +221,38 @@
  ],
  "actions_lab": [
   [
-   "2-D rounds 1 + 2 (210 cases) + checks",
+   "Stage 1: 2-D Venturi alone, rounds 1-2 (210 cases)",
    "Nov 26",
    "done"
   ],
   [
-   "3-D long-radius: A, B (checked)",
-   "Nov 26",
-   "done"
-  ],
-  [
-   "3-D long-radius: E, F",
-   "Nov 26, ~10 pm",
+   "Stage 1: round 3 (diffuser angle, inlet cone, throat length, port position)",
+   "Nov 27 AM",
    "active"
   ],
   [
-   "3-D E-Sig + 1\" elbow: B, E, F, A",
-   "Nov 27, ~8 am",
-   "planned"
-  ],
-  [
-   "Outlet-vane test (A with vanes)",
-   "Nov 27, ~9:30 am",
-   "planned"
-  ],
-  [
-   "Handpump model on all 3-D curves; final ranking; pick top 2",
+   "Stage 2: pipe rig 3-D (1in pipe + 1in NPT elbow), A, E, V1, C, F, 6-100 L/min",
    "Nov 27",
+   "active"
+  ],
+  [
+   "Current part to 100 L/min (2-D now; 3-D on its own 3/4in train after Stage 3)",
+   "Nov 27",
+   "active"
+  ],
+  [
+   "Stage 3: handpump trains (long-radius, 1in E-Sig + NPT elbow, current 3/4in) + pulse model",
+   "after Stage 2",
    "planned"
   ],
   [
-   "Final CAD (top 2), report, bench sheet",
-   "Nov 28–29",
+   "Stage 3: long-radius elbow bend-radius study (parametric elbow)",
+   "after Stage 2",
    "planned"
   ],
   [
-   "Then: handpump-specific variant (~12–12.5 mm), informed by the 3-D results",
-   "after Nov 29",
+   "Pick winners, CAD, bench sheet; then handpump-specific variant",
+   "after Stage 3",
    "planned"
   ]
  ],
