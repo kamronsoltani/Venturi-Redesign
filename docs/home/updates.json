@@ -1,5 +1,24 @@
 [
  {
+  "id": "2026-11-26-cad-drafts",
+  "date": "2026-11-26",
+  "time": "08:06",
+  "tag": "CAD",
+  "title": "CAD drafts of A, B, C and the first 3-D results for A",
+  "tldr": "Threaded CAD drafts of the three candidates are in the CAD tab (STEP + 3-D preview). Same thread, stop collar, injector port (1/4-28 for the existing ferrule, nut and PTFE tube), lettering and outlet vanes as the rev3 V1; only the bore changes. Water path probed end to end on the exported files: open everywhere except where the outlet vanes cross the axis, exactly as on V1. 3-D of A so far (long-radius reducer): more suction than V1 at every flow and the head fills only near 30 L/min.",
+  "body": [
+   [
+    "list",
+    [
+     "Checks on each part: single valid solid, injector orifice open, no clash with the injector fitting, 1.65 mm wall under the thread (as V1), water path open on the axis and at 85% of the bore radius every 0.5 mm, wall solid behind the bore, outlet ~85–88% open (vanes).",
+     "3-D, candidate A + long-radius reducer (V1 in brackets): 6 L/min suction 1.15 kPa (1.05), 10 L/min 1.45 (1.29), 20 L/min 2.84 (2.41), 30 L/min 5.31 (4.38). Water level at 30 L/min +3.5 cm (+2.8): head fills just below 30 L/min, overflow ~32, above the handpump range.",
+     "Trade-off now visible in 3-D: over 6–30 L/min A varies 1.73× (V1 1.82×, current part 1.30×). A design tuned for 6–100 L/min gives a higher dose at 6–10 L/min than at 20; the current part is flatter at low flow but climbs steeply above 40 L/min and overflows the handpump at 18.5 L/min. Question to the team: which piped flow range matters most?",
+     "Open question: keep V1's outlet vanes on the new parts? With 20–22 mm outlets they block ~13–15% of the outlet and are not in the CFD."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-26-r2-candidates",
   "date": "2026-11-26",
   "time": "06:15",

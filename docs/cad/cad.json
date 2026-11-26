@@ -1,13 +1,41 @@
 {
  "groups": [
+  "Flat-dose candidates A / B / C (drafts, 2026-11-26)",
   "Threaded set, rev3 (current print files)",
-  "Venturi set V1–V4, unthreaded",
+  "Venturi set V1\u2013V4, unthreaded",
   "Reducers and elbows",
   "Prototypes A and B",
   "Prototype C, integrated elbow",
   "Current part"
  ],
  "items": [
+  {
+   "group": "Flat-dose candidates A / B / C (drafts, 2026-11-26)",
+   "name": "A: 13.5 mm throat, 22 mm outlet nozzle, port 9 mm higher (30\u00b0 inlet cone)",
+   "file": "TuriTap_HP_A_t13.5_n22_portUp_threaded.step",
+   "path": "docs/cad/candidates/TuriTap_HP_A_t13.5_n22_portUp_threaded.step",
+   "step": "cad/candidates/TuriTap_HP_A_t13.5_n22_portUp_threaded.step",
+   "stl": "candidates/TuriTap_HP_A_t13.5_n22_portUp_threaded.stl",
+   "kb": 1155
+  },
+  {
+   "group": "Flat-dose candidates A / B / C (drafts, 2026-11-26)",
+   "name": "B: 14 mm throat, 22 mm outlet nozzle, port 10 mm lower (24 mm throat)",
+   "file": "TuriTap_HP_B_t14_n22_portDown_threaded.step",
+   "path": "docs/cad/candidates/TuriTap_HP_B_t14_n22_portDown_threaded.step",
+   "step": "cad/candidates/TuriTap_HP_B_t14_n22_portDown_threaded.step",
+   "stl": "candidates/TuriTap_HP_B_t14_n22_portDown_threaded.stl",
+   "kb": 1295
+  },
+  {
+   "group": "Flat-dose candidates A / B / C (drafts, 2026-11-26)",
+   "name": "C: 13.5 mm throat, 20 mm outlet nozzle, V1 port position",
+   "file": "TuriTap_HP_C_t13.5_n20_threaded.step",
+   "path": "docs/cad/candidates/TuriTap_HP_C_t13.5_n20_threaded.step",
+   "step": "cad/candidates/TuriTap_HP_C_t13.5_n20_threaded.step",
+   "stl": "candidates/TuriTap_HP_C_t13.5_n20_threaded.stl",
+   "kb": 1270
+  },
   {
    "group": "Threaded set, rev3 (current print files)",
    "name": "TuriTap_HP_V1_throat14_exit26_threaded",
@@ -63,7 +91,7 @@
    "kb": 2027
   },
   {
-   "group": "Venturi set V1–V4, unthreaded",
+   "group": "Venturi set V1\u2013V4, unthreaded",
    "name": "TuriTap_HP_V1_throat14_exit26",
    "file": "TuriTap_HP_V1_throat14_exit26.step",
    "path": "geometry/venturi_set_1in/TuriTap_HP_V1_throat14_exit26.step",
@@ -72,7 +100,7 @@
    "kb": 642
   },
   {
-   "group": "Venturi set V1–V4, unthreaded",
+   "group": "Venturi set V1\u2013V4, unthreaded",
    "name": "TuriTap_HP_V2_throat16_exit26",
    "file": "TuriTap_HP_V2_throat16_exit26.step",
    "path": "geometry/venturi_set_1in/TuriTap_HP_V2_throat16_exit26.step",
@@ -81,7 +109,7 @@
    "kb": 622
   },
   {
-   "group": "Venturi set V1–V4, unthreaded",
+   "group": "Venturi set V1\u2013V4, unthreaded",
    "name": "TuriTap_HP_V3_throat18_exit26",
    "file": "TuriTap_HP_V3_throat18_exit26.step",
    "path": "geometry/venturi_set_1in/TuriTap_HP_V3_throat18_exit26.step",
@@ -90,7 +118,7 @@
    "kb": 617
   },
   {
-   "group": "Venturi set V1–V4, unthreaded",
+   "group": "Venturi set V1\u2013V4, unthreaded",
    "name": "TuriTap_HP_V4_throat14_exit30_long",
    "file": "TuriTap_HP_V4_throat14_exit30_long.step",
    "path": "geometry/venturi_set_1in/TuriTap_HP_V4_throat14_exit30_long.step",
