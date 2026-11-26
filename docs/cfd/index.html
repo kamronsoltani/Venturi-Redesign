@@ -271,7 +271,7 @@ const VERDICT=[
   ["asm34_A",21,27,"rej","Only +3 L/min over current"],
   ["asm34_Bvane",20,25,"rej","Unsteady above 20 L/min"],
   ["asm34_current",18,23,"rej","Overflows an Afridev in normal use"]];
-const shortName=a=>{const A=SITE.assemblies.find(x=>x.id===a);return {e34:"3/4in",e1:"1in E-Sig",lr:"1in long-radius",p34:"3/4in current Venturi"}[A.group]+" · "+A.venturi;};
+const shortName=a=>{const A=SITE.assemblies.find(x=>x.id===a);return ({e34:"3/4in",e1:"1in E-Sig",lr:"1in long-radius",p34:"3/4in current Venturi"}[A.group]||SITE.groups[A.group]||A.group)+" · "+A.venturi;};
 
 // ------------------------------------------------ tabs + routing
 function show(tab){
@@ -305,13 +305,14 @@ let yMode="spout";
 function var_(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
 function drawChart(){
   const W=760,H=400,m={l:52,r:14,t:12,b:38};
-  const xs=q=>m.l+q/62*(W-m.l-m.r);
+  const qmax=Math.max(62,...SITE.assemblies.filter(a=>visible.has(a.id)).flatMap(a=>a.flows).map(q=>q*1.03));
+  const xs=q=>m.l+q/qmax*(W-m.l-m.r);
   const [y0,y1]=yMode==="spout"?[-22,40]:[-22,170];
   const ys=v=>m.t+(1-(v-y0)/(y1-y0))*(H-m.t-m.b);
   let s="";
   const yt=yMode==="spout"?[-20,-10,0,10,20,30,40]:[0,25,50,75,100,125,150];
   yt.forEach(v=>{s+=`<line class="grid" x1="${m.l}" x2="${W-m.r}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${m.l-6}" y="${ys(v)+4}" text-anchor="end">${v}</text>`;});
-  [0,10,20,30,40,50,60].forEach(q=>{s+=`<line class="grid" y1="${m.t}" y2="${H-m.b}" x1="${xs(q)}" x2="${xs(q)}"/><text x="${xs(q)}" y="${H-m.b+16}" text-anchor="middle">${q}</text>`;});
+  (qmax>62?[0,20,40,60,80,100,120].filter(q=>q<=qmax):[0,10,20,30,40,50,60]).forEach(q=>{s+=`<line class="grid" y1="${m.t}" y2="${H-m.b}" x1="${xs(q)}" x2="${xs(q)}"/><text x="${xs(q)}" y="${H-m.b+16}" text-anchor="middle">${q}</text>`;});
   s+=`<text x="${(m.l+W-m.r)/2}" y="${H-4}" text-anchor="middle">flow, L/min</text><text transform="translate(13 ${(m.t+H-m.b)/2}) rotate(-90)" text-anchor="middle">level above inlet centre, cm</text>`;
   [[AFRIDEV,"Afridev spout",var_("--warn")],[IM2,"India Mark II spout",var_("--bad")]].forEach(([v,l,c])=>{
     s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${ys(v)}" y2="${ys(v)}" stroke="${c}" stroke-dasharray="6 4" stroke-width="1.3"/><text x="${m.l+6}" y="${ys(v)-5}" style="fill:${c}">${l} (${v} cm)</text>`;});
@@ -678,6 +679,7 @@ document.querySelectorAll("[data-cam]").forEach(b=>b.addEventListener("click",()
 
 (async()=>{
   SITE=await (await fetch("../data/site.json")).json();
+  SITE.assemblies.forEach(a=>{if(!COL[a.id])COL[a.id]=a.color||"#909aa3";});   // newer assemblies carry their colour in site.json
   document.querySelectorAll(".cmpOnly").forEach(e=>e.style.display="none");
   quick("all");buildMatrix();route();
 })();

@@ -3,7 +3,8 @@
   "e34": "3/4in E-Sig + 3/4in elbow",
   "e1": "1in E-Sig + McMaster elbow",
   "lr": "1in long-radius elbow",
-  "p34": "3/4in elbow retrofit, aligned mesh"
+  "p34": "3/4in elbow retrofit, aligned mesh",
+  "cand_asm1lr": "3-D candidates \u00b7 1in long-radius reducer"
  },
  "assemblies": [
   {
@@ -226,6 +227,40 @@
     50,
     60
    ]
+  },
+  {
+   "id": "asm1lr_R2_U_t13.5_n22_zfix",
+   "group": "cand_asm1lr",
+   "venturi": "A \u00b7 13.5 mm",
+   "label": "3-D \u00b7 candidate A (13.5 mm, 22 mm outlet, port +9 mm) \u00b7 long-radius reducer",
+   "flows": [
+    6,
+    10,
+    15,
+    20,
+    30,
+    45,
+    70,
+    100
+   ],
+   "color": "#f0789a"
+  },
+  {
+   "id": "asm1lr_R2_D_t14_n22_zfix",
+   "group": "cand_asm1lr",
+   "venturi": "B \u00b7 14 mm",
+   "label": "3-D \u00b7 candidate B (14 mm, 22 mm outlet, port \u221210 mm) \u00b7 long-radius reducer",
+   "flows": [
+    6,
+    10,
+    15,
+    20,
+    30,
+    45,
+    70,
+    100
+   ],
+   "color": "#c9a0ff"
   }
  ],
  "cases": {
@@ -1164,6 +1199,134 @@
    "jet": 118.83,
    "recovery": 0.794,
    "imbalance": 0.116
+  },
+  "asm1lr_R2_U_t13.5_n22_zfix_Q6": {
+   "level": -18.29,
+   "drift": 0.07,
+   "port": -1.152,
+   "jet": 0.8,
+   "recovery": 0.64,
+   "imbalance": 0.187
+  },
+  "asm1lr_R2_U_t13.5_n22_zfix_Q10": {
+   "level": -16.34,
+   "drift": 0.04,
+   "port": -1.449,
+   "jet": 2.01,
+   "recovery": 0.699,
+   "imbalance": 0.159
+  },
+  "asm1lr_R2_U_t13.5_n22_zfix_Q15": {
+   "level": -12.85,
+   "drift": 0.01,
+   "port": -2.036,
+   "jet": 4.11,
+   "recovery": 0.708,
+   "imbalance": 0.151
+  },
+  "asm1lr_R2_U_t13.5_n22_zfix_Q20": {
+   "level": -8.14,
+   "drift": 0.03,
+   "port": -2.84,
+   "jet": 7.04,
+   "recovery": 0.708,
+   "imbalance": 0.154
+  },
+  "asm1lr_R2_U_t13.5_n22_zfix_Q30": {
+   "level": 3.49,
+   "drift": 0.02,
+   "port": -5.314,
+   "jet": 14.55,
+   "recovery": 0.738,
+   "imbalance": 0.141
+  },
+  "asm1lr_R2_U_t13.5_n22_zfix_Q45": {
+   "level": 29.79,
+   "drift": 0.06,
+   "port": -10.781,
+   "jet": 31.58,
+   "recovery": 0.745,
+   "imbalance": 0.132
+  },
+  "asm1lr_R2_U_t13.5_n22_zfix_Q70": {
+   "level": 105.83,
+   "drift": 0.18,
+   "port": -23.921,
+   "jet": 79.83,
+   "recovery": 0.716,
+   "imbalance": 0.142
+  },
+  "asm1lr_R2_U_t13.5_n22_zfix_Q100": {
+   "level": 247.27,
+   "drift": 0.43,
+   "port": -46.784,
+   "jet": 168.09,
+   "recovery": 0.695,
+   "imbalance": 0.144
+  },
+  "asm1lr_R2_D_t14_n22_zfix_Q6": {
+   "level": -18.37,
+   "drift": 0.07,
+   "port": -0.949,
+   "jet": 0.82,
+   "recovery": 0.656,
+   "imbalance": 0.152
+  },
+  "asm1lr_R2_D_t14_n22_zfix_Q10": {
+   "level": -16.55,
+   "drift": 0.04,
+   "port": -1.199,
+   "jet": 2.04,
+   "recovery": 0.721,
+   "imbalance": 0.134
+  },
+  "asm1lr_R2_D_t14_n22_zfix_Q15": {
+   "level": -12.69,
+   "drift": 0.0,
+   "port": -1.612,
+   "jet": 4.6,
+   "recovery": 0.675,
+   "imbalance": 0.123
+  },
+  "asm1lr_R2_D_t14_n22_zfix_Q20": {
+   "level": -7.47,
+   "drift": 0.01,
+   "port": -2.21,
+   "jet": 8.16,
+   "recovery": 0.664,
+   "imbalance": 0.125
+  },
+  "asm1lr_R2_D_t14_n22_zfix_Q30": {
+   "level": 4.79,
+   "drift": 0.04,
+   "port": -4.149,
+   "jet": 16.79,
+   "recovery": 0.705,
+   "imbalance": 0.12
+  },
+  "asm1lr_R2_D_t14_n22_zfix_Q45": {
+   "level": 34.75,
+   "drift": 0.02,
+   "port": -8.304,
+   "jet": 37.93,
+   "recovery": 0.704,
+   "imbalance": 0.117
+  },
+  "asm1lr_R2_D_t14_n22_zfix_Q70": {
+   "level": 110.6,
+   "drift": 0.01,
+   "port": -18.984,
+   "jet": 92.07,
+   "recovery": 0.708,
+   "imbalance": 0.117
+  },
+  "asm1lr_R2_D_t14_n22_zfix_Q100": {
+   "level": 243.63,
+   "drift": 0.01,
+   "port": -37.926,
+   "jet": 186.58,
+   "recovery": 0.708,
+   "imbalance": 0.117
   }
  }
 }

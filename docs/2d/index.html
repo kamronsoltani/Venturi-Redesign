@@ -46,6 +46,9 @@ body { background: var(--bg); color: var(--fg); font: 12px/1.4 var(--ui); margin
 .tree button { display: flex; width: 100%; gap: 6px; align-items: center; text-align: left; font: 12px var(--ui); color: var(--fg); background: none; border: 0; padding: 2px 8px 2px 26px; cursor: pointer; }
 .tree button:hover { background: #343a40; }
 .tree button.on { background: var(--sel); color: var(--selfg); }
+.tree details.grp > summary { background: var(--panel2); }
+.tree details.grp > details > summary { padding-left: 18px; }
+.tree details.grp > details > button { padding-left: 36px; }
 .tree .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--good); flex: none; }
 .tree .dot.flag { background: var(--warn); }
 .tree .vpn { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--dim); }
@@ -254,6 +257,7 @@ td.flag { color: var(--warn); } td.bad { color: var(--bad); }
     <div class="pane" data-pane="sweep" hidden>
       <div class="ctl">
         <label>Y quantity<select id="swVar"></select></label>
+        <label>Group<select id="swGrp" style="max-width:260px"></select></label>
         <label>Designs<div class="chips" id="swGeoms"></div></label>
       </div>
       <div class="plot" id="plotSweep"></div>
@@ -282,6 +286,13 @@ const $ = id => document.getElementById(id);
 const IDX = (await fetch("index.json").then(r => r.json())).cases;
 const BYKEY = Object.fromEntries(IDX.map(c => [c.key, c]));
 const GEOMS = [...new Set(IDX.map(c => c.geometry))];
+// case groups (index.json "group"/"group_label"; older entries have none and form "Earlier designs")
+const grpOf = c => c.group || "";
+const GRP_LABEL = Object.fromEntries(IDX.map(c => [grpOf(c), c.group_label || "Earlier designs"]));
+const GROUPS = [...new Set(IDX.map(grpOf))];
+const GEOM_GRP = Object.fromEntries(IDX.map(c => [c.geometry, grpOf(c)]));
+const geomsIn = gr => GEOMS.filter(g => GEOM_GRP[g] === gr);
+const geomDesc = g => BYKEY[IDX.find(c => c.geometry === g).key].desc;
 const qOf = c => c.Q_lpm;
 const cache = new Map();
 async function load(key) {
@@ -349,7 +360,7 @@ function makeVP(n) {
     <div class="cbar cbar2"><div class="t"></div><div class="inner"><canvas width="16" height="160"></canvas><div class="ticks"></div></div></div>`;
   vpwrap.appendChild(el);
   const sel = el.querySelector("select");
-  for (const g of GEOMS) { const og = document.createElement("optgroup"); og.label = BYKEY[IDX.find(c => c.geometry === g).key].desc;
+  for (const g of GEOMS) { const og = document.createElement("optgroup"); og.label = geomDesc(g);
     for (const c of IDX.filter(c => c.geometry === g)) { const o = document.createElement("option"); o.value = c.key; o.textContent = `${g}  ${c.case}`; og.appendChild(o); } sel.appendChild(og); }
   const canvas = el.querySelector("canvas");
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -522,12 +533,18 @@ function probe(vp, e) {
 // ---------------------------------------------------------------- left: case tree
 function refreshTree() {
   const tree = $("tree"), open = new Set([...tree.querySelectorAll("details[open]")].map(d => d.dataset.g));
-  if (!tree.childElementCount) GEOMS.forEach(g => open.add(g));
+  if (!tree.childElementCount) { open.add("grp:"); geomsIn("").forEach(g => open.add(g)); }
+  const cur = VPS[active] && VPS[active].key ? BYKEY[VPS[active].key] : null;
+  if (cur) { open.add("grp:" + grpOf(cur)); open.add(cur.geometry); }
   tree.innerHTML = "";
-  for (const g of GEOMS) {
+  for (const gr of GROUPS) {
+    const gd = document.createElement("details"); gd.dataset.g = "grp:" + gr; gd.className = "grp"; if (open.has("grp:" + gr)) gd.open = true;
+    gd.innerHTML = `<summary><b>${GRP_LABEL[gr]}</b><small>${geomsIn(gr).length}</small></summary>`;
+    tree.appendChild(gd);
+  for (const g of geomsIn(gr)) {
     const list = IDX.filter(c => c.geometry === g).sort((a, b) => qOf(a) - qOf(b) || a.case.localeCompare(b.case));
     const d = document.createElement("details"); d.dataset.g = g; if (open.has(g)) d.open = true;
-    d.innerHTML = `<summary>${g}<small>${list.length}</small></summary>`;
+    d.innerHTML = gr ? `<summary title="${geomDesc(g)}">${list[0].short || g}<small>${list.length}</small></summary>` : `<summary>${g}<small>${list.length}</small></summary>`;
     for (const c of list) {
       const b = document.createElement("button"), inVp = VPS.filter(v => v.key === c.key && !v.el.hidden).map(v => v.n + 1);
       b.className = VPS[active] && VPS[active].key === c.key ? "on" : "";
@@ -535,7 +552,8 @@ function refreshTree() {
       b.addEventListener("click", () => setCase(VPS[active], c.key));
       d.appendChild(b);
     }
-    tree.appendChild(d);
+    gd.appendChild(d);
+  }
   }
   $("nCases").textContent = IDX.length;
 }
@@ -560,7 +578,7 @@ function info() {
 // ---------------------------------------------------------------- plots
 const NS = "http://www.w3.org/2000/svg", PAL = ["#4a9be0", "#e0a040", "#6bbf7a", "#d0607a", "#a98be0", "#40c0c0", "#e0e070", "#c08060", "#909aa3"];
 const vpColour = n => PAL[n];
-const geomColour = g => PAL[GEOMS.indexOf(g) % PAL.length];
+const geomColour = g => PAL[geomsIn(GEOM_GRP[g]).indexOf(g) % PAL.length];
 function niceTicks(lo, hi, n, log) {
   if (log) { const t = []; for (let e = Math.floor(lo); e <= Math.ceil(hi); e++) t.push(e); return t; }
   const span = hi - lo || 1, s0 = span / n, m = 10 ** Math.floor(Math.log10(s0)), r = s0 / m, step = (r < 1.5 ? 1 : r < 3 ? 2 : r < 7 ? 5 : 10) * m, t = [];
@@ -627,11 +645,14 @@ const SWEEP = [
   ["inlet_total_Pa", "Inlet total pressure (Pa)"], ["yplus_max", "y+ max"], ["mass_imbalance_rel", "Mass imbalance"],
 ];
 const swOn = new Set(["V1", "V2", "V3", "V4", "B_1in"]);
+let swGrp = "";
 function plotSweep() {
   const k = $("swVar").value;
-  const series = GEOMS.filter(g => swOn.has(g)).map(g => ({ name: g, c: geomColour(g), dots: true,
+  const series = geomsIn(swGrp).filter(g => swOn.has(g)).map(g => ({ name: g, c: geomColour(g), dots: true,
     pts: IDX.filter(c => c.geometry === g && c.mesh_level === "medium").sort((a, b) => a.Q_lpm - b.Q_lpm).map(c => [c.Q_lpm, c[k]]) }));
-  plot($("plotSweep"), series, { xl: "flow (L/min)", yl: SWEEP.find(s => s[0] === k)[1], zero: k === "level_above_inlet_cm" || k === "inlet_static_Pa", xt: [6, 8, 12, 20, 25, 30, 40, 50] });
+  const qmax = Math.max(50, ...series.flatMap(s => s.pts.map(p => p[0])));
+  const xt = (qmax > 60 ? [6, 10, 20, 40, 70, 100, 120] : [6, 8, 12, 20, 25, 30, 40, 50]).filter(q => q <= qmax);
+  plot($("plotSweep"), series, { xl: "flow (L/min)", yl: SWEEP.find(s => s[0] === k)[1], zero: k === "level_above_inlet_cm" || k === "inlet_static_Pa", xt });
 }
 function plotConv() {
   const vsel = $("cvVp"); const n = vsel.value === "" ? active : +vsel.value, v = VPS[n]; if (!v || !v.D) return;
@@ -697,7 +718,13 @@ $("lnDir").addEventListener("change", e => { UI.lnDir = e.target.value; UI.lnPos
 $("lnPos").addEventListener("input", e => { UI.lnPos = e.target.value / 1000; rebuildAll(); plotLine(); });
 ["lnVar", "lnNorm"].forEach(id => $(id).addEventListener("input", plotLine));
 $("swVar").innerHTML = SWEEP.map(([k, l]) => `<option value="${k}">${l}</option>`).join(""); $("swVar").addEventListener("change", plotSweep);
-$("swGeoms").innerHTML = GEOMS.map(g => `<label><input type="checkbox" value="${g}" ${swOn.has(g) ? "checked" : ""}><i style="background:${geomColour(g)}"></i>${g}</label>`).join("");
+function swChips() {
+  if (!geomsIn(swGrp).some(g => swOn.has(g))) geomsIn(swGrp).slice(0, 6).forEach(g => swOn.add(g));
+  $("swGeoms").innerHTML = geomsIn(swGrp).map(g => `<label title="${geomDesc(g)}"><input type="checkbox" value="${g}" ${swOn.has(g) ? "checked" : ""}><i style="background:${geomColour(g)}"></i>${g}</label>`).join("");
+}
+$("swGrp").innerHTML = GROUPS.map(gr => `<option value="${gr}">${GRP_LABEL[gr]}</option>`).join("");
+$("swGrp").addEventListener("change", e => { swGrp = e.target.value; swChips(); plotSweep(); });
+swChips();
 $("swGeoms").addEventListener("change", e => { e.target.checked ? swOn.add(e.target.value) : swOn.delete(e.target.value); plotSweep(); });
 ["cvVar", "cvVp"].forEach(id => $(id).addEventListener("change", plotConv));
 
