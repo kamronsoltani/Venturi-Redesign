@@ -1,5 +1,28 @@
 [
  {
+  "id": "2026-11-26-pipe-A",
+  "date": "2026-11-26",
+  "time": "20:40",
+  "tag": "Simulation",
+  "title": "Stage 2: candidate A on the pipe rig, 1.69× over 6–100 L/min",
+  "tldr": "First full 3-D pipe-rig sweep (straight 1\" Sch 40 pipe → McMaster 1\" NPT 90° elbow → Venturi), independently checked: candidate A's dose varies 1.69× over 6–100 L/min (1.73× on the long-radius handpump reducer); the current part varies 1.86× over the same range (2-D) and is close to cavitating at 100 L/min. A's spread is set by its 6 L/min end; its 100 L/min end is gentle (1.47×), which favours the slightly narrower 13 mm candidates on this rig. E is running now.",
+  "body": [
+   [
+    "p",
+    "Plot: home/pipe_rig.png. 3-D cases in the CFD viewer under '3-D pipe rig'."
+   ],
+   [
+    "list",
+    [
+     "A relative dose, pipe rig: 6: 1.69, 10: 1.19, 15: 1.02, 20: 1.00, 30: 1.03, 45: 1.13, 70: 1.27, 100: 1.47.",
+     "Check (agent): all 8 flows converged (port suction within ~0.3% over the last 500 iterations, incl. 100 L/min), mass balance ≤ 0.1%, smooth suction curve (fit within 2%), minimum wall pressure −58 kPa at 100 L/min (41 kPa from vapour). Caveat: wall y+ 16–24 at 70–100 L/min (wall functions, same as the other trains).",
+     "Pipe-rig vs 2-D (Venturi alone) suction: 0.98 at 6, 0.93 at 20, 0.90 at 40, 0.80–0.81 at 70–100 L/min. The elbow cuts high-flow suction by ~20%, flattening the top end; the 6 L/min end (water column) is unaffected, so it dominates.",
+     "Next on the pipe rig: E (13 mm, port +9 mm), V1, C, F; then Stage 3 (handpump)."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-26-cur2d",
   "date": "2026-11-26",
   "time": "16:24",

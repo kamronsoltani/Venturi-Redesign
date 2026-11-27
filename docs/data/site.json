@@ -4,7 +4,8 @@
   "e1": "1in E-Sig + McMaster elbow",
   "lr": "1in long-radius elbow",
   "p34": "3/4in elbow retrofit, aligned mesh",
-  "cand_asm1lr": "3-D candidates \u00b7 1in long-radius reducer"
+  "cand_asm1lr": "3-D candidates \u00b7 1in long-radius reducer",
+  "pipe3d": "3-D pipe rig \u00b7 1in pipe + 1in NPT elbow"
  },
  "assemblies": [
   {
@@ -261,6 +262,23 @@
     100
    ],
    "color": "#c9a0ff"
+  },
+  {
+   "id": "asm1p_R2_U_t13.5_n22_zfix",
+   "group": "pipe3d",
+   "venturi": "A \u00b7 13.5 mm",
+   "label": "3-D \u00b7 candidate A (13.5 mm, 22 mm outlet, port +9 mm) \u00b7 pipe rig",
+   "flows": [
+    6,
+    10,
+    15,
+    20,
+    30,
+    45,
+    70,
+    100
+   ],
+   "color": "#4fd1c5"
   }
  ],
  "cases": {
@@ -1327,6 +1345,70 @@
    "jet": 186.58,
    "recovery": 0.708,
    "imbalance": 0.117
+  },
+  "asm1p_R2_U_t13.5_n22_zfix_Q6": {
+   "level": -12.6,
+   "drift": 0.0,
+   "port": -1.157,
+   "jet": 0.71,
+   "recovery": 0.694,
+   "imbalance": 0.051
+  },
+  "asm1p_R2_U_t13.5_n22_zfix_Q10": {
+   "level": -10.39,
+   "drift": 0.14,
+   "port": -1.446,
+   "jet": 1.76,
+   "recovery": 0.711,
+   "imbalance": 0.051
+  },
+  "asm1p_R2_U_t13.5_n22_zfix_Q15": {
+   "level": -6.81,
+   "drift": 0.02,
+   "port": -2.039,
+   "jet": 3.43,
+   "recovery": 0.733,
+   "imbalance": 0.06
+  },
+  "asm1p_R2_U_t13.5_n22_zfix_Q20": {
+   "level": -2.51,
+   "drift": 0.09,
+   "port": -2.939,
+   "jet": 5.42,
+   "recovery": 0.779,
+   "imbalance": 0.049
+  },
+  "asm1p_R2_U_t13.5_n22_zfix_Q30": {
+   "level": 10.99,
+   "drift": 0.17,
+   "port": -5.344,
+   "jet": 12.06,
+   "recovery": 0.774,
+   "imbalance": 0.069
+  },
+  "asm1p_R2_U_t13.5_n22_zfix_Q45": {
+   "level": 42.08,
+   "drift": 0.45,
+   "port": -10.581,
+   "jet": 25.99,
+   "recovery": 0.774,
+   "imbalance": 0.078
+  },
+  "asm1p_R2_U_t13.5_n22_zfix_Q70": {
+   "level": 136.6,
+   "drift": 0.81,
+   "port": -22.574,
+   "jet": 70.55,
+   "recovery": 0.7,
+   "imbalance": 0.092
+  },
+  "asm1p_R2_U_t13.5_n22_zfix_Q100": {
+   "level": 295.96,
+   "drift": 1.38,
+   "port": -44.986,
+   "jet": 149.08,
+   "recovery": 0.693,
+   "imbalance": 0.096
   }
  }
 }
