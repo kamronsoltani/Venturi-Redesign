@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27 12:57 PST",
+ "updated": "2026-11-27 13:56 PST",
  "today": "2026-11-27",
  "strip": [
   [
@@ -187,24 +187,24 @@
   [
    "Stage 2: pipe rig 3-D, A E V1 C F, 6–100 L/min",
    "2026-11-26",
-   "2026-11-28",
+   "2026-11-27",
    "done"
   ],
   [
    "Stage 3: handpump hardware + pulse model",
+   "2026-11-27",
    "2026-11-28",
-   "2026-11-29",
    "active"
   ],
   [
    "Stage 3: elbow bend-radius study",
+   "2026-11-28",
    "2026-11-29",
-   "2026-11-30",
    "planned"
   ],
   [
    "Winners: CAD + bench sheet",
-   "2026-11-30",
+   "2026-11-29",
    "2026-11-30",
    "planned"
   ],
