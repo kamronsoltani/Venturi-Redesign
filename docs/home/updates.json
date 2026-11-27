@@ -1,5 +1,28 @@
 [
  {
+  "id": "2026-11-27-stage2",
+  "date": "2026-11-27",
+  "time": "09:08",
+  "tag": "Simulation",
+  "title": "Stage 2 complete: E and F tie at ~1.6× on the pipe rig; Stage 3 (handpump) started",
+  "tldr": "All five pipe-rig sweeps are done and independently checked (40 3-D cases, straight 1\" Sch 40 pipe → McMaster 1\" NPT 90° elbow → Venturi, 6–100 L/min). Dose spread at the port side: F 1.59×, E 1.60×, C 1.69×, A 1.71×, V1 1.75× (current part 1.86× in 2-D, close to cavitating at 100 L/min). The two 13 mm designs tie at the limit of what a fixed bore can do; they reach it from opposite ends (E: highest dose at 6 L/min; F: highest at 100 L/min). Stage 3 — the handpump hardware — started automatically and will separate them on overflow and pulsed dosing.",
+  "body": [
+   [
+    "p",
+    "Plot: home/pipe_rig.png. All pipe-rig cases are in the CFD viewer under '3-D pipe rig'."
+   ],
+   [
+    "list",
+    [
+     "F (13 mm, 20 mm outlet, round-1 port): 6: 1.55, 10: 1.12, 15: 1.00, 20: 1.005, 30: 1.08, 45: 1.19, 70: 1.37, 100: 1.59. Check: all converged, oscillation ≤ 1.5%, min wall −67 kPa at 100 L/min.",
+     "E vs F is within the uncertainty (F's band 1.57–1.61 includes E's 1.60; on the all-round mean they are equal, 1.570 vs 1.571).",
+     "Differences that matter: F reads up to 17% more suction on the outside of the elbow's bend than the inside at 100 L/min (E 11%), so F is more sensitive to how the part is clocked; F's 20 mm outlet runs full more surely at 6 L/min than E's 22 mm (exit-speed ratio 2.05 vs 1.62).",
+     "Stage 3 order: E on the long-radius reducer (resumed), F on the long-radius reducer, then E, A, F, V1 on the 1\" E-Sig + 1\" NPT elbow (6–35 L/min, around head fill and overflow); handpump pulse model on every curve; then the elbow bend-radius study and the current part to 100 L/min on its own hardware."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-pipe-C",
   "date": "2026-11-27",
   "time": "06:54",
