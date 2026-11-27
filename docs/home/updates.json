@@ -1,5 +1,28 @@
 [
  {
+  "id": "2026-11-27-r3",
+  "date": "2026-11-27",
+  "time": "03:26",
+  "tag": "Simulation",
+  "title": "Stage 1 complete: round 3 finds no further gain; the bore shape has converged",
+  "tldr": "Round 3 (14 shapes × 6 flows, 84 cases, independently checked) changed one bore feature at a time around the 13 and 13.5 mm optimum. No change beats its base by more than 1%: shorter 8 mm throat −0.8/−0.9%, port 3.5 mm down −0.6/−0.8% (both just move the port upstream), diffuser 3/5/6° within ±0.5%, 22 mm throat +1.2%, 15° inlet cone +2%. Stage 1 is therefore converged (13–13.5 mm throat, 20–22 mm outlet nozzle) and no round 4 is needed; Stage 2 (pipe rig) decides between 13 and 13.5 mm, and E (13 mm) leads there at 1.60×.",
+  "body": [
+   [
+    "p",
+    "Plot: home/r3_variants.png. All 84 cases are in the CFD viewer (2-D tab, group Round 3)."
+   ],
+   [
+    "list",
+    [
+     "13.5 mm base 1.665× → L8 1.652, p35 1.655, d3 1.669, d5 1.669, d6 1.673, L22 1.687, c15 1.700.",
+     "13 mm base 1.726× → L8 1.710, p35 1.713, d3 1.725, d5 1.730, d6 1.735, L22 1.747, c15 1.760 (2-D, Venturi alone, 6–100 L/min).",
+     "Check (agent): 84/84 clean, no double runs, wall matches the design stations exactly, residuals ≤ 5e-6; a display bug in the scoring table (outlet-fill ratio assumed a 26 mm outlet for these names) fixed, rankings unchanged.",
+     "Stage 1 total: 3 rounds, 46 shapes, 294 cases."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-pipe-E",
   "date": "2026-11-27",
   "time": "00:54",

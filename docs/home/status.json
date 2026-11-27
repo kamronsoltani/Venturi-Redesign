@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-27 00:54 PST",
+ "updated": "2026-11-27 03:26 PST",
  "today": "2026-11-27",
  "strip": [
   [
    "Current phase",
    "Stage 2: pipe rig (3-D)",
-   "Stage 1 round 3 (2-D) running"
+   "Stage 1 complete (3 rounds, 294 cases)"
   ],
   [
    "Lab PC",
@@ -86,6 +86,10 @@
   "note": "Spread = highest ÷ lowest dose on piped flow, with the feed law measured on the bench (chlorine flow ∝ suction^0.73). Current part measured to 100 L/min in 2-D (no extrapolation); candidates in 2-D and 3-D. Status is for the new design: piped consistency must match or beat the current part, and the handpump must not overflow."
  },
  "findings": [
+  [
+   "Stage 1 converged: 13–13.5 mm throat with a 20–22 mm outlet nozzle.",
+   "Round 3 tried every remaining bore freedom one at a time (diffuser 3/5/6°, 15° inlet cone, throat 8/22 mm, port 3.5 mm down): nothing beats its base by more than 1%. The best two both move the port slightly upstream. On the pipe rig the elbow tips the optimum to 13 mm (E, 1.60×)."
+  ],
   [
    "Current part measured to 100 L/min: 1.86× spread, and its throat reaches vapour pressure at ~100 L/min.",
    "2-D (straight pipe) runs of the current part to 120 L/min: dose spread 6–100 L/min = 1.86× (lowest at 20, highest at 100). The minimum wall pressure is −98.7 kPa gauge at 100 L/min (vapour limit) and impossible at 120, so the current part cannot really run at 100 L/min without cavitating. The new candidates stay at −60 to −78 kPa at 100 L/min in 2-D (13.5 mm −60 to −66, 13 mm −71 to −78) and spread 1.63–1.70×."
@@ -174,7 +178,7 @@
    "Stage 1: 2-D round 3",
    "2026-11-26",
    "2026-11-27",
-   "active"
+   "done"
   ],
   [
    "Stage 2: pipe rig 3-D, A E V1 C F, 6–100 L/min",
@@ -216,7 +220,7 @@
   [
    "Stage 1: round 3 (diffuser angle, inlet cone, throat length, port position)",
    "Nov 27 AM",
-   "active"
+   "done"
   ],
   [
    "Stage 2: pipe rig 3-D (1in pipe + 1in NPT elbow), A, E, V1, C, F, 6-100 L/min",
