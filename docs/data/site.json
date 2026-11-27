@@ -364,6 +364,22 @@
     100
    ],
    "color": "#e07be0"
+  },
+  {
+   "id": "asm1lr_R1_t13_n20_zfix",
+   "group": "cand_asm1lr",
+   "venturi": "F \u00b7 13 mm",
+   "label": "3-D \u00b7 candidate F (13 mm, 20 mm outlet, round\u22121 port) \u00b7 long-radius reducer",
+   "flows": [
+    6,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35
+   ],
+   "color": "#9be15d"
   }
  ],
  "cases": {
@@ -1814,6 +1830,62 @@
    "jet": 193.15,
    "recovery": 0.682,
    "imbalance": 0.146
+  },
+  "asm1lr_R1_t13_n20_zfix_Q6": {
+   "level": -18.0,
+   "drift": 0.08,
+   "port": -1.076,
+   "jet": 0.99,
+   "recovery": 0.66,
+   "imbalance": 0.199
+  },
+  "asm1lr_R1_t13_n20_zfix_Q10": {
+   "level": -15.69,
+   "drift": 0.05,
+   "port": -1.412,
+   "jet": 2.48,
+   "recovery": 0.715,
+   "imbalance": 0.162
+  },
+  "asm1lr_R1_t13_n20_zfix_Q15": {
+   "level": -11.49,
+   "drift": 0.01,
+   "port": -2.051,
+   "jet": 5.23,
+   "recovery": 0.715,
+   "imbalance": 0.152
+  },
+  "asm1lr_R1_t13_n20_zfix_Q20": {
+   "level": -6.04,
+   "drift": 0.02,
+   "port": -2.997,
+   "jet": 8.92,
+   "recovery": 0.73,
+   "imbalance": 0.152
+  },
+  "asm1lr_R1_t13_n20_zfix_Q25": {
+   "level": 0.42,
+   "drift": 0.03,
+   "port": -4.247,
+   "jet": 13.35,
+   "recovery": 0.746,
+   "imbalance": 0.147
+  },
+  "asm1lr_R1_t13_n20_zfix_Q30": {
+   "level": 8.74,
+   "drift": 0.02,
+   "port": -5.717,
+   "jet": 19.0,
+   "recovery": 0.745,
+   "imbalance": 0.143
+  },
+  "asm1lr_R1_t13_n20_zfix_Q35": {
+   "level": 18.73,
+   "drift": 0.02,
+   "port": -7.449,
+   "jet": 25.78,
+   "recovery": 0.743,
+   "imbalance": 0.141
   }
  }
 }

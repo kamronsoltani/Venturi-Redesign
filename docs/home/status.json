@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27 13:56 PST",
+ "updated": "2026-11-27 15:07 PST",
  "today": "2026-11-27",
  "strip": [
   [
@@ -14,8 +14,8 @@
   ],
   [
    "Next result",
-   "Handpump: F long-radius",
-   "Nov 27, ~3 pm"
+   "Handpump: E on the 1in E-Sig train",
+   "Nov 27, ~6:30 pm"
   ],
   [
    "Bench test",
@@ -55,7 +55,7 @@
     "None within the pump range (to ~26 L/min)",
     "Overflows at 18.5",
     "None to 30",
-    "Long-radius reducer: V1 ~32, A ~31, E ~29.5 L/min (all clear the pump); E-Sig trains pending",
+    "Long-radius reducer: V1 ~32, A ~31, E ~29.5, F ~28.2 L/min (F fills at ~26, the pump max); E-Sig trains pending",
     "open"
    ],
    [

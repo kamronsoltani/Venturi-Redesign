@@ -1,5 +1,29 @@
 [
  {
+  "id": "2026-11-27-stage3-Flr",
+  "date": "2026-11-27",
+  "time": "15:07",
+  "tag": "Simulation",
+  "title": "Stage 3: F on the long-radius reducer — fills right at the pump's top end; margin order A > E > F",
+  "tldr": "F (13 mm throat, 20 mm outlet) on the handpump's 1\" long-radius reducer, 7 flows 6–35 L/min, independently checked (all PASS). Its head fills at ~26.1 L/min and overflows at ~28.2 — the fill point sits on the Afridev's ~26 L/min maximum, so F has no margin (E fills ~27 / overflows ~29.5; A ~28.9 / ~31.3). Pulse model at the port side, 30–85 spm: F 1.00–1.25 mg/L, very flat, but at 100 spm the head fills for 37% of the cycle and the dose jumps to 1.76. Of the three 13–13.5 mm designs, A keeps the most margin; E and F lead the pipe rig.",
+  "body": [
+   [
+    "p",
+    "Plot: home/handpump_stage3.png (left: head level vs flow; right: modelled dose vs stroke rate). F's long-radius cases are in the CFD viewer under '3-D candidates · 1in long-radius reducer'."
+   ],
+   [
+    "list",
+    [
+     "F levels (cm vs inlet centre): 6: −18.0, 10: −15.7, 15: −11.5, 20: −6.0, 25: +0.4, 30: +8.7, 35: +18.7. Bore top +2.2, overflow +5.8.",
+     "Fill / overflow by fit (linear, quadratic, PCHIP): 26.0–26.2 / 28.2–28.4 L/min.",
+     "Port-side suction on this reducer equals the pipe rig's within ±1.6% up to 30 L/min; F reads 5–8% less suction than E on the same reducer (about 4–6% less dose).",
+     "Check: mesh OK (967k cells, non-orthogonality 63.3°), patch flows within 0.006%, level drift ≤ 0.08 cm.",
+     "Next: the 1in E-Sig + 1in NPT elbow train (E, A, F, V1; more head loss than the long-radius reducer) — the decisive overflow test. V1's old vaned E-Sig build was set aside so all four run without a vane."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-stage3-Elr",
   "date": "2026-11-27",
   "time": "12:05",
