@@ -1,5 +1,23 @@
 [
  {
+  "id": "2026-11-26-portside",
+  "date": "2026-11-26",
+  "time": "22:57",
+  "tag": "Decision",
+  "title": "Method: 3-D doses now read at the port side, not the all-round average",
+  "tldr": "The real injector port sits on the side of the Venturi, perpendicular to the elbow's bend. The 3-D dose numbers so far used the wall pressure averaged all round the port circle. At the side, suction is within 1% of the average up to 15 L/min and 2–5% lower at 30–100 L/min for the new shapes (about 3% higher for the current part). Spreads move by 1–2%; the ranking does not change. From now on rankings use the port-side value, with the average shown alongside.",
+  "body": [
+   [
+    "list",
+    [
+     "Port-side spreads: A pipe rig 1.71× over 6–100 (average-based 1.69×); E pipe rig 1.60× over 6–30 so far (1.57×); A long-radius 1.75× (1.73×); B long-radius 1.78× (1.80×); V1 long-radius 1.82× over 6–30; current part (3/4\" hardware) 1.52× over 6–60 (1.51×).",
+     "In the model the bend plane is a symmetry plane; the pressure differs most between the inside and outside of the bend (A ≤ 2%, E 8–9% at 20–30 L/min). So on the rig the port must face sideways (perpendicular to the bend plane); E is the more sensitive of the two to how the part is clocked.",
+     "Found by the memory/context sync cross-check and confirmed by the 3-hourly independent audit."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-26-pipe-A",
   "date": "2026-11-26",
   "time": "20:40",
@@ -37,7 +55,7 @@
      "New candidates in the same 2-D setup: A 1.63×, C 1.64×, E 1.69×, F 1.70× over 6–100 L/min, with throat wall pressure −60 to −66 kPa (13.5 mm) and −71 to −78 kPa (13 mm) at 100 L/min, clear of vapour pressure (−99).",
      "So above ~60 L/min the current part is both less consistent and close to cavitating; below ~40 L/min it is flatter than any new design (its known strength). The pipe-rig 3-D runs now under way compare all of them on the real rig hardware.",
      "Independent check of the 7 current-part cases: all clean (mesh OK, residuals: p and U ≤ 8e-7, k ≤ 5e-6, y+ ≤ 2.7, geometry matches the stations; old and new runs agree to 4 digits). Added to the CFD viewer (2-D tab, group 'Current part').",
-     "Pipe-rig model check: geometry, mesh (693k cells, pipe resolved, y+ ~1.5), convergence all PASS. After the short-radius NPT elbow the wall pressure varies ~19% round the port circle, mostly between the inside and outside of the bend; the model is symmetric about the bend plane, so on the rig the injector port should face sideways (perpendicular to the bend plane), which is also where the dose numbers are now read."
+     "Pipe-rig model check: geometry, mesh (693k cells, pipe resolved, y+ ~1.5), convergence all PASS. After the short-radius NPT elbow the wall pressure varies ~19% round the port circle, mostly between the inside and outside of the bend; the model is symmetric about the bend plane, so on the rig the injector port should face sideways (perpendicular to the bend plane); from the 23:10 update on, dose numbers are read there."
     ]
    ]
   ]
