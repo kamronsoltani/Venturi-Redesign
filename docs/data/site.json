@@ -283,7 +283,7 @@
   {
    "id": "asm1p_R2_U_t13_n22_zfix",
    "group": "pipe3d",
-   "venturi": "U \u00b7 t13 \u00b7 n22",
+   "venturi": "E \u00b7 13 mm",
    "label": "3-D \u00b7 candidate E (13 mm, 22 mm outlet, port +9 mm) \u00b7 pipe rig",
    "flows": [
     6,

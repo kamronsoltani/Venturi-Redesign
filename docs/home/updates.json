@@ -5,7 +5,7 @@
   "time": "00:54",
   "tag": "Simulation",
   "title": "Stage 2: candidate E on the pipe rig, 1.60× over 6–100 L/min (leads)",
-  "tldr": "Candidate E (13 mm throat, 22 mm outlet nozzle, port 9 mm higher) on the pipe rig, independently checked: dose varies 1.60× over 6–100 L/min at the port side, against 1.71× for A and 1.86× for the current part. That is within ~1% of the best a fixed bore can do with the measured feed law. The narrower throat flattens the low end exactly as the 3-D correction predicted.",
+  "tldr": "Candidate E (13 mm throat, 22 mm outlet nozzle, port 9 mm higher) on the pipe rig, independently checked: dose varies 1.60× over 6–100 L/min at the port side, against 1.71× for A (3-D) and 1.86× for the current part (2-D, Venturi alone; its 3-D runs to 100 L/min follow). That is within ~1% of the best a fixed bore can do with the measured feed law. The narrower throat flattens the low end exactly as the 3-D correction predicted.",
   "body": [
    [
     "p",

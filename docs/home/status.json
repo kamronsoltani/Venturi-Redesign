@@ -100,7 +100,7 @@
   ],
   [
    "Handpump: the dose doubles once the head fills, and overflow follows within ~2 L/min.",
-   "Upgraded pulse model (two-phase priming rule + measured feed law) reproduces the V1 handpump bench within ~25% (0.23/0.31, 0.96/0.93, 1.0/1.32 mg/L). A design whose head never fills over the pump's flow range doses most evenly; V1 stays in that regime up to ~29 L/min."
+   "Upgraded pulse model (two-phase priming rule + measured feed law) reproduces the V1 handpump bench within ~25% (model/bench mg/L at the port side: 0.23/0.31, 0.94/0.93, 1.02/1.32). A design whose head never fills over the pump's flow range doses most evenly; V1 stays in that regime up to ~29 L/min."
   ],
   [
    "The current part is consistent on piped flow; its problem is overflow.",
