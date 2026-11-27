@@ -296,6 +296,23 @@
     100
    ],
    "color": "#ff9f43"
+  },
+  {
+   "id": "asm1p_V1_zfix",
+   "group": "pipe3d",
+   "venturi": "V1",
+   "label": "3-D \u00b7 V1 (14 mm, 26 mm outlet, reference) \u00b7 pipe rig",
+   "flows": [
+    6,
+    10,
+    15,
+    20,
+    30,
+    45,
+    70,
+    100
+   ],
+   "color": "#7bd88f"
   }
  ],
  "cases": {
@@ -1490,6 +1507,70 @@
    "jet": 166.18,
    "recovery": 0.683,
    "imbalance": 0.107
+  },
+  "asm1p_V1_zfix_Q6": {
+   "level": -12.73,
+   "drift": 0.0,
+   "port": -1.052,
+   "jet": 0.7,
+   "recovery": 0.654,
+   "imbalance": 0.02
+  },
+  "asm1p_V1_zfix_Q10": {
+   "level": -10.67,
+   "drift": 0.01,
+   "port": -1.291,
+   "jet": 1.81,
+   "recovery": 0.678,
+   "imbalance": 0.0
+  },
+  "asm1p_V1_zfix_Q15": {
+   "level": -7.78,
+   "drift": 0.3,
+   "port": -1.832,
+   "jet": 3.06,
+   "recovery": 0.74,
+   "imbalance": -0.039
+  },
+  "asm1p_V1_zfix_Q20": {
+   "level": -3.22,
+   "drift": 1.06,
+   "port": -2.545,
+   "jet": 5.63,
+   "recovery": 0.744,
+   "imbalance": 0.033
+  },
+  "asm1p_V1_zfix_Q30": {
+   "level": 9.69,
+   "drift": 0.79,
+   "port": -4.559,
+   "jet": 12.59,
+   "recovery": 0.735,
+   "imbalance": 0.006
+  },
+  "asm1p_V1_zfix_Q45": {
+   "level": 43.46,
+   "drift": 0.47,
+   "port": -8.528,
+   "jet": 32.34,
+   "recovery": 0.683,
+   "imbalance": -0.001
+  },
+  "asm1p_V1_zfix_Q70": {
+   "level": 129.66,
+   "drift": 2.32,
+   "port": -18.675,
+   "jet": 81.61,
+   "recovery": 0.658,
+   "imbalance": -0.028
+  },
+  "asm1p_V1_zfix_Q100": {
+   "level": 282.34,
+   "drift": 7.12,
+   "port": -36.847,
+   "jet": 173.33,
+   "recovery": 0.651,
+   "imbalance": -0.026
   }
  }
 }

@@ -1,5 +1,28 @@
 [
  {
+  "id": "2026-11-27-pipe-V1",
+  "date": "2026-11-27",
+  "time": "04:25",
+  "tag": "Simulation",
+  "title": "Stage 2: V1 (reference) on the pipe rig, 1.74–1.75× — ranking E, A, V1",
+  "tldr": "V1 (14 mm throat, open 26 mm outlet) on the pipe rig, independently checked: dose varies 1.75× over 6–100 L/min at the port side (1.74× cycle-averaged). Unlike A and E, V1 never fully settles: its open outlet and separated diffuser make the flow cycle by up to 4% of port suction at 20 L/min. Even across that band (1.71–1.76×) it cannot beat A (1.71×) and is well behind E (1.60×).",
+  "body": [
+   [
+    "p",
+    "Plot: home/pipe_rig.png (now with V1). 3-D cases in the CFD viewer under '3-D pipe rig'."
+   ],
+   [
+    "list",
+    [
+     "V1 relative dose (port side): 6: 1.75, 10: 1.22, 15: 1.05, 20: 1.00, 30: 1.02, 45: 1.07, 70: 1.21, 100: 1.39. Its high end is the gentlest of the three, its 6 L/min end the highest.",
+     "Check (agent): all 8 flows complete, mass ≤ 0.04%, minimum wall pressure −51 kPa at 100 L/min. Oscillation per flow: 6/10 clean, 15: 1.6%, 20: 4.1%, 30: 1.7%, 45: 0.5%, 70: 0.45%, 100: 1.3% (still drifting slightly).",
+     "The unsteadiness is itself an argument for the outlet nozzle in the new designs (A and E settle to < 0.6%).",
+     "Pipe-rig ranking so far (port side, 6–100 L/min): E 1.60×, A 1.71×, V1 1.75×. Current part 1.86× (2-D; its 3-D runs to 100 L/min come after Stage 3). Next: C (13.5 mm, 20 mm outlet), then F (13 mm, 20 mm outlet)."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-r3",
   "date": "2026-11-27",
   "time": "03:26",
