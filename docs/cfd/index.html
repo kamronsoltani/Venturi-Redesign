@@ -611,7 +611,7 @@ function fillPanels(){
   $("loss").innerHTML=items.map(([a,b])=>`<div class="b"><span class="l">${a}</span><span class="t" style="width:${Math.abs(b||0)/mx*110}px;${b<0?"background:var(--warn)":""}"></span><span class="n">${fmt(b,1)}</span></div>`).join("")+
    `<div class="note">Mechanical-energy losses between sections (flux-weighted), plus the kinetic energy that leaves with the jet.</div>`;
   const p=M.port;
-  $("port").innerHTML=[["Mean around the wall",p.mean],["Min / max",null,`${fmt(p.min)} / ${fmt(p.max)}`],["E-Sig side (+y)",p.at_plus_y],["Opposite side (−y)",p.at_minus_y],["90° to bend plane",p.at_plus_z]]
+  $("port").innerHTML=[["All-round mean (not used for ranking)",p.mean],["Min / max",null,`${fmt(p.min)} / ${fmt(p.max)}`],["Inside of bend, inlet side (+y)",p.at_plus_y],["Outside of bend (−y)",p.at_minus_y],["Port side, 90° to bend plane (+z): used for ranking",p.at_plus_z]]
    .map(([a,b,s])=>`<tr><td>${a}</td><td class="n">${s??fmt(b)} kPa</td></tr>`).join("");
   $("out").innerHTML=[["Outlet jet KE head",fmt(r.outlet_ke_head_cm,1)+" cm"],["Outlet KE factor α",fmt(r.outlet_alpha)],["Diffuser recovery / ideal",fmt(r.diffuser_recovery_frac)],["Diffuser wall reversed",fmt(100*r.diffuser_reversed_area_frac,0)+" %"]]
    .map(([a,b])=>`<tr><td>${a}</td><td class="n">${b}</td></tr>`).join("");
