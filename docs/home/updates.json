@@ -1,5 +1,29 @@
 [
  {
+  "id": "2026-11-27-stage3-Elr",
+  "date": "2026-11-27",
+  "time": "12:20",
+  "tag": "Simulation",
+  "title": "Stage 3: E on the long-radius reducer — no overflow over the pump range, but thin margin",
+  "tldr": "First handpump-hardware sweep checked (E: 13 mm throat, 22 mm outlet; 8 flows 6–100 L/min, independently audited). The head fills at ~27 L/min and would overflow at ~29.5 L/min, just above the Afridev's ~26 L/min at 100 spm. Pulse model (port side): E doses 1.02–1.60 mg/L over 30–100 spm (1.57×), with a jump at 100 spm when the head first fills; A (13.5 mm) on the same reducer is steadier at 0.84–1.18 (1.40×), V1 0.70–1.02 (1.46×). Early sign that the handpump favours a slightly wider throat than the pipe rig does; the E-Sig trains (more head loss) are the decisive test.",
+  "body": [
+   [
+    "p",
+    "Plot: home/handpump_stage3.png (left: head level vs flow; right: modelled dose vs stroke rate). E's long-radius cases are in the CFD viewer under '3-D candidates · 1in long-radius reducer'."
+   ],
+   [
+    "list",
+    [
+     "Levels (cm vs inlet centre): 6: −18.1, 10: −15.9, 15: −11.8, 20: −6.6, 30: +6.5, 45: +37.2. Bore top +2.2, overflow +5.8. Q25/Q35 are queued to pin the crossings without interpolation.",
+     "Steady piped spread on this reducer 1.66× (pipe rig 1.60×): the long-radius reducer gives 8–20% more suction than the NPT elbow above 30 L/min, so its high end rises.",
+     "Check: mesh OK (978k cells, non-orthogonality 63.3°), inlet/outlet flow within 0.02%, level drift ≤ 0.22%, port side vs inside/outside of the bend 4% at 20 and 11% at 100 L/min.",
+     "Model note: the pulse model reads V1's bench handpump dose within ~25% (low at 75–100 spm); compare designs relative to each other.",
+     "Next: F on the long-radius reducer (running, ~15:10), then E, A, F and V1 on the 1in E-Sig + 1in NPT elbow train."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-stage2",
   "date": "2026-11-27",
   "time": "09:08",
