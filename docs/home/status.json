@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27 09:08 PST",
+ "updated": "2026-11-27 12:57 PST",
  "today": "2026-11-27",
  "strip": [
   [
@@ -55,16 +55,16 @@
     "None within the pump range (to ~26 L/min)",
     "Overflows at 18.5",
     "None to 30",
-    "V1",
-    "fail"
+    "Long-radius reducer: V1 ~32, A ~31, E ~29.5 L/min (all clear the pump); E-Sig trains pending",
+    "open"
    ],
    [
     "Handpump dose, 10–20 L/min",
     "0.1–1.5 mg/L (ideal 0.3–0.8)",
     "–",
     "0.38–1.32 (bench)",
-    "V1",
-    "pass"
+    "Model, 30–100 spm, long-radius: A 0.84–1.18 (1.40×), V1 0.70–1.02, E 1.02–1.60 (over 1.5 at 100 spm)",
+    "open"
    ],
    [
     "Body length",
