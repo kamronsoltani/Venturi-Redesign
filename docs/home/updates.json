@@ -1,5 +1,28 @@
 [
  {
+  "id": "2026-11-27-pipe-E",
+  "date": "2026-11-27",
+  "time": "00:54",
+  "tag": "Simulation",
+  "title": "Stage 2: candidate E on the pipe rig, 1.60× over 6–100 L/min (leads)",
+  "tldr": "Candidate E (13 mm throat, 22 mm outlet nozzle, port 9 mm higher) on the pipe rig, independently checked: dose varies 1.60× over 6–100 L/min at the port side, against 1.71× for A and 1.86× for the current part. That is within ~1% of the best a fixed bore can do with the measured feed law. The narrower throat flattens the low end exactly as the 3-D correction predicted.",
+  "body": [
+   [
+    "p",
+    "Plot: home/pipe_rig.png (port-side values). 3-D cases in the CFD viewer under '3-D pipe rig'."
+   ],
+   [
+    "list",
+    [
+     "E relative dose (port side): 6: 1.60, 10: 1.15, 15: 1.01, 20: 1.00, 30: 1.04, 45: 1.12, 70: 1.27, 100: 1.47. All-round average: 1.57×.",
+     "Check (agent): all 8 flows converged (level drift ≤ 0.55% of suction), mass balance ≤ 0.11%, smooth suction curve; minimum wall pressure −67 kPa at 100 L/min (32 kPa from vapour; A −58). A small steady negative-k bounding at 6 and 20 L/min is ~1e-4 of the mean k and does not grow.",
+     "Port clocking: E's pressure differs by up to 11% between the inside and outside of the elbow's bend at 45–100 L/min, so on the rig the port must face sideways (perpendicular to the bend plane).",
+     "Next on the pipe rig: V1 (reference), C, F; then Stage 3 (handpump hardware)."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-26-portside",
   "date": "2026-11-26",
   "time": "22:57",
