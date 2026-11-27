@@ -37,7 +37,7 @@
      "New candidates in the same 2-D setup: A 1.63×, C 1.64×, E 1.69×, F 1.70× over 6–100 L/min, with throat wall pressure −60 to −66 kPa (13.5 mm) and −71 to −78 kPa (13 mm) at 100 L/min, clear of vapour pressure (−99).",
      "So above ~60 L/min the current part is both less consistent and close to cavitating; below ~40 L/min it is flatter than any new design (its known strength). The pipe-rig 3-D runs now under way compare all of them on the real rig hardware.",
      "Independent check of the 7 current-part cases: all clean (mesh OK, residuals: p and U ≤ 8e-7, k ≤ 5e-6, y+ ≤ 2.7, geometry matches the stations; old and new runs agree to 4 digits). Added to the CFD viewer (2-D tab, group 'Current part').",
-     "Pipe-rig model check: geometry, mesh (693k cells, pipe resolved, y+ ~1.5), convergence all PASS. After the short-radius NPT elbow the wall pressure varies ~19% round the port circle; the two sides perpendicular to the bend agree, so on the rig the injector port should face sideways (not the inside or outside of the bend)."
+     "Pipe-rig model check: geometry, mesh (693k cells, pipe resolved, y+ ~1.5), convergence all PASS. After the short-radius NPT elbow the wall pressure varies ~19% round the port circle, mostly between the inside and outside of the bend; the model is symmetric about the bend plane, so on the rig the injector port should face sideways (perpendicular to the bend plane), which is also where the dose numbers are now read."
     ]
    ]
   ]
