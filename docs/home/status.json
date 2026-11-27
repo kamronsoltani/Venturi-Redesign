@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26 16:24 PST",
+ "updated": "2026-11-26 18:55 PST",
  "today": "2026-11-26",
  "strip": [
   [
@@ -83,7 +83,7 @@
     "rule"
    ]
   ],
-  "note": "Spread = highest ÷ lowest dose on piped flow, with the feed law measured on the bench (chlorine flow ∝ suction^0.73). 6–100 L/min extrapolated from CFD to 60 L/min. Status is for the new design: piped consistency must match or beat the current part, and the handpump must not overflow."
+  "note": "Spread = highest ÷ lowest dose on piped flow, with the feed law measured on the bench (chlorine flow ∝ suction^0.73). Current part measured to 100 L/min in 2-D (no extrapolation); candidates in 2-D and 3-D. Status is for the new design: piped consistency must match or beat the current part, and the handpump must not overflow."
  },
  "findings": [
   [
