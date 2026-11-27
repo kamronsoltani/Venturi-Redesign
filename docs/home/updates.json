@@ -1,5 +1,29 @@
 [
  {
+  "id": "2026-11-27-pipe-C",
+  "date": "2026-11-27",
+  "time": "06:54",
+  "tag": "Simulation",
+  "title": "Stage 2: candidate C on the pipe rig, 1.69×",
+  "tldr": "Candidate C (13.5 mm throat, 20 mm outlet nozzle, round-1 port) on the pipe rig, independently checked: dose varies 1.69× over 6–100 L/min at the port side (band 1.68–1.70× from small oscillations). Pipe-rig ranking so far: E 1.60×, C 1.69×, A 1.71×, V1 1.75×. The 20 mm nozzle makes C less sensitive to the elbow than the 22–26 mm outlets (it keeps 0.95× of its Venturi-alone suction at 20 L/min vs 0.91–0.92×), but its 13.5 mm throat still leaves the 6 L/min end high.",
+  "body": [
+   [
+    "p",
+    "Plot: home/pipe_rig.png (now with C). 3-D cases in the CFD viewer under '3-D pipe rig'."
+   ],
+   [
+    "list",
+    [
+     "C relative dose (port side): 6: 1.69, 10: 1.20, 15: 1.02, 20: 1.00, 30: 1.04, 45: 1.13, 70: 1.29, 100: 1.50.",
+     "Check (agent): all 8 flows complete, oscillation ≤ 1.8% of suction (none at an extreme), mass ≤ 0.09%, minimum wall pressure −56 kPa at 100 L/min.",
+     "Pipe-rig / Venturi-alone suction for C: 0.98 at 6, 0.95 at 10–20, 0.84–0.85 at 70–100 L/min (higher than the 22–26 mm-outlet shapes at every flow).",
+     "Like E, C reads up to 11% more suction on the outside of the elbow's bend than the inside at high flow: the port must face sideways on the rig.",
+     "Next: F (13 mm, 20 mm outlet), the last pipe-rig sweep, ~9:15 am; then the Stage 2 summary and Stage 3 (handpump hardware)."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-pipe-V1",
   "date": "2026-11-27",
   "time": "04:25",

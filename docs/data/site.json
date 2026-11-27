@@ -313,6 +313,23 @@
     100
    ],
    "color": "#7bd88f"
+  },
+  {
+   "id": "asm1p_R1_t13.5_n20_zfix",
+   "group": "pipe3d",
+   "venturi": "C \u00b7 13.5 mm",
+   "label": "3-D \u00b7 candidate C (13.5 mm, 20 mm outlet, round-1 port) \u00b7 pipe rig",
+   "flows": [
+    6,
+    10,
+    15,
+    20,
+    30,
+    45,
+    70,
+    100
+   ],
+   "color": "#ffd166"
   }
  ],
  "cases": {
@@ -1571,6 +1588,70 @@
    "jet": 173.33,
    "recovery": 0.651,
    "imbalance": -0.026
+  },
+  "asm1p_R1_t13.5_n20_zfix_Q6": {
+   "level": -12.52,
+   "drift": 0.0,
+   "port": -1.064,
+   "jet": 0.82,
+   "recovery": 0.694,
+   "imbalance": 0.021
+  },
+  "asm1p_R1_t13.5_n20_zfix_Q10": {
+   "level": -10.07,
+   "drift": 0.06,
+   "port": -1.329,
+   "jet": 2.19,
+   "recovery": 0.725,
+   "imbalance": 0.029
+  },
+  "asm1p_R1_t13.5_n20_zfix_Q15": {
+   "level": -5.97,
+   "drift": 0.34,
+   "port": -1.875,
+   "jet": 4.38,
+   "recovery": 0.76,
+   "imbalance": 0.053
+  },
+  "asm1p_R1_t13.5_n20_zfix_Q20": {
+   "level": -0.93,
+   "drift": 0.28,
+   "port": -2.722,
+   "jet": 7.5,
+   "recovery": 0.789,
+   "imbalance": 0.054
+  },
+  "asm1p_R1_t13.5_n20_zfix_Q30": {
+   "level": 14.3,
+   "drift": 0.92,
+   "port": -5.002,
+   "jet": 15.88,
+   "recovery": 0.789,
+   "imbalance": 0.072
+  },
+  "asm1p_R1_t13.5_n20_zfix_Q45": {
+   "level": 50.06,
+   "drift": 0.08,
+   "port": -9.907,
+   "jet": 36.96,
+   "recovery": 0.737,
+   "imbalance": 0.082
+  },
+  "asm1p_R1_t13.5_n20_zfix_Q70": {
+   "level": 147.9,
+   "drift": 0.65,
+   "port": -21.82,
+   "jet": 94.73,
+   "recovery": 0.693,
+   "imbalance": 0.089
+  },
+  "asm1p_R1_t13.5_n20_zfix_Q100": {
+   "level": 314.52,
+   "drift": 2.24,
+   "port": -43.723,
+   "jet": 196.03,
+   "recovery": 0.69,
+   "imbalance": 0.091
   }
  }
 }
