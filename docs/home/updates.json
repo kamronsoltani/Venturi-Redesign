@@ -2,7 +2,7 @@
  {
   "id": "2026-11-27-stage3-Elr",
   "date": "2026-11-27",
-  "time": "12:20",
+  "time": "12:05",
   "tag": "Simulation",
   "title": "Stage 3: E on the long-radius reducer — no overflow over the pump range, but thin margin",
   "tldr": "First handpump-hardware sweep checked (E: 13 mm throat, 22 mm outlet; 8 flows 6–100 L/min, independently audited). The head fills at ~27 L/min and would overflow at ~29.5 L/min, just above the Afridev's ~26 L/min at 100 spm. Pulse model (port side): E doses 1.02–1.60 mg/L over 30–100 spm (1.57×), with a jump at 100 spm when the head first fills; A (13.5 mm) on the same reducer is steadier at 0.84–1.18 (1.40×), V1 0.70–1.02 (1.46×). Early sign that the handpump favours a slightly wider throat than the pipe rig does; the E-Sig trains (more head loss) are the decisive test.",
