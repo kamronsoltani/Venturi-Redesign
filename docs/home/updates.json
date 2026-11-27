@@ -1,5 +1,25 @@
 [
  {
+  "id": "2026-11-26-cur2d",
+  "date": "2026-11-26",
+  "time": "16:24",
+  "tag": "Simulation",
+  "title": "Current part to 100 L/min (2-D): 1.86× spread and cavitation at ~100 L/min; pipe-rig model validated",
+  "tldr": "The current part, measured (not extrapolated) in 2-D to 120 L/min: dose varies 1.86× over 6–100 L/min, and its throat wall reaches vapour pressure at about 100 L/min (120 L/min is beyond the model's validity: the pressure would be below absolute vacuum). The 2-D model reproduces its bench curve (5.8 L/min: 1.32 vs bench 1.35; 37.8: 1.21 vs 1.27). The new 3-D pipe-rig model (1\" Sch 40 pipe + McMaster 1\" NPT elbow) passed its independent check; first result: candidate A at 20 L/min, 0.93× the 2-D suction.",
+  "body": [
+   [
+    "list",
+    [
+     "Current part, 2-D port suction (kPa): 6: 0.90, 10: 1.31, 20: 3.30, 40: 11.4, 70: 34.2, 100: 69.9, 120: 100.8 (invalid). Relative dose: 6: 1.29, 10: 1.03, 20: 1.00, 40: 1.24, 70: 1.58, 100: 1.86.",
+     "New candidates in the same 2-D setup: A 1.63×, C 1.64×, E 1.69×, F 1.70× over 6–100 L/min, with throat wall pressure about −60 to −66 kPa at 100 L/min (well clear of vapour pressure).",
+     "So above ~60 L/min the current part is both less consistent and close to cavitating; below ~40 L/min it is flatter than any new design (its known strength). The pipe-rig 3-D runs now under way compare all of them on the real rig hardware.",
+     "Independent check of the 7 current-part cases: all clean (mesh OK, residuals ≤ 8e-7, y+ ≤ 2.7, geometry matches the stations; old and new runs agree to 4 digits). Added to the CFD viewer (2-D tab, group 'Current part').",
+     "Pipe-rig model check: geometry, mesh (693k cells, pipe resolved, y+ ~1.5), convergence all PASS. After the short-radius NPT elbow the wall pressure varies ~19% round the port circle; the two sides perpendicular to the bend agree, so on the rig the injector port should face sideways (not the inside or outside of the bend)."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-26-staged",
   "date": "2026-11-26",
   "time": "15:11",

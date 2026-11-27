@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26 15:11 PST",
+ "updated": "2026-11-26 16:24 PST",
  "today": "2026-11-26",
  "strip": [
   [
@@ -37,7 +37,7 @@
    [
     "Piped dose spread, 6–100 L/min",
     "≤ 2.67× (aim ~1.6×, the best a fixed shape can do)",
-    "1.96× (1.3–1.5× measured, 6–38)",
+    "1.86× (2-D, measured to 100; 1.3–1.5× on the bench, 6–38)",
     "1.83×",
     "1.63× (candidate A, 2-D)",
     "open"
@@ -86,6 +86,10 @@
   "note": "Spread = highest ÷ lowest dose on piped flow, with the feed law measured on the bench (chlorine flow ∝ suction^0.73). 6–100 L/min extrapolated from CFD to 60 L/min. Status is for the new design: piped consistency must match or beat the current part, and the handpump must not overflow."
  },
  "findings": [
+  [
+   "Current part measured to 100 L/min: 1.86× spread, and its throat reaches vapour pressure at ~100 L/min.",
+   "2-D (straight pipe) runs of the current part to 120 L/min: dose spread 6–100 L/min = 1.86× (lowest at 20, highest at 100). The minimum wall pressure is −98.7 kPa gauge at 100 L/min (vapour limit) and impossible at 120, so the current part cannot really run at 100 L/min without cavitating. The new 13–13.5 mm candidates stay near −60 to −66 kPa at 100 L/min in 2-D and spread 1.63–1.70×."
+  ],
   [
    "Three candidates, all at 1.63–1.66× in 2-D; the optimum is flat.",
    "A: 13.5 mm throat, 22 mm outlet, port 9 mm higher (1.63×, most suction at 6 L/min). B: 14 mm throat, 22 mm outlet, port 10 mm lower (1.66×, widest throat for the handpump). C: 13.5 mm throat, 20 mm outlet (1.64×, most robust outlet fill). On piped consistency alone they beat V1 by only ~2–3%; the real gains are the outlet running full at 6 L/min and more suction margin. 3-D settles handpump overflow."

@@ -92,97 +92,6 @@
 }
 },
 {
-"case": "Q20",
-"geometry": "current",
-"level": "medium",
-"cells": 53040,
-"iterations": 4000,
-"Q_lpm": 20.000000014034644,
-"inlet_total_Pa": 607.5358145359797,
-"level_above_inlet_cm": 6.211660614217573,
-"inlet_static_Pa": 190.41669679547283,
-"inlet_static_negative_FLAG": false,
-"port_z_mm": 47.5,
-"port_wall_p_kPa_orifice_avg": -3.295427527269864,
-"port_wall_p_kPa_at_axis": -3.3513312328370137,
-"min_wall_p_kPa": -4.015928384734,
-"min_wall_p_z_mm": 34.97115035418263,
-"diffuser_Cp": 0.46020183945396526,
-"diffuser_Cp_ideal": 0.5909156254278618,
-"diffuser_recovery_frac_of_ideal": 0.7787945006882309,
-"diffuser_wall_shear_min_Pa": -0.0011893871692297093,
-"diffuser_wall_shear_max_Pa": 23.472736431980156,
-"diffuser_separated": true,
-"diffuser_reversed_wall_fraction": 0.009009009009009009,
-"diffuser_reversed_wall_length_frac": 0.0022332860791579533,
-"reversed_wall_flow_z_ranges_mm": [
-[
-79.36,
-79.4
-]
-],
-"outlet_KE_head_cm": 13.379919915841201,
-"outlet_KE_alpha": 1.2666480803303841,
-"outlet_backflow_faces": 0,
-"mass_imbalance_rel": -2.638547713086283e-09,
-"residualControl_met": false,
-"ended_cleanly": true,
-"inlet_p_change_last500_rel": 9.749218587506752e-07,
-"yplus_max": 0.7162299955,
-"yplus_mean": 0.19172835929317186,
-"yplus_max_z_mm": 0.10010532799839127,
-"checkMesh_ok": true,
-"checkMesh_max_nonortho_deg": 12.09081368,
-"checkMesh_max_skewness": 0.3307732729,
-"key": "current__Q20",
-"desc": "Current part",
-"mesh_level": "medium",
-"drop_cm": 11.65,
-"internal_loss_cm": 4.481740698376372,
-"inlet_D_mm": 21.54,
-"outlet_D_mm": 17.17,
-"throat_D_mm": 12.26,
-"length_mm": 116.5,
-"res_final": {
-"p": {
-"first": 1.0,
-"final": 2.8415282474e-07,
-"max_last500": 3.2950551018e-07,
-"min_last500": 2.6987185477e-07
-},
-"Ux": {
-"first": 1.0,
-"final": 6.8168080226e-08,
-"max_last500": 7.01836202e-08,
-"min_last500": 6.7894829516e-08
-},
-"Uy": {
-"first": 1.0,
-"final": 2.9665814186e-07,
-"max_last500": 3.0474092816e-07,
-"min_last500": 2.9267102188e-07
-},
-"Uz": {
-"first": 0.47002781396,
-"final": 0.55628076556,
-"max_last500": 0.56355634697,
-"min_last500": 0.54388059663
-},
-"k": {
-"first": 0.99999999999,
-"final": 3.4362375904e-06,
-"max_last500": 3.4918217265e-06,
-"min_last500": 3.4333322476e-06
-},
-"omega": {
-"first": 1.0,
-"final": 2.946647373e-09,
-"max_last500": 3.3921167992e-09,
-"min_last500": 2.4800864871e-09
-}
-}
-},
-{
 "case": "Q25",
 "geometry": "current",
 "level": "medium",
@@ -523,97 +432,6 @@
 "final": 7.2904396485e-09,
 "max_last500": 7.3145595134e-09,
 "min_last500": 6.0107868182e-09
-}
-}
-},
-{
-"case": "Q6",
-"geometry": "current",
-"level": "medium",
-"cells": 53040,
-"iterations": 4000,
-"Q_lpm": 5.99999998234625,
-"inlet_total_Pa": -948.5261200868225,
-"level_above_inlet_cm": -9.698065860034973,
-"inlet_static_Pa": -986.0668404098698,
-"inlet_static_negative_FLAG": true,
-"port_z_mm": 47.5,
-"port_wall_p_kPa_orifice_avg": -0.8978894799557622,
-"port_wall_p_kPa_at_axis": -0.9001425714325555,
-"min_wall_p_kPa": -1.035846780984,
-"min_wall_p_z_mm": 34.97115035418263,
-"diffuser_Cp": 0.4103334835411578,
-"diffuser_Cp_ideal": 0.5909156254278618,
-"diffuser_recovery_frac_of_ideal": 0.6944028316124647,
-"diffuser_wall_shear_min_Pa": -0.26194183748388367,
-"diffuser_wall_shear_max_Pa": 1.8155380783245763,
-"diffuser_separated": true,
-"diffuser_reversed_wall_fraction": 0.8018018018018018,
-"diffuser_reversed_wall_length_frac": 0.8530574659868361,
-"reversed_wall_flow_z_ranges_mm": [
-[
-63.15,
-81.58
-]
-],
-"outlet_KE_head_cm": 1.3487971882445526,
-"outlet_KE_alpha": 1.4187523729109675,
-"outlet_backflow_faces": 0,
-"mass_imbalance_rel": -7.209145932630314e-10,
-"residualControl_met": false,
-"ended_cleanly": true,
-"inlet_p_change_last500_rel": 4.785477829365999e-08,
-"yplus_max": 0.3051190096,
-"yplus_mean": 0.069050697057,
-"yplus_max_z_mm": 0.10010532799839127,
-"checkMesh_ok": true,
-"checkMesh_max_nonortho_deg": 12.09081368,
-"checkMesh_max_skewness": 0.3307732729,
-"key": "current__Q6",
-"desc": "Current part",
-"mesh_level": "medium",
-"drop_cm": 11.65,
-"internal_loss_cm": 0.603136951720475,
-"inlet_D_mm": 21.54,
-"outlet_D_mm": 17.17,
-"throat_D_mm": 12.26,
-"length_mm": 116.5,
-"res_final": {
-"p": {
-"first": 1.0,
-"final": 4.6546621446e-08,
-"max_last500": 5.054999804e-08,
-"min_last500": 4.5690003302e-08
-},
-"Ux": {
-"first": 1.0,
-"final": 6.3828540794e-08,
-"max_last500": 6.4924240677e-08,
-"min_last500": 6.3486359702e-08
-},
-"Uy": {
-"first": 1.0,
-"final": 3.4443462291e-07,
-"max_last500": 3.5329373356e-07,
-"min_last500": 3.4041903205e-07
-},
-"Uz": {
-"first": 0.077384649617,
-"final": 0.37697222709,
-"max_last500": 0.37949663136,
-"min_last500": 0.35812378641
-},
-"k": {
-"first": 1.0,
-"final": 4.2144095102e-06,
-"max_last500": 4.2269759122e-06,
-"min_last500": 4.1782657109e-06
-},
-"omega": {
-"first": 1.0,
-"final": 2.4678738403e-10,
-"max_last500": 3.1239514112e-10,
-"min_last500": 2.449117062e-10
 }
 }
 },
@@ -4805,6 +4623,663 @@
 "min_last500": 4.7551445511e-09
 }
 }
+},
+{
+"case": "Q20",
+"geometry": "current",
+"level": "medium",
+"cells": 53040,
+"iterations": 4000,
+"Q_lpm": 20.000000014034644,
+"inlet_total_Pa": 607.5350848715469,
+"level_above_inlet_cm": 6.211653153870857,
+"inlet_static_Pa": 190.4159671310402,
+"inlet_static_negative_FLAG": false,
+"port_z_mm": 47.5,
+"port_wall_p_kPa_orifice_avg": -3.2954280451830975,
+"port_wall_p_kPa_at_axis": -3.3513317806605123,
+"min_wall_p_kPa": -4.0159285622,
+"min_wall_p_z_mm": 34.97115035418263,
+"diffuser_Cp": 0.4602020755072082,
+"diffuser_Cp_ideal": 0.5909156254278618,
+"diffuser_recovery_frac_of_ideal": 0.7787949001585321,
+"diffuser_wall_shear_min_Pa": -0.0011872305081279302,
+"diffuser_wall_shear_max_Pa": 23.47273884919769,
+"diffuser_separated": true,
+"diffuser_reversed_wall_fraction": 0.009009009009009009,
+"diffuser_reversed_wall_length_frac": 0.0022332860791579533,
+"reversed_wall_flow_z_ranges_mm": [
+[
+79.36,
+79.4
+]
+],
+"outlet_KE_head_cm": 13.379912208462022,
+"outlet_KE_alpha": 1.2666473506894664,
+"outlet_backflow_faces": 0,
+"mass_imbalance_rel": 2.552037888935546e-09,
+"residualControl_met": false,
+"ended_cleanly": true,
+"inlet_p_change_last500_rel": 2.3100814836020646e-07,
+"yplus_max": 0.7162299878,
+"yplus_mean": 0.19172835740371338,
+"yplus_max_z_mm": 0.10010532799839127,
+"checkMesh_ok": true,
+"checkMesh_max_nonortho_deg": 12.09081368,
+"checkMesh_max_skewness": 0.3307732729,
+"key": "current__Q20",
+"desc": "Current part (2-D, Venturi alone)",
+"mesh_level": "medium",
+"drop_cm": 11.65,
+"internal_loss_cm": 4.481740945408836,
+"inlet_D_mm": 21.54,
+"outlet_D_mm": 17.17,
+"throat_D_mm": 12.26,
+"length_mm": 116.5,
+"res_final": {
+"p": {
+"first": 1.0,
+"final": 2.8753138932e-07,
+"max_last500": 3.2961150825e-07,
+"min_last500": 2.6876777031e-07
+},
+"Ux": {
+"first": 0.028696774295,
+"final": 6.9246496158e-08,
+"max_last500": 6.9859066455e-08,
+"min_last500": 6.8251709416e-08
+},
+"Uy": {
+"first": 1.0,
+"final": 2.9707189545e-07,
+"max_last500": 3.0243714569e-07,
+"min_last500": 2.8701676276e-07
+},
+"Uz": {
+"first": 0.53984314465,
+"final": 0.55650715418,
+"max_last500": 0.56368872321,
+"min_last500": 0.5442483217
+},
+"k": {
+"first": 1.0,
+"final": 3.469249495e-06,
+"max_last500": 3.4920989499e-06,
+"min_last500": 3.4460421654e-06
+},
+"omega": {
+"first": 1.0,
+"final": 3.1102844228e-09,
+"max_last500": 3.3421466857e-09,
+"min_last500": 2.526192936e-09
+}
+},
+"group": "cur2d",
+"group_label": "Current part \u00b7 2-D to 120 L/min",
+"short": "current"
+},
+{
+"case": "Q6",
+"geometry": "current",
+"level": "medium",
+"cells": 53040,
+"iterations": 4000,
+"Q_lpm": 5.99999998234625,
+"inlet_total_Pa": -948.5261380579534,
+"level_above_inlet_cm": -9.698066043778157,
+"inlet_static_Pa": -986.0668583810008,
+"inlet_static_negative_FLAG": true,
+"port_z_mm": 47.5,
+"port_wall_p_kPa_orifice_avg": -0.897889489605214,
+"port_wall_p_kPa_at_axis": -0.9001425829460937,
+"min_wall_p_kPa": -1.0358467989300002,
+"min_wall_p_z_mm": 34.97115035418263,
+"diffuser_Cp": 0.4103332895946632,
+"diffuser_Cp_ideal": 0.5909156254278618,
+"diffuser_recovery_frac_of_ideal": 0.6944025033989495,
+"diffuser_wall_shear_min_Pa": -0.26194086930277244,
+"diffuser_wall_shear_max_Pa": 1.8155439377836158,
+"diffuser_separated": true,
+"diffuser_reversed_wall_fraction": 0.8018018018018018,
+"diffuser_reversed_wall_length_frac": 0.8530574659868361,
+"reversed_wall_flow_z_ranges_mm": [
+[
+63.15,
+81.58
+]
+],
+"outlet_KE_head_cm": 1.3487970419461008,
+"outlet_KE_alpha": 1.418752219024766,
+"outlet_backflow_faces": 0,
+"mass_imbalance_rel": -1.586012227306364e-09,
+"residualControl_met": false,
+"ended_cleanly": true,
+"inlet_p_change_last500_rel": 4.532705825617377e-08,
+"yplus_max": 0.3051190093,
+"yplus_mean": 0.06905070334101805,
+"yplus_max_z_mm": 0.10010532799839127,
+"checkMesh_ok": true,
+"checkMesh_max_nonortho_deg": 12.09081368,
+"checkMesh_max_skewness": 0.3307732729,
+"key": "current__Q6",
+"desc": "Current part (2-D, Venturi alone)",
+"mesh_level": "medium",
+"drop_cm": 11.65,
+"internal_loss_cm": 0.6031369142757426,
+"inlet_D_mm": 21.54,
+"outlet_D_mm": 17.17,
+"throat_D_mm": 12.26,
+"length_mm": 116.5,
+"res_final": {
+"p": {
+"first": 1.0,
+"final": 4.8505812846e-08,
+"max_last500": 5.0830360651e-08,
+"min_last500": 4.5809920791e-08
+},
+"Ux": {
+"first": 0.077667958503,
+"final": 6.4066039719e-08,
+"max_last500": 6.5123724062e-08,
+"min_last500": 6.3726087804e-08
+},
+"Uy": {
+"first": 1.0,
+"final": 3.5265772567e-07,
+"max_last500": 3.564810783e-07,
+"min_last500": 3.4063189745e-07
+},
+"Uz": {
+"first": 0.099676406456,
+"final": 0.36112421981,
+"max_last500": 0.37809984166,
+"min_last500": 0.35403051639
+},
+"k": {
+"first": 1.0,
+"final": 4.2003673974e-06,
+"max_last500": 4.2203946283e-06,
+"min_last500": 4.1808390109e-06
+},
+"omega": {
+"first": 1.0,
+"final": 3.0905648194e-10,
+"max_last500": 3.1069469579e-10,
+"min_last500": 2.4707117493e-10
+}
+},
+"group": "cur2d",
+"group_label": "Current part \u00b7 2-D to 120 L/min",
+"short": "current"
+},
+{
+"case": "Q10",
+"geometry": "current",
+"level": "medium",
+"cells": 53040,
+"iterations": 4000,
+"Q_lpm": 9.999999897696592,
+"inlet_total_Pa": -660.1730751408842,
+"level_above_inlet_cm": -6.749842546404598,
+"inlet_static_Pa": -764.4528522960226,
+"inlet_static_negative_FLAG": true,
+"port_z_mm": 47.5,
+"port_wall_p_kPa_orifice_avg": -1.3136540884106263,
+"port_wall_p_kPa_at_axis": -1.3221308526946147,
+"min_wall_p_kPa": -1.526722021093,
+"min_wall_p_z_mm": 34.97115035418263,
+"diffuser_Cp": 0.4343056864123942,
+"diffuser_Cp_ideal": 0.5909156254278618,
+"diffuser_recovery_frac_of_ideal": 0.7349707263163473,
+"diffuser_wall_shear_min_Pa": -0.24137763720173405,
+"diffuser_wall_shear_max_Pa": 6.09625965603856,
+"diffuser_separated": true,
+"diffuser_reversed_wall_fraction": 0.44144144144144143,
+"diffuser_reversed_wall_length_frac": 0.4314963125697192,
+"reversed_wall_flow_z_ranges_mm": [
+[
+71.18,
+79.98
+]
+],
+"outlet_KE_head_cm": 3.531940469648304,
+"outlet_KE_alpha": 1.3374446907529633,
+"outlet_backflow_faces": 0,
+"mass_imbalance_rel": 3.4603893399925134e-10,
+"residualControl_met": false,
+"ended_cleanly": true,
+"inlet_p_change_last500_rel": 1.3433267903081833e-08,
+"yplus_max": 0.4368823481,
+"yplus_mean": 0.10346059711535747,
+"yplus_max_z_mm": 0.10010532799839127,
+"checkMesh_ok": true,
+"checkMesh_max_nonortho_deg": 12.09081368,
+"checkMesh_max_skewness": 0.3307732729,
+"key": "current__Q10",
+"desc": "Current part (2-D, Venturi alone)",
+"mesh_level": "medium",
+"drop_cm": 11.65,
+"internal_loss_cm": 1.3682169839470983,
+"inlet_D_mm": 21.54,
+"outlet_D_mm": 17.17,
+"throat_D_mm": 12.26,
+"length_mm": 116.5,
+"res_final": {
+"p": {
+"first": 1.0,
+"final": 1.1543225735e-07,
+"max_last500": 1.2733045297e-07,
+"min_last500": 1.1089323501e-07
+},
+"Ux": {
+"first": 0.049449916081,
+"final": 6.9086848872e-08,
+"max_last500": 6.9961375288e-08,
+"min_last500": 6.8707468962e-08
+},
+"Uy": {
+"first": 1.0,
+"final": 3.156084619e-07,
+"max_last500": 3.3015455162e-07,
+"min_last500": 3.0994897418e-07
+},
+"Uz": {
+"first": 0.23041635489,
+"final": 0.48052997723,
+"max_last500": 0.49233320144,
+"min_last500": 0.4730760736
+},
+"k": {
+"first": 1.0,
+"final": 3.9968300132e-06,
+"max_last500": 4.0135257535e-06,
+"min_last500": 3.9532199597e-06
+},
+"omega": {
+"first": 1.0,
+"final": 7.8800212532e-10,
+"max_last500": 9.3219023356e-10,
+"min_last500": 7.6103744304e-10
+}
+},
+"group": "cur2d",
+"group_label": "Current part \u00b7 2-D to 120 L/min",
+"short": "current"
+},
+{
+"case": "Q40",
+"geometry": "current",
+"level": "medium",
+"cells": 53040,
+"iterations": 4000,
+"Q_lpm": 39.99999915350344,
+"inlet_total_Pa": 5322.735370709897,
+"level_above_inlet_cm": 54.421525235337995,
+"inlet_static_Pa": 3654.258972707497,
+"inlet_static_negative_FLAG": false,
+"port_z_mm": 47.5,
+"port_wall_p_kPa_orifice_avg": -11.437717255521338,
+"port_wall_p_kPa_at_axis": -11.748688328872321,
+"min_wall_p_kPa": -14.9124272027,
+"min_wall_p_z_mm": 34.97115035418263,
+"diffuser_Cp": 0.4833588739469328,
+"diffuser_Cp_ideal": 0.5909156254278618,
+"diffuser_recovery_frac_of_ideal": 0.8179828949301334,
+"diffuser_wall_shear_min_Pa": 1.9050660044300511,
+"diffuser_wall_shear_max_Pa": 84.50089888356003,
+"diffuser_separated": false,
+"diffuser_reversed_wall_fraction": 0.0,
+"diffuser_reversed_wall_length_frac": 0.0,
+"reversed_wall_flow_z_ranges_mm": [],
+"outlet_KE_head_cm": 51.191502320072935,
+"outlet_KE_alpha": 1.2115472548829058,
+"outlet_backflow_faces": 0,
+"mass_imbalance_rel": 3.914566651551623e-09,
+"residualControl_met": false,
+"ended_cleanly": true,
+"inlet_p_change_last500_rel": 1.1865478151418357e-07,
+"yplus_max": 1.17859907,
+"yplus_mean": 0.35805143312437426,
+"yplus_max_z_mm": 0.10010532799839127,
+"checkMesh_ok": true,
+"checkMesh_max_nonortho_deg": 12.09081368,
+"checkMesh_max_skewness": 0.3307732729,
+"key": "current__Q40",
+"desc": "Current part (2-D, Venturi alone)",
+"mesh_level": "medium",
+"drop_cm": 11.65,
+"internal_loss_cm": 14.880022915265066,
+"inlet_D_mm": 21.54,
+"outlet_D_mm": 17.17,
+"throat_D_mm": 12.26,
+"length_mm": 116.5,
+"res_final": {
+"p": {
+"first": 1.0,
+"final": 6.7173951297e-07,
+"max_last500": 7.555178191e-07,
+"min_last500": 6.309047402e-07
+},
+"Ux": {
+"first": 0.017969411922,
+"final": 8.3649699867e-08,
+"max_last500": 8.4025923853e-08,
+"min_last500": 8.2112800904e-08
+},
+"Uy": {
+"first": 1.0,
+"final": 3.4947531043e-07,
+"max_last500": 3.5414947106e-07,
+"min_last500": 3.4125683022e-07
+},
+"Uz": {
+"first": 0.82198630503,
+"final": 0.51393393759,
+"max_last500": 0.52339959125,
+"min_last500": 0.50239969183
+},
+"k": {
+"first": 1.0,
+"final": 3.8770134438e-06,
+"max_last500": 3.8951448432e-06,
+"min_last500": 3.8331347679e-06
+},
+"omega": {
+"first": 1.0,
+"final": 1.0934055617e-08,
+"max_last500": 1.2352000356e-08,
+"min_last500": 1.0862231413e-08
+}
+},
+"group": "cur2d",
+"group_label": "Current part \u00b7 2-D to 120 L/min",
+"short": "current"
+},
+{
+"case": "Q70",
+"geometry": "current",
+"level": "medium",
+"cells": 53040,
+"iterations": 4000,
+"Q_lpm": 70.000000158442,
+"inlet_total_Pa": 17613.259478993594,
+"level_above_inlet_cm": 180.08418199546236,
+"inlet_static_Pa": 12503.550270712474,
+"inlet_static_negative_FLAG": false,
+"port_z_mm": 47.5,
+"port_wall_p_kPa_orifice_avg": -34.240933023460116,
+"port_wall_p_kPa_at_axis": -35.41728927412892,
+"min_wall_p_kPa": -47.00828564545,
+"min_wall_p_z_mm": 34.97115035418263,
+"diffuser_Cp": 0.49952890623529506,
+"diffuser_Cp_ideal": 0.5909156254278618,
+"diffuser_recovery_frac_of_ideal": 0.8453472623500238,
+"diffuser_wall_shear_min_Pa": 8.054102715422374,
+"diffuser_wall_shear_max_Pa": 230.31561093588135,
+"diffuser_separated": false,
+"diffuser_reversed_wall_fraction": 0.0,
+"diffuser_reversed_wall_length_frac": 0.0,
+"reversed_wall_flow_z_ranges_mm": [
+[
+15.56,
+15.64
+]
+],
+"outlet_KE_head_cm": 152.18539786001026,
+"outlet_KE_alpha": 1.1760867284651464,
+"outlet_backflow_faces": 0,
+"mass_imbalance_rel": 0.0,
+"residualControl_met": false,
+"ended_cleanly": true,
+"inlet_p_change_last500_rel": 6.378988190470195e-09,
+"yplus_max": 1.760326829,
+"yplus_mean": 0.5921154805977378,
+"yplus_max_z_mm": 0.10010532799839127,
+"checkMesh_ok": true,
+"checkMesh_max_nonortho_deg": 12.09081368,
+"checkMesh_max_skewness": 0.3307732729,
+"key": "current__Q70",
+"desc": "Current part (2-D, Venturi alone)",
+"mesh_level": "medium",
+"drop_cm": 11.65,
+"internal_loss_cm": 39.54878413545211,
+"inlet_D_mm": 21.54,
+"outlet_D_mm": 17.17,
+"throat_D_mm": 12.26,
+"length_mm": 116.5,
+"res_final": {
+"p": {
+"first": 1.0,
+"final": 3.1264613083e-07,
+"max_last500": 3.1701358813e-07,
+"min_last500": 3.1000062656e-07
+},
+"Ux": {
+"first": 0.013353127428,
+"final": 5.9868900315e-08,
+"max_last500": 6.0026080548e-08,
+"min_last500": 5.9617324658e-08
+},
+"Uy": {
+"first": 1.0,
+"final": 2.5209172583e-07,
+"max_last500": 2.5571021797e-07,
+"min_last500": 2.5067577819e-07
+},
+"Uz": {
+"first": 0.93374925495,
+"final": 0.46733274254,
+"max_last500": 0.48017880684,
+"min_last500": 0.45297021621
+},
+"k": {
+"first": 0.99999999996,
+"final": 3.0347928559e-06,
+"max_last500": 3.0836765544e-06,
+"min_last500": 3.0271868186e-06
+},
+"omega": {
+"first": 1.0,
+"final": 4.9990446108e-08,
+"max_last500": 5.1168267104e-08,
+"min_last500": 4.9583629526e-08
+}
+},
+"group": "cur2d",
+"group_label": "Current part \u00b7 2-D to 120 L/min",
+"short": "current"
+},
+{
+"case": "Q100",
+"geometry": "current",
+"level": "medium",
+"cells": 53040,
+"iterations": 4000,
+"Q_lpm": 99.99999897696586,
+"inlet_total_Pa": 35997.478789630375,
+"level_above_inlet_cm": 368.05092944102825,
+"inlet_static_Pa": 25569.501074116528,
+"inlet_static_negative_FLAG": false,
+"port_z_mm": 47.5,
+"port_wall_p_kPa_orifice_avg": -69.86794026351191,
+"port_wall_p_kPa_at_axis": -72.55899301015312,
+"min_wall_p_kPa": -98.69213862218001,
+"min_wall_p_z_mm": 34.97115035418263,
+"diffuser_Cp": 0.5085399134192303,
+"diffuser_Cp_ideal": 0.5909156254278618,
+"diffuser_recovery_frac_of_ideal": 0.860596490490523,
+"diffuser_wall_shear_min_Pa": 17.829369798909184,
+"diffuser_wall_shear_max_Pa": 431.343496843973,
+"diffuser_separated": false,
+"diffuser_reversed_wall_fraction": 0.0,
+"diffuser_reversed_wall_length_frac": 0.0,
+"reversed_wall_flow_z_ranges_mm": [
+[
+15.56,
+15.64
+]
+],
+"outlet_KE_head_cm": 305.58040589052257,
+"outlet_KE_alpha": 1.1571454699436416,
+"outlet_backflow_faces": 0,
+"mass_imbalance_rel": 4.3254894228637995e-11,
+"residualControl_met": false,
+"ended_cleanly": true,
+"inlet_p_change_last500_rel": 1.1307611660763217e-09,
+"yplus_max": 2.318167704,
+"yplus_mean": 0.8163392740618104,
+"yplus_max_z_mm": 34.92880431587016,
+"checkMesh_ok": true,
+"checkMesh_max_nonortho_deg": 12.09081368,
+"checkMesh_max_skewness": 0.3307732729,
+"key": "current__Q100",
+"desc": "Current part (2-D, Venturi alone)",
+"mesh_level": "medium",
+"drop_cm": 11.65,
+"internal_loss_cm": 74.12052355050565,
+"inlet_D_mm": 21.54,
+"outlet_D_mm": 17.17,
+"throat_D_mm": 12.26,
+"length_mm": 116.5,
+"res_final": {
+"p": {
+"first": 1.0,
+"final": 4.4119856617e-07,
+"max_last500": 4.4255981584e-07,
+"min_last500": 4.2700240512e-07
+},
+"Ux": {
+"first": 0.011485678803,
+"final": 7.8406836023e-08,
+"max_last500": 7.8539768851e-08,
+"min_last500": 7.7169818744e-08
+},
+"Uy": {
+"first": 1.0,
+"final": 2.6649661262e-07,
+"max_last500": 2.6813720829e-07,
+"min_last500": 2.6102074806e-07
+},
+"Uz": {
+"first": 0.96615732155,
+"final": 0.46663558095,
+"max_last500": 0.47352322605,
+"min_last500": 0.45352802978
+},
+"k": {
+"first": 0.99999999994,
+"final": 3.3072664049e-06,
+"max_last500": 3.4404886834e-06,
+"min_last500": 3.2827606768e-06
+},
+"omega": {
+"first": 1.0,
+"final": 9.3916203706e-08,
+"max_last500": 9.6788044955e-08,
+"min_last500": 9.3528619587e-08
+}
+},
+"group": "cur2d",
+"group_label": "Current part \u00b7 2-D to 120 L/min",
+"short": "current"
+},
+{
+"case": "Q120",
+"geometry": "current",
+"level": "medium",
+"cells": 53040,
+"iterations": 4000,
+"Q_lpm": 119.99999964692499,
+"inlet_total_Pa": 51594.375917360885,
+"level_above_inlet_cm": 527.5191110268714,
+"inlet_static_Pa": 36578.08778814205,
+"inlet_static_negative_FLAG": false,
+"port_z_mm": 47.5,
+"port_wall_p_kPa_orifice_avg": -100.77976707646866,
+"port_wall_p_kPa_at_axis": -104.86249935320912,
+"min_wall_p_kPa": -144.2729662375,
+"min_wall_p_z_mm": 34.97115035418263,
+"diffuser_Cp": 0.5127254484987936,
+"diffuser_Cp_ideal": 0.5909156254278618,
+"diffuser_recovery_frac_of_ideal": 0.8676796253738369,
+"diffuser_wall_shear_min_Pa": 26.251732489511767,
+"diffuser_wall_shear_max_Pa": 592.9446069734138,
+"diffuser_separated": false,
+"diffuser_reversed_wall_fraction": 0.0,
+"diffuser_reversed_wall_length_frac": 0.0,
+"reversed_wall_flow_z_ranges_mm": [
+[
+15.56,
+15.64
+],
+[
+34.99,
+35.09
+]
+],
+"outlet_KE_head_cm": 436.75797761089586,
+"outlet_KE_alpha": 1.1485259283675637,
+"outlet_backflow_faces": 0,
+"mass_imbalance_rel": 4.3254881700607477e-10,
+"residualControl_met": false,
+"ended_cleanly": true,
+"inlet_p_change_last500_rel": 7.223040237342253e-08,
+"yplus_max": 2.709513442,
+"yplus_mean": 0.963303759477601,
+"yplus_max_z_mm": 34.92880431587016,
+"checkMesh_ok": true,
+"checkMesh_max_nonortho_deg": 12.09081368,
+"checkMesh_max_skewness": 0.3307732729,
+"key": "current__Q120",
+"desc": "Current part (2-D, Venturi alone)",
+"mesh_level": "medium",
+"drop_cm": 11.65,
+"internal_loss_cm": 102.41113341597554,
+"inlet_D_mm": 21.54,
+"outlet_D_mm": 17.17,
+"throat_D_mm": 12.26,
+"length_mm": 116.5,
+"res_final": {
+"p": {
+"first": 1.0,
+"final": 3.6914133291e-07,
+"max_last500": 4.6904975477e-07,
+"min_last500": 3.2031706783e-07
+},
+"Ux": {
+"first": 0.010755850461,
+"final": 6.6766829786e-08,
+"max_last500": 7.3418941936e-08,
+"min_last500": 5.9403226318e-08
+},
+"Uy": {
+"first": 1.0,
+"final": 2.3922492812e-07,
+"max_last500": 2.5963750085e-07,
+"min_last500": 2.2475598293e-07
+},
+"Uz": {
+"first": 0.97616823941,
+"final": 0.51938535212,
+"max_last500": 0.5327651836,
+"min_last500": 0.5102885458
+},
+"k": {
+"first": 0.99999999993,
+"final": 2.7456838527e-06,
+"max_last500": 2.9052038752e-06,
+"min_last500": 2.7083472027e-06
+},
+"omega": {
+"first": 1.0,
+"final": 2.1819589695e-07,
+"max_last500": 2.2043295935e-07,
+"min_last500": 2.1270537441e-07
+}
+},
+"group": "cur2d",
+"group_label": "Current part \u00b7 2-D to 120 L/min",
+"short": "current"
 },
 {
 "case": "Q6",
