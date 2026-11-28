@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27 20:54 PST",
+ "updated": "2026-11-27 22:59 PST",
  "today": "2026-11-27",
  "strip": [
   [
@@ -63,7 +63,7 @@
     "0.1–1.5 mg/L (ideal 0.3–0.8)",
     "–",
     "0.38–1.32 (bench)",
-    "Model, 30–100 spm, long-radius: A 0.84–1.18 (1.40×), V1 0.70–1.02, F 1.00–1.25 (1.76 at 100), E 1.02–1.60. 1in E-Sig: E 1.00–1.21 to 75 spm, overflows at 100",
+    "Model, 30–85 spm (100 spm in brackets). Long-radius: A 0.84–1.14 (1.18), V1 0.70–0.99 (1.02), F 1.00–1.25 (1.76), E 1.02–1.30 (1.60). 1in E-Sig: A 0.87–1.17 (1.77, no overflow), E 1.00–1.43 (2.33, overflows)",
     "open"
    ],
    [
