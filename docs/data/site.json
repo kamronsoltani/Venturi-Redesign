@@ -359,7 +359,9 @@
     10,
     15,
     20,
+    25,
     30,
+    35,
     45,
     70,
     100
@@ -2175,6 +2177,22 @@
    "jet": 17.73,
    "recovery": 0.72,
    "imbalance": -0.021
+  },
+  "asm1lr_R2_U_t13_n22_zfix_Q25": {
+   "level": -0.6,
+   "drift": 0.03,
+   "port": -4.469,
+   "jet": 11.63,
+   "recovery": 0.722,
+   "imbalance": 0.146
+  },
+  "asm1lr_R2_U_t13_n22_zfix_Q35": {
+   "level": 15.05,
+   "drift": 0.04,
+   "port": -7.934,
+   "jet": 21.65,
+   "recovery": 0.738,
+   "imbalance": 0.135
   }
  }
 }

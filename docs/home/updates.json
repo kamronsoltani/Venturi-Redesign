@@ -1,5 +1,19 @@
 [
  {
+  "id": "2026-11-28-Elr2",
+  "date": "2026-11-28",
+  "time": "04:36",
+  "tag": "Simulation",
+  "title": "E on the long-radius reducer, measured at 25 and 35 L/min: no head-fill jump at 100 spm after all",
+  "tldr": "E's long-radius sweep had no 25/35 L/min points, so its fill point was interpolated. Measured now: 25 L/min −0.60 cm, 35 L/min +15.1 cm. Fill 27.0, overflow 29.5 L/min (as estimated). With the measured curve the pulse model no longer fills the head at 100 spm (peak +2.1 cm vs the +2.2 cm bore top): E doses 1.01–1.34 mg/L over 30–100 spm (1.33×), with no jump and no overflow. The earlier 1.60 mg/L at 100 spm came from the interpolated curve. So on the long-radius reducer E is as flat as A, at a slightly higher dose.",
+  "body": [
+   [
+    "p",
+    "Plot: home/handpump_stage3.png. Next: the current part at 70/100 L/min on its own 3/4in train, then the elbow bend-radius study (E then A)."
+   ]
+  ]
+ },
+ {
   "id": "2026-11-28-ext",
   "date": "2026-11-28",
   "time": "03:50",
