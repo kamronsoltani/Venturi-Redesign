@@ -1,5 +1,29 @@
 [
  {
+  "id": "2026-11-27-stage3-Fe",
+  "date": "2026-11-27",
+  "time": "23:38",
+  "tag": "Simulation",
+  "title": "Stage 3: F on the 1\" E-Sig train overflows inside the pump range; on the E-Sig only A stays clear",
+  "tldr": "F (13 mm, 20 mm outlet) on the 1\" E-Sig + 1\" NPT elbow train, 7 flows, independently checked: all PASS, all converged. Head fills at 22.2 ± 0.15 L/min and overflows at 24.7 ± 0.2 — inside the Afridev's ~26 L/min. Pulse model: very flat 1.01–1.17 mg/L over 30–75 spm, then overflow from 85 spm (13% of the cycle) and at 100 spm (82%). Why F suffers most: the E-Sig feeds a skewed jet into the Venturi (extra loss growing with flow); E's 22 mm outlet gets much of it back as a more even exit jet, F's 20 mm nozzle already evens its jet, so the loss shows up as a higher head level.",
+  "body": [
+   [
+    "p",
+    "Plot: home/handpump_stage3.png (dashed = E-Sig train). Cases in the CFD viewer under '3-D candidates · 1in E-Sig + 1in NPT elbow'."
+   ],
+   [
+    "list",
+    [
+     "F levels on the E-Sig train (cm vs pump-spout centre): 6: −13.3, 10: −10.8, 15: −6.1, 20: −0.6, 25: +6.2, 30: +15.5, 35: +26.5.",
+     "E-Sig train summary (fill / overflow, L/min): A 25.7 / 28.6, E 24.0 / 27.3, F 22.2 / 24.7. At 100 spm: A no overflow (just), E overflows 28% of the cycle, F 82%.",
+     "Long-radius reducer: no overflow for any candidate.",
+     "Port-side spread over 6–35 L/min on the E-Sig train: F 1.58, E 1.64, A 1.74; port side reads within 1.7% of the all-round mean for F.",
+     "Next: V1 on the E-Sig train (rebuilt without the vane) overnight, then the side tests on the unsettled E-Sig cases, E's long-radius 25/35 L/min, the current part at 70/100 L/min, and the elbow bend-radius study."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-stage3-Ae",
   "date": "2026-11-27",
   "time": "20:54",

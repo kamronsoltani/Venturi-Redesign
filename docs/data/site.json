@@ -413,6 +413,22 @@
     35
    ],
    "color": "#5ec8f2"
+  },
+  {
+   "id": "asm1e_R1_t13_n20_zfix",
+   "group": "cand_asm1e",
+   "venturi": "F \u00b7 13 mm",
+   "label": "3-D \u00b7 candidate F (13 mm, 20 mm outlet, round\u22121 port) \u00b7 1in E-Sig + elbow",
+   "flows": [
+    6,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35
+   ],
+   "color": "#d4a373"
   }
  ],
  "cases": {
@@ -2031,6 +2047,62 @@
    "jet": 13.66,
    "recovery": 0.874,
    "imbalance": 0.016
+  },
+  "asm1e_R1_t13_n20_zfix_Q6": {
+   "level": -13.25,
+   "drift": 0.01,
+   "port": -1.086,
+   "jet": 0.82,
+   "recovery": 0.7,
+   "imbalance": 0.035
+  },
+  "asm1e_R1_t13_n20_zfix_Q10": {
+   "level": -10.83,
+   "drift": 0.02,
+   "port": -1.43,
+   "jet": 2.19,
+   "recovery": 0.753,
+   "imbalance": 0.017
+  },
+  "asm1e_R1_t13_n20_zfix_Q15": {
+   "level": -6.11,
+   "drift": 0.01,
+   "port": -2.05,
+   "jet": 4.88,
+   "recovery": 0.726,
+   "imbalance": 0.022
+  },
+  "asm1e_R1_t13_n20_zfix_Q20": {
+   "level": -0.59,
+   "drift": 0.03,
+   "port": -3.036,
+   "jet": 8.15,
+   "recovery": 0.757,
+   "imbalance": 0.025
+  },
+  "asm1e_R1_t13_n20_zfix_Q25": {
+   "level": 6.21,
+   "drift": 0.06,
+   "port": -4.322,
+   "jet": 11.88,
+   "recovery": 0.772,
+   "imbalance": 0.042
+  },
+  "asm1e_R1_t13_n20_zfix_Q30": {
+   "level": 15.48,
+   "drift": 0.06,
+   "port": -5.783,
+   "jet": 17.0,
+   "recovery": 0.76,
+   "imbalance": 0.047
+  },
+  "asm1e_R1_t13_n20_zfix_Q35": {
+   "level": 26.45,
+   "drift": 0.06,
+   "port": -7.501,
+   "jet": 23.07,
+   "recovery": 0.75,
+   "imbalance": 0.051
   }
  }
 }
