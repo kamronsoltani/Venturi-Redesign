@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27 18:57 PST",
+ "updated": "2026-11-27 20:54 PST",
  "today": "2026-11-27",
  "strip": [
   [
@@ -14,8 +14,8 @@
   ],
   [
    "Next result",
-   "Handpump: A on the 1in E-Sig train",
-   "Nov 27, ~9 pm"
+   "Handpump: F and V1 on the 1in E-Sig train",
+   "Nov 28, early morning"
   ],
   [
    "Bench test",
@@ -55,7 +55,7 @@
     "None within the pump range (to ~26 L/min)",
     "Overflows at 18.5",
     "None to 30",
-    "Long-radius reducer: V1 ~32, A ~31, E ~29.5, F ~28.2 L/min (no overflow in the pump range). 1in E-Sig: E ~27.3 steady but overflows at 100 spm (pulse peaks)",
+    "Long-radius reducer: none for A, E, F, V1. 1in E-Sig: E overflows at 100 spm; A just clears it (peak 4.7–5.3 vs 5.8 cm)",
     "open"
    ],
    [

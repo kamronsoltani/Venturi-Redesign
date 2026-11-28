@@ -1,5 +1,29 @@
 [
  {
+  "id": "2026-11-27-stage3-Ae",
+  "date": "2026-11-27",
+  "time": "20:54",
+  "tag": "Simulation",
+  "title": "Stage 3: A (13.5 mm) holds the 1\" E-Sig train just below overflow at 100 spm, where E spills",
+  "tldr": "A on the 1\" E-Sig + 1\" NPT elbow train, 7 flows 6–35 L/min, independently checked: 6 of 7 flows converged; the 30 L/min level did not settle (flat at 6.8 cm, then jumping toward ~9) and is being re-run two ways. Head fills at 25.7 ± 0.3 L/min (E 24.0) and overflows at 28.6 ± 0.7 (E 27.3). Pulse model: 0.87–1.17 mg/L over 30–85 spm (1.34×, the flattest so far), 1.7–1.8 at 100 spm with the head filled half the cycle; peak level 4.7–5.3 cm against the 5.8 cm overflow line whichever value the 30 L/min level settles to — no overflow, but a thin margin.",
+  "body": [
+   [
+    "p",
+    "Plot: home/handpump_stage3.png. Cases in the CFD viewer under '3-D candidates · 1in E-Sig + 1in NPT elbow'."
+   ],
+   [
+    "list",
+    [
+     "Levels (cm vs pump-spout centre): 6: −13.5, 10: −11.4, 15: −7.5, 20: −3.1, 25: +1.3, 30: +8.3 (not converged), 35: +13.0.",
+     "Port suction on this train is within ±2% of A on the long-radius reducer: the dose curve is set by the Venturi, the overflow margin by the fitting.",
+     "Check: mesh OK (850k cells, non-orthogonality 64.99°), flows balanced to 0.003%, port-side spread re-derived.",
+     "Side test after the queue: the 30 L/min case continued +1000 iterations, and re-run from the 25 L/min state for 3000 iterations, to see whether the level is unique.",
+     "So far: on the long-radius reducer every candidate stays clear of overflow; on the E-Sig train only the 13.5 mm throat (A) does, and only just. Next: F and V1 on the E-Sig train overnight."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-stage3-Ee",
   "date": "2026-11-27",
   "time": "17:53",
