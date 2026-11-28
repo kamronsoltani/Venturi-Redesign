@@ -6,7 +6,8 @@
   "p34": "3/4in elbow retrofit, aligned mesh",
   "cand_asm1lr": "3-D candidates \u00b7 1in long-radius reducer",
   "pipe3d": "3-D pipe rig \u00b7 1in pipe + 1in NPT elbow",
-  "cand_asm1e": "3-D candidates \u00b7 1in E-Sig + 1in NPT elbow"
+  "cand_asm1e": "3-D candidates \u00b7 1in E-Sig + 1in NPT elbow",
+  "other_asm34": "3-D \u00b7 3/4in E-Sig + 3/4in elbow"
  },
  "assemblies": [
   {
@@ -198,9 +199,9 @@
   },
   {
    "id": "asm34_current_zfix",
-   "group": "p34",
-   "venturi": "Threaded elbow",
-   "label": "3/4in E-Sig + 3/4in threaded elbow + current Venturi (aligned mesh)",
+   "group": "other_asm34",
+   "venturi": "current",
+   "label": "3-D \u00b7 current (aligned mesh) \u00b7 3/4in E-Sig + 3/4in elbow",
    "flows": [
     6,
     8,
@@ -210,7 +211,9 @@
     30,
     40,
     50,
-    60
+    60,
+    70,
+    100
    ]
   },
   {
@@ -2193,6 +2196,22 @@
    "jet": 21.65,
    "recovery": 0.738,
    "imbalance": 0.135
+  },
+  "asm34_current_zfix_Q70": {
+   "level": 222.05,
+   "drift": 0.32,
+   "port": -34.855,
+   "jet": 152.0,
+   "recovery": 0.817,
+   "imbalance": 0.133
+  },
+  "asm34_current_zfix_Q100": {
+   "level": 459.03,
+   "drift": 3.95,
+   "port": -70.938,
+   "jet": 308.33,
+   "recovery": 0.823,
+   "imbalance": 0.134
   }
  }
 }

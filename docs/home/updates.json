@@ -1,5 +1,22 @@
 [
  {
+  "id": "2026-11-28-current",
+  "date": "2026-11-28",
+  "time": "05:08",
+  "tag": "Simulation",
+  "title": "Current part measured to 100 L/min in 3-D: 1.92× spread, close to cavitating at 100",
+  "tldr": "The current part on its own 3/4\" E-Sig + 3/4\" elbow train now has measured 3-D points at 70 and 100 L/min (independently checked), so every part has a measured 6–100 L/min curve. Dose spread 6–100 L/min at the port side: 1.92× (2-D estimate 1.86×; E 1.60× and F 1.59× on the pipe rig). Its dose is lowest at 10–20 L/min and climbs steadily: 1.14× at 30, 1.41× at 50, 1.63× at 70, 1.92× at 100. Lowest wall pressure at 100 L/min is −93.1 kPa gauge at the throat entry, 5.6 kPa above vapour: it would cavitate at about 103 L/min, and turbulence may start it earlier — treat 100 L/min as marginal for the current part. The new designs stay 30–40 kPa clear.",
+  "body": [
+   [
+    "list",
+    [
+     "Check: same mesh (642k cells, non-orthogonality 62.8°) and identical settings to the 11-19 flows; 100 L/min level oscillates 0.9% with no drift.",
+     "Next: the elbow bend-radius study (parametric long-radius reducer at 0.75×, 1×, 1.5×, 2× radius; E then A; 20/25/30 L/min)."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-28-Elr2",
   "date": "2026-11-28",
   "time": "04:36",
