@@ -5,7 +5,8 @@
   "lr": "1in long-radius elbow",
   "p34": "3/4in elbow retrofit, aligned mesh",
   "cand_asm1lr": "3-D candidates \u00b7 1in long-radius reducer",
-  "pipe3d": "3-D pipe rig \u00b7 1in pipe + 1in NPT elbow"
+  "pipe3d": "3-D pipe rig \u00b7 1in pipe + 1in NPT elbow",
+  "cand_asm1e": "3-D candidates \u00b7 1in E-Sig + 1in NPT elbow"
  },
  "assemblies": [
   {
@@ -380,6 +381,22 @@
     35
    ],
    "color": "#9be15d"
+  },
+  {
+   "id": "asm1e_R2_U_t13_n22_zfix",
+   "group": "cand_asm1e",
+   "venturi": "E \u00b7 13 mm",
+   "label": "3-D \u00b7 candidate E (13 mm, 22 mm outlet, port +9 mm) \u00b7 1in E-Sig + elbow",
+   "flows": [
+    6,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35
+   ],
+   "color": "#ff6b6b"
   }
  ],
  "cases": {
@@ -1886,6 +1903,62 @@
    "jet": 25.78,
    "recovery": 0.743,
    "imbalance": 0.141
+  },
+  "asm1e_R2_U_t13_n22_zfix_Q6": {
+   "level": -13.32,
+   "drift": 0.02,
+   "port": -1.183,
+   "jet": 0.73,
+   "recovery": 0.677,
+   "imbalance": 0.037
+  },
+  "asm1e_R2_U_t13_n22_zfix_Q10": {
+   "level": -10.83,
+   "drift": 0.01,
+   "port": -1.52,
+   "jet": 2.07,
+   "recovery": 0.696,
+   "imbalance": 0.037
+  },
+  "asm1e_R2_U_t13_n22_zfix_Q15": {
+   "level": -6.21,
+   "drift": 0.07,
+   "port": -2.15,
+   "jet": 4.34,
+   "recovery": 0.669,
+   "imbalance": 0.051
+  },
+  "asm1e_R2_U_t13_n22_zfix_Q20": {
+   "level": -1.97,
+   "drift": 0.27,
+   "port": -3.255,
+   "jet": 6.07,
+   "recovery": 0.751,
+   "imbalance": 0.031
+  },
+  "asm1e_R2_U_t13_n22_zfix_Q25": {
+   "level": 3.18,
+   "drift": 0.92,
+   "port": -4.69,
+   "jet": 8.45,
+   "recovery": 0.797,
+   "imbalance": 0.022
+  },
+  "asm1e_R2_U_t13_n22_zfix_Q30": {
+   "level": 8.81,
+   "drift": 0.94,
+   "port": -6.498,
+   "jet": 10.68,
+   "recovery": 0.843,
+   "imbalance": 0.021
+  },
+  "asm1e_R2_U_t13_n22_zfix_Q35": {
+   "level": 19.21,
+   "drift": 0.93,
+   "port": -8.248,
+   "jet": 15.14,
+   "recovery": 0.816,
+   "imbalance": 0.028
   }
  }
 }

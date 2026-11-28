@@ -1,5 +1,29 @@
 [
  {
+  "id": "2026-11-27-stage3-Ee",
+  "date": "2026-11-27",
+  "time": "17:53",
+  "tag": "Simulation",
+  "title": "Stage 3: E on the 1\" E-Sig + NPT elbow — head fills at ~24 L/min and overflows at 100 spm; the long-radius reducer does not",
+  "tldr": "E (13 mm) on the 1\" E-Sig + 1\" NPT elbow train, 7 flows 6–35 L/min, independently checked (PASS). The head sits ~4.8 cm higher than on the long-radius reducer at low flow because the E-Sig holds the Venturi 4.8 cm higher below the pump spout (24.5 vs 72 mm drop) — geometry, not friction (the gap shrinks to 2.3 cm at 30 L/min). It fills at ~24.0 L/min (23.7–24.8) and overflows at ~27.3 (26.5–28.0). Pulse model: 1.00–1.21 mg/L over 30–75 spm, 1.43 at 85, and at 100 spm the stroke peaks push the head to +7.2 cm, overflowing 28% of the cycle. On the long-radius reducer the same Venturi peaks at +2.9 cm with no overflow. The long-radius reducer is the hardware that makes no-overflow possible.",
+  "body": [
+   [
+    "p",
+    "Plot: home/handpump_stage3.png (dashed = E-Sig train). Cases in the CFD viewer under '3-D candidates · 1in E-Sig + 1in NPT elbow'."
+   ],
+   [
+    "list",
+    [
+     "Levels (cm vs pump-spout centre): 6: −13.3, 10: −10.8, 15: −6.2, 20: −2.0, 25: +3.2, 30: +8.8, 35: +19.2. Above 20 L/min the level oscillates ±0.5 cm (shown as the fill/overflow ranges).",
+     "Port suction on the E-Sig train is within −4.5/+1.4% of the long-radius reducer's: the dose curve itself barely changes; only the head level does.",
+     "Port clocking on this train: the side position reads 3–5% less suction than the all-round mean (on the long-radius reducer it read 3–5% more) — the bench sheet will give the port position per fitting.",
+     "Check: mesh OK (836k cells, non-orthogonality 64.99° — same class as every E-Sig/pipe-rig mesh), flows balanced to 0.003%.",
+     "Next: A, F and V1 on the same train (A's wider throat is the test of whether a Venturi alone can hold the E-Sig train below overflow)."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-stage3-Flr",
   "date": "2026-11-27",
   "time": "15:07",
