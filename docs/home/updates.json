@@ -14,7 +14,7 @@
    [
     "list",
     [
-     "Levels (cm vs pump-spout centre): 6: −13.3, 10: −10.8, 15: −6.2, 20: −2.0, 25: +3.2, 30: +8.8, 35: +19.2. Above 20 L/min the level oscillates ±0.5 cm (shown as the fill/overflow ranges).",
+     "Levels (cm vs pump-spout centre): 6: −13.3, 10: −10.8, 15: −6.2, 20: −2.0, 25: +3.2, 30: +8.8, 35: +19.2. At 25–30 L/min the level oscillates ±0.4 cm (shown as the fill/overflow ranges); at 35 L/min it was still creeping up until the last ~200 iterations (audit 19:56), so treat 35 as a lower bound. Fill/overflow come from the 20–30 points and are unaffected.",
      "Port suction on the E-Sig train is within −4.5/+1.4% of the long-radius reducer's: the dose curve itself barely changes; only the head level does.",
      "Port clocking on this train: the side position reads 3–5% less suction than the all-round mean (on the long-radius reducer it read 3–5% more) — the bench sheet will give the port position per fitting.",
      "Check: mesh OK (836k cells, non-orthogonality 64.99° — same class as every E-Sig/pipe-rig mesh), flows balanced to 0.003%.",
