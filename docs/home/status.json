@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-28 05:08 PST",
- "today": "2026-11-27",
+ "updated": "2026-11-28 06:59 PST",
+ "today": "2026-11-28",
  "strip": [
   [
    "Current phase",
@@ -88,15 +88,15 @@
  "findings": [
   [
    "Stage 2 complete: E and F (13 mm throats) tie at ~1.6× on the pipe rig.",
-   "Pipe rig (straight 1\" pipe → 1\" NPT elbow), 3-D, port side, 6–100 L/min: F 1.59×, E 1.60×, C 1.69×, A 1.71×, V1 1.75× (current part 1.86× in 2-D). E is limited by its 6 L/min end, F by its 100 L/min end. F is more sensitive to port clocking (17% inside/outside of the bend vs E 11%); F's 20 mm outlet keeps the outlet fuller at 6 L/min. Stage 3 (handpump) decides."
+   "Pipe rig (straight 1\" pipe → 1\" NPT elbow), 3-D, port side, 6–100 L/min: F 1.59×, E 1.60×, C 1.69×, A 1.71×, V1 1.75× (current part 1.92× in 3-D on its own 3/4in train, measured to 100). E is limited by its 6 L/min end, F by its 100 L/min end. F is more sensitive to port clocking (17% inside/outside of the bend vs E 11%); F's 20 mm outlet keeps the outlet fuller at 6 L/min. Stage 3 (handpump) decides."
   ],
   [
    "Stage 1 converged: 13–13.5 mm throat with a 20–22 mm outlet nozzle.",
    "Round 3 tried every remaining bore freedom one at a time (diffuser 3/5/6°, 15° inlet cone, throat 8/22 mm, port 3.5 mm down): nothing beats its base by more than 1%. The best two both move the port slightly upstream. On the pipe rig the elbow tips the optimum to 13 mm (E, 1.60×)."
   ],
   [
-   "Current part measured to 100 L/min: 1.86× spread, and its throat reaches vapour pressure at ~100 L/min.",
-   "2-D (straight pipe) runs of the current part to 120 L/min: dose spread 6–100 L/min = 1.86× (lowest at 20, highest at 100). The minimum wall pressure is −98.7 kPa gauge at 100 L/min (vapour limit) and impossible at 120, so the current part cannot really run at 100 L/min without cavitating. The new candidates stay at −60 to −78 kPa at 100 L/min in 2-D (13.5 mm −60 to −66, 13 mm −71 to −78) and spread 1.63–1.70×."
+   "Current part measured to 100 L/min: 1.92× spread in 3-D (1.86× in 2-D); its throat is 5.6 kPa from vapour at 100 L/min.",
+   "2-D (straight pipe) runs of the current part to 120 L/min: dose spread 6–100 L/min = 1.86× (lowest at 20, highest at 100). The minimum wall pressure is −98.7 kPa gauge at 100 L/min (vapour limit) and impossible at 120, so the current part cannot really run at 100 L/min without cavitating. (11-28, 3-D on its own train: minimum −93.1 kPa gauge at 100 L/min, vapour at ~103 L/min — marginal.) The new candidates stay at −60 to −78 kPa at 100 L/min in 2-D (13.5 mm −60 to −66, 13 mm −71 to −78) and spread 1.63–1.70×."
   ],
   [
    "Round 1: 13.5–14 mm throats with a 20–23 mm outlet are all within 1.64–1.76×.",
