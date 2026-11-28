@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28 01:01 PST",
+ "updated": "2026-11-28 02:27 PST",
  "today": "2026-11-27",
  "strip": [
   [
@@ -10,12 +10,12 @@
   [
    "Lab PC",
    "Running",
-   "3-D handpump trains, one 8-core case at a time (~23–28 min each)"
+   "Stage 3 side tests + follow-on runs, then elbow bend-radius study"
   ],
   [
    "Next result",
-   "Handpump: V1 on the 1in E-Sig train",
-   "Nov 28, ~2 am"
+   "E-Sig side tests, then bend-radius study",
+   "Nov 28 morning–afternoon"
   ],
   [
    "Bench test",
@@ -55,7 +55,7 @@
     "None within the pump range (to ~26 L/min)",
     "Overflows at 18.5",
     "None to 30",
-    "Long-radius reducer: none for A, E, F, V1. 1in E-Sig: A just clears 100 spm; E overflows at 100 spm; F overflows from 85 spm (fills 22.2, overflows 24.7 L/min)",
+    "Long-radius reducer: none for A, E, F, V1. 1in E-Sig at 100 spm: A clears; V1 14%, E 28%, F 82% of the cycle",
     "open"
    ],
    [

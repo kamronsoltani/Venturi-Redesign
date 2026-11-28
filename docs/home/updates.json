@@ -1,5 +1,28 @@
 [
  {
+  "id": "2026-11-28-stage3-V1e",
+  "date": "2026-11-28",
+  "time": "02:27",
+  "tag": "Simulation",
+  "title": "Stage 3 trains complete: on the 1\" E-Sig only A clears 100 spm; V1's outlet vane lowers the head ~2 cm",
+  "tldr": "All handpump-train sweeps are done (A, E, F, V1 on the long-radius reducer and the 1\" E-Sig + NPT elbow; independently checked). V1 on the E-Sig train (rebuilt without its vane, like every other run): fills at 25.1, overflows at 27.7 L/min; pulse model 0.80–1.09 mg/L over 30–85 spm, overflow 14% of the cycle at 100 spm. E-Sig train at 100 spm: A no overflow, V1 14%, E 28%, F 82%. Long-radius reducer: no overflow for any. A like-for-like check of V1's old vaned build shows the outlet vane LOWERS the head ~2.1 cm at 30 L/min by evening the 26 mm outlet jet (worth ~1.4 L/min of margin); its effect on the nozzled designs has not been run.",
+  "body": [
+   [
+    "p",
+    "Plot: home/handpump_stage3.png. V1's E-Sig cases are in the CFD viewer under '3-D candidates · 1in E-Sig + 1in NPT elbow'."
+   ],
+   [
+    "list",
+    [
+     "V1 levels on the E-Sig train (cm): 6: −13.7, 10: −11.8, 15: −8.1, 20: −3.5, 25: +2.1, 30: +9.2, 35: +17.2.",
+     "E-Sig overflow order (L/min): F 24.7 < E 27.3 < V1 27.7 < A 28.6.",
+     "Correction: an earlier note (00:52) said the vane cost head; it compared an older, differently aligned run. The like-for-like comparison shows the opposite.",
+     "Running now: side tests continuing the E-Sig cases that had not fully settled (E 25/30/35, A 30, and A 30 from a different start), then E long-radius 25/35, the current part 70/100, and the elbow bend-radius study."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-27-stage3-Fe",
   "date": "2026-11-27",
   "time": "23:38",

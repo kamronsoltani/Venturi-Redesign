@@ -429,6 +429,22 @@
     35
    ],
    "color": "#d4a373"
+  },
+  {
+   "id": "asm1e_V1_zfix",
+   "group": "cand_asm1e",
+   "venturi": "V1",
+   "label": "3-D \u00b7 V1 (aligned mesh) \u00b7 1in E-Sig + elbow",
+   "flows": [
+    6,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35
+   ],
+   "color": "#c9a0ff"
   }
  ],
  "cases": {
@@ -2103,6 +2119,62 @@
    "jet": 23.07,
    "recovery": 0.75,
    "imbalance": 0.051
+  },
+  "asm1e_V1_zfix_Q6": {
+   "level": -13.65,
+   "drift": 0.03,
+   "port": -1.054,
+   "jet": 0.63,
+   "recovery": 0.671,
+   "imbalance": -0.037
+  },
+  "asm1e_V1_zfix_Q10": {
+   "level": -11.8,
+   "drift": 0.01,
+   "port": -1.309,
+   "jet": 1.64,
+   "recovery": 0.717,
+   "imbalance": -0.038
+  },
+  "asm1e_V1_zfix_Q15": {
+   "level": -8.12,
+   "drift": 0.01,
+   "port": -1.763,
+   "jet": 3.73,
+   "recovery": 0.69,
+   "imbalance": -0.035
+  },
+  "asm1e_V1_zfix_Q20": {
+   "level": -3.52,
+   "drift": 0.04,
+   "port": -2.46,
+   "jet": 6.39,
+   "recovery": 0.705,
+   "imbalance": -0.034
+  },
+  "asm1e_V1_zfix_Q25": {
+   "level": 2.1,
+   "drift": 0.12,
+   "port": -3.384,
+   "jet": 9.51,
+   "recovery": 0.719,
+   "imbalance": -0.026
+  },
+  "asm1e_V1_zfix_Q30": {
+   "level": 9.24,
+   "drift": 0.22,
+   "port": -4.461,
+   "jet": 13.51,
+   "recovery": 0.716,
+   "imbalance": -0.011
+  },
+  "asm1e_V1_zfix_Q35": {
+   "level": 17.21,
+   "drift": 0.22,
+   "port": -5.771,
+   "jet": 17.73,
+   "recovery": 0.72,
+   "imbalance": -0.021
   }
  }
 }
