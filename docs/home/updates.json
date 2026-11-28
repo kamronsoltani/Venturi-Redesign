@@ -5,7 +5,7 @@
   "time": "20:54",
   "tag": "Simulation",
   "title": "Stage 3: A (13.5 mm) holds the 1\" E-Sig train just below overflow at 100 spm, where E spills",
-  "tldr": "A on the 1\" E-Sig + 1\" NPT elbow train, 7 flows 6–35 L/min, independently checked: 6 of 7 flows converged; the 30 L/min level did not settle (flat at 6.8 cm, then jumping toward ~9) and is being re-run two ways. Head fills at 25.7 ± 0.3 L/min (E 24.0) and overflows at 28.6 ± 0.7 (E 27.3). Pulse model: 0.87–1.17 mg/L over 30–85 spm (1.34×, the flattest so far), 1.7–1.8 at 100 spm with the head filled half the cycle; peak level 4.7–5.3 cm against the 5.8 cm overflow line whichever value the 30 L/min level settles to — no overflow, but a thin margin.",
+  "tldr": "A on the 1\" E-Sig + 1\" NPT elbow train, 7 flows 6–35 L/min, independently checked: 6 of 7 flows converged; the 30 L/min level did not settle (flat at 6.8 cm, then still rising toward ~9 at the end of the run) and is being re-run two ways. Head fills at 25.7 ± 0.3 L/min (E 24.0) and overflows at 28.6 ± 0.7 (E 27.3). Pulse model: 0.87–1.17 mg/L over 30–85 spm (1.34×, the flattest so far), 1.7–1.8 at 100 spm with the head filled half the cycle; peak level 4.7–5.3 cm against the 5.8 cm overflow line whichever value the 30 L/min level settles to — no overflow, but a thin margin.",
   "body": [
    [
     "p",
