@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27 17:53 PST",
+ "updated": "2026-11-27 18:57 PST",
  "today": "2026-11-27",
  "strip": [
   [
@@ -10,7 +10,7 @@
   [
    "Lab PC",
    "Running",
-   "3-D handpump trains, one 8-core case at a time (~28 min each)"
+   "3-D handpump trains, one 8-core case at a time (~23–28 min each)"
   ],
   [
    "Next result",
@@ -63,7 +63,7 @@
     "0.1–1.5 mg/L (ideal 0.3–0.8)",
     "–",
     "0.38–1.32 (bench)",
-    "Model, 30–100 spm, long-radius: A 0.84–1.18 (1.40×), V1 0.70–1.02, F 1.00–1.25 (1.76 at 100 spm), E 1.02–1.60 (over 1.5 at 100 spm)",
+    "Model, 30–100 spm, long-radius: A 0.84–1.18 (1.40×), V1 0.70–1.02, F 1.00–1.25 (1.76 at 100), E 1.02–1.60. 1in E-Sig: E 1.00–1.21 to 75 spm, overflows at 100",
     "open"
    ],
    [
