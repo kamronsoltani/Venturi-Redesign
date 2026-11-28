@@ -1,5 +1,23 @@
 [
  {
+  "id": "2026-11-28-ext",
+  "date": "2026-11-28",
+  "time": "03:50",
+  "tag": "Check",
+  "title": "Side test: the E-Sig results are converged — longer runs move nothing beyond the oscillation",
+  "tldr": "The E-Sig cases whose head level was still moving at 2000 iterations were run 1000 more (E at 25/30/35, A at 30 L/min), and A at 30 was also re-run from a different starting state for 3000 iterations. Levels moved by −0.03 to +0.31 cm, all inside the cases' own oscillation, and port suction by under 0.5%. A at 30 L/min lands at 8.30 cm from both starts (8.32 originally), so there is one flow state, not two. Every posted E-Sig fill/overflow and pulse result stands.",
+  "body": [
+   [
+    "list",
+    [
+     "E 25: 3.18 → 3.49 cm; E 30: 8.81 → 8.93; E 35: 19.21 → 19.34; A 30: 8.32 → 8.29 (+1000) and 8.30 (fresh start, 3000).",
+     "These extra runs are kept apart from the ranking set (same mesh and settings, longer run only).",
+     "Running now: E on the long-radius reducer at 25 and 35 L/min (pins its fill/overflow without interpolation), then the current part at 70/100 L/min, then the elbow bend-radius study."
+    ]
+   ]
+  ]
+ },
+ {
   "id": "2026-11-28-stage3-V1e",
   "date": "2026-11-28",
   "time": "02:27",
